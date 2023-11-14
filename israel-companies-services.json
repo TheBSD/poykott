@@ -1797,6 +1797,29 @@
 					"link": "https://www.bloomberg.com/news/articles/2014-09-24/cyberark-rallies-69-after-pricing-shares-above-targeted-range"
 				}
 			]
+		},
+		{
+			"id": 76,
+			"name": "riverside",
+			"description": "شركة تقدم حلول تسجيل البودكاست والمقابلات عن بعد",
+			"logo": "./logo/riverside.svg",
+			"notes": "المنصة التي يستخدمها بودكاست syntax.fm مثلا للتسجيل",
+			"category": "SaaS",
+			"alternatives": [
+				{
+					"name": "",
+					"description": "",
+					"link": "",
+					"logo": "",
+					"notes": ""
+				}
+			],
+			"resources": [
+				{
+					"name": "عن الموقع",
+					"link": "https://riverside.fm/about"
+				}
+			]
 		}
 	]
 }
