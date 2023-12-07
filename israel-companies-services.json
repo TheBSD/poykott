@@ -99,6 +99,13 @@
 			"category": "",
 			"alternatives": [
 				{
+					"name": "Monafiz",
+					"description": "",
+					"link": "https://monafiz.com",
+					"logo": "./logo/monafiz.png",
+					"notes": ""
+				},
+				{
 					"name": "khamsat",
 					"description": "",
 					"link": "https://khamsat.com",
