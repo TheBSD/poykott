@@ -1,0 +1,89 @@
+models:
+  Resource:
+    name: string
+    type: string
+    description: text
+    link: string
+
+Company:
+    name: string
+    description: text  # Fixed typo
+    image: string
+    notes: text
+    category: string
+    valuation: integer
+    valuation_at_exit: integer  # Changed to integer for consistency
+    exit: string
+    founders: string
+    stock_symbol_or_acquirer: string
+    top_investors: string
+    website: string
+    total_funding: integer
+    resource: string
+    resource_link: string
+    last_funding: date
+    headquarters_location: string
+    founded_at: date
+    sectors: string
+      markets: 
+        - string
+    office_locations: 
+      - string
+    staff_count: integer
+    name: string
+    num_jobs: integer
+    num_remote_jobs: integer
+    fraction_remote: float
+    num_internships: integer
+    num_manager_jobs: integer
+    parent_slugs: 
+      - string
+    parents: 
+      - string
+    slug: string
+    stages: 
+      - string
+    fundingLV:
+      id: string
+      label: string
+      value: string
+    sizeLV:
+      id: string
+      label: string
+      value: string
+    is_featured: boolean
+    is_remote_friendly: boolean
+    website:
+      url: string
+      label: string
+
+    torq:
+      url: string
+      short_description: string
+      name: string
+      logo: string
+      link: string
+      description: text
+      founders: # relationship 
+        - name: string
+          title: string
+          avatar: string
+      stats:
+        - key: string
+          value: string
+
+Peoople:  
+name: string
+url: string
+avatar: string
+title: string 
+location: string 
+company: # relationship
+description: text
+socials: json
+
+
+
+    
+controllers:
+  # ...
