@@ -1,0 +1,12 @@
+- [ ] scaffold using blueprint 
+- [ ] test the tests!
+- [ ] add proper data & structure from https://github.com/TheBSD/scraping-israeli-data/ using custom commands
+- [ ] generate filament admin panel from existing models 
+- [ ] improve all of these to make the project accepted
+- [ ] add proper design from Abdu 
+- [ ] publish this to server
+- [ ] make it open source on https://github.com/TheBSD/
+- [ ] test it with laravel friends and others
+- [ ] paid for the domain
+- [ ] add a blog (we can either use statmic or take wave demo blog)
+- [ ] make the whole data translatable using spatie translatable and __()
