@@ -10,3 +10,7 @@
 - [ ] paid for the domain
 - [ ] add a blog (we can either use statmic or take wave demo blog)
 - [ ] make the whole data translatable using spatie translatable and __()
+- [ ] make the site with roles: admin, publisher, normal user 
+- [ ] add volunteers to add and update data
+- [ ] add backup to data every day
+- [ ] add caching for data to make it faster

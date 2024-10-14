@@ -1,2 +1,85 @@
+created:
+    - app/Http/Controllers/CompanyController.php
+    - app/Http/Controllers/ResourceController.php
+    - app/Http/Controllers/AlternativeController.php
+    - database/factories/ResourceFactory.php
+    - database/factories/FundingLevelFactory.php
+    - database/factories/CompanySizeFactory.php
+    - database/factories/CategoryFactory.php
+    - database/factories/ExitStrategyFactory.php
+    - database/factories/CompanyFactory.php
+    - database/factories/AlternativeFactory.php
+    - database/factories/CompanyResourcesFactory.php
+    - database/factories/PersonFactory.php
+    - database/factories/PersonResourcesFactory.php
+    - database/factories/TagFactory.php
+    - database/factories/TaggableFactory.php
+    - database/migrations/2024_10_14_202252_create_resources_table.php
+    - database/migrations/2024_10_14_202253_create_funding_levels_table.php
+    - database/migrations/2024_10_14_202254_create_company_sizes_table.php
+    - database/migrations/2024_10_14_202255_create_categories_table.php
+    - database/migrations/2024_10_14_202256_create_exit_strategies_table.php
+    - database/migrations/2024_10_14_202257_create_companies_table.php
+    - database/migrations/2024_10_14_202258_create_alternatives_table.php
+    - database/migrations/2024_10_14_202259_create_company_resources_table.php
+    - database/migrations/2024_10_14_202300_create_people_table.php
+    - database/migrations/2024_10_14_202301_create_person_resources_table.php
+    - database/migrations/2024_10_14_202302_create_tags_table.php
+    - database/migrations/2024_10_14_202303_create_taggables_table.php
+    - database/migrations/2024_10_14_202304_create_company_person_table.php
+    - database/migrations/2024_10_14_202305_create_alternative_company_table.php
+    - app/Models/Resource.php
+    - app/Models/FundingLevel.php
+    - app/Models/CompanySize.php
+    - app/Models/Category.php
+    - app/Models/ExitStrategy.php
+    - app/Models/Company.php
+    - app/Models/Alternative.php
+    - app/Models/CompanyResources.php
+    - app/Models/Person.php
+    - app/Models/PersonResources.php
+    - app/Models/Tag.php
+    - app/Models/Taggable.php
+    - database/seeders/UserSeeder.php
+    - database/seeders/ResourceSeeder.php
+    - database/seeders/FundingLevelSeeder.php
+    - database/seeders/CompanySizeSeeder.php
+    - database/seeders/CategorySeeder.php
+    - database/seeders/ExitStrategySeeder.php
+    - database/seeders/CompanySeeder.php
+    - database/seeders/AlternativeSeeder.php
+    - database/seeders/CompanyResourcesSeeder.php
+    - database/seeders/PersonSeeder.php
+    - database/seeders/PersonResourcesSeeder.php
+    - database/seeders/TagSeeder.php
+    - database/seeders/TaggableSeeder.php
+    - tests/Feature/Http/Controllers/CompanyControllerTest.php
+    - tests/Feature/Http/Controllers/ResourceControllerTest.php
+    - tests/Feature/Http/Controllers/AlternativeControllerTest.php
+    - app/Http/Requests/CompanyStoreRequest.php
+    - app/Http/Requests/ResourceStoreRequest.php
+    - app/Http/Requests/AlternativeStoreRequest.php
+    - app/Jobs/AddCompany.php
+    - app/Notification/ReviewCompany.php
+    - resources/views/company/index.blade.php
+    - resources/views/company/show.blade.php
+    - resources/views/company/create.blade.php
+    - resources/views/resource/index.blade.php
+    - resources/views/resource/create.blade.php
+    - resources/views/alternative/create.blade.php
+updated:
+    - routes/web.php
 models:
-User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
+    Alternative: { name: string, description: 'nullable text', approved_at: 'nullable timestamp', logo: 'nullable string', notes: 'nullable text', url: string, relationships: { belongsToMany: Company } }
+    Category: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
+    Company: { category_id: foreign, exit_strategy_id: 'nullable foreign', funding_level_id: 'nullable integer', company_size_id: 'nullable integer', approved_at: 'nullable timestamp', name: string, slug: 'string unique index', description: 'nullable text', logo: 'nullable string', notes: 'nullable text', valuation: 'nullable integer', exit_valuation: 'nullable integer', stock_symbol: 'nullable string', url: string, total_funding: 'nullable integer', last_funding_date: 'nullable date', headquarter: 'nullable string', founded_at: 'nullable date', office_locations: 'nullable json', employee_count: 'nullable integer', relationships: { belongsTo: 'Category, ExitStrategy, CompanySize, FundingLevel', belongsToMany: 'Person, Alternative', hasMany: CompanyResources } }
+    CompanyResources: { company_id: foreign, title: string, url: string, relationships: { belongsTo: Company } }
+    CompanySize: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
+    ExitStrategy: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
+    FundingLevel: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
+    Person: { full_name: string, avatar: 'nullable string', job_title: 'nullable string', approved_at: 'nullable timestamp', location: 'nullable string', biography: 'nullable text', social_links: 'nullable json', relationships: { belongsToMany: Company } }
+    PersonResources: { person_id: foreign, title: string, url: string }
+    Resource: { title: string, type: string, description: 'nullable text', url: string }
+    Tag: { name: 'string unique', slug: 'string unique index' }
+    Taggable: { tag_id: foreign, taggable: morphs }
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
