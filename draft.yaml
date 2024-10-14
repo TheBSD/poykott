@@ -1,89 +1,134 @@
 models:
   Resource:
-    name: string
+    title: string
     type: string
-    description: text
-    link: string
+    description: nullable text
+    url: string
 
-Company:
-    name: string
-    description: text  # Fixed typo
-    image: string
-    notes: text
-    category: string
-    valuation: integer
-    valuation_at_exit: integer  # Changed to integer for consistency
-    exit: string
-    founders: string
-    stock_symbol_or_acquirer: string
-    top_investors: string
-    website: string
-    total_funding: integer
-    resource: string
-    resource_link: string
-    last_funding: date
-    headquarters_location: string
-    founded_at: date
-    sectors: string
-      markets: 
-        - string
-    office_locations: 
-      - string
-    staff_count: integer
-    name: string
-    num_jobs: integer
-    num_remote_jobs: integer
-    fraction_remote: float
-    num_internships: integer
-    num_manager_jobs: integer
-    parent_slugs: 
-      - string
-    parents: 
-      - string
-    slug: string
-    stages: 
-      - string
-    fundingLV:
-      id: string
-      label: string
-      value: string
-    sizeLV:
-      id: string
-      label: string
-      value: string
-    is_featured: boolean
-    is_remote_friendly: boolean
-    website:
-      url: string
-      label: string
+  FundingLevel:
+    title: string
+    description: nullable text
 
-    torq:
-      url: string
-      short_description: string
-      name: string
-      logo: string
-      link: string
-      description: text
-      founders: # relationship 
-        - name: string
-          title: string
-          avatar: string
-      stats:
-        - key: string
-          value: string
+    relationships:
+      hasMany: Company
 
-Peoople:  
-name: string
-url: string
-avatar: string
-title: string 
-location: string 
-company: # relationship
-description: text
-socials: json
+#   CompanySize:
+#     title: string
+#     description: nullable text
+
+#     relationships:
+#       hasMany: Company
+
+#   Category:
+#     title: string
+#     description: nullable text
+
+#     relationships:
+#       hasMany: Company
+
+#   ExitStrategy:
+#     title: string
+#     description: nullable text
+
+#     relationships:
+#       hasMany: Company
+
+#   Company:
+#     category_id: foreign 
+#     exit_strategy_id: nullable foreign
+#     funding_level_id: nullable integer
+#     company_size_id: nullable integer
+
+#     approved_at: nullable datetime
+#     name: string
+#     slug: string unique index
+#     description: nullable text
+#     logo: nullable string
+#     notes: nullable text
+#     valuation: nullable integer
+#     exit_valuation: nullable integer
+#     stock_symbol: nullable string
+#     url: string
+#     total_funding: nullable integer
+#     last_funding_date: nullable date
+#     headquarter: nullable string
+#     founded_at: nullable date
+#     office_locations: nullable json
+#     employee_count: nullable integer
+
+#     relationships:
+#       belongsTo: Category, ExitStrategy, CompanySize, FundingLevel
+#       belongsToMany: Person, Person:&founders, Alternative
+#       hasMany: CompanyResources
+
+#     Alternative:
+#       name: string
+#       description: nullable text
+#       approved_at: nullable datetime
+#       logo: nullable string
+#       notes: nullable text
+#       url: string
+
+#       relationships:
+#         belongsToMany: Company
+
+#   CompanyResources:
+#     company_id: foreign
+#     title: string
+#     url: string
+
+#     relationships:
+#       belongsTo: Company
+
+#   Person:
+#     full_name: string
+#     avatar: nullable string
+#     job_title: nullable string
+#     approved_at: nullable datetime
+#     location: nullable string
+#     biography: nullable text
+#     social_links: nullable json
+
+#     relationships:
+#       belongsToMany: Company, Company:&founders
+
+#   PersonResources:
+#     person_id: foreign
+#     title: string
+#     url: string
+
+#   Tag:
+#     name: string unique # get from parent_stages,
+#     slug: string unique index
+
+#   Taggable:
+#     tag_id: foreign
+#     taggable_id: unsignedInteger # morph
+#     taggable_type: string # morph
+
+# seeders: Resource, FundingLevel, CompanySize, Category, ExitStrategy, Company, Alternative, CompanyResources, Person, PersonResources, Tag, Taggable
+
+# relationships
+# - resourceable (morph Company/Person to Resource)
+# - investors (many-to-many relationship between Company and Person or Investor) from top investors
+# - tags (or sectors; consider using a pivot table for many-to-many relationships). from parent_stages, from  funding_stages
+# - company_parent for parent and children belongs to many
 
 
+# controllers:
+#   Company:
+#     index:
+#       query: all
+#       render: company.index
+#     create:
+#       render: post.create
+#     store:
+#       validate: title, content
+#       save: company
+#       redirect: company.index
+#     show:
+#       render: company.show with:FundingLevel with:CompanySize with:Category with:ExitStrategy with:CompanyResources with:Alternative with:Person
 
-    
-controllers:
-  # ...
+#   Comment:
+#     show:
+#       render: comment.show with:comment
