@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ResourceStoreRequest;
-use App\Jobs\AddCompany;
+use App\Jobs\AddResource;
 use App\Models\Resource;
+use App\Models\User;
+use App\Notification\ReviewResource;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,24 +17,24 @@ class ResourceController extends Controller
     {
         $resources = Resource::all();
 
-        return view('resource.index', compact('resources'));
+        return view('resources.index', compact('resources'));
     }
 
     public function create(Request $request): View
     {
-        return view('resource.create');
+        return view('resources.create');
     }
 
     public function store(ResourceStoreRequest $request): RedirectResponse
     {
         $resource = Resource::create($request->validated());
 
-        AddCompany::dispatch($resource);
+        AddResource::dispatch($resource);
 
-        $request->session()->flash('resource.name', $resource->name);
+        $request->session()->flash('resource.title', $resource->title);
 
-//        $user->first->notify(new ReviewResource($resource));
+        User::isAdmin()->first()->notify(new ReviewResource($resource));
 
-        return redirect()->route('resource.index');
+        return redirect()->route('resources.index');
     }
 }

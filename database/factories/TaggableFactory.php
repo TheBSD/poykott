@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Tag;
 use App\Models\Taggable;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaggableFactory extends Factory
 {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd1483366c3bf553d598b1fd724474ae",
+    "content-hash": "eefa9858e2d51fe0e9df235efbb4c495",
     "packages": [
         {
             "name": "brick/math",
@@ -6831,6 +6831,71 @@
             "time": "2024-09-08T23:23:55+00:00"
         },
         {
+            "name": "pestphp/pest-plugin-faker",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pestphp/pest-plugin-faker.git",
+                "reference": "48343e2806cfc12a042dead90ffff4a043167e3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-faker/zipball/48343e2806cfc12a042dead90ffff4a043167e3e",
+                "reference": "48343e2806cfc12a042dead90ffff4a043167e3e",
+                "shasum": ""
+            },
+            "require": {
+                "fakerphp/faker": "^1.23.1",
+                "pestphp/pest": "^3.0.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "pestphp/pest-dev-tools": "^3.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Faker.php"
+                ],
+                "psr-4": {
+                    "Pest\\Faker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The Pest Faker Plugin",
+            "keywords": [
+                "faker",
+                "framework",
+                "pest",
+                "php",
+                "plugin",
+                "test",
+                "testing",
+                "unit"
+            ],
+            "support": {
+                "source": "https://github.com/pestphp/pest-plugin-faker/tree/v3.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-09-08T23:56:08+00:00"
+        },
+        {
             "name": "pestphp/pest-plugin-laravel",
             "version": "v3.0.0",
             "source": {
@@ -8841,6 +8906,87 @@
                 }
             ],
             "time": "2024-03-03T12:36:25+00:00"
+        },
+        {
+            "name": "watheqalshowaiter/model-required-fields",
+            "version": "1.13.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WatheqAlshowaiter/model-required-fields.git",
+                "reference": "a2b617ea2e45e223c0d6bb9301b37f19fe9e7359"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WatheqAlshowaiter/model-required-fields/zipball/a2b617ea2e45e223c0d6bb9301b37f19fe9e7359",
+                "reference": "a2b617ea2e45e223c0d6bb9301b37f19fe9e7359",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^11.0||^10.0||^9.0||^8.0||^7.0||^6.0||^5.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^8.1.1||^7.10.0||^6.0||^5.0||^4.0||^3.2",
+                "orchestra/testbench": "^9.0.0||^8.22.0||^7.0||^6.0||^5.0||^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WatheqAlshowaiter\\ModelRequiredFields\\ModelRequiredFieldsServiceProvider"
+                    ],
+                    "aliases": {
+                        "ModelRequiredFields": "WatheqAlshowaiter\\ModelRequiredFields\\Facades\\ModelRequiredFields"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WatheqAlshowaiter\\ModelRequiredFields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Watheq Alshowaiter",
+                    "email": "watheq.alshowaiter@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Get the model required fields without nullables, primary keys and fields with defaults.",
+            "homepage": "https://github.com/watheqalshowaiter/model-required-fields",
+            "keywords": [
+                "Watheq Alshowaiter",
+                "WatheqAlshowaiter",
+                "laravel",
+                "mariadb",
+                "model",
+                "model-required-fields",
+                "mysql",
+                "package",
+                "php",
+                "php-package",
+                "postgresql",
+                "sql",
+                "sqlite",
+                "sqlserver",
+                "yemen_open_source",
+                "yemenopensource"
+            ],
+            "support": {
+                "issues": "https://github.com/WatheqAlshowaiter/model-required-fields/issues",
+                "source": "https://github.com/WatheqAlshowaiter/model-required-fields/tree/1.13.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/WatheqAlshowaiter",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-08-07T12:58:47+00:00"
         }
     ],
     "aliases": [],

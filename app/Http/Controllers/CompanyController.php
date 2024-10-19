@@ -17,31 +17,32 @@ class CompanyController extends Controller
     {
         $companies = Company::all();
 
-        return view('company.index', compact('companies'));
+        return view('companies.index', compact('companies'));
     }
 
     public function show(Request $request, Company $company): View
     {
         $company->load('alternatives');
 
-        return view('company.show', compact('company'));
+        return view('companies.show', compact('company'));
     }
 
     public function create(Request $request): View
     {
-        return view('company.create');
+        return view('companies.create');
     }
 
     public function store(CompanyStoreRequest $request): RedirectResponse
     {
+
         $company = Company::create($request->validated());
 
         AddCompany::dispatch($company);
 
         $request->session()->flash('company.name', $company->name);
 
-        User::first()->notify(new ReviewCompany($company));
+        User::isAdmin()->first()->notify(new ReviewCompany($company));
 
-        return redirect()->route('company.index');
+        return redirect()->route('companies.index');
     }
 }

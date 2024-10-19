@@ -2,11 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Jobs\AddCompany;
+use App\Jobs\AddResource;
 use App\Models\Resource;
-use App\Notification\ReviewCompany;
+use App\Models\User;
+use App\Notification\ReviewResource;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Queue;
+
 use function Pest\Faker\fake;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
@@ -17,18 +19,16 @@ test('index displays view', function (): void {
     $response = get(route('resources.index'));
 
     $response->assertOk();
-    $response->assertViewIs('resource.index');
-    $response->assertViewHas('resource');
+    $response->assertViewIs('resources.index');
+    $response->assertViewHas('resources');
 });
-
 
 test('create displays view', function (): void {
     $response = get(route('resources.create'));
 
     $response->assertOk();
-    $response->assertViewIs('resource.create');
+    $response->assertViewIs('resources.create');
 });
-
 
 test('store uses form request validation')
     ->assertActionUsesFormRequest(
@@ -62,13 +62,17 @@ test('store saves and redirects', function (): void {
     expect($resources)->toHaveCount(1);
     $resource = $resources->first();
 
-    $response->assertRedirect(route('resource.index'));
-    $response->assertSessionHas('resource.name', $resource->name);
+    $response->assertSessionHas('resource.title', $resource->title);
+    $response->assertRedirect(route('resources.index'));
 
-    Queue::assertPushed(AddCompany::class, function ($job) use ($resource) {
+    Queue::assertPushed(AddResource::class, function ($job) use ($resource) {
         return $job->resource->is($resource);
     });
-    Notification::assertSentTo($user->first, ReviewCompany::class, function ($notification) use ($resource) {
+
+    /** @var User $adminUser */
+    $adminUser = $this->adminUser;
+
+    Notification::assertSentTo($adminUser, ReviewResource::class, function ($notification) use ($resource) {
         return $notification->resource->is($resource);
     });
 });

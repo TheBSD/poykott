@@ -2,12 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Jobs\AddCompany;
+use App\Jobs\AddAlternative;
 use App\Models\Alternative;
 use App\Models\User;
-use App\Notification\ReviewCompany;
+use App\Notification\ReviewAlternative;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Queue;
+
 use function Pest\Faker\fake;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
@@ -16,23 +17,24 @@ test('create displays view', function (): void {
     $response = get(route('alternatives.create'));
 
     $response->assertOk();
-    $response->assertViewIs('alternative.create');
+    $response->assertViewIs('alternatives.create');
 });
 
-
-test('store uses form request validation')
-    ->assertActionUsesFormRequest(
+test('store uses form request validation', function (): void {
+    $this->assertActionUsesFormRequest(
         \App\Http\Controllers\AlternativeController::class,
         'store',
         \App\Http\Requests\AlternativeStoreRequest::class
     );
+});
 
 test('store saves and redirects', function (): void {
+
     $name = fake()->name();
     $description = fake()->text();
-    $logo = fake()->word();
     $notes = fake()->text();
     $url = fake()->url();
+    $logo = fake()->imageUrl();
 
     Queue::fake();
     Notification::fake();
@@ -52,16 +54,22 @@ test('store saves and redirects', function (): void {
         ->where('notes', $notes)
         ->where('url', $url)
         ->get();
+
     expect($alternatives)->toHaveCount(1);
+
     $alternative = $alternatives->first();
 
-    $response->assertRedirect(route('company.show', [$alternative->companies]));
+    $response->assertRedirect(route('welcome'));
     $response->assertSessionHas('alternative.name', $alternative->name);
 
-    Queue::assertPushed(AddCompany::class, function ($job) use ($alternative) {
+    Queue::assertPushed(AddAlternative::class, function ($job) use ($alternative) {
         return $job->alternative->is($alternative);
     });
-    Notification::assertSentTo(User::first(), ReviewCompany::class, function ($notification) use ($alternative) {
+
+    /* @var User $adminUser */
+    $adminUser = $this->adminUser;
+
+    Notification::assertSentTo($adminUser, ReviewAlternative::class, function ($notification) use ($alternative) {
         return $notification->alternative->is($alternative);
     });
 });

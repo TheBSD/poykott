@@ -3,12 +3,13 @@
 namespace App\Notification;
 
 use App\Models\Company;
+use App\Models\Resource;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Queue\SerializesModels;
 
-class ReviewCompany extends Notification
+class ReviewResource extends Notification
 {
     use Queueable, SerializesModels;
 
@@ -17,7 +18,7 @@ class ReviewCompany extends Notification
     /**
      * Create a new message instance.
      */
-    public function __construct(public Company $company)
+    public function __construct(public Resource $resource)
     {
         //        $this->company = $company;
     }

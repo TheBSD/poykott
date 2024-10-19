@@ -3,14 +3,16 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Jobs\AddCompany;
-use App\Models\;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\ExitStrategy;
+use App\Models\FundingLevel;
+use App\Models\User;
 use App\Notification\ReviewCompany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Queue;
+
 use function Pest\Faker\fake;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
@@ -21,31 +23,26 @@ test('index displays view', function (): void {
     $response = get(route('companies.index'));
 
     $response->assertOk();
-    $response->assertViewIs('company.index');
-    $response->assertViewHas('company');
+    $response->assertViewIs('companies.index');
+    $response->assertViewHas('companies');
 });
-
 
 test('show displays view', function (): void {
     $company = Company::factory()->create();
-    $companies = Company::factory()->count(3)->create();
 
     $response = get(route('companies.show', $company));
 
     $response->assertOk();
-    $response->assertViewIs('company.show');
+    $response->assertViewIs('companies.show');
     $response->assertViewHas('company');
-    $response->assertViewHas('alternatives');
 });
-
 
 test('create displays view', function (): void {
     $response = get(route('companies.create'));
 
     $response->assertOk();
-    $response->assertViewIs('company.create');
+    $response->assertViewIs('companies.create');
 });
-
 
 test('store uses form request validation')
     ->assertActionUsesFormRequest(
@@ -55,15 +52,17 @@ test('store uses form request validation')
     );
 
 test('store saves and redirects', function (): void {
+    $this->withoutExceptionHandling();
+
     $category = Category::factory()->create();
     $exit_strategy = ExitStrategy::factory()->create();
-    $funding_level = ::factory()->create();
+    $funding_level = FundingLevel::factory()->create();
     $name = fake()->name();
     $slug = fake()->slug();
     $url = fake()->url();
     $approved_at = Carbon::parse(fake()->dateTime());
     $description = fake()->text();
-    $logo = fake()->word();
+    $logo = fake()->imageUrl();
     $notes = fake()->text();
     $valuation = fake()->numberBetween(-10000, 10000);
     $exit_valuation = fake()->numberBetween(-10000, 10000);
@@ -72,7 +71,7 @@ test('store saves and redirects', function (): void {
     $last_funding_date = Carbon::parse(fake()->date());
     $headquarter = fake()->word();
     $founded_at = Carbon::parse(fake()->date());
-    $office_locations = fake()->;
+    $office_locations = json_encode(['areas' => ['full', 'city']]);
     $employee_count = fake()->numberBetween(-10000, 10000);
 
     Queue::fake();
@@ -118,19 +117,25 @@ test('store saves and redirects', function (): void {
         ->where('last_funding_date', $last_funding_date)
         ->where('headquarter', $headquarter)
         ->where('founded_at', $founded_at)
-        ->where('office_locations', $office_locations)
+        ->whereJsonContains('office_locations', $office_locations)
         ->where('employee_count', $employee_count)
         ->get();
+
     expect($companies)->toHaveCount(1);
+
     $company = $companies->first();
 
-    $response->assertRedirect(route('company.index'));
+    $response->assertRedirect(route('companies.index'));
     $response->assertSessionHas('company.name', $company->name);
 
     Queue::assertPushed(AddCompany::class, function ($job) use ($company) {
         return $job->company->is($company);
     });
-    Notification::assertSentTo($user->first, ReviewCompany::class, function ($notification) use ($company) {
+
+    /** @var User $adminUser */
+    $adminUser = $this->adminUser;
+
+    Notification::assertSentTo($adminUser, ReviewCompany::class, function ($notification) use ($company) {
         return $notification->company->is($company);
     });
 });

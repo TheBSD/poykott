@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
 
 /**
  * @property int $id
@@ -35,7 +36,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Company extends Model
 {
-    use HasFactory;
+    use HasFactory, RequiredFields;
 
     /**
      * The attributes that are mass assignable.
@@ -74,7 +75,7 @@ class Company extends Model
         'id' => 'integer',
         'category_id' => 'integer',
         'exit_strategy_id' => 'integer',
-        'funding_level_id' => 'integer',
+        //        'funding_level_id' => 'integer',
         'company_size_id' => 'integer',
         'approved_at' => 'timestamp',
         'last_funding_date' => 'date',
@@ -97,10 +98,10 @@ class Company extends Model
         return $this->belongsTo(CompanySize::class);
     }
 
-    public function fundingLevel(): BelongsTo
-    {
-        return $this->belongsTo(FundingLevel::class);
-    }
+    //    public function fundingLevel(): BelongsTo
+    //    {
+    //        return $this->belongsTo(FundingLevel::class, 'funding_level_id');
+    //    }
 
     public function people(): BelongsToMany
     {

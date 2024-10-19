@@ -1,4 +1,4 @@
-- [ ] scaffold using blueprint 
+- [x] scaffold using blueprint 
 - [ ] test the tests!
 - [ ] add proper data & structure from https://github.com/TheBSD/scraping-israeli-data/ using custom commands
 - [ ] generate filament admin panel from existing models 
@@ -8,7 +8,7 @@
 - [ ] make it open source on https://github.com/TheBSD/
 - [ ] test it with laravel friends and others
 - [ ] paid for the domain
-- [ ] add a blog (we can either use statmic or take wave demo blog)
+- [ ] add a blog (we can either use Statmic or take wave demo blog)
 - [ ] make the whole data translatable using spatie translatable and __()
 - [ ] make the site with roles: admin, publisher, normal user 
 - [ ] add volunteers to add and update data

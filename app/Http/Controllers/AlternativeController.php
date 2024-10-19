@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AlternativeStoreRequest;
-use App\Jobs\AddCompany;
+use App\Jobs\AddAlternative;
 use App\Models\Alternative;
 use App\Models\User;
-use App\Notification\ReviewCompany;
+use App\Notification\ReviewAlternative;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,19 +15,19 @@ class AlternativeController extends Controller
 {
     public function create(Request $request): View
     {
-        return view('alternative.create');
+        return view('alternatives.create');
     }
 
     public function store(AlternativeStoreRequest $request): RedirectResponse
     {
         $alternative = Alternative::create($request->validated());
 
-        AddCompany::dispatch($alternative);
+        AddAlternative::dispatch($alternative);
 
         $request->session()->flash('alternative.name', $alternative->name);
 
-        User::first()->notify(new ReviewCompany($alternative));
+        User::isAdmin()->first()->notify(new ReviewAlternative($alternative));
 
-        return redirect()->route('company.show', [$alternative->companies]);
+        return redirect()->route('welcome');
     }
 }

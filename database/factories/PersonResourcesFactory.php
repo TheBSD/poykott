@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Person;
 use App\Models\PersonResources;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PersonResourcesFactory extends Factory
 {

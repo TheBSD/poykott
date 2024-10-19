@@ -2,14 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\CompanySize;
-use App\Models\FundingLevel;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\;
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\CompanySize;
 use App\Models\ExitStrategy;
+use App\Models\FundingLevel;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CompanyFactory extends Factory
 {

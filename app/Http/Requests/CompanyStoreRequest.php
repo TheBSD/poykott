@@ -22,8 +22,8 @@ class CompanyStoreRequest extends FormRequest
         return [
             'category_id' => ['required', 'integer', 'exists:Categories,id'],
             'exit_strategy_id' => ['nullable', 'integer', 'exists:exit_strategies,id'],
-            'funding_level_id' => ['nullable', 'integer', 'exists:,id'],
-            'company_size_id' => ['nullable', 'integer', 'exists:,id'],
+            'funding_level_id' => ['nullable', 'integer', 'exists:funding_levels,id'],
+            'company_size_id' => ['nullable', 'integer', 'exists:company_sizes,id'],
             'approved_at' => ['nullable'],
             'name' => ['required', 'string'],
             'slug' => ['required', 'string', 'unique:companies,slug'],
