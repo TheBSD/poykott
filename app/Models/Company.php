@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use App\HasTags;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
 
 /**
@@ -36,7 +41,7 @@ use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
  */
 class Company extends Model
 {
-    use HasFactory, RequiredFields;
+    use HasFactory, HasSlug, HasTags, RequiredFields;
 
     /**
      * The attributes that are mass assignable.
@@ -64,6 +69,7 @@ class Company extends Model
         'founded_at',
         'office_locations',
         'employee_count',
+        'stock_quote',
     ];
 
     /**
@@ -83,6 +89,30 @@ class Company extends Model
         'office_locations' => 'array',
     ];
 
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+    /**
+     * @return Attribute
+     *
+     * The source provides only the founding year. When stored in the database,
+     * * the current month and day are also recorded, which is incorrect. This method
+     * * ensures we only retrieve and store the founding year.
+     */
+    protected function foundedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::parse($value)->format('Y'),
+        );
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -98,19 +128,29 @@ class Company extends Model
         return $this->belongsTo(CompanySize::class);
     }
 
-    //    public function fundingLevel(): BelongsTo
-    //    {
-    //        return $this->belongsTo(FundingLevel::class, 'funding_level_id');
-    //    }
+    public function fundingLevel(): BelongsTo
+    {
+        return $this->belongsTo(FundingLevel::class, 'funding_level_id');
+    }
 
     public function people(): BelongsToMany
     {
         return $this->belongsToMany(Person::class);
     }
 
+    public function founders(): BelongsToMany
+    {
+        return $this->belongsToMany(Person::class)->wherePivot('type', 'founder');
+    }
+
     public function alternatives(): BelongsToMany
     {
         return $this->belongsToMany(Alternative::class);
+    }
+
+    public function investors(): BelongsToMany
+    {
+        return $this->belongsToMany(Investor::class);
     }
 
     public function companyResources(): HasMany

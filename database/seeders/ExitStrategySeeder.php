@@ -12,6 +12,11 @@ class ExitStrategySeeder extends Seeder
      */
     public function run(): void
     {
-        ExitStrategy::factory()->count(5)->create();
+        ExitStrategy::factory()->count(2)
+            ->sequence(
+                ['title' => 'IPO'],
+                ['title' => 'M&A'],
+            )
+            ->create();
     }
 }

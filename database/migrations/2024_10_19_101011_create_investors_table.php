@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exit_strategies', function (Blueprint $table) {
+        Schema::create('investors', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
+            $table->string('name')->unique();
             $table->text('description')->nullable();
+            $table->string('url')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exit_strategies');
+        Schema::dropIfExists('investors');
     }
 };

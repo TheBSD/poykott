@@ -44,6 +44,7 @@ class CompanyFactory extends Factory
             'founded_at' => $this->faker->date(),
             'office_locations' => '{}',
             'employee_count' => $this->faker->numberBetween(-10000, 10000),
+            'stock_quote' => $this->faker->url(),
         ];
     }
 }

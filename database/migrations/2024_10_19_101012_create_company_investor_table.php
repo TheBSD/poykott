@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exit_strategies', function (Blueprint $table) {
-            $table->id();
-            $table->string('title')->unique();
-            $table->text('description')->nullable();
-            $table->timestamps();
+        Schema::create('company_investor', function (Blueprint $table) {
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('investor_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exit_strategies');
+        Schema::dropIfExists('company_investor');
     }
 };

@@ -1,10 +1,11 @@
 - [x] scaffold using blueprint 
-- [ ] test the tests!
+- [x] test the tests!
 - [ ] add proper data & structure from https://github.com/TheBSD/scraping-israeli-data/ using custom commands
 - [ ] generate filament admin panel from existing models 
 - [ ] improve all of these to make the project accepted
 - [ ] add proper design from Abdu 
 - [ ] publish this to server
+- [ ] make backup like pinkary.com did
 - [ ] make it open source on https://github.com/TheBSD/
 - [ ] test it with laravel friends and others
 - [ ] paid for the domain

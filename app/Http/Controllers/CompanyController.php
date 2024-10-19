@@ -34,7 +34,6 @@ class CompanyController extends Controller
 
     public function store(CompanyStoreRequest $request): RedirectResponse
     {
-
         $company = Company::create($request->validated());
 
         AddCompany::dispatch($company);

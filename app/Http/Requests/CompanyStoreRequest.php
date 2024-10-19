@@ -40,6 +40,7 @@ class CompanyStoreRequest extends FormRequest
             'founded_at' => ['nullable', 'date'],
             'office_locations' => ['nullable', 'json'],
             'employee_count' => ['nullable', 'integer'],
+            'stock_quote' => ['nullable', 'string'],
         ];
     }
 }

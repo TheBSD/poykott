@@ -73,6 +73,7 @@ test('store saves and redirects', function (): void {
     $founded_at = Carbon::parse(fake()->date());
     $office_locations = json_encode(['areas' => ['full', 'city']]);
     $employee_count = fake()->numberBetween(-10000, 10000);
+    $stock_quote = fake()->url();
 
     Queue::fake();
     Notification::fake();
@@ -97,6 +98,7 @@ test('store saves and redirects', function (): void {
         'founded_at' => $founded_at,
         'office_locations' => $office_locations,
         'employee_count' => $employee_count,
+        'stock_quote' => $stock_quote,
     ]);
 
     $companies = Company::query()
@@ -119,6 +121,7 @@ test('store saves and redirects', function (): void {
         ->where('founded_at', $founded_at)
         ->whereJsonContains('office_locations', $office_locations)
         ->where('employee_count', $employee_count)
+        ->where('stock_quote', $stock_quote)
         ->get();
 
     expect($companies)->toHaveCount(1);

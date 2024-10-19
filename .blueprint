@@ -1,72 +1,14 @@
 created:
-    - app/Http/Controllers/CompanyController.php
-    - app/Http/Controllers/ResourceController.php
-    - app/Http/Controllers/AlternativeController.php
-    - database/factories/ResourceFactory.php
-    - database/factories/FundingLevelFactory.php
-    - database/factories/CompanySizeFactory.php
-    - database/factories/CategoryFactory.php
-    - database/factories/ExitStrategyFactory.php
-    - database/factories/CompanyFactory.php
-    - database/factories/AlternativeFactory.php
-    - database/factories/CompanyResourcesFactory.php
-    - database/factories/PersonFactory.php
-    - database/factories/PersonResourcesFactory.php
-    - database/factories/TagFactory.php
-    - database/factories/TaggableFactory.php
-    - database/migrations/2024_10_14_202252_create_resources_table.php
-    - database/migrations/2024_10_14_202253_create_funding_levels_table.php
-    - database/migrations/2024_10_14_202254_create_company_sizes_table.php
-    - database/migrations/2024_10_14_202255_create_categories_table.php
-    - database/migrations/2024_10_14_202256_create_exit_strategies_table.php
-    - database/migrations/2024_10_14_202257_create_companies_table.php
-    - database/migrations/2024_10_14_202258_create_alternatives_table.php
-    - database/migrations/2024_10_14_202259_create_company_resources_table.php
-    - database/migrations/2024_10_14_202300_create_people_table.php
-    - database/migrations/2024_10_14_202301_create_person_resources_table.php
-    - database/migrations/2024_10_14_202302_create_tags_table.php
-    - database/migrations/2024_10_14_202303_create_taggables_table.php
-    - database/migrations/2024_10_14_202304_create_company_person_table.php
-    - database/migrations/2024_10_14_202305_create_alternative_company_table.php
-    - app/Models/Resource.php
-    - app/Models/FundingLevel.php
-    - app/Models/CompanySize.php
-    - app/Models/Category.php
-    - app/Models/ExitStrategy.php
-    - app/Models/Company.php
-    - app/Models/Alternative.php
-    - app/Models/CompanyResources.php
-    - app/Models/Person.php
-    - app/Models/PersonResources.php
-    - app/Models/Tag.php
-    - app/Models/Taggable.php
-    - database/seeders/UserSeeder.php
-    - database/seeders/ResourceSeeder.php
-    - database/seeders/FundingLevelSeeder.php
-    - database/seeders/CompanySizeSeeder.php
-    - database/seeders/CategorySeeder.php
-    - database/seeders/ExitStrategySeeder.php
-    - database/seeders/CompanySeeder.php
-    - database/seeders/AlternativeSeeder.php
-    - database/seeders/CompanyResourcesSeeder.php
-    - database/seeders/PersonSeeder.php
-    - database/seeders/PersonResourcesSeeder.php
-    - database/seeders/TagSeeder.php
-    - database/seeders/TaggableSeeder.php
-    - tests/Feature/Http/Controllers/CompanyControllerTest.php
-    - tests/Feature/Http/Controllers/ResourceControllerTest.php
-    - tests/Feature/Http/Controllers/AlternativeControllerTest.php
-    - app/Http/Requests/CompanyStoreRequest.php
-    - app/Http/Requests/ResourceStoreRequest.php
-    - app/Http/Requests/AlternativeStoreRequest.php
-    - app/Jobs/AddCompany.php
-    - app/Notification/ReviewCompany.php
-    - resources/views/company/index.blade.php
-    - resources/views/company/show.blade.php
-    - resources/views/company/create.blade.php
-    - resources/views/resource/index.blade.php
-    - resources/views/resource/create.blade.php
-    - resources/views/alternative/create.blade.php
+    - app/Http/Controllers/InvestorController.php
+    - database/factories/InvestorFactory.php
+    - database/migrations/2024_10_19_101011_create_investors_table.php
+    - database/migrations/2024_10_19_101012_create_company_investor_table.php
+    - app/Models/Investor.php
+    - tests/Feature/Http/Controllers/InvestorControllerTest.php
+    - app/Http/Requests/InvestorStoreRequest.php
+    - app/Jobs/AddInvestor.php
+    - app/Notification/ReviewInvestor.php
+    - resources/views/investors/index.blade.php
 updated:
     - routes/web.php
 models:
@@ -83,3 +25,4 @@ models:
     Tag: { name: 'string unique', slug: 'string unique index' }
     Taggable: { tag_id: foreign, taggable: morphs }
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
+    Investor: { name: string, description: 'nullable text', url: 'nullable string', logo: 'nullable string', relationships: { belongsToMany: Company } }

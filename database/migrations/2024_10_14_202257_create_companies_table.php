@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('exit_strategy_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('funding_level_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('company_size_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamp('approved_at')->nullable();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug')->unique()->index();
             $table->string('url');
             $table->text('description')->nullable();
@@ -33,6 +33,7 @@ return new class extends Migration
             $table->date('founded_at')->nullable();
             $table->json('office_locations')->nullable();
             $table->integer('employee_count')->nullable();
+            $table->string('stock_quote')->nullable();
             $table->timestamps();
         });
     }
