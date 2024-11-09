@@ -19,9 +19,10 @@ return new class extends Migration
             $table->foreignId('company_size_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamp('approved_at')->nullable();
             $table->string('name')->unique();
-            $table->string('slug')->unique()->index();
+            $table->string('slug')->unique();
             $table->string('url');
             $table->text('description')->nullable();
+            $table->string('short_description')->nullable();
             $table->string('logo')->nullable();
             $table->text('notes')->nullable();
             $table->integer('valuation')->nullable();

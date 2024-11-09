@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use App\HasTags;
+use App\Enums\CompanyPersonType;
+use App\Traits\HasTags;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -57,6 +59,7 @@ class Company extends Model
         'name',
         'slug',
         'description',
+        'short_description',
         'logo',
         'notes',
         'valuation',
@@ -81,7 +84,7 @@ class Company extends Model
         'id' => 'integer',
         'category_id' => 'integer',
         'exit_strategy_id' => 'integer',
-        //        'funding_level_id' => 'integer',
+        'funding_level_id' => 'integer',
         'company_size_id' => 'integer',
         'approved_at' => 'timestamp',
         'last_funding_date' => 'date',
@@ -109,7 +112,7 @@ class Company extends Model
     protected function foundedAt(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => Carbon::parse($value)->format('Y'),
+            get: fn (?string $value) => $value ? Carbon::parse($value)->format('Y') : null
         );
     }
 
@@ -135,12 +138,12 @@ class Company extends Model
 
     public function people(): BelongsToMany
     {
-        return $this->belongsToMany(Person::class);
+        return $this->belongsToMany(Person::class)->withPivot('type');
     }
 
     public function founders(): BelongsToMany
     {
-        return $this->belongsToMany(Person::class)->wherePivot('type', 'founder');
+        return $this->belongsToMany(Person::class)->wherePivot('type', CompanyPersonType::Founder);
     }
 
     public function alternatives(): BelongsToMany
@@ -156,5 +159,15 @@ class Company extends Model
     public function companyResources(): HasMany
     {
         return $this->hasMany(CompanyResources::class);
+    }
+
+    public function officeLocations(): HasMany
+    {
+        return $this->hasMany(OfficeLocation::class);
+    }
+
+    public function resources(): MorphMany
+    {
+        return $this->morphMany(Resource::class, 'resourceable');
     }
 }

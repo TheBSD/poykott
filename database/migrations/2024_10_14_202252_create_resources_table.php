@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->morphs('resourceable');
+            $table->string('title')->nullable();
             $table->string('type');
             $table->text('description')->nullable();
             $table->string('url');

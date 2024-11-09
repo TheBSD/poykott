@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('person_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('type')->nullable();
+
             $table->primary(['company_id', 'person_id']);
         });
     }

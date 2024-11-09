@@ -2,11 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\CompanyPersonType;
 use App\Models\Company;
 use App\Models\ExitStrategy;
 use App\Models\Investor;
 use App\Models\Person;
+use App\Models\Tag;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ImportUnicornGraduatesTechAvivCommand extends Command
 {
@@ -16,29 +19,56 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
 
     public function handle(): void
     {
-        $json = file_get_contents(storage_path('app/private/unicorn-graduates.json'));
+        $json = file_get_contents(storage_path('app/private/2-unicorn-graduates.json'));
 
         $allData = json_decode($json, true);
 
         $progressBar = $this->output->createProgressBar(count($allData));
 
         foreach ($allData as $data) {
-            $company = Company::updateOrCreate(
-                ['name' => data_get($data, 'Company')],
-                [
-                    'exit_valuation' => data_get($data, 'Valuation at Exit'),
-                    'url' => data_get($data, 'Website'),
-                    'total_funding' => data_get($data, 'Total Funding'),
-                    'headquarter' => data_get($data, 'HQ'),
-                    'founded_at' => \Carbon\Carbon::createFromFormat('Y', data_get($data, 'Founded')),
-                    'exit_strategy_id' => ExitStrategy::query()
-                        ->where('title', data_get($data, 'Exit'))
-                        ->firstOrCreate(['title' => data_get($data, 'Exit')])->id,
-                    'stock_symbol' => data_get($data, 'Stock Symbol or Acquirer'),
-                    'description' => data_get($data, 'Description'),
-                    'last_funding_date' => data_get($data, 'Last Funding'),
-                    'stock_quote' => data_get($data, 'Stock Qoute'),
-                ]);
+
+            $dataFields = [
+                'name' => str(data_get($data, 'Company'))->lower()->trim(),
+                'exit_valuation' => data_get($data, 'Valuation at Exit'),
+                'url' => data_get($data, 'Website'),
+                'total_funding' => data_get($data, 'Total Funding'),
+                'headquarter' => data_get($data, 'HQ'),
+                'founded_at' => \Carbon\Carbon::createFromFormat('Y', data_get($data, 'Founded')),
+                'exit_strategy_id' => ExitStrategy::query()
+                    ->where('title', data_get($data, 'Exit'))
+                    ->firstOrCreate(['title' => data_get($data, 'Exit')])->id,
+                'stock_symbol' => data_get($data, 'Stock Symbol or Acquirer'),
+                'description' => data_get($data, 'Description'),
+                'last_funding_date' => data_get($data, 'Last Funding'),
+                'stock_quote' => data_get($data, 'Stock Qoute'),
+            ];
+
+            $company = Company::whereRaw('LOWER(name) = ?', [
+                str(data_get($data, 'Company'))->lower()->trim(),
+            ])->firstOrCreate([
+                'name' => data_get($data, 'Name'),
+            ], $dataFields);
+
+            if (! $company->wasRecentlyCreated) { // retrieved from database
+                $company->update($dataFields);
+            }
+
+            //$company = Company::updateOrCreate(
+            //    ['name' => \str(data_get($data, 'Company'))->lower()->value()],
+            //    [
+            //        'exit_valuation' => data_get($data, 'Valuation at Exit'),
+            //        'url' => data_get($data, 'Website'),
+            //        'total_funding' => data_get($data, 'Total Funding'),
+            //        'headquarter' => data_get($data, 'HQ'),
+            //        'founded_at' => \Carbon\Carbon::createFromFormat('Y', data_get($data, 'Founded')),
+            //        'exit_strategy_id' => ExitStrategy::query()
+            //            ->where('title', data_get($data, 'Exit'))
+            //            ->firstOrCreate(['title' => data_get($data, 'Exit')])->id,
+            //        'stock_symbol' => data_get($data, 'Stock Symbol or Acquirer'),
+            //        'description' => data_get($data, 'Description'),
+            //        'last_funding_date' => data_get($data, 'Last Funding'),
+            //        'stock_quote' => data_get($data, 'Stock Qoute'),
+            //    ]);
 
             $foundersString = data_get($data, 'Founders');
             $founders = \Str::of($foundersString)
@@ -47,25 +77,28 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 ->reject(fn ($founder) => empty(trim($founder)));
 
             foreach ($founders as $founder) {
-                $person = Person::updateOrCreate([
-                    'full_name' => $founder,
-                ], [
-                    'job_title' => 'Founder '.$company->name,
-                ]);
+                $person = Person::firstOrCreate(
+                    ['full_name' => trim($founder)],
+                    ['job_title' => 'Founder '.$company->name]
+                );
 
-                if ($company->founders()->where('person_id', $person->id)->doesntExist()) {
-                    $company->founders()->attach($person, ['type' => 'founder']);
+                if (empty($person->job_title)) {
+                    $person->update(['job_title' => 'Founder '.$company->name]);
+                }
+
+                if ($company->people()->where('person_id', $person->id)->doesntExist()) {
+                    $company->people()->attach($person, ['type' => CompanyPersonType::Founder]);
                 }
             }
 
             $investorsString = data_get($data, 'Top Investors');
-            $investors = \Str::of($investorsString)
+            $investors = Str::of($investorsString)
                 ->explode(',')
                 ->reject(fn ($investor) => empty(trim($investor)));
 
             foreach ($investors as $investor) {
                 $investor = Investor::updateOrCreate([
-                    'name' => $investor,
+                    'name' => trim($investor),
                 ]);
 
                 if ($company->investors()->where('investor_id', $investor->id)->doesntExist()) {
@@ -80,8 +113,8 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
 
             $tagsIds = [];
             foreach ($tags as $tag) {
-                $tag = \App\Models\Tag::updateOrCreate([
-                    'name' => $tag,
+                $tag = Tag::updateOrCreate([
+                    'name' => trim($tag),
                 ]);
 
                 $tagsIds[] = $tag->id;

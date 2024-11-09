@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * @property int $id
@@ -20,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Person extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -29,12 +32,15 @@ class Person extends Model
      */
     protected $fillable = [
         'full_name',
+        'slug',
         'avatar',
         'job_title',
         'approved_at',
         'location',
         'biography',
         'social_links',
+        'url',
+        'description',
     ];
 
     /**
@@ -48,8 +54,23 @@ class Person extends Model
         'social_links' => 'array',
     ];
 
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('full_name')
+            ->saveSlugsTo('slug');
+    }
+
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class);
+    }
+
+    public function resources(): MorphMany
+    {
+        return $this->morphMany(Resource::class, 'resourceable');
     }
 }

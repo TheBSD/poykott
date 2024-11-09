@@ -1,6 +1,12 @@
 - [x] scaffold using blueprint 
 - [x] test the tests!
 - [ ] add proper data & structure from https://github.com/TheBSD/scraping-israeli-data/ using custom commands
+  - [ ] unicorn-graduate 
+  - [ ] unicorn
+  - [ ] team
+  - [ ] members
+  - [ ] profiles 
+  - [ ] jobs/job companies
 - [ ] generate filament admin panel from existing models 
 - [ ] improve all of these to make the project accepted
 - [ ] add proper design from Abdu 
@@ -15,3 +21,6 @@
 - [ ] add volunteers to add and update data
 - [ ] add backup to data every day
 - [ ] add caching for data to make it faster
+- [ ] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
+- [ ] office location lat lng https://www.latlong.net/
+- [ ] use https://github.com/tighten/duster in project/actions/husky 

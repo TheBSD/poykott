@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('investors', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('url')->nullable();
             $table->string('logo')->nullable();

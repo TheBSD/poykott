@@ -15,19 +15,19 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminSeeder::class,
-            UserSeeder::class,
-            ResourceSeeder::class,
-            FundingLevelSeeder::class,
-            CompanySizeSeeder::class,
-            CategorySeeder::class,
-            ExitStrategySeeder::class,
-            CompanySeeder::class,
-            AlternativeSeeder::class,
-            CompanyResourcesSeeder::class,
-            PersonSeeder::class,
-            PersonResourcesSeeder::class,
-            TagSeeder::class,
-            TaggableSeeder::class,
+            //UserSeeder::class,
+            //            ResourceSeeder::class,
+            //            FundingLevelSeeder::class,
+            //            CompanySizeSeeder::class,
+            //            CategorySeeder::class,
+            //            ExitStrategySeeder::class,
+            //            CompanySeeder::class,
+            //            AlternativeSeeder::class,
+            //            CompanyResourcesSeeder::class,
+            //            PersonSeeder::class,
+            //            PersonResourcesSeeder::class,
+            //            TagSeeder::class,
+            //            TaggableSeeder::class,
         ]);
     }
 }

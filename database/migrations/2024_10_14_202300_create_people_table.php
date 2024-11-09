@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
             $table->string('avatar')->nullable();
+            $table->string('slug')->unique();
             $table->string('job_title')->nullable();
+            $table->string('url')->nullable();
+            $table->text('description')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->string('location')->nullable();
             $table->text('biography')->nullable();

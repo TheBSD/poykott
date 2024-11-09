@@ -1,16 +1,8 @@
 created:
-    - app/Http/Controllers/InvestorController.php
-    - database/factories/InvestorFactory.php
-    - database/migrations/2024_10_19_101011_create_investors_table.php
-    - database/migrations/2024_10_19_101012_create_company_investor_table.php
-    - app/Models/Investor.php
-    - tests/Feature/Http/Controllers/InvestorControllerTest.php
-    - app/Http/Requests/InvestorStoreRequest.php
-    - app/Jobs/AddInvestor.php
-    - app/Notification/ReviewInvestor.php
-    - resources/views/investors/index.blade.php
-updated:
-    - routes/web.php
+    - database/factories/OfficeLocationFactory.php
+    - database/migrations/2024_11_05_211540_create_office_locations_table.php
+    - app/Models/OfficeLocation.php
+    - database/seeders/OfficeLocationSeeder.php
 models:
     Alternative: { name: string, description: 'nullable text', approved_at: 'nullable timestamp', logo: 'nullable string', notes: 'nullable text', url: string, relationships: { belongsToMany: Company } }
     Category: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
@@ -26,3 +18,4 @@ models:
     Taggable: { tag_id: foreign, taggable: morphs }
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
     Investor: { name: string, description: 'nullable text', url: 'nullable string', logo: 'nullable string', relationships: { belongsToMany: Company } }
+    OfficeLocation: { name: string, lat: 'decimal nullable', lng: 'decimal nullable', relationships: { belongsTo: Company } }

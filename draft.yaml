@@ -1,4 +1,15 @@
 models:
+#  OfficeLocation:
+#    name: string
+#    lat: decimal nullable
+#    lng: decimal nullable
+#
+#    relationships:
+#       belongsTo: Company
+#
+#seeders: OfficeLocation
+
+
 #  Resource:
 #    title: string
 #    type: string
