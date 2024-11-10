@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFundingLevel extends CreateRecord
 {
     protected static string $resource = FundingLevelResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

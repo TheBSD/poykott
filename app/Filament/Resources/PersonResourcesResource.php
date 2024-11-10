@@ -5,28 +5,29 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PersonResourcesResource\Pages;
 use App\Models\PersonResources;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class PersonResourcesResource extends Resource
 {
     protected static ?string $model = PersonResources::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-plus';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('person_id')
-                    ->relationship('person', 'id')
-                    ->required(),
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('url')
-                    ->required(),
+                Select::make('person_id')
+                    ->relationship('person', 'full_name')
+                    ->searchable()->preload()->required(),
+                TextInput::make('title')->required(),
+                TextInput::make('url')->required(),
             ]);
     }
 
@@ -34,20 +35,12 @@ class PersonResourcesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('person.id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('url')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('person.full_name')->numeric()->sortable(),
+                TextColumn::make('title')->searchable(),
+                TextColumn::make('url')->searchable(),
+                TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('updated_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
@@ -55,6 +48,7 @@ class PersonResourcesResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

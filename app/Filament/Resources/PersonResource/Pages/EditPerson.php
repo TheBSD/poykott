@@ -10,10 +10,17 @@ class EditPerson extends EditRecord
 {
     protected static string $resource = PersonResource::class;
 
-    protected function getHeaderActions(): array
+    protected function getRedirectUrl(): string
     {
-        return [
-            Actions\DeleteAction::make(),
-        ];
+        return $this->getResource()::getUrl('index');
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        if (!empty($data['social_links'])) {
+            $data['social_links'] = array_map('trim', explode(',', $data['social_links']));
+        }
+
+        return $data;
     }
 }

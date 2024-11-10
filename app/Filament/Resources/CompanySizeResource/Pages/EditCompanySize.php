@@ -10,10 +10,9 @@ class EditCompanySize extends EditRecord
 {
     protected static string $resource = CompanySizeResource::class;
 
-    protected function getHeaderActions(): array
+
+    protected function getRedirectUrl(): string
     {
-        return [
-            Actions\DeleteAction::make(),
-        ];
+        return $this->getResource()::getUrl('index');
     }
 }

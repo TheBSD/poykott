@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateExitStrategy extends CreateRecord
 {
     protected static string $resource = ExitStrategyResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

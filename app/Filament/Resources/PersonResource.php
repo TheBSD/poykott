@@ -5,33 +5,37 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PersonResource\Pages;
 use App\Models\Person;
 use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class PersonResource extends Resource
 {
     protected static ?string $model = Person::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('full_name')
-                    ->required(),
-                Forms\Components\TextInput::make('avatar'),
-                Forms\Components\TextInput::make('slug')
-                    ->required(),
-                Forms\Components\TextInput::make('job_title'),
-                Forms\Components\DateTimePicker::make('approved_at'),
-                Forms\Components\TextInput::make('location'),
-                Forms\Components\Textarea::make('biography')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('social_links')
-                    ->columnSpanFull(),
+                TextInput::make('full_name')->required(),
+                TextInput::make('avatar'),
+                TextInput::make('slug')->required(),
+                TextInput::make('job_title'),
+                DateTimePicker::make('approved_at'),
+                TextInput::make('location'),
+                Textarea::make('biography')->columnSpanFull(),
+                Textarea::make('social_links')->columnSpanFull()
+                    ->placeholder('Enter links separated by commas')
+                    ->helperText('Enter each link separated by a comma (e.g., https://link1.com, https://link2.com)'),
             ]);
     }
 
@@ -39,33 +43,37 @@ class PersonResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('full_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('avatar')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('job_title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('approved_at')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('location')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('full_name')->searchable()->sortable(),
+                ImageColumn::make('avatar')->searchable(),
+                TextColumn::make('slug')->searchable(),
+                TextColumn::make('job_title')->searchable()->sortable(),
+                IconColumn::make('approved_at')->boolean()->sortable(),
+                TextColumn::make('location')->searchable()->sortable(),
+                TextColumn::make('social_links')
+                    ->formatStateUsing(function (Person $record) {
+                        $links = $record->social_links ?? [];
+
+                        $formattedLinks = array_map(function ($name, $url) {
+                            return "<a href='{$url}' class='text-blue-500 target='_blank'>{$url}</a>";
+                        }, array_keys($links), $links);
+
+                        return implode('<br>', $formattedLinks);
+                    })
+                    ->html()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('biography')->searchable()->limit(60)
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')->dateTime()->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->label(''),
+                Tables\Actions\DeleteAction::make()->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
