@@ -5,29 +5,29 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\InvestorResource\Pages;
 use App\Models\Investor;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class InvestorResource extends Resource
 {
     protected static ?string $model = Investor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('slug')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('url'),
-                Forms\Components\TextInput::make('logo'),
+                TextInput::make('name')->required(),
+                TextInput::make('slug')->required(),
+                Textarea::make('description')->columnSpanFull(),
+                TextInput::make('url'),
+                TextInput::make('logo'),
             ]);
     }
 
@@ -35,21 +35,16 @@ class InvestorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('url')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('logo')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('slug')->searchable(),
+                TextColumn::make('description')->searchable()->limit(50),
+                TextColumn::make('url')->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('logo')->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')->dateTime()->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
@@ -57,6 +52,7 @@ class InvestorResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
