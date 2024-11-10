@@ -28,7 +28,6 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
         foreach ($allData as $data) {
 
             $dataFields = [
-                'name' => str(data_get($data, 'Company'))->lower()->trim(),
                 'exit_valuation' => data_get($data, 'Valuation at Exit'),
                 'url' => data_get($data, 'Website'),
                 'total_funding' => data_get($data, 'Total Funding'),
@@ -43,32 +42,19 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 'stock_quote' => data_get($data, 'Stock Qoute'),
             ];
 
-            $company = Company::whereRaw('LOWER(name) = ?', [
-                str(data_get($data, 'Company'))->lower()->trim(),
-            ])->firstOrCreate([
-                'name' => data_get($data, 'Name'),
-            ], $dataFields);
+            $lowerCompanyName = Str::of(data_get($data, 'Company'))->lower()->trim();
+
+            $company = Company::whereRaw('LOWER(name) = ?', [$lowerCompanyName])->first();
+
+            if (is_null($company)) {
+                $company = Company::create(array_merge([
+                    'name' => trim(data_get($data, 'Company')),
+                ], $dataFields));
+            }
 
             if (! $company->wasRecentlyCreated) { // retrieved from database
                 $company->update($dataFields);
             }
-
-            //$company = Company::updateOrCreate(
-            //    ['name' => \str(data_get($data, 'Company'))->lower()->value()],
-            //    [
-            //        'exit_valuation' => data_get($data, 'Valuation at Exit'),
-            //        'url' => data_get($data, 'Website'),
-            //        'total_funding' => data_get($data, 'Total Funding'),
-            //        'headquarter' => data_get($data, 'HQ'),
-            //        'founded_at' => \Carbon\Carbon::createFromFormat('Y', data_get($data, 'Founded')),
-            //        'exit_strategy_id' => ExitStrategy::query()
-            //            ->where('title', data_get($data, 'Exit'))
-            //            ->firstOrCreate(['title' => data_get($data, 'Exit')])->id,
-            //        'stock_symbol' => data_get($data, 'Stock Symbol or Acquirer'),
-            //        'description' => data_get($data, 'Description'),
-            //        'last_funding_date' => data_get($data, 'Last Funding'),
-            //        'stock_quote' => data_get($data, 'Stock Qoute'),
-            //    ]);
 
             $foundersString = data_get($data, 'Founders');
             $founders = \Str::of($foundersString)
@@ -94,12 +80,18 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             $investorsString = data_get($data, 'Top Investors');
             $investors = Str::of($investorsString)
                 ->explode(',')
-                ->reject(fn ($investor) => empty(trim($investor)));
+                ->reject(fn ($investor) => empty(trim($investor)))
+                ->map(fn ($investor) => trim($investor));
 
-            foreach ($investors as $investor) {
-                $investor = Investor::updateOrCreate([
-                    'name' => trim($investor),
-                ]);
+            foreach ($investors as $investorData) {
+                $lowerInvestorName = Str::of($investorData)->lower()->trim();
+
+                $investor = Investor::whereRaw('LOWER(name) = ?', [$lowerInvestorName])->first();
+                if (is_null($investor)) {
+                    $investor = Investor::create([
+                        'name' => trim($investorData),
+                    ]);
+                }
 
                 if ($company->investors()->where('investor_id', $investor->id)->doesntExist()) {
                     $company->investors()->attach($investor);

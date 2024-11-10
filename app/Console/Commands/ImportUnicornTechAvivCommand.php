@@ -8,7 +8,6 @@ use App\Models\Investor;
 use App\Models\Person;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\DocBlock\Tag;
 
 class ImportUnicornTechAvivCommand extends Command
 {
@@ -27,7 +26,7 @@ class ImportUnicornTechAvivCommand extends Command
         foreach ($allData as $data) {
             $lowerCompanyName = Str::of(data_get($data, 'Company'))->lower()->trim()->value();
 
-            $company = Company::whereRaw('Lower(name) = ?' , [$lowerCompanyName])->first();
+            $company = Company::whereRaw('Lower(name) = ?', [$lowerCompanyName])->first();
 
             $dataFields = [
                 'valuation' => data_get($data, 'Valuation'),
@@ -38,7 +37,7 @@ class ImportUnicornTechAvivCommand extends Command
                 'founded_at' => \Carbon\Carbon::createFromFormat('Y', data_get($data, 'Founded')),
                 'description' => data_get($data, 'Description'),
             ];
-            if(is_null($company)) {
+            if (is_null($company)) {
                 $company = Company::create(array_merge([
                     'name' => trim(data_get($data, 'Company')),
                 ], $dataFields));
@@ -50,16 +49,16 @@ class ImportUnicornTechAvivCommand extends Command
             $founders = Str::of($foundersString)
                 ->chopEnd('...')
                 ->explode(',')
-                ->reject(fn($founder) => empty(trim($founder)));
+                ->reject(fn ($founder) => empty(trim($founder)));
 
             foreach ($founders as $founder) {
                 $person = Person::firstOrCreate(
                     ['full_name' => trim($founder)],
-                    ['job_title' => 'Founder ' . $company->name]
+                    ['job_title' => 'Founder '.$company->name]
                 );
 
                 if (empty($person->job_title)) {
-                    $person->update(['job_title' => 'Founder ' . $company->name]);
+                    $person->update(['job_title' => 'Founder '.$company->name]);
                 }
 
                 if ($company->people()->where('person_id', $person->id)->doesntExist()) {
@@ -70,15 +69,14 @@ class ImportUnicornTechAvivCommand extends Command
             $investorsString = data_get($data, 'Top Investors');
             $investors = Str::of($investorsString)
                 ->explode(',')
-                ->reject(fn($investor) => empty(trim($investor)));
+                ->reject(fn ($investor) => empty(trim($investor)));
 
             foreach ($investors as $investorData) {
 
                 $lowerInvestorName = Str::of($investorData)->lower()->trim()->value();
-                $investor = Investor::whereRaw('LOWER(name) = ?' , [$lowerInvestorName])->first();
+                $investor = Investor::whereRaw('LOWER(name) = ?', [$lowerInvestorName])->first();
 
-
-                if(is_null($investor)) {
+                if (is_null($investor)) {
                     $investor = Investor::create([
                         'name' => trim($investorData),
                     ]);
@@ -92,14 +90,14 @@ class ImportUnicornTechAvivCommand extends Command
             $tagsString = data_get($data, 'Sectors');
             $tags = \Str::of($tagsString)
                 ->explode(',')
-                ->reject(fn($investor) => empty(trim($investor)));
+                ->reject(fn ($investor) => empty(trim($investor)));
 
             $tagsIds = [];
             foreach ($tags as $tagData) {
                 $lowerTagName = Str::of($tagData)->lower()->trim()->value();
-                $tag = \App\Models\Tag::whereRaw('LOWER(name) = ?' , [$lowerTagName])->first();
+                $tag = \App\Models\Tag::whereRaw('LOWER(name) = ?', [$lowerTagName])->first();
 
-                if(is_null($tag)) {
+                if (is_null($tag)) {
                     $tag = \App\Models\Tag::create([
                         'name' => trim($tagData),
                     ]);

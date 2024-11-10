@@ -12,7 +12,7 @@ class ImportAll extends Command
      *
      * @var string
      */
-    protected $signature = 'import:tech-aviv-all';
+    protected $signature = 'import:all';
 
     /**
      * The console command description.
@@ -35,7 +35,7 @@ class ImportAll extends Command
         Artisan::call(ImportUnicornTechAvivCommand::class);
         $progressBar->advance();
 
-        Artisan::call(ImportUnicornGraduatesTechAvivCommand::class); // here
+        Artisan::call(ImportUnicornGraduatesTechAvivCommand::class);
         $progressBar->advance();
 
         Artisan::call(ImportPortfolioTechAvivCommand::class);

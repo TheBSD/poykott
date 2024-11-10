@@ -26,7 +26,7 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
         foreach ($companies as $data) {
 
-            $lowerName = Str::lower(data_get($data, 'name'));
+            $lowerName = Str::of(data_get($data, 'name'))->lower()->trim()->value();
             $dataFields = [
                 'url' => data_get($data, 'domain') ?? data_get($data, 'website.url'),
                 'description' => data_get($data, 'description'),
@@ -101,9 +101,18 @@ class ImportJobCompaniesTechAvivCommand extends Command
             $markets = data_get($data, 'markets');
 
             foreach ($markets as $market) {
-                $tag = Tag::updateOrCreate([
-                    'name' => $market,
-                ]);
+                $lowerTagName = Str::of($market)->lower()->trim()->value();
+                $tag = Tag::whereRaw('LOWER(name) = ?', [$lowerTagName])->first();
+
+                if (is_null($tag)) {
+                    $tag = Tag::create([
+                        'name' => trim($market),
+                    ]);
+                }
+
+                if (! $tag->wasRecentlyCreated) {
+                    $tag->update(['name' => trim($market)]);
+                }
 
                 if ($company->tagsRelation()->where('tag_id', $tag->id)->doesntExist()) {
                     $company->tagsRelation()->attach($tag->id, ['taggable_id' => $company->id]);

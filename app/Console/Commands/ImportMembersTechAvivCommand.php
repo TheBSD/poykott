@@ -6,6 +6,7 @@ use App\Enums\CompanyPersonType;
 use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ImportMembersTechAvivCommand extends Command
 {
@@ -37,12 +38,33 @@ class ImportMembersTechAvivCommand extends Command
                 continue;
             }
 
-            $company = Company::updateOrCreate([
-                'name' => \str(data_get($data, 'company.name'))->lower()->value(),
-            ], [
+            /**
+             * These Are job titles that their companies are not necessary
+             * israeli companies, so we ignore adding these companies to
+             * make the data accurate
+             */
+            if (in_array(data_get($data, 'title'), [
+                'CISO', 'Investor', 'General Partner', 'GM, Google Cloud',
+            ]) && data_get($data, 'location') != 'Israel') {
+                continue;
+            }
+
+            $dataFields = [
                 'url' => data_get($data, 'company.link'),
                 'logo' => data_get($data, 'company.logo'),
-            ]);
+            ];
+            $companyLowerName = Str::of(data_get($data, 'company.name'))->lower()->trim()->value();
+            $company = Company::whereRaw('Lower(name)  = ?', [$companyLowerName])->first();
+
+            if (is_null($company)) {
+                $company = Company::create(array_merge([
+                    'name' => trim(data_get($data, 'company.name')),
+                ], $dataFields));
+            }
+
+            if (! $company->wasRecentlyCreated) {
+                $company->update($dataFields);
+            }
 
             $companyPersonType = null;
 
@@ -74,76 +96,5 @@ class ImportMembersTechAvivCommand extends Command
 
         $this->info("\nProcessed Completed!");
 
-    }
-
-    /**
-     * @return array<string>
-     */
-    public static function companyPersonCategories(): array
-    {
-        $categories = [
-            'Executive' => [
-                'CEO',
-                'Co-founder & CEO',
-                'Founder & CEO',
-                'President of Technology',
-                'Founder & Chairman',
-                'Co-founder and Chairman',
-                'Chairman',
-                'Managing Director',
-                'Managing Partner',
-                'General Partner',
-                'Senior Managing Director',
-                'Partner',
-                'Chairman Itaú Latin America',
-                'President Israel',
-            ],
-            'Founder' => [
-                'Founder',
-                'Founder & COO',
-                'Founder & CPO',
-                'Founder & President',
-                'Founder & CTO',
-                'Founder & CSO',
-                'Founder & CIO',
-                'Founder & Managing Partner',
-                'Founder & VP R&D',
-                'Founder & Chief Research & Innovation Officer',
-                'Founder & Director',
-                'Founder & VP Product',
-                'Founder & Director of Engineering',
-                'Founder & CMO',
-                'Founder & VP Customer Success',
-                'Founder & Chief Architect',
-                'Founder & CFO',
-                'Founder & CBO',
-            ],
-            'Senior Management' => [
-                'VP Engineering',
-                'VP & GM, Opendoor Exclusives',
-                'VP, Trust & Safety',
-                'VP Applications',
-                'VP Product',
-                'CPO',
-                'Chief Digital Officer',
-                'CISO',
-                'Chief Public Affairs Officer',
-                'EVP Product & Strategy',
-            ],
-            'Operational' => [
-                'GM, Caviar',
-                'GM, Google Cloud',
-                'Senior Engineering Director',
-                'Fmr. VP Global Sales & Operations',
-                'SVP Real Time Operations, Head of European R&D',
-            ],
-            'Investment' => [
-                'Investor',
-                'Venture Partner',
-                'Angel Investor',
-            ],
-        ];
-
-        return $categories;
     }
 }

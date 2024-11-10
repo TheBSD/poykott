@@ -7,6 +7,7 @@ use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ImportPortfolioTechAvivCommand extends Command
 {
@@ -23,18 +24,25 @@ class ImportPortfolioTechAvivCommand extends Command
         $progressBar = $this->output->createProgressBar(count($allData));
 
         foreach ($allData as $data) {
+            $lowerCompanyName = Str::of(data_get($data, 'name'))->lower()->trim()->value();
+            $company = Company::whereRaw('Lower(name) = ?', [$lowerCompanyName])->first();
 
-            $company = Company::updateOrCreate(
-                [
-                    'name' => \str(data_get($data, 'name'))->lower()->value(),
-                ],
-                [
-                    'url' => data_get($data, 'link') ?? data_get($data, 'url'),
-                    'description' => data_get($data, 'description'),
-                    'short_description' => data_get($data, 'short_description'),
-                    'logo' => data_get($data, 'logo'),
-                ]
-            );
+            $dataFields = [
+                'url' => data_get($data, 'link') ?? data_get($data, 'url'),
+                'description' => data_get($data, 'description'),
+                'short_description' => data_get($data, 'short_description'),
+                'logo' => data_get($data, 'logo'),
+            ];
+
+            if (is_null($company)) {
+                $company = Company::create(array_merge([
+                    'name' => trim(data_get($data, 'name')),
+                ], $dataFields));
+            }
+
+            if (! $company->wasRecentlyCreated) {
+                $company->update($dataFields);
+            }
 
             $companyResource = $company->companyResources()->firstOrCreate([
                 'url' => data_get($data, 'url'),
@@ -130,7 +138,7 @@ class ImportPortfolioTechAvivCommand extends Command
                 'President Israel',
                 'CEO, Uber Freight',
                 'CTO Coach',
-                'CFO'
+                'CFO',
             ],
             'Founder' => [
                 'Founder',
@@ -173,7 +181,7 @@ class ImportPortfolioTechAvivCommand extends Command
                 'GM',
                 'Growth Partner',
                 'Head of WorldWide Innovation',
-                'Director of Product Management'
+                'Director of Product Management',
             ],
             'Operational' => [
                 'GM, Caviar',
@@ -181,7 +189,7 @@ class ImportPortfolioTechAvivCommand extends Command
                 'Senior Engineering Director',
                 'Fmr. VP Global Sales & Operations',
                 'SVP Real Time Operations, Head of European R&D',
-                'Senior Director of Engineering'
+                'Senior Director of Engineering',
             ],
             'Investment' => [
                 'Investor',
@@ -189,8 +197,8 @@ class ImportPortfolioTechAvivCommand extends Command
                 'Angel Investor',
             ],
             'Academic' => [
-                'Professor'
-            ]
+                'Professor',
+            ],
         ];
 
         return $categories;

@@ -23,13 +23,6 @@ class ImportCompaniesOldSiteCommand extends Command
 
         $companies = data_get($allData, 'companiesAndServices');
 
-        //$r= collect($companies)
-        //    ->map(function ($company) {
-        //        return $company['resources'][0];
-        //    })->groupBy('name');
-
-        //dd($r->keys()->toArray());
-
         foreach ($companies as $companyData) {
 
             $lowerName = Str::lower(data_get($companyData, 'name'));
@@ -56,6 +49,7 @@ class ImportCompaniesOldSiteCommand extends Command
                     continue;
                 }
 
+                // todo remove this model, migration and all related data
                 $company->companyResources()->updateOrCreate([
                     'url' => data_get($resourceData, 'link', '#'),
                 ], [

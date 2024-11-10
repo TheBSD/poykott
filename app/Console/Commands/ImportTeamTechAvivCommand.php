@@ -34,16 +34,30 @@ class ImportTeamTechAvivCommand extends Command
                 'social_links' => data_get($data, 'socials'),
             ]);
 
+            /**
+             * These Are job titles that their companies are not necessary
+             * israeli companies, so we ignore adding these companies to
+             * make the data accurate
+             */
+            if (in_array(data_get($data, 'title'), [
+                'CISO', 'Investor', 'General Partner', 'GM, Google Cloud', 'VP Engineering',
+                'VP Engineering, Search & AI', 'Senior Engineering Director', 'Senior Director of Engineering',
+                'Fmr. VP Global Sales & Operation', 'Professor', 'GM', 'SVP Real Time Operations, Head of European R&D',
+                'Growth Partner', 'Head of WorldWide Innovation', 'EVP Product & Strategy', 'Director of Product Management',
+                'President of Technology', 'CEO, Uber Freight', 'Founder & Managing Partner', 'Managing Director',
+                'VP & GM, Opendoor Exclusives', 'Chief Digital Officer', 'Fmr. VP Global Sales & Operations', 'GM, Caviar',
+                'VP, Trust & Safety', 'VP Applications', 'Chairman Itaú Latin America', 'Chief Public Affairs Officer',
+                'Founder & VP R&', 'Senior Managing Director',
+                'SVP Real Time Operations, Head of European R&D', 'Founder & VP Customer Success', 'General Partner',
+            ]) && data_get($data, 'location') != 'Israel') {
+                continue;
+            }
+
             $lowerCompanyName = Str::of(data_get($data, 'company.name'))->lower()->trim()->value();
 
             $company = Company::whereRaw('LOWER(name) = ?', [$lowerCompanyName])->first();
 
-            //dd(
-                //$company->exists() ,
-              //Company::whereRaw('LOWER(name) = ?', [$lowerCompanyName])->toRawSql()
-            //);
-
-            if(is_null($company)) {
+            if (is_null($company)) {
                 $company = Company::create([
                     'name' => trim(data_get($data, 'company.name')),
                     'url' => data_get($data, 'company.link'),
@@ -51,13 +65,12 @@ class ImportTeamTechAvivCommand extends Command
                 ]);
             }
 
-
-            if(empty($company->url)){
-                $company->update(['url'=> data_get($data, 'company.url')]);
+            if (empty($company->url)) {
+                $company->update(['url' => data_get($data, 'company.url')]);
             }
 
-            if(empty($company->logo)){
-                $company->update(['logo'=> data_get($data, 'company.url')]);
+            if (empty($company->logo)) {
+                $company->update(['logo' => data_get($data, 'company.url')]);
             }
 
             $companyPersonType = null;
