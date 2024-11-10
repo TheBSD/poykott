@@ -24,7 +24,7 @@ class ImportMembersTechAvivCommand extends Command
 
         foreach ($allData as $data) {
             $person = Person::updateOrCreate([
-                'full_name' => data_get($data, 'name'),
+                'name' => data_get($data, 'name'),
             ], [
                 'url' => data_get($data, 'url'),
                 'avatar' => data_get($data, 'avatar'),

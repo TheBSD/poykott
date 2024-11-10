@@ -156,11 +156,6 @@ class Company extends Model
         return $this->belongsToMany(Investor::class);
     }
 
-    public function companyResources(): HasMany
-    {
-        return $this->hasMany(CompanyResources::class);
-    }
-
     public function officeLocations(): HasMany
     {
         return $this->hasMany(OfficeLocation::class);

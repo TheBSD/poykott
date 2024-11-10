@@ -11,7 +11,7 @@ models:
     CompanySize: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
     ExitStrategy: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
     FundingLevel: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
-    Person: { full_name: string, avatar: 'nullable string', job_title: 'nullable string', approved_at: 'nullable timestamp', location: 'nullable string', biography: 'nullable text', social_links: 'nullable json', relationships: { belongsToMany: Company } }
+    Person: { name: string, avatar: 'nullable string', job_title: 'nullable string', approved_at: 'nullable timestamp', location: 'nullable string', biography: 'nullable text', social_links: 'nullable json', relationships: { belongsToMany: Company } }
     PersonResources: { person_id: foreign, title: string, url: string }
     Resource: { title: string, type: string, description: 'nullable text', url: string }
     Tag: { name: 'string unique', slug: 'string unique index' }

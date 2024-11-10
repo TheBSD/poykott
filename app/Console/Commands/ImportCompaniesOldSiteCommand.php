@@ -49,24 +49,6 @@ class ImportCompaniesOldSiteCommand extends Command
                     continue;
                 }
 
-                // todo remove this model, migration and all related data
-                $company->companyResources()->updateOrCreate([
-                    'url' => data_get($resourceData, 'link', '#'),
-                ], [
-                    'title' => match (data_get($resourceData, 'name')) {
-                        'Wikipedia' => ResourceType::Wikipedia,
-                        'Twitter' => ResourceType::Twitter,
-                        'LinkedIn' => ResourceType::LinkedIn,
-                        'Wikitia' => ResourceType::Wikitia,
-                        'Wikidata' => ResourceType::Wikidata,
-                        'golden.com' => ResourceType::Golden,
-                        'verify.wiki' => ResourceType::VerifyWiki,
-                        'Buy Israeli Tech' => ResourceType::BuyIsraeliTech,
-                        'عن الموقع' => ResourceType::OfficialWebsite,
-                        'bloomberg' => ResourceType::Bloomberg,
-                    },
-                ]);
-
                 $resource = $company->resources()->updateOrCreate([
                     'url' => data_get($resourceData, 'link', '#'),
                 ], [

@@ -29,6 +29,8 @@ class ImportAll extends Command
 
         $progressBar = $this->output->createProgressBar(8);
 
+
+        // todo add resources here everywhere there is url
         Artisan::call(ImportTeamTechAvivCommand::class);
         $progressBar->advance();
 

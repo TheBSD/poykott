@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             //            ExitStrategySeeder::class,
             //            CompanySeeder::class,
             //            AlternativeSeeder::class,
-            //            CompanyResourcesSeeder::class,
             //            PersonSeeder::class,
             //            PersonResourcesSeeder::class,
             //            TagSeeder::class,

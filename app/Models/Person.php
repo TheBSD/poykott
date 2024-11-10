@@ -11,7 +11,7 @@ use Spatie\Sluggable\SlugOptions;
 
 /**
  * @property int $id
- * @property string $full_name
+ * @property string $name
  * @property string $avatar
  * @property string $job_title
  * @property \Carbon\Carbon $approved_at
@@ -31,7 +31,7 @@ class Person extends Model
      * @var array
      */
     protected $fillable = [
-        'full_name',
+        'name',
         'slug',
         'avatar',
         'job_title',
@@ -60,7 +60,7 @@ class Person extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('full_name')
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 

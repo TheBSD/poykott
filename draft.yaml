@@ -92,7 +92,7 @@ models:
 #       belongsTo: Company
 #
 #  Person:
-#     full_name: string
+#     name: string
 #     avatar: nullable string
 #     job_title: nullable string
 #     approved_at: nullable timestamp

@@ -60,12 +60,6 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
             $resourceUrl = 'https://jobs.techaviv.com/jobs';
 
-            $company->companyResources()->updateOrCreate([
-                'url' => $resourceUrl,
-            ], [
-                'title' => ResourceType::TechAviv,
-            ]);
-
             $resource = $company->resources()->updateOrCreate([
                 'url' => $resourceUrl,
             ], [

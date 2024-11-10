@@ -44,16 +44,6 @@ class ImportPortfolioTechAvivCommand extends Command
                 $company->update($dataFields);
             }
 
-            $companyResource = $company->companyResources()->firstOrCreate([
-                'url' => data_get($data, 'url'),
-            ], [
-                'title' => ResourceType::TechAviv,
-            ]);
-
-            if (empty($companyResource->title)) {
-                $companyResource->update(['title' => ResourceType::TechAviv]);
-            }
-
             $company->resources()->updateOrCreate([
                 'url' => data_get($data, 'url'),
             ], [
@@ -64,7 +54,7 @@ class ImportPortfolioTechAvivCommand extends Command
 
             foreach ($founders as $founder) {
                 $person = Person::updateOrCreate(
-                    ['full_name' => trim(data_get($founder, 'name'))],
+                    ['name' => trim(data_get($founder, 'name'))],
                     [
                         'job_title' => trim(data_get($founder, 'title')),
                         'avatar' => data_get($founder, 'avatar'),
@@ -94,6 +84,8 @@ class ImportPortfolioTechAvivCommand extends Command
                 } elseif ($company->people->first()->pivot->type != $companyPersonType) {
                     $company->people()->updateExistingPivot($person->id, ['type' => $companyPersonType]);
                 }
+
+                // todo add resource relation for person
             }
 
             $stats = data_get($data, 'stats');

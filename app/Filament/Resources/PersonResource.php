@@ -26,7 +26,7 @@ class PersonResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('full_name')->required(),
+                TextInput::make('name')->required(),
                 TextInput::make('avatar'),
                 TextInput::make('slug')->required(),
                 TextInput::make('job_title'),
@@ -43,7 +43,7 @@ class PersonResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('full_name')->searchable()->sortable(),
+                TextColumn::make('name')->searchable()->sortable(),
                 ImageColumn::make('avatar')->searchable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('job_title')->searchable()->sortable(),

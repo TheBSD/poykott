@@ -53,7 +53,7 @@ class ImportUnicornTechAvivCommand extends Command
 
             foreach ($founders as $founder) {
                 $person = Person::firstOrCreate(
-                    ['full_name' => trim($founder)],
+                    ['name' => trim($founder)],
                     ['job_title' => 'Founder '.$company->name]
                 );
 

@@ -20,7 +20,7 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            'full_name' => $this->faker->word(),
+            'name' => $this->faker->word(),
             'avatar' => $this->faker->word(),
             'job_title' => $this->faker->word(),
             'approved_at' => $this->faker->dateTime(),

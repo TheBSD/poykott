@@ -56,7 +56,6 @@ class ImportJobsTechAvivCommand extends Command
                             'name' => Str::of($location)->replace(',', '')->trim(),
                         ]);
                     } else {
-
                         // TODO change this to many-to-many relation
                         // If location already exists and was not recently created, skip update to avoid conflict
                         if (! $existingLocation->wasRecentlyCreated) {
@@ -64,7 +63,7 @@ class ImportJobsTechAvivCommand extends Command
                             $updatedLocationName = Str::of($location)->replace(',', '')->trim();
                             if ($existingLocation->name !== $updatedLocationName) {
                                 // You might want to handle this case differently (e.g. logging or skipping the update)
-                                $existingLocation->update(['name' => $updatedLocationName]);
+                                $existingLocation->save(['name' => $updatedLocationName]);
                             }
                         }
                     }
