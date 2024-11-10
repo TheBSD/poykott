@@ -5,9 +5,12 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ResourceResource\Pages;
 use App\Models\Resource as ResourceModel;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class ResourceResource extends Resource
@@ -16,18 +19,16 @@ class ResourceResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('type')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('url')
-                    ->required(),
+                TextInput::make('title')->required(),
+                TextInput::make('type')->required(),
+                Textarea::make('description')->columnSpanFull(),
+                TextInput::make('url')->required(),
             ]);
     }
 
@@ -35,19 +36,12 @@ class ResourceResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('type')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('url')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('title')->searchable(),
+                TextColumn::make('type')->searchable(),
+                TextColumn::make('url')->searchable(),
+                TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('updated_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
@@ -55,6 +49,7 @@ class ResourceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
