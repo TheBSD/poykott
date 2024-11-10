@@ -4,75 +4,68 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\Pages;
 use App\Models\Alternative;
-use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class AlternativeResource extends Resource
 {
     protected static ?string $model = Alternative::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\DateTimePicker::make('approved_at'),
-                Forms\Components\TextInput::make('logo'),
-                Forms\Components\Textarea::make('notes')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('url')
-                    ->required(),
-            ]);
+        return $form->schema([
+            TextInput::make('name')->required(), 
+            TextInput::make('url')->required(), 
+            Textarea::make('description')->columnSpanFull(), 
+            Textarea::make('notes')->columnSpanFull(), 
+            TextInput::make('logo'), 
+            DateTimePicker::make('approved_at'),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('approved_at')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('logo')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('url')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('name')->searchable(), 
+                IconColumn::make('approved_at')->label('Approved')
+                    ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
+                TextColumn::make('url')
+                    ->url(fn(Alternative $record) => $record->url)
+                    ->color('info')
+                    ->openUrlInNewTab()->searchable()->limit(50), 
+                TextColumn::make('description')->limit(50), 
+                TextColumn::make('notes')->limit(50), 
+                TextColumn::make('logo'), 
+                TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+                Tables\Actions\EditAction::make()->label(''),
+                Tables\Actions\DeleteAction::make()->label(''),
+                ])
+            ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array
