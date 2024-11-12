@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\CompanyResource\Pages;
 use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
@@ -110,7 +111,7 @@ class CompanyResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ResourcesRelationManager::class,
         ];
     }
 
