@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\PersonResource\Pages;
 use App\Models\Person;
 use Filament\Forms;
@@ -44,7 +45,7 @@ class PersonResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->searchable()->sortable(),
-                ImageColumn::make('avatar')->searchable(),
+                ImageColumn::make('avatar')->circular(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('job_title')->searchable()->sortable(),
                 IconColumn::make('approved_at')->boolean()->sortable(),
@@ -85,7 +86,7 @@ class PersonResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ResourcesRelationManager::class,
         ];
     }
 
