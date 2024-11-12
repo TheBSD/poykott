@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\InvestorResource\Pages;
 use App\Models\Investor;
 use Filament\Forms;
@@ -64,7 +65,7 @@ class InvestorResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ResourcesRelationManager::class,
         ];
     }
 
