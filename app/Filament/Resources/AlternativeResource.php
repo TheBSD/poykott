@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\Pages;
+use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Models\Alternative;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Textarea;
@@ -64,7 +65,7 @@ class AlternativeResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
+                ResourcesRelationManager::class,
             ];
     }
 

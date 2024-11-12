@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property int $id
@@ -26,14 +27,7 @@ class Alternative extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'description',
-        'approved_at',
-        'logo',
-        'notes',
-        'url',
-    ];
+    protected $fillable = ['name', 'description', 'approved_at', 'logo', 'notes', 'url'];
 
     /**
      * The attributes that should be cast to native types.
@@ -48,5 +42,10 @@ class Alternative extends Model
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class);
+    }
+
+    public function resources(): MorphMany
+    {
+        return $this->morphMany(Resource::class, 'resourceable');
     }
 }
