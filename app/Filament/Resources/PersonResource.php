@@ -48,7 +48,18 @@ class PersonResource extends Resource
                 ImageColumn::make('avatar')->circular(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('job_title')->searchable()->sortable(),
-                IconColumn::make('approved_at')->boolean()->sortable(),
+                IconColumn::make('approved_at')->label('Approved')
+                ->boolean(fn (Person $record): bool => $record->approved_at !== null),
+                TextColumn::make('resources.url')->label('Resources')
+                    ->formatStateUsing(function ($record) {
+                        return $record->resources->map(function ($resource) {
+                            if ($resource->url) {
+                            }
+                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
+                        })->implode(', ');
+                    })
+                    ->disabledClick()
+                    ->html(),
                 TextColumn::make('location')->searchable()->sortable(),
                 TextColumn::make('social_links')
                     ->formatStateUsing(function (Person $record) {
