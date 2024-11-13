@@ -38,11 +38,11 @@ class CompanyResource extends Resource
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
                 Fieldset::make('logo')
-                ->relationship('logo')
-                ->schema([
-                    Hidden::make('type')->default('logo'),
-                    FileUpload::make('path')->image(),
-                ]),
+                    ->relationship('logo')
+                    ->schema([
+                        Hidden::make('type')->default('logo'),
+                        FileUpload::make('path')->image(),
+                    ]),
                 TextInput::make('headquarter'),
                 TextInput::make('valuation')->numeric(),
                 TextInput::make('exit_valuation')->numeric(),
