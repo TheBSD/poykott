@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\CompanyPersonType;
+use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\ExitStrategy;
 use App\Models\Investor;
@@ -56,6 +57,14 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 $company->update($dataFields);
             }
 
+            $unicornsUrl = 'https://www.techaviv.com/unicorns';
+
+            $companyResource = $company->resources()->updateOrCreate([
+                'url' => $unicornsUrl,
+            ], [
+                'type' => ResourceType::TechAviv,
+            ]);
+
             $foundersString = data_get($data, 'Founders');
             $founders = \Str::of($foundersString)
                 ->chopEnd('...')
@@ -71,6 +80,12 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 if (empty($person->job_title)) {
                     $person->update(['job_title' => 'Founder '.$company->name]);
                 }
+
+                $personResource = $person->resources()->updateOrCreate([
+                    'url' => $unicornsUrl,
+                ], [
+                    'type' => ResourceType::TechAviv,
+                ]);
 
                 if ($company->people()->where('person_id', $person->id)->doesntExist()) {
                     $company->people()->attach($person, ['type' => CompanyPersonType::Founder]);
@@ -92,6 +107,12 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                         'name' => trim($investorData),
                     ]);
                 }
+
+                $investorResource = $investor->resources()->updateOrCreate([
+                    'url' => $unicornsUrl,
+                ], [
+                    'type' => ResourceType::TechAviv,
+                ]);
 
                 if ($company->investors()->where('investor_id', $investor->id)->doesntExist()) {
                     $company->investors()->attach($investor);

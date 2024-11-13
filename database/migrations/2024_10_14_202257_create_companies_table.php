@@ -32,7 +32,6 @@ return new class extends Migration
             $table->date('last_funding_date')->nullable();
             $table->string('headquarter')->nullable();
             $table->date('founded_at')->nullable();
-            $table->json('office_locations')->nullable();
             $table->integer('employee_count')->nullable();
             $table->string('stock_quote')->nullable();
             $table->timestamps();

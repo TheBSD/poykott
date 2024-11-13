@@ -9,15 +9,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-/**
- * @property int $id
- * @property string $name
- * @property string $description
- * @property string $url
- * @property string $logo
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- */
 class Investor extends Model
 {
     use HasFactory, HasSlug;
@@ -31,6 +22,7 @@ class Investor extends Model
         'name',
         'slug',
         'description',
+        'approved_at',
         'url',
         'logo',
     ];
@@ -42,6 +34,7 @@ class Investor extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'approved_at' => 'timestamp',
     ];
 
     /**

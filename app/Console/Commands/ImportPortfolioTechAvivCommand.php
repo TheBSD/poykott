@@ -61,6 +61,12 @@ class ImportPortfolioTechAvivCommand extends Command
                     ]
                 );
 
+                $personResource = $person->resources()->updateOrCreate([
+                    'url' => data_get($data, 'url'),
+                ], [
+                    'type' => ResourceType::TechAviv,
+                ]);
+
                 $companyPersonType = null;
 
                 $mainCategory = self::companyPersonCategories();
@@ -85,7 +91,6 @@ class ImportPortfolioTechAvivCommand extends Command
                     $company->people()->updateExistingPivot($person->id, ['type' => $companyPersonType]);
                 }
 
-                // todo add resource relation for person
             }
 
             $stats = data_get($data, 'stats');

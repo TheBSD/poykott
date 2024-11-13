@@ -27,10 +27,8 @@ class ImportAll extends Command
     public function handle()
     {
 
-        $progressBar = $this->output->createProgressBar(8);
+        $progressBar = $this->output->createProgressBar(9);
 
-
-        // todo add resources here everywhere there is url
         Artisan::call(ImportTeamTechAvivCommand::class);
         $progressBar->advance();
 
@@ -53,6 +51,9 @@ class ImportAll extends Command
         $progressBar->advance();
 
         Artisan::call(ImportCompaniesOldSiteCommand::class);
+        $progressBar->advance();
+
+        Artisan::call(ApproveOurDataCommand::class);
         $progressBar->advance();
 
         $progressBar->finish();

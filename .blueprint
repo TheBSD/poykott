@@ -1,21 +1,20 @@
 created:
-    - database/factories/OfficeLocationFactory.php
-    - database/migrations/2024_11_05_211540_create_office_locations_table.php
-    - app/Models/OfficeLocation.php
-    - database/seeders/OfficeLocationSeeder.php
+    - database/factories/CompanyFactory.php
+    - database/migrations/2024_11_13_200611_create_companies_table.php
+    - database/migrations/2024_11_13_200612_create_company_office_location_table.php
+    - app/Models/Company.php
 models:
-    Alternative: { name: string, description: 'nullable text', approved_at: 'nullable timestamp', logo: 'nullable string', notes: 'nullable text', url: string, relationships: { belongsToMany: Company } }
-    Category: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
-    Company: { category_id: foreign, exit_strategy_id: 'nullable foreign', funding_level_id: 'nullable integer', company_size_id: 'nullable integer', approved_at: 'nullable timestamp', name: string, slug: 'string unique index', description: 'nullable text', logo: 'nullable string', notes: 'nullable text', valuation: 'nullable integer', exit_valuation: 'nullable integer', stock_symbol: 'nullable string', url: string, total_funding: 'nullable integer', last_funding_date: 'nullable date', headquarter: 'nullable string', founded_at: 'nullable date', office_locations: 'nullable json', employee_count: 'nullable integer', relationships: { belongsTo: 'Category, ExitStrategy, CompanySize, FundingLevel', belongsToMany: 'Person, Alternative', hasMany: CompanyResources } }
-    CompanyResources: { company_id: foreign, title: string, url: string, relationships: { belongsTo: Company } }
-    CompanySize: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
-    ExitStrategy: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
-    FundingLevel: { title: string, description: 'nullable text', relationships: { hasMany: Company } }
-    Person: { name: string, avatar: 'nullable string', job_title: 'nullable string', approved_at: 'nullable timestamp', location: 'nullable string', biography: 'nullable text', social_links: 'nullable json', relationships: { belongsToMany: Company } }
-    PersonResources: { person_id: foreign, title: string, url: string }
-    Resource: { title: string, type: string, description: 'nullable text', url: string }
-    Tag: { name: 'string unique', slug: 'string unique index' }
-    Taggable: { tag_id: foreign, taggable: morphs }
+    Alternative: { name: string, description: 'text nullable', approved_at: 'datetime nullable', logo: 'string nullable', notes: 'text nullable', url: string }
+    Category: { title: string, description: 'text nullable' }
+    Company: { relationships: { belongsToMany: OfficeLocation } }
+    CompanyPerson: { company_id: integer, person_id: integer, type: 'string nullable' }
+    CompanySize: { title: string, description: 'text nullable' }
+    ExitStrategy: { title: string, description: 'text nullable' }
+    FundingLevel: { title: string, description: 'text nullable' }
+    Investor: { name: string, slug: string, description: 'text nullable', url: 'string nullable', logo: 'string nullable' }
+    OfficeLocation: { company_id: integer, name: string, lat: 'decimal nullable', lng: 'decimal nullable' }
+    Person: { name: string, avatar: 'string nullable', slug: string, job_title: 'string nullable', url: 'string nullable', description: 'text nullable', approved_at: 'datetime nullable', location: 'string nullable', biography: 'text nullable', social_links: 'text nullable' }
+    Resource: { resourceable_type: string, resourceable_id: integer, title: 'string nullable', type: string, description: 'text nullable', url: string }
+    Tag: { name: string, slug: string }
+    Taggable: { tag_id: integer, taggable_type: string, taggable_id: integer }
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
-    Investor: { name: string, description: 'nullable text', url: 'nullable string', logo: 'nullable string', relationships: { belongsToMany: Company } }
-    OfficeLocation: { name: string, lat: 'decimal nullable', lng: 'decimal nullable', relationships: { belongsTo: Company } }

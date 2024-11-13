@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Company;
 use App\Models\OfficeLocation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,7 +23,6 @@ class OfficeLocationFactory extends Factory
             'name' => $this->faker->name(),
             'lat' => $this->faker->latitude(),
             'lng' => $this->faker->longitude(),
-            'company_id' => Company::factory(),
         ];
     }
 }

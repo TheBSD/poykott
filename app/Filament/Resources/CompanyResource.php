@@ -49,7 +49,7 @@ class CompanyResource extends Resource
                 TextInput::make('total_funding')->numeric(),
                 DatePicker::make('last_funding_date'),
                 DatePicker::make('founded_at'),
-                Textarea::make('office_locations'),
+                //Textarea::make('office_locations'), // to many-to-many
                 TextInput::make('employee_count')->numeric(),
                 TextInput::make('stock_quote'),
             ]);
@@ -62,7 +62,7 @@ class CompanyResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('url')
-                    ->url(fn(Company $record) => $record->url)
+                    ->url(fn (Company $record) => $record->url)
                     ->color('info')
                     ->openUrlInNewTab()->searchable()->limit(50),
                 TextColumn::make('resources.url')->label('Resources')
@@ -70,22 +70,23 @@ class CompanyResource extends Resource
                         return $record->resources->map(function ($resource) {
                             if ($resource->url) {
                             }
+
                             return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
                         })->implode(', ');
                     })
                     ->disabledClick()
                     ->html(),
                 IconColumn::make('approved_at')->label('Approved')
-                ->boolean(fn (Company $record): bool => $record->approved_at !== null),
+                    ->boolean(fn (Company $record): bool => $record->approved_at !== null),
                 TextColumn::make('logo')->limit(50)->searchable(),
                 TextColumn::make('valuation')->numeric()->sortable(),
                 TextColumn::make('category.title')->numeric()->sortable(),
                 TextColumn::make('exit_valuation')->numeric()->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('exitStrategy.title')->numeric()->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('fundingLevel.title')->numeric()->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('companySize.title')->numeric()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('stock_symbol')->searchable()

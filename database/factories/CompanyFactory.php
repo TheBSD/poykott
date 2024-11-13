@@ -42,7 +42,6 @@ class CompanyFactory extends Factory
             'last_funding_date' => $this->faker->date(),
             'headquarter' => $this->faker->word(),
             'founded_at' => $this->faker->date(),
-            'office_locations' => '{}',
             'employee_count' => $this->faker->numberBetween(-10000, 10000),
             'stock_quote' => $this->faker->url(),
         ];

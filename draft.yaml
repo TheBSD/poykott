@@ -1,4 +1,9 @@
-models:
+#models:
+#    Company:
+#
+#      relationships:
+#        belongsToMany: OfficeLocation
+
 #  OfficeLocation:
 #    name: string
 #    lat: decimal nullable

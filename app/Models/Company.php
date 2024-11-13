@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use Spatie\Sluggable\HasSlug;
@@ -36,7 +35,6 @@ use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
  * @property \Carbon\Carbon $last_funding_date
  * @property string $headquarter
  * @property \Carbon\Carbon $founded_at
- * @property string $office_locations
  * @property int $employee_count
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -70,7 +68,6 @@ class Company extends Model
         'last_funding_date',
         'headquarter',
         'founded_at',
-        'office_locations',
         'employee_count',
         'stock_quote',
     ];
@@ -89,7 +86,6 @@ class Company extends Model
         'approved_at' => 'timestamp',
         'last_funding_date' => 'date',
         'founded_at' => 'date',
-        'office_locations' => 'array',
     ];
 
     /**
@@ -116,6 +112,9 @@ class Company extends Model
         );
     }
 
+    /**
+     * Relations
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -156,13 +155,13 @@ class Company extends Model
         return $this->belongsToMany(Investor::class);
     }
 
-    public function officeLocations(): HasMany
-    {
-        return $this->hasMany(OfficeLocation::class);
-    }
-
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
+    }
+
+    public function officeLocations(): BelongsToMany
+    {
+        return $this->belongsToMany(OfficeLocation::class);
     }
 }

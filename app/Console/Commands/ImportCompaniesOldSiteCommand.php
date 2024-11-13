@@ -49,7 +49,7 @@ class ImportCompaniesOldSiteCommand extends Command
                     continue;
                 }
 
-                $resource = $company->resources()->updateOrCreate([
+                $companyResource = $company->resources()->updateOrCreate([
                     'url' => data_get($resourceData, 'link', '#'),
                 ], [
                     'type' => match (data_get($resourceData, 'name')) {
@@ -73,12 +73,18 @@ class ImportCompaniesOldSiteCommand extends Command
                 if (empty($alternativeData['name'])) {
                     continue;
                 }
-                $company->alternatives()->updateOrCreate([
+                $alternative = $company->alternatives()->updateOrCreate([
                     'name' => data_get($alternativeData, 'name'),
                 ], [
                     'description' => data_get($alternativeData, 'description'),
                     'url' => data_get($alternativeData, 'url', '#'),
                     'notes' => data_get($alternativeData, 'notes'),
+                ]);
+
+                $alternativeResource = $alternative->resources()->updateOrCreate([
+                    'url' => $alternative->url,
+                ], [
+                    'type' => ResourceType::FromUsers,
                 ]);
             }
 

@@ -38,7 +38,6 @@ class CompanyStoreRequest extends FormRequest
             'last_funding_date' => ['nullable', 'date'],
             'headquarter' => ['nullable', 'string'],
             'founded_at' => ['nullable', 'date'],
-            'office_locations' => ['nullable', 'json'],
             'employee_count' => ['nullable', 'integer'],
             'stock_quote' => ['nullable', 'string'],
         ];

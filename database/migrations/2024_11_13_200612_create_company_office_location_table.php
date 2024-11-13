@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('office_locations', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->decimal('lat')->nullable();
-            $table->decimal('lng')->nullable();
-            $table->timestamps();
+        Schema::create('company_office_location', function (Blueprint $table) {
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('office_location_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('office_locations');
+        Schema::dropIfExists('company_office_location');
     }
 };

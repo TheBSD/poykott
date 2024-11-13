@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\CompanyPersonType;
+use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Console\Command;
@@ -32,6 +33,12 @@ class ImportMembersTechAvivCommand extends Command
                 'location' => data_get($data, 'location'),
                 'description' => data_get($data, 'description'),
                 'social_links' => data_get($data, 'socials'),
+            ]);
+
+            $personResource = $person->resources()->updateOrCreate([
+                'url' => data_get($data, 'url'),
+            ], [
+                'type' => ResourceType::TechAviv,
             ]);
 
             if (! data_get($data, 'company.name')) {
@@ -65,6 +72,12 @@ class ImportMembersTechAvivCommand extends Command
             if (! $company->wasRecentlyCreated) {
                 $company->update($dataFields);
             }
+
+            $companyResource = $company->resources()->updateOrCreate([
+                'url' => data_get($data, 'url'),
+            ], [
+                'type' => ResourceType::TechAviv,
+            ]);
 
             $companyPersonType = null;
 

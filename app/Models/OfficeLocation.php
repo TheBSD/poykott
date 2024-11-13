@@ -4,17 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-/**
- * @property int $id
- * @property string $name
- * @property float $lat
- * @property float $lng
- * @property int $company_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- */
 class OfficeLocation extends Model
 {
     use HasFactory;
@@ -25,7 +16,6 @@ class OfficeLocation extends Model
      * @var array
      */
     protected $fillable = [
-        'company_id',
         'name',
         'lat',
         'lng',
@@ -40,11 +30,10 @@ class OfficeLocation extends Model
         'id' => 'integer',
         'lat' => 'decimal',
         'lng' => 'decimal',
-        'company_id' => 'integer',
     ];
 
-    public function company(): BelongsTo
+    public function companies(): BelongsToMany
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsToMany(Company::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Investor;
+use App\Models\OfficeLocation;
 use App\Models\Tag;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -58,9 +59,9 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
             $company->update(['employee_count' => data_get($data, 'staffCount')]);
 
-            $resourceUrl = 'https://jobs.techaviv.com/jobs';
+            $resourceUrl = 'https://jobs.techaviv.com/companies';
 
-            $resource = $company->resources()->updateOrCreate([
+            $companyResource = $company->resources()->updateOrCreate([
                 'url' => $resourceUrl,
             ], [
                 'type' => ResourceType::TechAviv,
@@ -78,6 +79,12 @@ class ImportJobCompaniesTechAvivCommand extends Command
                     ]);
                 }
 
+                $investorResource = $investor->resources()->updateOrCreate([
+                    'url' => $resourceUrl,
+                ], [
+                    'type' => ResourceType::TechAviv,
+                ]);
+
                 if ($company->investors()->where('investor_id', $investor->id)->doesntExist()) {
                     $company->investors()->attach($investor);
                 }
@@ -85,11 +92,18 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
             $officeLocations = data_get($data, 'officeLocations');
 
-            foreach ($officeLocations as $officeLocation) {
+            foreach ($officeLocations as $officeLocationData) {
+                $officeLocationLowerName = Str::of($officeLocationData)->lower()->squish()->value();
+                $officeLocation = OfficeLocation::whereRaw('LOWER(name) = ?', [$officeLocationLowerName])->first();
+                if (is_null($officeLocation)) {
+                    $officeLocation = OfficeLocation::create([
+                        'name' => Str::of($officeLocationData)->squish()->value(),
+                    ]);
+                }
 
-                $company->officeLocations()->updateOrCreate([
-                    'name' => $officeLocation,
-                ]);
+                if ($company->officeLocations()->where('office_location_id', $officeLocation->id)->doesntExist()) {
+                    $company->officeLocations()->attach($officeLocation);
+                }
             }
 
             $markets = data_get($data, 'markets');

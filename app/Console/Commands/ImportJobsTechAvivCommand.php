@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\ResourceType;
 use App\Models\Company;
+use App\Models\OfficeLocation;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -38,34 +40,42 @@ class ImportJobsTechAvivCommand extends Command
                     ]);
                 }
 
+                $resourceUrl = 'https://jobs.techaviv.com/jobs';
+
+                $companyResource = $company->resources()->updateOrCreate([
+                    'url' => $resourceUrl,
+                ], [
+                    'type' => ResourceType::TechAviv,
+                ]);
+
                 $locations = data_get($job, 'locations');
 
                 foreach ($locations as $location) {
                     $locationLowerName = Str::of($location)
                         ->lower()
-                        ->replace(',', '')
-                        ->trim()
+                        ->squish()
                         ->value();
 
-                    $existingLocation = $company->officeLocations()
-                        ->whereRaw('LOWER(name) = ?', [$locationLowerName])
-                        ->first();
+                    if (Str::of($locationLowerName)->lower()->contains([
+                        'remote',
+                        'https',
+                        ', , AU',
+                        '*BFF + Jobs*',
+                        'England)',
+                    ])) {
+                        continue;
+                    }
 
-                    if (is_null($existingLocation)) {
-                        $company->officeLocations()->create([
-                            'name' => Str::of($location)->replace(',', '')->trim(),
+                    $officeLocation = OfficeLocation::whereRaw('LOWER(name) = ?', strtolower($locationLowerName))->first();
+
+                    if (is_null($officeLocation)) {
+                        $officeLocation = OfficeLocation::create([
+                            'name' => Str::of($location)->squish()->value(),
                         ]);
-                    } else {
-                        // TODO change this to many-to-many relation
-                        // If location already exists and was not recently created, skip update to avoid conflict
-                        if (! $existingLocation->wasRecentlyCreated) {
-                            // Only update if the name is different from the current name
-                            $updatedLocationName = Str::of($location)->replace(',', '')->trim();
-                            if ($existingLocation->name !== $updatedLocationName) {
-                                // You might want to handle this case differently (e.g. logging or skipping the update)
-                                $existingLocation->save(['name' => $updatedLocationName]);
-                            }
-                        }
+                    }
+
+                    if ($company->officeLocations()->where('office_location_id', $officeLocation->id)->doesntExist()) {
+                        $company->officeLocations()->attach($officeLocation);
                     }
                 }
 

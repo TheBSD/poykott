@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\CompanyPersonType;
+use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Console\Command;
@@ -32,6 +33,12 @@ class ImportTeamTechAvivCommand extends Command
                 'location' => data_get($data, 'location'),
                 'description' => data_get($data, 'description'),
                 'social_links' => data_get($data, 'socials'),
+            ]);
+
+            $personResource = $person->resources()->updateOrCreate([
+                'url' => $person->url,
+            ], [
+                'type' => ResourceType::TechAviv,
             ]);
 
             /**
@@ -66,12 +73,18 @@ class ImportTeamTechAvivCommand extends Command
             }
 
             if (empty($company->url)) {
-                $company->update(['url' => data_get($data, 'company.url')]);
+                $company->update(['url' => data_get($data, 'company.link')]);
             }
 
             if (empty($company->logo)) {
-                $company->update(['logo' => data_get($data, 'company.url')]);
+                $company->update(['logo' => data_get($data, 'company.logo')]);
             }
+
+            $companyResource = $company->resources()->updateOrCreate([
+                'url' => $person->url,
+            ], [
+                'type' => ResourceType::TechAviv,
+            ]);
 
             $companyPersonType = null;
 
