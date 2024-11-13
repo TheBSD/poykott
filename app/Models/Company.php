@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -164,5 +165,10 @@ class Company extends Model
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
+    }
+
+    public function logo(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

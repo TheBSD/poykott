@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('url');
             $table->text('description')->nullable();
             $table->string('short_description')->nullable();
-            $table->string('logo')->nullable();
             $table->text('notes')->nullable();
             $table->integer('valuation')->nullable();
             $table->integer('exit_valuation')->nullable();
