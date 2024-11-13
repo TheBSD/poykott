@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * @property int $id
@@ -47,5 +48,10 @@ class Alternative extends Model
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
+    }
+
+    public function logo(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

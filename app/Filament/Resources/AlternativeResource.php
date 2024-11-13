@@ -7,12 +7,16 @@ use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelatio
 use App\Models\Alternative;
 use Faker\Provider\ar_EG\Text;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -29,7 +33,12 @@ class AlternativeResource extends Resource
             TextInput::make('url')->required(), 
             Textarea::make('description')->columnSpanFull(), 
             Textarea::make('notes')->columnSpanFull(), 
-            TextInput::make('logo'), 
+            Fieldset::make('logo')
+                ->relationship('logo')
+                ->schema([
+                    Hidden::make('type')->default('logo'),
+                    FileUpload::make('path')->image(),
+                ]),
             DateTimePicker::make('approved_at'),
         ]);
     }
@@ -38,6 +47,7 @@ class AlternativeResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('logo.path')->circular(), 
                 TextColumn::make('name')->searchable(), 
                 IconColumn::make('approved_at')->label('Approved')
                     ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
@@ -55,7 +65,6 @@ class AlternativeResource extends Resource
                     ->html(),
                 TextColumn::make('description')->limit(50), 
                 TextColumn::make('notes')->limit(50),
-                TextColumn::make('logo'), 
                 TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()
