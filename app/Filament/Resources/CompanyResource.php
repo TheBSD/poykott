@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\CompanyResource\Pages;
 use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
@@ -60,7 +61,20 @@ class CompanyResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
-                TextColumn::make('url')->searchable(),
+                TextColumn::make('url')
+                    ->url(fn(Company $record) => $record->url)
+                    ->color('info')
+                    ->openUrlInNewTab()->searchable()->limit(50),
+                TextColumn::make('resources.url')->label('Resources')
+                    ->formatStateUsing(function ($record) {
+                        return $record->resources->map(function ($resource) {
+                            if ($resource->url) {
+                            }
+                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
+                        })->implode(', ');
+                    })
+                    ->disabledClick()
+                    ->html(),
                 IconColumn::make('approved_at')->label('Approved')
                 ->boolean(fn (Company $record): bool => $record->approved_at !== null),
                 TextColumn::make('logo')->limit(50)->searchable(),
@@ -110,7 +124,7 @@ class CompanyResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ResourcesRelationManager::class,
         ];
     }
 

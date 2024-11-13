@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\InvestorResource\Pages;
 use App\Models\Investor;
 use Filament\Forms;
@@ -38,8 +39,17 @@ class InvestorResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('description')->searchable()->limit(50),
-                TextColumn::make('url')->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('url')->searchable(),
+                TextColumn::make('resources.url')->label('Resources')
+                    ->formatStateUsing(function ($record) {
+                        return $record->resources->map(function ($resource) {
+                            if ($resource->url) {
+                            }
+                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
+                        })->implode(', ');
+                    })
+                    ->disabledClick()
+                    ->html(),
                 TextColumn::make('logo')->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')->dateTime()->sortable()
@@ -64,7 +74,7 @@ class InvestorResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ResourcesRelationManager::class,
         ];
     }
 

@@ -3,7 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\Pages;
+use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Models\Alternative;
+use Faker\Provider\ar_EG\Text;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -42,9 +44,17 @@ class AlternativeResource extends Resource
                 TextColumn::make('url')
                     ->url(fn(Alternative $record) => $record->url)
                     ->color('info')
-                    ->openUrlInNewTab()->searchable()->limit(50), 
+                    ->openUrlInNewTab()->searchable()->limit(50),
+                TextColumn::make('resources.url')->label('Resources')
+                    ->formatStateUsing(function ($record) {
+                        return $record->resources->map(function ($resource) {
+                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
+                        })->implode(', ');
+                    })
+                    ->disabledClick()
+                    ->html(),
                 TextColumn::make('description')->limit(50), 
-                TextColumn::make('notes')->limit(50), 
+                TextColumn::make('notes')->limit(50),
                 TextColumn::make('logo'), 
                 TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -64,7 +74,7 @@ class AlternativeResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
+                ResourcesRelationManager::class,
             ];
     }
 

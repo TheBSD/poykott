@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Alternative;
 use App\Models\Company;
 use App\Models\Investor;
 use App\Models\Person;
@@ -33,6 +34,9 @@ class AppServiceProvider extends ServiceProvider
             'company' => Company::class,
             'person' => Person::class,
             'investor' => Investor::class,
+            'alternative' => Alternative::class,
         ]);
+
+
     }
 }
