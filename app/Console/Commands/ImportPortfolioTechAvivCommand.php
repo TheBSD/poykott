@@ -31,13 +31,16 @@ class ImportPortfolioTechAvivCommand extends Command
                 'url' => data_get($data, 'link') ?? data_get($data, 'url'),
                 'description' => data_get($data, 'description'),
                 'short_description' => data_get($data, 'short_description'),
-                'logo' => data_get($data, 'logo'),
             ];
-
+            
             if (is_null($company)) {
                 $company = Company::create(array_merge([
                     'name' => trim(data_get($data, 'name')),
                 ], $dataFields));
+
+                $company->logo()->create([
+                    'path' => data_get($data, 'logo'),
+                ]);
             }
 
             if (! $company->wasRecentlyCreated) {
