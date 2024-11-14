@@ -28,7 +28,6 @@ use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
  * @property string $name
  * @property string $slug
  * @property string $description
- * @property string $logo
  * @property string $notes
  * @property int $valuation
  * @property int $exit_valuation
@@ -62,7 +61,6 @@ class Company extends Model
         'slug',
         'description',
         'short_description',
-        'logo',
         'notes',
         'valuation',
         'exit_valuation',
