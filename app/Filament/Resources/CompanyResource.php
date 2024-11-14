@@ -87,16 +87,16 @@ class CompanyResource extends Resource
                     ->url(fn(Company $record) => $record->url)
                     ->color('info')
                     ->openUrlInNewTab()->searchable()->limit(50),
-                TextColumn::make('resources.url')->label('Resources')
+                TextColumn::make('resources.url')
+                    ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            if ($resource->url) {
-                            }
-                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
-                        })->implode(', ');
+                            return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
+                        })->implode('<br>');
                     })
+                    ->html()
                     ->disabledClick()
-                    ->html(),
+                    ->color('info'),
                 IconColumn::make('approved_at')->label('Approved')
                 ->boolean(fn (Company $record): bool => $record->approved_at !== null),
                 TextColumn::make('valuation')->numeric()->sortable(),

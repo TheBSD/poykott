@@ -68,14 +68,16 @@ class AlternativeResource extends Resource
                     ->url(fn(Alternative $record) => $record->url)
                     ->color('info')
                     ->openUrlInNewTab()->searchable()->limit(50),
-                TextColumn::make('resources.url')->label('Resources')
+                TextColumn::make('resources.url')
+                    ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
-                        })->implode(', ');
+                            return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
+                        })->implode('<br>');
                     })
+                    ->html()
                     ->disabledClick()
-                    ->html(),
+                    ->color('info'),
                 TextColumn::make('description')->limit(50), 
                 TextColumn::make('notes')->limit(50),
                 TextColumn::make('created_at')->dateTime()->sortable()

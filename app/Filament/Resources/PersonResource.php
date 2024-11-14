@@ -66,16 +66,16 @@ class PersonResource extends Resource
                 TextColumn::make('job_title')->searchable()->sortable(),
                 IconColumn::make('approved_at')->label('Approved')
                 ->boolean(fn (Person $record): bool => $record->approved_at !== null),
-                TextColumn::make('resources.url')->label('Resources')
+                TextColumn::make('resources.url')
+                    ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            if ($resource->url) {
-                            }
-                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
-                        })->implode(', ');
+                            return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
+                        })->implode('<br>');
                     })
+                    ->html()
                     ->disabledClick()
-                    ->html(),
+                    ->color('info'),
                 TextColumn::make('location')->searchable()->sortable(),
                 TextColumn::make('social_links')
                     ->formatStateUsing(function (Person $record) {
