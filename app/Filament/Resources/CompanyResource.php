@@ -80,7 +80,7 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('logo.path')->circular(), 
+                ImageColumn::make('logo.path')->size(70), 
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('tags.name')->badge()->searchable(),
