@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('office_locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
             $table->decimal('lat')->nullable();
             $table->decimal('lng')->nullable();
             $table->timestamps();
-
-            $table->unique(['company_id', 'name']);
         });
     }
 
