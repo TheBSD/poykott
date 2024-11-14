@@ -9,7 +9,9 @@ use Faker\Provider\ar_EG\Text;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -32,13 +34,23 @@ class AlternativeResource extends Resource
             TextInput::make('name')->required(), 
             TextInput::make('url')->required(), 
             Textarea::make('description')->columnSpanFull(), 
-            Textarea::make('notes')->columnSpanFull(), 
-            Fieldset::make('logo')
+            Textarea::make('notes')->columnSpanFull(),
+            Fieldset::make()
                 ->relationship('logo')
                 ->schema([
                     Hidden::make('type')->default('logo'),
-                    FileUpload::make('path')->image(),
-                ]),
+                    FileUpload::make('path')->label('Logo')->image(),
+                ])->columnSpan(1)->columns(1),
+            Select::make('tags')->relationship('tags', 'name')
+                ->multiple()->searchable()->preload()->native(false)
+                ->createOptionForm([
+                    Grid::make(2)->schema([
+                        TextInput::make('name')
+                        ->required(),
+                        TextInput::make('slug')
+                        ->required(),
+                        ])
+                    ]),
             DateTimePicker::make('approved_at'),
         ]);
     }
@@ -51,6 +63,7 @@ class AlternativeResource extends Resource
                 TextColumn::make('name')->searchable(), 
                 IconColumn::make('approved_at')->label('Approved')
                     ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
+                TextColumn::make('tags.name')->badge()->searchable(),
                 TextColumn::make('url')
                     ->url(fn(Alternative $record) => $record->url)
                     ->color('info')
