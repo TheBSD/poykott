@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
+use App\Filament\Resources\CompanyOfficeLocationsResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Filament\Resources\CompanyResource\Pages;
 use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
@@ -83,6 +84,7 @@ class CompanyResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('tags.name')->badge()->searchable(),
+                TextColumn::make('officeLocations.name')->badge()->color('info')->searchable(),
                 TextColumn::make('url')
                     ->url(fn(Company $record) => $record->url)
                     ->color('info')
@@ -146,6 +148,7 @@ class CompanyResource extends Resource
     {
         return [
             ResourcesRelationManager::class,
+            OfficeLocationsRelationManager::class
         ];
     }
 

@@ -158,11 +158,6 @@ class Company extends Model
         return $this->belongsToMany(Investor::class);
     }
 
-    public function officeLocations(): HasMany
-    {
-        return $this->hasMany(OfficeLocation::class);
-    }
-
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
@@ -177,4 +172,10 @@ class Company extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
     }
+
+    public function officeLocations()
+    {
+        return $this->belongsToMany(OfficeLocation::class, 'company_office_location')->withTimestamps();
+    }
+
 }
