@@ -57,4 +57,9 @@ class Tag extends Model
     {
         return $this->morphedByMany(Company::class, 'taggable');
     }
+
+    public function investors(): MorphToMany
+    {
+        return $this->morphedByMany(Investor::class, 'taggable');
+    }
 }

@@ -8,7 +8,9 @@ use App\Models\Investor;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -35,10 +37,19 @@ class InvestorResource extends Resource
                     ->schema([
                         Hidden::make('type')->default('logo'),
                         FileUpload::make('path')->image(),
+                    ])->columnSpan(1)->columns(1),
+                Select::make('tags')->relationship('tags', 'name')
+                    ->multiple()->searchable()->preload()->native(false)
+                    ->createOptionForm([
+                        Grid::make(2)->schema([
+                            TextInput::make('name')
+                            ->required(),
+                            TextInput::make('slug')
+                            ->required(),
+                        ])
                     ]),
                 Textarea::make('description')->columnSpanFull(),
                 TextInput::make('url'),
-                TextInput::make('logo'),
             ]);
     }
 
@@ -49,6 +60,7 @@ class InvestorResource extends Resource
                 ImageColumn::make('logo.path')->circular(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
+                TextColumn::make('tags.name')->badge()->searchable(),
                 TextColumn::make('description')->searchable()->limit(50),
                 TextColumn::make('url')->searchable(),
                 TextColumn::make('resources.url')->label('Resources')
