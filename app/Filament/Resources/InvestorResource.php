@@ -6,11 +6,17 @@ use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelatio
 use App\Filament\Resources\InvestorResource\Pages;
 use App\Models\Investor;
 use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -23,12 +29,27 @@ class InvestorResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
+            ->schema([ 
                 TextInput::make('name')->required(),
                 TextInput::make('slug')->required(),
+                Fieldset::make('logo')
+                    ->relationship('logo')
+                    ->schema([
+                        Hidden::make('type')->default('logo'),
+                        FileUpload::make('path')->image(),
+                    ])->columnSpan(1)->columns(1),
+                Select::make('tags')->relationship('tags', 'name')
+                    ->multiple()->searchable()->preload()->native(false)
+                    ->createOptionForm([
+                        Grid::make(2)->schema([
+                            TextInput::make('name')
+                            ->required(),
+                            TextInput::make('slug')
+                            ->required(),
+                        ])
+                    ]),
                 Textarea::make('description')->columnSpanFull(),
                 TextInput::make('url'),
-                TextInput::make('logo'),
             ]);
     }
 
@@ -36,22 +57,22 @@ class InvestorResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('logo.path')->circular(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
+                TextColumn::make('tags.name')->badge()->searchable(),
                 TextColumn::make('description')->searchable()->limit(50),
                 TextColumn::make('url')->searchable(),
-                TextColumn::make('resources.url')->label('Resources')
+                TextColumn::make('resources.url')
+                    ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            if ($resource->url) {
-                            }
-                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
-                        })->implode(', ');
+                            return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
+                        })->implode('<br>');
                     })
+                    ->html()
                     ->disabledClick()
-                    ->html(),
-                TextColumn::make('logo')->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->color('info'),
                 TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()

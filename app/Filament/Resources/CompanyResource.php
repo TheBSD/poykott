@@ -3,10 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
+use App\Filament\Resources\CompanyOfficeLocationsResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Filament\Resources\CompanyResource\Pages;
 use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -14,6 +19,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -33,7 +39,22 @@ class CompanyResource extends Resource
                 DateTimePicker::make('approved_at'),
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
-                TextInput::make('logo'),
+                Fieldset::make('logo')
+                    ->relationship('logo')
+                    ->schema([
+                        Hidden::make('type')->default('logo'),
+                        FileUpload::make('path')->image(),
+                    ])->columnSpan(1)->columns(1),
+                Select::make('tags')->relationship('tags', 'name')
+                    ->multiple()->searchable()->preload()->native(false)
+                    ->createOptionForm([
+                        Grid::make(2)->schema([
+                            TextInput::make('name')
+                            ->required(),
+                            TextInput::make('slug')
+                            ->required(),
+                        ])
+                    ]),
                 TextInput::make('headquarter'),
                 TextInput::make('valuation')->numeric(),
                 TextInput::make('exit_valuation')->numeric(),
@@ -59,25 +80,27 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('logo.path')->size(70), 
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
+                TextColumn::make('tags.name')->badge()->searchable(),
+                TextColumn::make('officeLocations.name')->badge()->color('info')->searchable(),
                 TextColumn::make('url')
                     ->url(fn(Company $record) => $record->url)
                     ->color('info')
                     ->openUrlInNewTab()->searchable()->limit(50),
-                TextColumn::make('resources.url')->label('Resources')
+                TextColumn::make('resources.url')
+                    ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            if ($resource->url) {
-                            }
-                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
-                        })->implode(', ');
+                            return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
+                        })->implode('<br>');
                     })
+                    ->html()
                     ->disabledClick()
-                    ->html(),
+                    ->color('info'),
                 IconColumn::make('approved_at')->label('Approved')
                 ->boolean(fn (Company $record): bool => $record->approved_at !== null),
-                TextColumn::make('logo')->limit(50)->searchable(),
                 TextColumn::make('valuation')->numeric()->sortable(),
                 TextColumn::make('category.title')->numeric()->sortable(),
                 TextColumn::make('exit_valuation')->numeric()->sortable()
@@ -125,6 +148,7 @@ class CompanyResource extends Resource
     {
         return [
             ResourcesRelationManager::class,
+            OfficeLocationsRelationManager::class
         ];
     }
 

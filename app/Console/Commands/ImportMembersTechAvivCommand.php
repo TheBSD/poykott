@@ -51,15 +51,18 @@ class ImportMembersTechAvivCommand extends Command
 
             $dataFields = [
                 'url' => data_get($data, 'company.link'),
-                'logo' => data_get($data, 'company.logo'),
             ];
             $companyLowerName = Str::of(data_get($data, 'company.name'))->lower()->trim()->value();
             $company = Company::whereRaw('Lower(name)  = ?', [$companyLowerName])->first();
-
+            
             if (is_null($company)) {
                 $company = Company::create(array_merge([
                     'name' => trim(data_get($data, 'company.name')),
                 ], $dataFields));
+                
+                $company->logo()->create([
+                    'path' => data_get($data, 'company.logo'),
+                ]);
             }
 
             if (! $company->wasRecentlyCreated) {

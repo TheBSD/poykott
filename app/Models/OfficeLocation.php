@@ -24,12 +24,7 @@ class OfficeLocation extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'company_id',
-        'name',
-        'lat',
-        'lng',
-    ];
+    protected $fillable = ['company_id', 'name', 'lat', 'lng'];
 
     /**
      * The attributes that should be cast to native types.
@@ -43,8 +38,8 @@ class OfficeLocation extends Model
         'company_id' => 'integer',
     ];
 
-    public function company(): BelongsTo
+    public function companies()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsToMany(Company::class, 'company_office_location')->withTimestamps();
     }
 }

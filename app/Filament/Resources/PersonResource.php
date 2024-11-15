@@ -7,6 +7,8 @@ use App\Filament\Resources\PersonResource\Pages;
 use App\Models\Person;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -33,8 +35,21 @@ class PersonResource extends Resource
                 TextInput::make('job_title'),
                 DateTimePicker::make('approved_at'),
                 TextInput::make('location'),
+                Select::make('tags')->relationship('tags', 'name')
+                    ->multiple()->searchable()->preload()->native(false)
+                    ->createOptionForm([
+                        Grid::make(2)->schema([
+                            TextInput::make('name')
+                            ->required(),
+                            TextInput::make('slug')
+                            ->required(),
+                        ])
+                    ]),
                 Textarea::make('biography')->columnSpanFull(),
                 Textarea::make('social_links')->columnSpanFull()
+                    ->formatStateUsing(function ($state) {
+                        return implode(',', $state);
+                    })
                     ->placeholder('Enter links separated by commas')
                     ->helperText('Enter each link separated by a comma (e.g., https://link1.com, https://link2.com)'),
             ]);
@@ -47,19 +62,20 @@ class PersonResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 ImageColumn::make('avatar')->circular(),
                 TextColumn::make('slug')->searchable(),
+                TextColumn::make('tags.name')->badge()->searchable(),
                 TextColumn::make('job_title')->searchable()->sortable(),
                 IconColumn::make('approved_at')->label('Approved')
                 ->boolean(fn (Person $record): bool => $record->approved_at !== null),
-                TextColumn::make('resources.url')->label('Resources')
+                TextColumn::make('resources.url')
+                    ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            if ($resource->url) {
-                            }
-                            return "<a href='{$resource->url}' class='text-primary-600' target='_blank'>{$resource->url}</a>";
-                        })->implode(', ');
+                            return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
+                        })->implode('<br>');
                     })
+                    ->html()
                     ->disabledClick()
-                    ->html(),
+                    ->color('info'),
                 TextColumn::make('location')->searchable()->sortable(),
                 TextColumn::make('social_links')
                     ->formatStateUsing(function (Person $record) {

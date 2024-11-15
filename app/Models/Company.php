@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Carbon;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -26,7 +28,6 @@ use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
  * @property string $name
  * @property string $slug
  * @property string $description
- * @property string $logo
  * @property string $notes
  * @property int $valuation
  * @property int $exit_valuation
@@ -60,7 +61,6 @@ class Company extends Model
         'slug',
         'description',
         'short_description',
-        'logo',
         'notes',
         'valuation',
         'exit_valuation',
@@ -156,13 +156,24 @@ class Company extends Model
         return $this->belongsToMany(Investor::class);
     }
 
-    public function officeLocations(): HasMany
-    {
-        return $this->hasMany(OfficeLocation::class);
-    }
-
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
     }
+
+    public function logo(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+   
+    public function tags(): MorphToMany
+    {
+        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
+    }
+
+    public function officeLocations()
+    {
+        return $this->belongsToMany(OfficeLocation::class, 'company_office_location')->withTimestamps();
+    }
+
 }

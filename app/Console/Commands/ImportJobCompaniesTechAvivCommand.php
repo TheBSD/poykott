@@ -30,14 +30,19 @@ class ImportJobCompaniesTechAvivCommand extends Command
             $dataFields = [
                 'url' => data_get($data, 'domain') ?? data_get($data, 'website.url'),
                 'description' => data_get($data, 'description'),
-                'logo' => data_get($data, 'logos.manual.src'),
             ];
             $company = Company::whereRaw('LOWER(name) = ?', [$lowerName])->first();
-
+            
             if (is_null($company)) { // create if not exists
                 $company = Company::create(array_merge($dataFields, [
                     'name' => data_get($data, 'name'),
                 ]));
+
+                if (data_get($data, 'logos.manual.src')) {
+                    $company->logo()->create([
+                        'path' => data_get($data, 'logos.manual.src'),
+                    ]);
+                }
             }
 
             if (empty($company->description)) {
@@ -51,8 +56,8 @@ class ImportJobCompaniesTechAvivCommand extends Command
             }
 
             if (empty($company->logo)) {
-                $company->update([
-                    'logo' => data_get($data, 'logos.manual.src'),
+                $company->logo()->update([
+                    'path' => data_get($data, 'logos.manual.src'),
                 ]);
             }
 
