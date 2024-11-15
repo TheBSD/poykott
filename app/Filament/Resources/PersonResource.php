@@ -35,7 +35,7 @@ class PersonResource extends Resource
                 TextInput::make('job_title'),
                 DateTimePicker::make('approved_at'),
                 TextInput::make('location'),
-                Select::make('tags')->relationship('tags', 'name')
+                Select::make('tags')->relationship('tagsRelation', 'name')
                     ->multiple()->searchable()->preload()->native(false)
                     ->createOptionForm([
                         Grid::make(2)->schema([
@@ -62,7 +62,7 @@ class PersonResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 ImageColumn::make('avatar')->circular(),
                 TextColumn::make('slug')->searchable(),
-                TextColumn::make('tags.name')->badge()->searchable(),
+                TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
                 TextColumn::make('job_title')->searchable()->sortable(),
                 IconColumn::make('approved_at')->label('Approved')
                 ->boolean(fn (Person $record): bool => $record->approved_at !== null),

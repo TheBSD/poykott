@@ -162,7 +162,7 @@ class Company extends Model
 
     public function officeLocations(): BelongsToMany
     {
-        return $this->belongsToMany(OfficeLocation::class)->withTimestamps();
+        return $this->belongsToMany(OfficeLocation::class);
     }
 
     public function logo(): MorphOne

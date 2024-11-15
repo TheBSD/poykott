@@ -31,9 +31,9 @@ class AlternativeResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            TextInput::make('name')->required(), 
-            TextInput::make('url')->required(), 
-            Textarea::make('description')->columnSpanFull(), 
+            TextInput::make('name')->required(),
+            TextInput::make('url')->required(),
+            Textarea::make('description')->columnSpanFull(),
             Textarea::make('notes')->columnSpanFull(),
             Fieldset::make()
                 ->relationship('logo')
@@ -41,7 +41,7 @@ class AlternativeResource extends Resource
                     Hidden::make('type')->default('logo'),
                     FileUpload::make('path')->label('Logo')->image(),
                 ])->columnSpan(1)->columns(1),
-            Select::make('tags')->relationship('tags', 'name')
+            Select::make('tags')->relationship('tagsRelation', 'name')
                 ->multiple()->searchable()->preload()->native(false)
                 ->createOptionForm([
                     Grid::make(2)->schema([
@@ -59,11 +59,11 @@ class AlternativeResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('logo.path')->circular(), 
-                TextColumn::make('name')->searchable(), 
+                ImageColumn::make('logo.path')->circular(),
+                TextColumn::make('name')->searchable(),
                 IconColumn::make('approved_at')->label('Approved')
                     ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
-                TextColumn::make('tags.name')->badge()->searchable(),
+                TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
                 TextColumn::make('url')
                     ->url(fn(Alternative $record) => $record->url)
                     ->color('info')
@@ -78,7 +78,7 @@ class AlternativeResource extends Resource
                     ->html()
                     ->disabledClick()
                     ->color('info'),
-                TextColumn::make('description')->limit(50), 
+                TextColumn::make('description')->limit(50),
                 TextColumn::make('notes')->limit(50),
                 TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

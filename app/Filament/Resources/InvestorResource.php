@@ -29,7 +29,7 @@ class InvestorResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([ 
+            ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('slug')->required(),
                 Fieldset::make('logo')
@@ -38,7 +38,7 @@ class InvestorResource extends Resource
                         Hidden::make('type')->default('logo'),
                         FileUpload::make('path')->image(),
                     ])->columnSpan(1)->columns(1),
-                Select::make('tags')->relationship('tags', 'name')
+                Select::make('tags')->relationship('tagsRelation', 'name')
                     ->multiple()->searchable()->preload()->native(false)
                     ->createOptionForm([
                         Grid::make(2)->schema([
@@ -60,7 +60,7 @@ class InvestorResource extends Resource
                 ImageColumn::make('logo.path')->circular(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
-                TextColumn::make('tags.name')->badge()->searchable(),
+                TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
                 TextColumn::make('description')->searchable()->limit(50),
                 TextColumn::make('url')->searchable(),
                 TextColumn::make('resources.url')

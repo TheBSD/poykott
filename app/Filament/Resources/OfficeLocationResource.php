@@ -37,7 +37,7 @@ class OfficeLocationResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('companies.name')->badge()->color('info')->searchable(),
+                TextColumn::make('companies.name')->badge()->color('info')-> searchable(),
                 TextColumn::make('lat'),
                 TextColumn::make('lng'),
             ])

@@ -10,9 +10,8 @@ use Filament\Support\Enums\IconPosition;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class CompaniesOverview extends BaseWidget
+class SiteOverview extends BaseWidget
 {
-
     protected static ?string $pollingInterval = '60s';
 
     protected function getStats(): array
@@ -21,11 +20,11 @@ class CompaniesOverview extends BaseWidget
             Stat::make('Companies', Company::count())
                 ->description('Companies count')
                 ->descriptionIcon('heroicon-m-building-office-2', IconPosition::Before)
-                ->color('success'),
+                ->color('danger'),
             Stat::make('Alternatives', Alternative::count())
                 ->description('Alternatives count')
                 ->descriptionIcon('heroicon-m-arrows-right-left', IconPosition::Before)
-                ->color('danger'),
+                ->color('success'),
             Stat::make('Investors', Investor::count())
                 ->description('Investors count')
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
