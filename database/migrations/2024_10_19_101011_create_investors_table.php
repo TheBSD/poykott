@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('approved_at')->nullable();
             $table->text('description')->nullable();
             $table->string('url')->nullable();
-            $table->string('logo')->nullable();
+            //$table->string('logo')->nullable();
             $table->timestamps();
         });
     }

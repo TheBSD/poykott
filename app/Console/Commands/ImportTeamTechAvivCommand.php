@@ -68,7 +68,11 @@ class ImportTeamTechAvivCommand extends Command
                 $company = Company::create([
                     'name' => trim(data_get($data, 'company.name')),
                     'url' => data_get($data, 'company.link'),
-                    'logo' => data_get($data, 'company.logo'),
+                    //'logo' => data_get($data, 'company.logo'),
+                ]);
+
+                $company->logo()->create([
+                    'path' => data_get($data, 'company.logo') ?? data_get($data, 'company.url'),
                 ]);
             }
 
@@ -76,9 +80,10 @@ class ImportTeamTechAvivCommand extends Command
                 $company->update(['url' => data_get($data, 'company.link')]);
             }
 
-            if (empty($company->logo)) {
-                $company->update(['logo' => data_get($data, 'company.logo')]);
-            }
+            // no logo now
+            // if (empty($company->logo)) {
+            //     $company->update(['logo' => data_get($data, 'company.logo')]);
+            // }
 
             $companyResource = $company->resources()->updateOrCreate([
                 'url' => $person->url,

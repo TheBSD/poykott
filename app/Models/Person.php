@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasTags;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -23,7 +25,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Person extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasTags;
 
     /**
      * The attributes that are mass assignable.
