@@ -59,7 +59,7 @@ test('store saves and redirects', function (): void {
 
     $alternative = $alternatives->first();
 
-    $response->assertRedirect(route('welcome'));
+    $response->assertRedirect(route('home'));
     $response->assertSessionHas('alternative.name', $alternative->name);
 
     Queue::assertPushed(AddAlternative::class, function ($job) use ($alternative) {
