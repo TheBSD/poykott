@@ -24,10 +24,10 @@
     <main class="p-6 space-y-6 container mx-auto">
         <!-- Title -->
         <section class="text-center space-y-4 mb-16">
-            <h1 class="text-4xl font-extrabold">
+            <h1 class="text-6xl font-extrabold mt-12">
                 Boycott Israeli Tech
             </h1>
-            <p class="text-gray-400">
+            <p class="text-gray-400 text-xl">
                 Search for people and companies that support Israeli tech.
             </p>
             <!-- Search -->
