@@ -8,7 +8,8 @@ use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ResourceController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('load-more', [HomeController::class, 'loadMoreCompanies']);
+Route::get('load-more', [HomeController::class, 'loadMore']);
+Route::get('search', [HomeController::class, 'search']);
 
 Route::resource('companies', CompanyController::class)->except('edit', 'update', 'destroy');
 

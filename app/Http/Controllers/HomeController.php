@@ -13,9 +13,18 @@ class HomeController extends Controller
         return view('home', compact('companies'));
     }
 
-    public function loadMoreCompanies(Request $request)
+    public function loadMore(Request $request)
     {
         $companies = Company::with('tagsRelation:id,name')->paginate(20, ['id', 'name', 'description'], 'page', $request->page);
+        return response()->json(['companies' => $companies]);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $companies = Company::with('tagsRelation:id,name')
+            ->where('name', 'like', "%{$search}%")
+            ->paginate(40, ['id', 'name', 'description']);
         return response()->json(['companies' => $companies]);
     }
 }
