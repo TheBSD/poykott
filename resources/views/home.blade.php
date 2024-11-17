@@ -54,8 +54,7 @@
                     <h3 class="text-xl font-semibold">{{ $company->name }}</h3>
                     <p class="text-gray-400">{{ Str::limit($company->description, 100) }}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
-                        <button class="text-blue-400"
-                            onclick="document.getElementById('modal-{{ $company->id }}').classList.remove('hidden')">
+                        <button class="text-blue-400" onclick="showModal({{ $company }})">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -73,41 +72,52 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Modal -->
-                <div id="modal-{{ $company->id }}"
-                    class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center"
-                    onclick="if(event.target === this) this.classList.add('hidden')">
-                    <div class="bg-white p-6 rounded-lg space-y-4 w-[800px]" onclick="event.stopPropagation()">
-                        <h2 class="text-2xl font-bold">{{ $company->name }}</h2>
-                        <p>{{ $company->description }}</p>
-                        <button class="text-red-400 border border-red-400 px-4 py-2 rounded-md"
-                            onclick="document.getElementById('modal-{{ $company->id }}').classList.add('hidden')">Close</button>
-                    </div>
-                </div>
             @endforeach
         </section>
 
-        <!-- Show More Button -->
-        <button id="show-more" class="mt-12 text-xl px-4 py-2 bg-blue-500 text-white rounded-md mx-auto block">Show More
-            Companies</button>
+    </main>
 
-        <script>
-            let page = 1;
-            document.getElementById('show-more').addEventListener('click', function() {
-                page++;
-                fetch(`/load-more?page=${page}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const companyList = document.getElementById('company-list');
-                        data.companies.data.forEach(company => {
-                            const companyCard = `
+    <!-- Show More Button -->
+    <button id="show-more" class="mb-12 mt-4 text-xl px-4 py-2 bg-blue-500 text-white rounded-md mx-auto block">
+        Show More Companies
+    </button>
+
+    <!-- Single Modal -->
+    <div id="company-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center"
+        onclick="if(event.target === this) this.classList.add('hidden')">
+        <div class="bg-white p-6 rounded-lg space-y-4 w-[800px]" onclick="event.stopPropagation()">
+            <h2 id="modal-title" class="text-2xl font-bold"></h2>
+            <p id="modal-description"></p>
+            <button class="text-red-400 border border-red-400 px-4 py-2 rounded-md"
+                onclick="document.getElementById('company-modal').classList.add('hidden')">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+        function showModal(company) {
+            document.getElementById('modal-title').textContent = company.name;
+            document.getElementById('modal-description').textContent = company.description;
+            document.getElementById('company-modal').classList.remove('hidden');
+        }
+    </script>
+
+    <script>
+        let page = 1;
+        document.getElementById('show-more').addEventListener('click', function() {
+            page++;
+            fetch(`/load-more?page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                    const companyList = document.getElementById('company-list');
+                    data.companies.data.forEach(company => {
+                        const companyCard = `
                                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
                                     <h3 class="text-xl font-semibold">${company.name}</h3>
                                     <p class="text-gray-400">${company.description?.substring(0, 100) ?? ''}</p>
                                     <div class="flex gap-2 justify-between items-center text-sm">
                                         <button class="text-blue-400"
-                                            onclick="document.getElementById('modal-${company.id}').classList.remove('hidden')">
+                                            onclick="showModal(${company})">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -122,12 +132,11 @@
                                     </div>
                                 </div>
                             `;
-                            companyList.insertAdjacentHTML('beforeend', companyCard);
-                        });
+                        companyList.insertAdjacentHTML('beforeend', companyCard);
                     });
-            });
-        </script>
-    </main>
+                });
+        });
+    </script>
 </body>
 
 </html>

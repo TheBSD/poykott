@@ -9,13 +9,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $companies = Company::with('tagsRelation')->paginate(20, ['id', 'name', 'description']);
+        $companies = Company::with('tagsRelation:id,name')->paginate(20, ['id', 'name', 'description']);
         return view('home', compact('companies'));
     }
 
     public function loadMoreCompanies(Request $request)
     {
-        $companies = Company::with('tagsRelation')->paginate(20, ['id', 'name', 'description'], 'page', $request->page);
+        $companies = Company::with('tagsRelation:id,name')->paginate(20, ['id', 'name', 'description'], 'page', $request->page);
         return response()->json(['companies' => $companies]);
     }
 }
