@@ -78,10 +78,10 @@
                 <div id="modal-{{ $company->id }}"
                     class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center"
                     onclick="if(event.target === this) this.classList.add('hidden')">
-                    <div class="bg-white p-6 rounded-lg space-y-4" onclick="event.stopPropagation()">
+                    <div class="bg-white p-6 rounded-lg space-y-4 w-[800px]" onclick="event.stopPropagation()">
                         <h2 class="text-2xl font-bold">{{ $company->name }}</h2>
                         <p>{{ $company->description }}</p>
-                        <button class="text-red-400"
+                        <button class="text-red-400 border border-red-400 px-4 py-2 rounded-md"
                             onclick="document.getElementById('modal-{{ $company->id }}').classList.add('hidden')">Close</button>
                     </div>
                 </div>
