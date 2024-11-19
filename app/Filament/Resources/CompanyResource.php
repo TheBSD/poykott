@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\CompanyOfficeLocationsResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Filament\Resources\CompanyResource\Pages;
+use App\Filament\Resources\CompanyResource\RelationManagers\AlternativesRelationManager;
 use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -148,7 +149,8 @@ class CompanyResource extends Resource
     {
         return [
             ResourcesRelationManager::class,
-            OfficeLocationsRelationManager::class
+            OfficeLocationsRelationManager::class,
+            AlternativesRelationManager::class
         ];
     }
 

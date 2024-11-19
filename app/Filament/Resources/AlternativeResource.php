@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\Pages;
+use App\Filament\Resources\AlternativeResource\RelationManagers\CompaniesRelationManager;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Models\Alternative;
 use Faker\Provider\ar_EG\Text;
@@ -99,6 +100,7 @@ class AlternativeResource extends Resource
     {
         return [
                 ResourcesRelationManager::class,
+                CompaniesRelationManager::class,
             ];
     }
 
