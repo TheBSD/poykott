@@ -12,12 +12,17 @@
 </head>
 
 <body class="">
-
     <!-- Header -->
-    <header class="py-4 px-6 flex justify-between items-center">
-        <div class="text-4xl font-extrabold">The BSD</div>
-        <button class="border border-yellow-600 text-yellow-600
-         px-4 py-2 rounded-md">Contact Us</button>
+    <header class="pt-10  px-6 flex justify-between items-center">
+        <a href="{{ route('home') }}" class="text-4xl font-extrabold">The BSD</a>
+        <nav>
+            <ul class="flex gap-6">
+                <li><a href="{{ route('home') }}" class="hover:text-blue-600 font-bold text-lg">Companies</a></li>
+                <li><a href="{{ route('people') }}" class="hover:text-blue-600 font-bold text-lg">People</a></li>
+                <li><a href="{{ route('investors') }}" class="hover:text-blue-600 font-bold text-lg">Investors</a></li>
+            </ul>
+        </nav>
+        <button class="border border-yellow-600 text-yellow-600 px-4 py-2 rounded-md">Contact Us</button>
     </header>
 
     <!-- Main Section -->
@@ -28,11 +33,11 @@
                 Boycott Israeli Tech
             </h1>
             <p class="text-gray-400 text-xl">
-                Search for people and companies that support Israeli tech.
+                Search for Israeli tech <strong>companies</strong>.
             </p>
             <!-- Search -->
             <div class="relative max-w-lg mx-auto">
-                <input type="text" name="search" placeholder="Search for a company..."
+                <input type="text" name="search" placeholder="Search company name or description..."
                     class="w-full border border-blue-700 pl-10 pr-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -53,7 +58,7 @@
                     <h3 class="text-xl font-semibold">{{ $company->name }}</h3>
                     <p class="text-gray-400">{{ Str::limit($company->description, 100) }}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
-                        <button class="text-blue-400" onclick="showModal({{ $company }})">
+                        <button class="text-blue-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -81,26 +86,6 @@
         Show More Companies
     </button>
 
-    <!-- Single Modal -->
-    <div id="company-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center"
-        onclick="if(event.target === this) this.classList.add('hidden')">
-        <div class="bg-white p-6 rounded-lg space-y-4 w-[800px]" onclick="event.stopPropagation()">
-            <h2 id="modal-title" class="text-2xl font-bold"></h2>
-            <p id="modal-description"></p>
-            <button class="text-red-400 border border-red-400 px-4 py-2 rounded-md"
-                onclick="document.getElementById('company-modal').classList.add('hidden')">Close</button>
-        </div>
-    </div>
-
-
-    <script>
-        function showModal(company) {
-            document.getElementById('modal-title').textContent = company.name;
-            document.getElementById('modal-description').textContent = company.description;
-            document.getElementById('company-modal').classList.remove('hidden');
-        }
-    </script>
-
     <script>
         function createCompanyCard(company) {
             return `
@@ -108,7 +93,7 @@
                     <h3 class="text-xl font-semibold">${company.name}</h3>
                     <p class="text-gray-400">${company.description?.substring(0, 100) ?? ''}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
-                        <button class="text-blue-400" onclick='showModal(${JSON.stringify(company)})'>
+                        <button class="text-blue-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"

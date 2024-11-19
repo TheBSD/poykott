@@ -1,7 +1,1 @@
-{{--
-    @extends('layouts.app')
-
-    @section('content')
-        investors.index template
-    @endsection
---}}
+<h1>Investors</h1>
