@@ -13,23 +13,24 @@ use Illuminate\View\View;
 
 class InvestorController extends Controller
 {
-    public function index(Request $request): View
+    public function index()
     {
-        $investors = Investor::all();
-
+        $investors = Investor::paginate(20, ['investors.id', 'name', 'description']);
         return view('investors.index', compact('investors'));
     }
 
-    public function store(InvestorStoreRequest $request): RedirectResponse
+    public function loadMore(Request $request)
     {
-        $investor = Investor::create($request->validated());
+        $investors = Investor::paginate(20, ['investors.id', 'name', 'description'], 'page', $request->page);
+        return response()->json(['investors' => $investors]);
+    }
 
-        AddInvestor::dispatch($investor);
-
-        $request->session()->flash('investor.name', $investor->name);
-
-        User::isAdmin()->first()->notify(new ReviewInvestor($investor));
-
-        return redirect()->route('investors.index');
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $investors = Investor::where('name', 'like', "%{$search}%")
+            ->orWhere('description', 'like', "%{$search}%")
+            ->paginate(40, ['investors.id', 'name', 'description']);
+        return response()->json(['investors' => $investors]);
     }
 }

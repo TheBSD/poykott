@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\AlternativeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\PersonController;
-use App\Http\Controllers\ResourceController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('load-more', [HomeController::class, 'loadMore']);
@@ -17,3 +14,5 @@ Route::get('people/load-more', [PersonController::class, 'loadMore']);
 Route::get('people/search', [PersonController::class, 'search']);
 
 Route::get('investors', [InvestorController::class, 'index'])->name('investors');
+Route::get('investors/load-more', [InvestorController::class, 'loadMore']);
+Route::get('investors/search', [InvestorController::class, 'search']);
