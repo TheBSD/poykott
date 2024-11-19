@@ -45,7 +45,10 @@
             <!-- Product Card -->
             @foreach ($companies as $company)
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
-                    <h3 class="text-xl font-semibold">{{ $company->name }}</h3>
+                    <div class="flex justify-between items-center">
+                        <img src="{{ $company->logo->path}}" width="100" alt="logo" loading="lazy">
+                        <h3 class="text-xl font-semibold">{{ $company->name }}</h3>
+                    </div>
                     <p class="text-gray-400">{{ Str::limit($company->description, 100) }}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
                         <button class="text-blue-400">
@@ -80,7 +83,10 @@
         function createCompanyCard(company) {
             return `
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
-                    <h3 class="text-xl font-semibold">${company.name}</h3>
+                    <div class="flex justify-between items-center">
+                        <img src="${company.logo?.path}" width="100" alt="logo" loading="lazy">
+                        <h3 class="text-xl font-semibold">${company.name }</h3>
+                    </div>
                     <p class="text-gray-400">${company.description?.substring(0, 100) ?? ''}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
                         <button class="text-blue-400">

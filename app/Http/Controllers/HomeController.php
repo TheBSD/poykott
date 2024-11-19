@@ -10,6 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         $companies = Company::with([
+            'logo:id,imageable_id,path',
             'tagsRelation' => function ($query) {
                 $query->select('tags.id', 'name')->limit(3);
             },
@@ -20,6 +21,7 @@ class HomeController extends Controller
     public function loadMore(Request $request)
     {
         $companies = Company::with([
+            'logo:id,imageable_id,path',
             'tagsRelation' => function ($query) {
                 $query->select('tags.id', 'name')->limit(3);
             },
@@ -31,6 +33,7 @@ class HomeController extends Controller
     {
         $search = $request->input('search');
         $companies = Company::with([
+            'logo:id,imageable_id,path',
             'tagsRelation' => function ($query) {
                 $query->select('tags.id', 'name')->limit(3);
             },

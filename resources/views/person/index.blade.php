@@ -45,7 +45,10 @@
             <!-- Product Card -->
             @foreach ($people as $person)
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
-                    <h3 class="text-xl font-semibold">{{ $person->name }}</h3>
+                    <div class="flex justify-between items-center">
+                        <img src="{{ $person->avatar}}" class="rounded-full h-[100px]" width="100" alt="logo" loading="lazy">
+                        <h3 class="text-xl font-semibold">{{ $person->name }}</h3>
+                    </div>
                     <p class="text-gray-400">{{ Str::limit($person->description, 100) }}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
                         <button class="text-blue-400">
@@ -80,7 +83,10 @@
         function createPeopleCard(person) {
             return `
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
-                    <h3 class="text-xl font-semibold">${person.name}</h3>
+                    <div class="flex justify-between items-center">
+                        <img src="${person.avatar}" class="rounded-full h-[100px]" width="100" alt="logo" loading="lazy">
+                        <h3 class="text-xl font-semibold">${person.name}</h3>
+                    </div>
                     <p class="text-gray-400">${person.description?.substring(0, 100) ?? ''}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
                         <button class="text-blue-400">

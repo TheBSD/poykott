@@ -9,13 +9,13 @@ class PersonController extends Controller
 {
     public function index()
     {
-        $people = Person::paginate(20, ['people.id', 'name', 'description']);
+        $people = Person::paginate(20, ['people.id', 'name', 'description', 'avatar']);
         return view('person.index', compact('people'));
     }
 
     public function loadMore(Request $request)
     {
-        $people = Person::paginate(20, ['people.id', 'name', 'description'], 'page', $request->page);
+        $people = Person::paginate(20, ['people.id', 'name', 'description', 'avatar'], 'page', $request->page);
         return response()->json(['people' => $people]);
     }
 
@@ -24,7 +24,7 @@ class PersonController extends Controller
         $search = $request->input('search');
         $people = Person::where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
-            ->paginate(40, ['people.id', 'name', 'description']);
+            ->paginate(40, ['people.id', 'name', 'description', 'avatar']);
         return response()->json(['people' => $people]);
     }
 }
