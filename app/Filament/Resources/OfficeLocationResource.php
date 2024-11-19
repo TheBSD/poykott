@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\OfficeLocationCompaniesResource\RelationManagers\CompaniesRelationManager;
+use App\Filament\Resources\OfficeLocationResource\RelationManagers\CompaniesRelationManager;
 use App\Filament\Resources\OfficeLocationResource\Pages;
 use App\Filament\Resources\OfficeLocationResource\RelationManagers;
 use App\Models\OfficeLocation;
