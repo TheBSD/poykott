@@ -28,6 +28,6 @@ class AlternativeController extends Controller
 
         User::isAdmin()->first()->notify(new ReviewAlternative($alternative));
 
-        return redirect()->route('welcome');
+        return redirect()->route('home');
     }
 }

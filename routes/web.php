@@ -1,13 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvestorController;
+use App\Http\Controllers\PersonController;
 
-Route::view('/', 'welcome')->name('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('load-more', [HomeController::class, 'loadMore']);
+Route::get('search', [HomeController::class, 'search']);
 
-Route::resource('companies', App\Http\Controllers\CompanyController::class)->except('edit', 'update', 'destroy');
+Route::get('people', [PersonController::class, 'index'])->name('people');
+Route::get('people/load-more', [PersonController::class, 'loadMore']);
+Route::get('people/search', [PersonController::class, 'search']);
 
-Route::resource('resources', App\Http\Controllers\ResourceController::class)->only('index', 'create', 'store');
-
-Route::resource('alternatives', App\Http\Controllers\AlternativeController::class)->only('create', 'store');
-
-Route::resource('investors', App\Http\Controllers\InvestorController::class)->only('index', 'store');
+Route::get('investors', [InvestorController::class, 'index'])->name('investors');
+Route::get('investors/load-more', [InvestorController::class, 'loadMore']);
+Route::get('investors/search', [InvestorController::class, 'search']);

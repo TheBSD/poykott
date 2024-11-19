@@ -23,11 +23,11 @@
                 Boycott Israeli Tech
             </h1>
             <p class="text-gray-400 text-xl">
-                Search for Israeli tech <strong>investors</strong>.
+                Search for Israeli tech <strong>people</strong>.
             </p>
             <!-- Search -->
             <div class="relative max-w-lg mx-auto">
-                <input type="text" name="search" placeholder="Search investor name or description..."
+                <input type="text" name="search" placeholder="Search person name or description..."
                     class="w-full border border-blue-700 pl-10 pr-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -41,12 +41,15 @@
 
 
         <!-- Products Grid -->
-        <section id="investor-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <section id="person-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- Product Card -->
-            @foreach ($investors as $investor)
+            @foreach ($people as $person)
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
-                    <h3 class="text-xl font-semibold">{{ $investor->name }}</h3>
-                    <p class="text-gray-400">{{ Str::limit($investor->description, 100) }}</p>
+                    <div class="flex justify-between items-center">
+                        <img src="{{ $person->avatar}}" class="rounded-full h-[100px]" width="100" alt="logo" loading="lazy">
+                        <h3 class="text-xl font-semibold">{{ $person->name }}</h3>
+                    </div>
+                    <p class="text-gray-400">{{ Str::limit($person->description, 100) }}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
                         <button class="text-blue-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -57,6 +60,13 @@
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
+                        <!-- Tags -->
+                        {{-- <div class="flex flex-wrap gap-1">
+                            @foreach ($person->tagsRelation as $tag)
+                                <a href="#"
+                                    class="text-blue-400 px-2 py-1 rounded-md border border-blue-400 hover:bg-blue-400 hover:text-white">{{ $tag->name }}</a>
+                            @endforeach
+                        </div> --}}
                     </div>
                 </div>
             @endforeach
@@ -66,15 +76,18 @@
 
     <!-- Show More Button -->
     <button id="show-more" class="mb-12 mt-4 text-xl px-4 py-2 bg-blue-500 text-white rounded-md mx-auto block">
-        Show More Investors
+        Show More People
     </button>
 
     <script>
-        function createInvestorsCard(investor) {
+        function createPeopleCard(person) {
             return `
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
-                    <h3 class="text-xl font-semibold">${investor.name}</h3>
-                    <p class="text-gray-400">${investor.description?.substring(0, 100) ?? ''}</p>
+                    <div class="flex justify-between items-center">
+                        <img src="${person.avatar}" class="rounded-full h-[100px]" width="100" alt="logo" loading="lazy">
+                        <h3 class="text-xl font-semibold">${person.name}</h3>
+                    </div>
+                    <p class="text-gray-400">${person.description?.substring(0, 100) ?? ''}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
                         <button class="text-blue-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -96,24 +109,24 @@
         document.getElementById('show-more').addEventListener('click', async function() {
             try {
                 page++;
-                const response = await fetch(`investors/load-more?page=${page}`);
+                const response = await fetch(`people/load-more?page=${page}`);
                 if (!response.ok) throw new Error('Network response was not ok');
 
                 const data = await response.json();
-                const investorList = document.getElementById('investor-list');
+                const personList = document.getElementById('person-list');
 
                 // Hide show more button if no more pages
-                if (page >= data.investors.last_page) {
+                if (page >= data.people.last_page) {
                     document.getElementById('show-more').style.display = 'none';
                 }
 
-                data.investors.data.forEach(investor => {
-                    const investorCard = createInvestorsCard(investor);
-                    investorList.insertAdjacentHTML('beforeend', investorCard);
+                data.people.data.forEach(person => {
+                    const personCard = createPeopleCard(person);
+                    personList.insertAdjacentHTML('beforeend', personCard);
                 });
             } catch (error) {
                 console.error('Error:', error);
-                alert('Failed to load more investors. Please try again.');
+                alert('Failed to load more people. Please try again.');
             }
         });
     </script>
@@ -131,34 +144,34 @@
                 // Set a new timeout to delay the search
                 searchTimeout = setTimeout(async () => {
                     // Show loading state
-                    const investorList = document.getElementById('investor-list');
-                    investorList.innerHTML = '<div class="text-center">Loading...</div>';
+                    const personList = document.getElementById('person-list');
+                    personList.innerHTML = '<div class="text-center">Loading...</div>';
 
                     const response = await fetch(
-                        `investors/search?search=${encodeURIComponent(query)}`);
+                        `people/search?search=${encodeURIComponent(query)}`);
                     if (!response.ok) throw new Error('Network response was not ok');
 
                     const data = await response.json();
-                    investorList.innerHTML = ''; // Clear loading message
+                    personList.innerHTML = ''; // Clear loading message
 
                     // Hide/show show more button based on search
                     document.getElementById('show-more').style.display = query ? 'none' : 'block';
 
-                    if (data.investors.data.length === 0) {
-                        investorList.innerHTML =
-                            '<div class="text-center text-gray-500">No investors found</div>';
+                    if (data.people.data.length === 0) {
+                        personList.innerHTML =
+                            '<div class="text-center text-gray-500">No people found</div>';
                         return;
                     }
 
-                    data.investors.data.forEach(investor => {
-                        const investorCard = createInvestorsCard(investor);
-                        investorList.insertAdjacentHTML('beforeend', investorCard);
+                    data.people.data.forEach(person => {
+                        const personCard = createPeopleCard(person);
+                        personList.insertAdjacentHTML('beforeend', personCard);
                     });
                 }, 500); // Debounce for 500ms
             } catch (error) {
                 console.error('Error:', error);
-                const investorList = document.getElementById('investor-list');
-                investorList.innerHTML = '<div class="text-center text-red-500">Error loading investors</div>';
+                const personList = document.getElementById('person-list');
+                personList.innerHTML = '<div class="text-center text-red-500">Error loading people</div>';
             }
         });
     </script>
