@@ -28,7 +28,7 @@
                             @foreach ($person->companies as $company)
                                 <div class="border rounded-lg p-4 flex items-center flex-col">
                                     @if ($company->logo)
-                                        <img src="{{ $company->logo->path }}" alt="{{ $company->name }}"
+                                        <img src="{{ $company->logo->path }}" alt="logo"
                                             class="w-40 h-30 rounded-full">
                                     @endif
                                     <a href="{{ route('companies.show', $company) }}"

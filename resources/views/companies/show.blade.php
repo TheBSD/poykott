@@ -26,7 +26,7 @@
                     <div class="px-6 pb-4">
                         <div class="flex flex-wrap gap-2">
                             @foreach ($company->tagsRelation as $tag)
-                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
+                                <span class="px-3 py-1 bg-amber-500 rounded-full text-sm">
                                     {{ $tag->name }}
                                 </span>
                             @endforeach
@@ -43,11 +43,14 @@
                                 @foreach ($company->founders as $founder)
                                     <div class="flex items-center space-x-3">
                                         @if ($founder->avatar)
-                                            <img src="{{ $founder->avatar }}" alt="{{ $founder->name }}"
-                                                class="w-10 h-10 rounded-full">
+                                            <img src="{{ $founder->avatar }}" alt="avatar"
+                                                class="w-24 h-24 rounded-full">
                                         @endif
                                         <div>
-                                            <p class="font-medium">{{ $founder->name }}</p>
+                                            <a href="{{ route('people.show', $founder->id)}}" 
+                                                class="font-medium hover:text-blue-500 ">
+                                                {{ $founder->name }}
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach
