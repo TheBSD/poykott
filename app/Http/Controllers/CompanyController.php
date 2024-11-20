@@ -13,35 +13,21 @@ use Illuminate\View\View;
 
 class CompanyController extends Controller
 {
-    public function index(Request $request): View
-    {
-        $companies = Company::all();
-
-        return view('companies.index', compact('companies'));
-    }
 
     public function show(Request $request, Company $company): View
     {
-        $company->load('alternatives');
+        $company->load([
+            'alternatives:id,name,description,url',
+            'founders:id,name,avatar',
+            'resources:id,resourceable_id,url',
+            'officeLocations:id,name',
+            'logo:id,imageable_id,path',
+            'tagsRelation:id,name',
+            'investors' => function ($query) {
+                $query->with('logo:id,imageable_id,path')->select('id', 'name');
+            },
+        ]);
 
         return view('companies.show', compact('company'));
-    }
-
-    public function create(Request $request): View
-    {
-        return view('companies.create');
-    }
-
-    public function store(CompanyStoreRequest $request): RedirectResponse
-    {
-        $company = Company::create($request->validated());
-
-        AddCompany::dispatch($company);
-
-        $request->session()->flash('company.name', $company->name);
-
-        User::isAdmin()->first()->notify(new ReviewCompany($company));
-
-        return redirect()->route('companies.index');
     }
 }
