@@ -67,7 +67,7 @@
                     </div>
                     <p class="text-gray-400">${person.description?.substring(0, 100) ?? ''}</p>
                     <div class="flex gap-2 justify-between items-center text-sm">
-                        <button class="text-blue-400">
+                        <a href="/people/${person.id}"  class="text-blue-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -75,7 +75,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                        </button>
+                        </a>
                     </div>
                 </div>
             `;
