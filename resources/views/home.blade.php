@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>The BSD</title>
-
-    @vite('resources/css/app.css')
-
-</head>
-
-<body class="">
- 
-    @include('partials.header')
+<x-app-layout>
 
     <!-- Main Section -->
     <main class="p-6 space-y-6 container mx-auto">
@@ -174,6 +159,6 @@
             }
         });
     </script>
-</body>
 
-</html>
+
+</x-app-layout>

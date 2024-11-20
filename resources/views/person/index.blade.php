@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>The BSD</title>
-
-    @vite('resources/css/app.css')
-
-</head>
-
-<body class="">
-
-    @include('partials.header')
+<x-app-layout>
 
     <!-- Main Section -->
     <main class="p-6 space-y-6 container mx-auto">
@@ -46,7 +31,7 @@
             @foreach ($people as $person)
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
                     <div class="flex justify-between items-center">
-                        <img src="{{ $person->avatar}}" class="rounded-full h-[100px]" width="100" alt="logo" loading="lazy">
+                        <img src="{{ $person->avatar}}" class="w-24 h-24 rounded-full" alt="logo" loading="lazy">
                         <h3 class="text-xl font-semibold">{{ $person->name }}</h3>
                     </div>
                     <p class="text-gray-400">{{ Str::limit($person->description, 100) }}</p>
@@ -60,13 +45,6 @@
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
-                        <!-- Tags -->
-                        {{-- <div class="flex flex-wrap gap-1">
-                            @foreach ($person->tagsRelation as $tag)
-                                <a href="#"
-                                    class="text-blue-400 px-2 py-1 rounded-md border border-blue-400 hover:bg-blue-400 hover:text-white">{{ $tag->name }}</a>
-                            @endforeach
-                        </div> --}}
                     </div>
                 </div>
             @endforeach
@@ -175,6 +153,6 @@
             }
         });
     </script>
-</body>
 
-</html>
+</x-app-layout>
+
