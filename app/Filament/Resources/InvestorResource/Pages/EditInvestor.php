@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\InvestorResource\Pages;
 
 use App\Filament\Resources\InvestorResource;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditInvestor extends EditRecord

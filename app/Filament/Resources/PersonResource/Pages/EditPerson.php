@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\PersonResource\Pages;
 
 use App\Filament\Resources\PersonResource;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPerson extends EditRecord
@@ -17,7 +16,7 @@ class EditPerson extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        if (!empty($data['social_links'])) {
+        if (! empty($data['social_links'])) {
             $data['social_links'] = array_map('trim', explode(',', $data['social_links']));
         }
 

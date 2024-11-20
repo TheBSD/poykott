@@ -47,7 +47,7 @@ class Tag extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
-    
+
     public function alternatives(): MorphToMany
     {
         return $this->morphedByMany(Alternative::class, 'taggable');

@@ -38,5 +38,9 @@
 - [ ] scrape finder.startupnation.com data and imported here
 - [ ] add ads using https://www.madvert.co/
 - [ ] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
-- [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs
+- [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs or www.tinybird.co
 - [ ] add to google search, bing search, 
+- [ ] use https://extract.pics/projects for image extraction easily
+- [ ] status page like https://instatus.com/
+- [ ] for feature requests https://www.featurebase.app/
+- [ ] change username and email git for to theBSD

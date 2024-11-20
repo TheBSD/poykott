@@ -16,9 +16,7 @@ class AddInvestor implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public Investor $investor)
-    {
-    }
+    public function __construct(public Investor $investor) {}
 
     /**
      * Execute the job.

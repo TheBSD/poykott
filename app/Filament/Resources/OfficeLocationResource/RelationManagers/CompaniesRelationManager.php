@@ -3,14 +3,11 @@
 namespace App\Filament\Resources\OfficeLocationResource\RelationManagers;
 
 use App\Models\Company;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CompaniesRelationManager extends RelationManager
 {
@@ -30,7 +27,7 @@ class CompaniesRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('url')
-                    ->url(fn(Company $record) => $record->url)
+                    ->url(fn (Company $record) => $record->url)
                     ->color('info')
                     ->openUrlInNewTab()->searchable()->limit(50),
             ])

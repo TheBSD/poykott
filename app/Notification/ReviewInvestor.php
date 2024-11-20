@@ -15,9 +15,7 @@ class ReviewInvestor extends Notification
     /**
      * Create a new message instance.
      */
-    public function __construct(public  Investor $investor)
-    {
-    }
+    public function __construct(public Investor $investor) {}
 
     /**
      * Get the notification's delivery channels.

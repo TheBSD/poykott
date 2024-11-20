@@ -6,7 +6,6 @@ use App\Filament\Resources\AlternativeResource\Pages;
 use App\Filament\Resources\AlternativeResource\RelationManagers\CompaniesRelationManager;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Models\Alternative;
-use Faker\Provider\ar_EG\Text;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
@@ -47,11 +46,11 @@ class AlternativeResource extends Resource
                 ->createOptionForm([
                     Grid::make(2)->schema([
                         TextInput::make('name')
-                        ->required(),
+                            ->required(),
                         TextInput::make('slug')
-                        ->required(),
-                        ])
+                            ->required(),
                     ]),
+                ]),
             DateTimePicker::make('approved_at'),
         ]);
     }
@@ -66,7 +65,7 @@ class AlternativeResource extends Resource
                     ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
                 TextColumn::make('url')
-                    ->url(fn(Alternative $record) => $record->url)
+                    ->url(fn (Alternative $record) => $record->url)
                     ->color('info')
                     ->openUrlInNewTab()->searchable()->limit(50),
                 TextColumn::make('resources.url')
@@ -84,7 +83,7 @@ class AlternativeResource extends Resource
                 TextColumn::make('created_at')->dateTime()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -92,16 +91,16 @@ class AlternativeResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make()->label(''),
                 Tables\Actions\DeleteAction::make()->label(''),
-                ])
+            ])
             ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
     }
 
     public static function getRelations(): array
     {
         return [
-                ResourcesRelationManager::class,
-                CompaniesRelationManager::class,
-            ];
+            ResourcesRelationManager::class,
+            CompaniesRelationManager::class,
+        ];
     }
 
     public static function getPages(): array

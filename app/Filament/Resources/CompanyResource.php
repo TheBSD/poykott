@@ -3,9 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
-use App\Filament\Resources\CompanyResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Filament\Resources\CompanyResource\Pages;
 use App\Filament\Resources\CompanyResource\RelationManagers\AlternativesRelationManager;
+use App\Filament\Resources\CompanyResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -51,10 +51,10 @@ class CompanyResource extends Resource
                     ->createOptionForm([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                            ->required(),
+                                ->required(),
                             TextInput::make('slug')
-                            ->required(),
-                        ])
+                                ->required(),
+                        ]),
                     ]),
                 TextInput::make('headquarter'),
                 TextInput::make('valuation')->numeric(),
@@ -101,7 +101,7 @@ class CompanyResource extends Resource
                     ->disabledClick()
                     ->color('info'),
                 IconColumn::make('approved_at')->label('Approved')
-                ->boolean(fn (Company $record): bool => $record->approved_at !== null),
+                    ->boolean(fn (Company $record): bool => $record->approved_at !== null),
                 TextColumn::make('valuation')->numeric()->sortable(),
                 TextColumn::make('category.title')->numeric()->sortable(),
                 TextColumn::make('exit_valuation')->numeric()->sortable()
@@ -150,7 +150,7 @@ class CompanyResource extends Resource
         return [
             ResourcesRelationManager::class,
             OfficeLocationsRelationManager::class,
-            AlternativesRelationManager::class
+            AlternativesRelationManager::class,
         ];
     }
 

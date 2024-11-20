@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CompanyStoreRequest;
-use App\Jobs\AddCompany;
 use App\Models\Company;
-use App\Models\User;
-use App\Notification\ReviewCompany;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CompanyController extends Controller
 {
-
     public function show(Request $request, Company $company): View
     {
         $company->load([

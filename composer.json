@@ -2,18 +2,25 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
         "ext-pdo": "*",
         "alazzi-az/laravel-bitmask": "^1.0",
         "filament/filament": "^3.2",
+        "intervention/image": "^3.9",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "spatie/image-optimizer": "^1.8",
+        "spatie/laravel-medialibrary": "^11.10",
         "spatie/laravel-sluggable": "^3.6"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.14",
         "fakerphp/faker": "^1.23",
         "jasonmccreary/laravel-test-assertions": "^2.4",
         "laravel-shift/blueprint": "^2.10",
@@ -24,6 +31,7 @@
         "pestphp/pest": "^3.3",
         "pestphp/pest-plugin-faker": "^3.0",
         "pestphp/pest-plugin-laravel": "^3.0",
+        "tightenco/duster": "^3.0",
         "watheqalshowaiter/model-required-fields": "^1.13"
     },
     "autoload": {

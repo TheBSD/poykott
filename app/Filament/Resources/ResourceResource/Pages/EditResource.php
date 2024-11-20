@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\ResourceResource\Pages;
 
 use App\Filament\Resources\ResourceResource;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditResource extends EditRecord

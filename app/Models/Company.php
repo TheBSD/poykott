@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Carbon;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -99,20 +98,6 @@ class Company extends Model
     }
 
     /**
-     * @return Attribute
-     *
-     * The source provides only the founding year. When stored in the database,
-     * * the current month and day are also recorded, which is incorrect. This method
-     * * ensures we only retrieve and store the founding year.
-     */
-    protected function foundedAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn (?string $value) => $value ? Carbon::parse($value)->format('Y') : null
-        );
-    }
-
-    /**
      * Relations
      */
     public function category(): BelongsTo
@@ -168,5 +153,19 @@ class Company extends Model
     public function logo(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    /**
+     * @return Attribute
+     *
+     * The source provides only the founding year. When stored in the database,
+     * * the current month and day are also recorded, which is incorrect. This method
+     * * ensures we only retrieve and store the founding year.
+     */
+    protected function foundedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => $value ? Carbon::parse($value)->format('Y') : null
+        );
     }
 }

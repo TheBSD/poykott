@@ -74,11 +74,11 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             foreach ($founders as $founder) {
                 $person = Person::firstOrCreate(
                     ['name' => trim($founder)],
-                    ['job_title' => 'Founder '.$company->name]
+                    ['job_title' => 'Founder ' . $company->name]
                 );
 
                 if (empty($person->job_title)) {
-                    $person->update(['job_title' => 'Founder '.$company->name]);
+                    $person->update(['job_title' => 'Founder ' . $company->name]);
                 }
 
                 $personResource = $person->resources()->updateOrCreate([

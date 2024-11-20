@@ -37,6 +37,5 @@ class AppServiceProvider extends ServiceProvider
             'alternative' => Alternative::class,
         ]);
 
-
     }
 }

@@ -15,4 +15,4 @@ class AppLayout extends Component
     {
         return view('components.app-layout');
     }
-} 
+}

@@ -16,10 +16,10 @@ class CreatePerson extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if (!empty($data['social_links'])) {
+        if (! empty($data['social_links'])) {
             $data['social_links'] = array_map('trim', explode(',', $data['social_links']));
         }
-    
+
         return $data;
     }
 }

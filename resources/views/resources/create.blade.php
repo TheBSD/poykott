@@ -1,7 +1,7 @@
 {{--
     @extends('layouts.app')
-
+    
     @section('content')
-        resource.create template
+    resource.create template
     @endsection
 --}}

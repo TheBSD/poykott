@@ -33,7 +33,7 @@ class ImportJobCompaniesTechAvivCommand extends Command
                 'description' => data_get($data, 'description'),
             ];
             $company = Company::whereRaw('LOWER(name) = ?', [$lowerName])->first();
-            
+
             if (is_null($company)) { // create if not exists
                 $company = Company::create(array_merge($dataFields, [
                     'name' => data_get($data, 'name'),

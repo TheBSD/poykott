@@ -1,15 +1,14 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\PersonController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('load-more', [HomeController::class, 'loadMore']);
 Route::get('search', [HomeController::class, 'search']);
-
 
 Route::get('companies/{company}', [CompanyController::class, 'show'])->name('companies.show');
 

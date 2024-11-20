@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\InvestorResource\Pages;
 use App\Models\Investor;
-use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -43,10 +42,10 @@ class InvestorResource extends Resource
                     ->createOptionForm([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                            ->required(),
+                                ->required(),
                             TextInput::make('slug')
-                            ->required(),
-                        ])
+                                ->required(),
+                        ]),
                     ]),
                 Textarea::make('description')->columnSpanFull(),
                 TextInput::make('url'),

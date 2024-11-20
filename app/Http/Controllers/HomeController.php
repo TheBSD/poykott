@@ -15,6 +15,7 @@ class HomeController extends Controller
                 $query->select('tags.id', 'name')->limit(3);
             },
         ])->paginate(20, ['companies.id', 'name', 'description']);
+
         return view('home', compact('companies'));
     }
 
@@ -26,6 +27,7 @@ class HomeController extends Controller
                 $query->select('tags.id', 'name')->limit(3);
             },
         ])->paginate(20, ['companies.id', 'name', 'description'], 'page', $request->page);
+
         return response()->json(['companies' => $companies]);
     }
 
@@ -41,6 +43,7 @@ class HomeController extends Controller
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['companies.id', 'name', 'description']);
+
         return response()->json(['companies' => $companies]);
     }
 }

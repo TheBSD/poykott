@@ -16,7 +16,7 @@ trait EnumHelper
     public static function find(mixed $needle): ?self
     {
         if (in_array($needle, self::names())) {
-            return constant("self::$needle");
+            return constant("self::{$needle}");
         }
         if (in_array($needle, self::values())) {
             return self::tryFrom($needle);

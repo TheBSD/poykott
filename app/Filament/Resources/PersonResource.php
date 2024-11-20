@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\PersonResource\Pages;
 use App\Models\Person;
-use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
@@ -41,10 +40,10 @@ class PersonResource extends Resource
                     ->createOptionForm([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                            ->required(),
+                                ->required(),
                             TextInput::make('slug')
-                            ->required(),
-                        ])
+                                ->required(),
+                        ]),
                     ]),
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('social_links')->columnSpanFull()
@@ -66,12 +65,12 @@ class PersonResource extends Resource
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
                 TextColumn::make('job_title')->searchable()->sortable(),
                 IconColumn::make('approved_at')->label('Approved')
-                ->boolean(fn (Person $record): bool => $record->approved_at !== null),
+                    ->boolean(fn (Person $record): bool => $record->approved_at !== null),
                 TextColumn::make('resources.url')
                     ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            return "<a href='{$resource->url}' target='_blank'>" . Str::limit($resource->url, 50) . "</a>";
+                            return "<a href='{$resource->url}' target='_blank'>" . Str::limit($resource->url, 50) . '</a>';
                         })->implode('<br>');
                     })
                     ->html()
