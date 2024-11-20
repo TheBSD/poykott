@@ -41,7 +41,9 @@ class CompanyResource extends Resource
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
                 Fieldset::make('logo')
-                    ->relationship('logo')
+                    ->relationship('logo', 
+                        condition: fn (?array $state): bool => filled($state['path']), 
+                    )
                     ->schema([
                         Hidden::make('type')->default('logo'),
                         FileUpload::make('path')->image(),
