@@ -18,6 +18,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class PersonResource extends Resource
 {
@@ -45,7 +46,7 @@ class PersonResource extends Resource
                             ->required(),
                         ])
                     ]),
-                Textarea::make('biography')->columnSpanFull(),
+                Textarea::make('description')->columnSpanFull(),
                 Textarea::make('social_links')->columnSpanFull()
                     ->formatStateUsing(function ($state) {
                         return implode(',', $state);
@@ -70,7 +71,7 @@ class PersonResource extends Resource
                     ->label('Resources')
                     ->formatStateUsing(function ($record) {
                         return $record->resources->map(function ($resource) {
-                            return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
+                            return "<a href='{$resource->url}' target='_blank'>" . Str::limit($resource->url, 50) . "</a>";
                         })->implode('<br>');
                     })
                     ->html()
