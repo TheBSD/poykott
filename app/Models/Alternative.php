@@ -56,4 +56,9 @@ class Alternative extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    public function scopeApproved($query)
+    {
+        return $query->whereNotNull('approved_at');
+    }
 }
