@@ -1,5 +1,4 @@
 export default {
-    "**/*.php*": [
-        "vendor/bin/duster fix"
-    ]
-}
+    '**/*.php*': ['vendor/bin/duster fix'],
+    '**/*': 'prettier --write --ignore-unknown',
+};
