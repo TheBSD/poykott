@@ -42,11 +42,7 @@ class ContactMessageResource extends Resource
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('email')->searchable(),
                 IconColumn::make('is_read')->boolean(),
-                TextColumn::make('read_at')->dateTime()->sortable(),
-                TextColumn::make('created_at')->dateTime()->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')->dateTime()->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')->dateTime()->sortable(),
             ])
             ->filters([
                 //
