@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -42,5 +43,23 @@ class HomeController extends Controller
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['companies.id', 'name', 'description', 'slug']);
         return response()->json(['companies' => $companies]);
+    }
+
+    public function about()
+    {
+        return view('pages.about');
+    }
+
+    public function contact(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'message' => 'required|string'
+        ]);
+        
+        ContactMessage::create($validated);
+        
+        return back()->with('success', 'Message sent successfully');
     }
 }

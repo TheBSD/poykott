@@ -7,5 +7,5 @@
             <li><a href="{{ route('investors') }}" class="hover:text-blue-600 font-bold text-lg uppercase {{ request()->is('investors') ? 'text-blue-600' : '' }}">Investors</a></li>
         </ul>
     </nav>
-    <button class="border border-yellow-600 text-yellow-600 px-4 py-2 rounded-md">Contact Us</button>
+    <a href="{{ route('about') }}" class="border border-yellow-600 text-yellow-600 px-4 py-2 rounded-md">About Us</a>
 </header>

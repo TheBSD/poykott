@@ -9,6 +9,8 @@ use App\Http\Controllers\PersonController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('load-more', [HomeController::class, 'loadMore']);
 Route::get('search', [HomeController::class, 'search']);
+Route::get('about', [HomeController::class, 'about'])->name('about');
+Route::post('contact', [HomeController::class, 'contact'])->name('contact');
 
 
 Route::get('companies/{company:slug}', [CompanyController::class, 'show'])->name('companies.show');
