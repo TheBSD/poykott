@@ -1,20 +1,4 @@
 <x-app-layout>
-    <!-- Success Message -->
-    @if (session('success'))
-        <div id="success-alert"
-            class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md w-fit mx-auto flex items-center fixed top-20 right-40"
-            role="alert">
-            <div>
-                <strong class="font-bold">Success!</strong>
-                <span class="block sm:inline">{{ session('success') }}</span>
-            </div>
-            <button onclick="closeAlert()" class="ml-4 text-green-700 hover:text-green-900">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-    @endif
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -182,14 +166,3 @@
     </div>
 </x-app-layout>
 
-<script>
-    // Auto-dismiss after 2 seconds
-    setTimeout(() => {
-        document.getElementById('success-alert')?.remove();
-    }, 5000);
-
-    // Close button handler
-    function closeAlert() {
-        document.getElementById('success-alert')?.remove();
-    }
-</script>
