@@ -17,7 +17,7 @@ class ResourceController extends Controller
     {
         $resources = Resource::all();
 
-        return view('resources.index', compact('resources'));
+        return view('resources.index', ['resources' => $resources]);
     }
 
     public function create(Request $request): View

@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use App\Traits\HasTags;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -15,16 +19,19 @@ use Spatie\Sluggable\SlugOptions;
  * @property string $name
  * @property string $avatar
  * @property string $job_title
- * @property \Carbon\Carbon $approved_at
+ * @property Carbon $approved_at
  * @property string $location
  * @property string $biography
  * @property string $social_links
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
-class Person extends Model
+class Person extends Model implements HasMedia
 {
-    use HasFactory, HasSlug, HasTags;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -45,17 +52,6 @@ class Person extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'approved_at' => 'timestamp',
-        'social_links' => 'array',
-    ];
-
-    /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions(): SlugOptions
@@ -65,6 +61,9 @@ class Person extends Model
             ->saveSlugsTo('slug');
     }
 
+    /**
+     * Relations
+     */
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class);
@@ -73,5 +72,25 @@ class Person extends Model
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
+    }
+
+    /**
+     * Scopes
+     */
+    public function scopeNonEmptyAvatar(Builder $query): Builder
+    {
+        return $query->whereRaw("avatar IS NOT NULL and avatar != ''");
+    }
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'approved_at' => 'timestamp',
+            'social_links' => 'array',
+        ];
     }
 }

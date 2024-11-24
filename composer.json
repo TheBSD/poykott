@@ -17,10 +17,12 @@
         "laravel/tinker": "^2.9",
         "spatie/image-optimizer": "^1.8",
         "spatie/laravel-medialibrary": "^11.10",
-        "spatie/laravel-sluggable": "^3.6"
+        "spatie/laravel-sluggable": "^3.6",
+        "watheqalshowaiter/backup-tables": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
+        "driftingly/rector-laravel": "^1.2",
         "fakerphp/faker": "^1.23",
         "jasonmccreary/laravel-test-assertions": "^2.4",
         "laravel-shift/blueprint": "^2.10",
@@ -31,6 +33,7 @@
         "pestphp/pest": "^3.3",
         "pestphp/pest-plugin-faker": "^3.0",
         "pestphp/pest-plugin-laravel": "^3.0",
+        "rector/rector": "^1.2",
         "tightenco/duster": "^3.0",
         "watheqalshowaiter/model-required-fields": "^1.13"
     },

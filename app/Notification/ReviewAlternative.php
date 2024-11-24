@@ -11,7 +11,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ReviewAlternative extends Notification
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     //    public $company;
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ResourceType;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -13,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $type
  * @property string $description
  * @property string $url
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Resource extends Model
 {

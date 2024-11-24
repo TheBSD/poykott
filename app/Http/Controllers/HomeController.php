@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $companies = Company::with([
             'logo:id,imageable_id,path',
-            'tagsRelation' => function ($query) {
+            'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },
         ])->paginate(20, ['companies.id', 'name', 'description'], 'page', $request->page);
@@ -36,7 +36,7 @@ class HomeController extends Controller
         $search = $request->input('search');
         $companies = Company::with([
             'logo:id,imageable_id,path',
-            'tagsRelation' => function ($query) {
+            'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },
         ])

@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
@@ -39,9 +41,13 @@ use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
-class Company extends Model
+class Company extends Model implements HasMedia
 {
-    use HasFactory, HasSlug, HasTags, RequiredFields;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithMedia;
+    use RequiredFields;
 
     /**
      * The attributes that are mass assignable.
@@ -69,22 +75,6 @@ class Company extends Model
         'founded_at',
         'employee_count',
         'stock_quote',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'category_id' => 'integer',
-        'exit_strategy_id' => 'integer',
-        'funding_level_id' => 'integer',
-        'company_size_id' => 'integer',
-        'approved_at' => 'timestamp',
-        'last_funding_date' => 'date',
-        'founded_at' => 'date',
     ];
 
     /**
@@ -165,7 +155,24 @@ class Company extends Model
     protected function foundedAt(): Attribute
     {
         return Attribute::make(
-            get: fn (?string $value) => $value ? Carbon::parse($value)->format('Y') : null
+            get: fn (?string $value): ?string => $value !== null && $value !== '' && $value !== '0' ? Carbon::parse($value)->format('Y') : null
         );
+    }
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'category_id' => 'integer',
+            'exit_strategy_id' => 'integer',
+            'funding_level_id' => 'integer',
+            'company_size_id' => 'integer',
+            'approved_at' => 'timestamp',
+            'last_funding_date' => 'date',
+            'founded_at' => 'date',
+        ];
     }
 }

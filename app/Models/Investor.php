@@ -13,7 +13,9 @@ use Spatie\Sluggable\SlugOptions;
 
 class Investor extends Model
 {
-    use HasFactory, HasSlug, HasTags;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
 
     /**
      * The attributes that are mass assignable.

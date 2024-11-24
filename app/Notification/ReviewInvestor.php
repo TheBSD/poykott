@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ReviewInvestor extends Notification
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new message instance.
