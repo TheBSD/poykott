@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- Breadcrumb --}}
@@ -47,7 +48,7 @@
                                                 class="w-24 h-24 rounded-full">
                                         @endif
                                         <div>
-                                            <a href="{{ route('people.show', $founder->id)}}" 
+                                            <a href="{{ route('people.show', $founder->id) }}"
                                                 class="font-medium hover:text-blue-500 ">
                                                 {{ $founder->name }}
                                             </a>
@@ -87,25 +88,63 @@
                             </div>
                         </div>
                     @endif
+                </div>
 
-                    <!-- Alternatives -->
+                <!-- Alternatives -->
+                <div class="max-w-7xl sm-px-6 lg:px-8 py-6 border-t">
+                    <h2 class="text-xl font-semibold mb-4">Alternatives</h2>
                     @if ($company->alternatives->count() > 0)
-                        <div class="border rounded-lg p-4">
-                            <h2 class="text-xl font-semibold mb-4">Alternatives</h2>
-                            <div class="space-y-4">
-                                @foreach ($company->alternatives as $alternative)
-                                    <div>
-                                        <h3 class="font-medium">{{ $alternative->name }}</h3>
-                                        <p class="text-gray-600">{{ $alternative->description }}</p>
-                                        @if ($alternative->url && $alternative->url !== '#')
-                                            <a href="{{ $alternative->url }}"
-                                                class="text-blue-500 hover:underline">{{ $alternative->url }}</a>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            @foreach ($company->alternatives as $alternative)
+                                <div class="border rounded-lg p-4">
+                                    <h3 class="font-medium">{{ $alternative->name }}</h3>
+                                    <p class="text-gray-600">{{ $alternative->description }}</p>
+                                    @if ($alternative->url && $alternative->url !== '#')
+                                        <a href="{{ $alternative->url }}"
+                                            class="text-blue-500 hover:underline break-all">{{ $alternative->url }}</a>
+                                    @endif
+                                </div>
+                            @endforeach
                         </div>
                     @endif
+
+                    <!-- Add Alternative -->
+                    <div class="mt-8 border-t pt-6 border border-orange-300 p-4 rounded-md">
+                        <h3 class="text-lg font-medium mb-4">Suggest an Alternative</h3>
+                        <form action="{{ route('companies.alternatives.store', $company) }}" method="POST"
+                            class="space-y-4">
+                            @csrf
+
+                            {{-- Honeypot field --}}
+                            <div class="hidden">
+                                <input type="text" name="website" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <div class="flex flex-col md:flex-row gap-4 rounded-md items-center">
+                                <div class="w-full md:w-1/4">
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                    <input type="text" name="name" id="name"
+                                        class="p-2 w-full rounded-md border" required>
+                                </div>
+
+                                <div class="w-full md:w-2/4">
+                                    <label for="url" class="block text-sm font-medium text-gray-700">
+                                        URL</label>
+                                    <input type="url" name="url" id="url"
+                                        class="p-2 w-full rounded-md border" required>
+                                </div>
+
+                                <div class="mt-4 w-full md:w-1/4">
+                                    <button type="submit"
+                                        class="rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                        Submit Alternative
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
                 </div>
 
                 <!-- Resources -->
@@ -126,3 +165,4 @@
         </div>
     </div>
 </x-app-layout>
+

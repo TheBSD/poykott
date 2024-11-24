@@ -16,6 +16,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
@@ -36,8 +37,10 @@ class AlternativeResource extends Resource
             TextInput::make('url')->required(),
             Textarea::make('description')->columnSpanFull(),
             Textarea::make('notes')->columnSpanFull(),
-            Fieldset::make()
-                ->relationship('logo')
+            Fieldset::make('logo')
+                ->relationship('logo', 
+                    condition: fn (?array $state): bool => filled($state['path']), 
+                )
                 ->schema([
                     Hidden::make('type')->default('logo'),
                     FileUpload::make('path')->label('Logo')->image(),
@@ -61,7 +64,7 @@ class AlternativeResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('logo.path')->circular(),
-                TextColumn::make('name')->searchable(),
+                TextColumn::make('name')->sortable()->searchable(),
                 IconColumn::make('approved_at')->label('Approved')
                     ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
