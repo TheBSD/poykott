@@ -43,7 +43,7 @@
                 <div class="space-y-2 rounded-lg border border-blue-700 p-4">
                     <div class="flex items-center justify-between">
                         <img
-                            src="{{ $person->getFirstMediaUrl() }}"
+                            src="{{ file_exists($person->getMedia()->first()->getPath('optimized'),) ? $person->getMedia()->first()->getUrl('optimized') : $person->getFirstMedia()->getUrl() }}"
                             class="h-24 w-24 rounded-full object-cover"
                             alt="logo"
                             loading="lazy"
