@@ -31,10 +31,10 @@ class ImportJobsTechAvivCommand extends Command
                     ->trim()
                     ->value();
 
-                $company = Company::whereRaw('LOWER(name) = ?', [$companyLowerName])->first();
+                $company = Company::query()->whereRaw('LOWER(name) = ?', [$companyLowerName])->first();
 
                 if (is_null($company)) {
-                    $company = Company::create([
+                    $company = Company::query()->create([
                         'name' => data_get($job, 'companyName'),
                         'url' => data_get($job, 'companyDomain'),
                     ]);
@@ -66,10 +66,10 @@ class ImportJobsTechAvivCommand extends Command
                         continue;
                     }
 
-                    $officeLocation = OfficeLocation::whereRaw('LOWER(name) = ?', strtolower($locationLowerName))->first();
+                    $officeLocation = OfficeLocation::query()->whereRaw('LOWER(name) = ?', strtolower($locationLowerName))->first();
 
                     if (is_null($officeLocation)) {
-                        $officeLocation = OfficeLocation::create([
+                        $officeLocation = OfficeLocation::query()->create([
                             'name' => Str::of($location)->squish()->value(),
                         ]);
                     }

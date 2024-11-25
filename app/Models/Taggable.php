@@ -29,18 +29,19 @@ class Taggable extends Model
         'taggable',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'tag_id' => 'integer',
-    ];
-
     public function tag(): BelongsTo
     {
         return $this->belongsTo(Tag::class);
+    }
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'tag_id' => 'integer',
+        ];
     }
 }

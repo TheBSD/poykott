@@ -2,13 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\OfficeLocationResource\Pages;
+use App\Filament\Resources\OfficeLocationResource\Pages\CreateOfficeLocation;
+use App\Filament\Resources\OfficeLocationResource\Pages\EditOfficeLocation;
+use App\Filament\Resources\OfficeLocationResource\Pages\ListOfficeLocations;
 use App\Filament\Resources\OfficeLocationResource\RelationManagers\CompaniesRelationManager;
 use App\Models\OfficeLocation;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -41,12 +46,12 @@ class OfficeLocationResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -61,9 +66,9 @@ class OfficeLocationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListOfficeLocations::route('/'),
-            'create' => Pages\CreateOfficeLocation::route('/create'),
-            'edit' => Pages\EditOfficeLocation::route('/{record}/edit'),
+            'index' => ListOfficeLocations::route('/'),
+            'create' => CreateOfficeLocation::route('/create'),
+            'edit' => EditOfficeLocation::route('/{record}/edit'),
         ];
     }
 }

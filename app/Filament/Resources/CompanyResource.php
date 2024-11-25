@@ -3,7 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
-use App\Filament\Resources\CompanyResource\Pages;
+use App\Filament\Resources\CompanyResource\Pages\CreateCompany;
+use App\Filament\Resources\CompanyResource\Pages\EditCompany;
+use App\Filament\Resources\CompanyResource\Pages\ListCompanies;
 use App\Filament\Resources\CompanyResource\RelationManagers\AlternativesRelationManager;
 use App\Filament\Resources\CompanyResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Models\Company;
@@ -18,7 +20,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -41,7 +46,9 @@ class CompanyResource extends Resource
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
                 Fieldset::make('logo')
-                    ->relationship('logo')
+                    ->relationship('logo',
+                        condition: fn (?array $state): bool => filled($state['path']),
+                    )
                     ->schema([
                         Hidden::make('type')->default('logo'),
                         FileUpload::make('path')->image(),
@@ -93,7 +100,7 @@ class CompanyResource extends Resource
                 TextColumn::make('resources.url')
                     ->label('Resources')
                     ->formatStateUsing(function ($record) {
-                        return $record->resources->map(function ($resource) {
+                        return $record->resources->map(function ($resource): string {
                             return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
                         })->implode('<br>');
                     })
@@ -135,12 +142,12 @@ class CompanyResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -157,9 +164,9 @@ class CompanyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCompanies::route('/'),
-            'create' => Pages\CreateCompany::route('/create'),
-            'edit' => Pages\EditCompany::route('/{record}/edit'),
+            'index' => ListCompanies::route('/'),
+            'create' => CreateCompany::route('/create'),
+            'edit' => EditCompany::route('/{record}/edit'),
         ];
     }
 }

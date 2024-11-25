@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\InvestorResource\Pages;
 
 use App\Filament\Resources\InvestorResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListInvestors extends ListRecords
@@ -13,7 +13,7 @@ class ListInvestors extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

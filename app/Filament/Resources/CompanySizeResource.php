@@ -2,13 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CompanySizeResource\Pages;
+use App\Filament\Resources\CompanySizeResource\Pages\CreateCompanySize;
+use App\Filament\Resources\CompanySizeResource\Pages\EditCompanySize;
+use App\Filament\Resources\CompanySizeResource\Pages\ListCompanySizes;
 use App\Models\CompanySize;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -42,12 +47,12 @@ class CompanySizeResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -62,9 +67,9 @@ class CompanySizeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCompanySizes::route('/'),
-            'create' => Pages\CreateCompanySize::route('/create'),
-            'edit' => Pages\EditCompanySize::route('/{record}/edit'),
+            'index' => ListCompanySizes::route('/'),
+            'create' => CreateCompanySize::route('/create'),
+            'edit' => EditCompanySize::route('/{record}/edit'),
         ];
     }
 }

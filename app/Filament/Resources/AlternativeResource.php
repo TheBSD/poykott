@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AlternativeResource\Pages;
+use App\Filament\Resources\AlternativeResource\Pages\CreateAlternative;
+use App\Filament\Resources\AlternativeResource\Pages\EditAlternative;
+use App\Filament\Resources\AlternativeResource\Pages\ListAlternatives;
 use App\Filament\Resources\AlternativeResource\RelationManagers\CompaniesRelationManager;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Models\Alternative;
@@ -16,7 +18,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -35,8 +40,10 @@ class AlternativeResource extends Resource
             TextInput::make('url')->required(),
             Textarea::make('description')->columnSpanFull(),
             Textarea::make('notes')->columnSpanFull(),
-            Fieldset::make()
-                ->relationship('logo')
+            Fieldset::make('logo')
+                ->relationship('logo',
+                    condition: fn (?array $state): bool => filled($state['path']),
+                )
                 ->schema([
                     Hidden::make('type')->default('logo'),
                     FileUpload::make('path')->label('Logo')->image(),
@@ -60,7 +67,7 @@ class AlternativeResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('logo.path')->circular(),
-                TextColumn::make('name')->searchable(),
+                TextColumn::make('name')->sortable()->searchable(),
                 IconColumn::make('approved_at')->label('Approved')
                     ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
@@ -71,7 +78,7 @@ class AlternativeResource extends Resource
                 TextColumn::make('resources.url')
                     ->label('Resources')
                     ->formatStateUsing(function ($record) {
-                        return $record->resources->map(function ($resource) {
+                        return $record->resources->map(function ($resource): string {
                             return "<a href='{$resource->url}' target='_blank'>{$resource->url}</a>";
                         })->implode('<br>');
                     })
@@ -89,10 +96,10 @@ class AlternativeResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label(''),
-                Tables\Actions\DeleteAction::make()->label(''),
+                EditAction::make()->label(''),
+                DeleteAction::make()->label(''),
             ])
-            ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
+            ->bulkActions([BulkActionGroup::make([DeleteBulkAction::make()])]);
     }
 
     public static function getRelations(): array
@@ -106,9 +113,9 @@ class AlternativeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAlternatives::route('/'),
-            'create' => Pages\CreateAlternative::route('/create'),
-            'edit' => Pages\EditAlternative::route('/{record}/edit'),
+            'index' => ListAlternatives::route('/'),
+            'create' => CreateAlternative::route('/create'),
+            'edit' => EditAlternative::route('/{record}/edit'),
         ];
     }
 }

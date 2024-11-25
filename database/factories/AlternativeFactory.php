@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\Alternative;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Alternative>
+ */
 class AlternativeFactory extends Factory
 {
     /**
@@ -20,12 +23,12 @@ class AlternativeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'approved_at' => $this->faker->dateTime(),
-            'logo' => $this->faker->word(),
-            'notes' => $this->faker->text(),
-            'url' => $this->faker->url(),
+            'name' => fake()->name(),
+            'description' => fake()->text(),
+            'approved_at' => fake()->dateTime(),
+            'logo' => fake()->word(),
+            'notes' => fake()->text(),
+            'url' => fake()->url(),
         ];
     }
 }

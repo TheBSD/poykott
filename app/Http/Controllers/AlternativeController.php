@@ -20,7 +20,7 @@ class AlternativeController extends Controller
 
     public function store(AlternativeStoreRequest $request): RedirectResponse
     {
-        $alternative = Alternative::create($request->validated());
+        $alternative = Alternative::query()->create($request->validated());
 
         AddAlternative::dispatch($alternative);
 

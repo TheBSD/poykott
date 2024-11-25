@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\CompanySize;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<CompanySize>
+ */
 class CompanySizeFactory extends Factory
 {
     /**
@@ -20,8 +23,8 @@ class CompanySizeFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(4),
-            'description' => $this->faker->text(),
+            'title' => fake()->sentence(4),
+            'description' => fake()->text(),
         ];
     }
 }

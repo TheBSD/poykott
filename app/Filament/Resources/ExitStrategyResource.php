@@ -2,13 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ExitStrategyResource\Pages;
+use App\Filament\Resources\ExitStrategyResource\Pages\CreateExitStrategy;
+use App\Filament\Resources\ExitStrategyResource\Pages\EditExitStrategy;
+use App\Filament\Resources\ExitStrategyResource\Pages\ListExitStrategies;
 use App\Models\ExitStrategy;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -42,12 +47,12 @@ class ExitStrategyResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -62,9 +67,9 @@ class ExitStrategyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListExitStrategies::route('/'),
-            'create' => Pages\CreateExitStrategy::route('/create'),
-            'edit' => Pages\EditExitStrategy::route('/{record}/edit'),
+            'index' => ListExitStrategies::route('/'),
+            'create' => CreateExitStrategy::route('/create'),
+            'edit' => EditExitStrategy::route('/{record}/edit'),
         ];
     }
 }

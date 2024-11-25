@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\TaggableResource\Pages;
 
 use App\Filament\Resources\TaggableResource;
-use Filament\Actions;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditTaggable extends EditRecord
@@ -13,7 +13,7 @@ class EditTaggable extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

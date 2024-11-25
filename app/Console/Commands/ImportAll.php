@@ -24,7 +24,7 @@ class ImportAll extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
 
         $progressBar = $this->output->createProgressBar(9);

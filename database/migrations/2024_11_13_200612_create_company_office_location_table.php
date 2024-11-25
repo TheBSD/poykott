@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('company_office_location', function (Blueprint $table) {
+        Schema::create('company_office_location', function (Blueprint $table): void {
             $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('office_location_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
         });

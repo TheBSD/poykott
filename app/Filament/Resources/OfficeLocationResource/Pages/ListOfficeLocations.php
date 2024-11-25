@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\OfficeLocationResource\Pages;
 
 use App\Filament\Resources\OfficeLocationResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListOfficeLocations extends ListRecords
@@ -13,7 +13,7 @@ class ListOfficeLocations extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

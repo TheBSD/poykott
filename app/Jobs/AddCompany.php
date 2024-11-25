@@ -15,15 +15,10 @@ class AddCompany implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public $company;
-
     /**
      * Create a new job instance.
      */
-    public function __construct($company)
-    {
-        $this->company = $company;
-    }
+    public function __construct(public $company) {}
 
     /**
      * Execute the job.

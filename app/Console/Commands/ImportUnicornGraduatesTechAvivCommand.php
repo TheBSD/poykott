@@ -9,6 +9,7 @@ use App\Models\ExitStrategy;
 use App\Models\Investor;
 use App\Models\Person;
 use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -33,7 +34,7 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 'url' => data_get($data, 'Website'),
                 'total_funding' => data_get($data, 'Total Funding'),
                 'headquarter' => data_get($data, 'HQ'),
-                'founded_at' => \Carbon\Carbon::createFromFormat('Y', data_get($data, 'Founded')),
+                'founded_at' => Carbon::createFromFormat('Y', data_get($data, 'Founded')),
                 'exit_strategy_id' => ExitStrategy::query()
                     ->where('title', data_get($data, 'Exit'))
                     ->firstOrCreate(['title' => data_get($data, 'Exit')])->id,
@@ -45,11 +46,11 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
 
             $lowerCompanyName = Str::of(data_get($data, 'Company'))->lower()->trim();
 
-            $company = Company::whereRaw('LOWER(name) = ?', [$lowerCompanyName])->first();
+            $company = Company::query()->whereRaw('LOWER(name) = ?', [$lowerCompanyName])->first();
 
             if (is_null($company)) {
-                $company = Company::create(array_merge([
-                    'name' => trim(data_get($data, 'Company')),
+                $company = Company::query()->create(array_merge([
+                    'name' => trim((string) data_get($data, 'Company')),
                 ], $dataFields));
             }
 
@@ -66,16 +67,13 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             ]);
 
             $foundersString = data_get($data, 'Founders');
-            $founders = \Str::of($foundersString)
+            $founders = Str::of($foundersString)
                 ->chopEnd('...')
                 ->explode(',')
-                ->reject(fn ($founder) => empty(trim($founder)));
+                ->reject(fn ($founder): bool => in_array(trim((string) $founder), ['', '0'], true));
 
             foreach ($founders as $founder) {
-                $person = Person::firstOrCreate(
-                    ['name' => trim($founder)],
-                    ['job_title' => 'Founder ' . $company->name]
-                );
+                $person = Person::query()->firstOrCreate(['name' => trim((string) $founder)], ['job_title' => 'Founder ' . $company->name]);
 
                 if (empty($person->job_title)) {
                     $person->update(['job_title' => 'Founder ' . $company->name]);
@@ -95,15 +93,15 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             $investorsString = data_get($data, 'Top Investors');
             $investors = Str::of($investorsString)
                 ->explode(',')
-                ->reject(fn ($investor) => empty(trim($investor)))
-                ->map(fn ($investor) => trim($investor));
+                ->reject(fn ($investor): bool => in_array(trim((string) $investor), ['', '0'], true))
+                ->map(fn ($investor): string => trim((string) $investor));
 
             foreach ($investors as $investorData) {
                 $lowerInvestorName = Str::of($investorData)->lower()->trim();
 
-                $investor = Investor::whereRaw('LOWER(name) = ?', [$lowerInvestorName])->first();
+                $investor = Investor::query()->whereRaw('LOWER(name) = ?', [$lowerInvestorName])->first();
                 if (is_null($investor)) {
-                    $investor = Investor::create([
+                    $investor = Investor::query()->create([
                         'name' => trim($investorData),
                     ]);
                 }
@@ -120,14 +118,14 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             }
 
             $tagsString = data_get($data, 'Sectors');
-            $tags = \Str::of($tagsString)
+            $tags = Str::of($tagsString)
                 ->explode(',')
-                ->reject(fn ($investor) => empty(trim($investor)));
+                ->reject(fn ($investor): bool => in_array(trim((string) $investor), ['', '0'], true));
 
             $tagsIds = [];
             foreach ($tags as $tag) {
-                $tag = Tag::updateOrCreate([
-                    'name' => trim($tag),
+                $tag = Tag::query()->updateOrCreate([
+                    'name' => trim((string) $tag),
                 ]);
 
                 $tagsIds[] = $tag->id;

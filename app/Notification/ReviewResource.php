@@ -2,7 +2,6 @@
 
 namespace App\Notification;
 
-use App\Models\Company;
 use App\Models\Resource;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;

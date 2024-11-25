@@ -2,23 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Company;
-use App\Models\Tag;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Intervention\Image\Drivers\Imagick\Driver;
-use Intervention\Image\Encoders\WebpEncoder;
-use Intervention\Image\ImageManager;
-use Spatie\Image\Enums\AlignPosition;
-use Spatie\Image\Enums\BorderType;
-use Spatie\Image\Enums\Orientation;
 use Spatie\Image\Exceptions\CouldNotLoadImage;
-use Spatie\Image\Image;
-use Spatie\ImageOptimizer\OptimizerChain;
-use Spatie\ImageOptimizer\OptimizerChainFactory;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
 class PlayGroundCommand extends Command
 {
@@ -41,7 +26,7 @@ class PlayGroundCommand extends Command
      *
      * @throws CouldNotLoadImage
      */
-    public function handle()
+    public function handle(): void
     {
         //$imageColumn = Company::where('slug', 'houzz')->first()->logo()->first()->path;
         //

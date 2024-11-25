@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table): void {
             $table->id();
             $table->string('path');
             $table->string('type')->nullable();

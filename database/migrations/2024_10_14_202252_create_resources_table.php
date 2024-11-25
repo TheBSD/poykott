@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('resources', function (Blueprint $table) {
+        Schema::create('resources', function (Blueprint $table): void {
             $table->id();
             $table->morphs('resourceable');
             $table->string('title')->nullable();

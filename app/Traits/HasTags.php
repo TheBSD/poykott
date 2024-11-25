@@ -13,7 +13,7 @@ trait HasTags
         return $this->tagsRelation;
     }
 
-    public function syncTags(\Illuminate\Support\Collection|array $tags)
+    public function syncTags(\Illuminate\Support\Collection|array $tags): void
     {
         $this->save();
         $this->tagsRelation()->sync($tags);
@@ -21,7 +21,7 @@ trait HasTags
         $this->unsetRelation('tagsRelation');
     }
 
-    public function removeTags()
+    public function removeTags(): void
     {
         $this->tagsRelation()->detach();
 

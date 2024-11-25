@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('exit_strategies', function (Blueprint $table) {
+        Schema::create('exit_strategies', function (Blueprint $table): void {
             $table->id();
             $table->string('title')->unique();
             $table->text('description')->nullable();

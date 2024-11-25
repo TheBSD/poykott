@@ -11,17 +11,29 @@ class CompanyController extends Controller
     public function show(Request $request, Company $company): View
     {
         $company->load([
-            'alternatives:id,name,description,url',
             'founders:id,name,avatar',
             'resources:id,resourceable_id,url',
             'officeLocations:id,name',
             'logo:id,imageable_id,path',
             'tagsRelation:id,name',
-            'investors' => function ($query) {
+            'investors' => function ($query): void {
                 $query->with('logo:id,imageable_id,path')->select('id', 'name');
+            },
+            'alternatives' => function ($query): void {
+                $query->approved()->select('id', 'name', 'description', 'url');
             },
         ]);
 
-        return view('companies.show', compact('company'));
+        return view('companies.show', ['company' => $company]);
+    }
+
+    public function storeAlternative(Request $request, Company $company)
+    {
+        $company->alternatives()->create([
+            'name' => $request->name,
+            'url' => $request->url,
+        ]);
+
+        return redirect()->back()->with('success', 'Thank you for suggesting an alternative');
     }
 }

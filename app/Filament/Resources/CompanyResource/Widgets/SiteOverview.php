@@ -17,19 +17,19 @@ class SiteOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Companies', Company::count())
+            Stat::make('Companies', Company::query()->count())
                 ->description('Companies count')
                 ->descriptionIcon('heroicon-m-building-office-2', IconPosition::Before)
                 ->color('danger'),
-            Stat::make('Alternatives', Alternative::count())
+            Stat::make('Alternatives', Alternative::query()->count())
                 ->description('Alternatives count')
                 ->descriptionIcon('heroicon-m-arrows-right-left', IconPosition::Before)
                 ->color('success'),
-            Stat::make('Investors', Investor::count())
+            Stat::make('Investors', Investor::query()->count())
                 ->description('Investors count')
                 ->descriptionIcon('heroicon-m-banknotes', IconPosition::Before)
                 ->color('warning'),
-            Stat::make('People', Person::count())
+            Stat::make('People', Person::query()->count())
                 ->description('People count')
                 ->descriptionIcon('heroicon-m-user-group', IconPosition::Before)
                 ->color('info'),

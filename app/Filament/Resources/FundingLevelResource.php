@@ -2,13 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FundingLevelResource\Pages;
+use App\Filament\Resources\FundingLevelResource\Pages\CreateFundingLevel;
+use App\Filament\Resources\FundingLevelResource\Pages\EditFundingLevel;
+use App\Filament\Resources\FundingLevelResource\Pages\ListFundingLevels;
 use App\Models\FundingLevel;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -42,12 +47,12 @@ class FundingLevelResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -62,9 +67,9 @@ class FundingLevelResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFundingLevels::route('/'),
-            'create' => Pages\CreateFundingLevel::route('/create'),
-            'edit' => Pages\EditFundingLevel::route('/{record}/edit'),
+            'index' => ListFundingLevels::route('/'),
+            'create' => CreateFundingLevel::route('/create'),
+            'edit' => EditFundingLevel::route('/{record}/edit'),
         ];
     }
 }

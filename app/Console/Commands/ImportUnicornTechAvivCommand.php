@@ -7,6 +7,8 @@ use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Investor;
 use App\Models\Person;
+use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -27,7 +29,7 @@ class ImportUnicornTechAvivCommand extends Command
         foreach ($allData as $data) {
             $lowerCompanyName = Str::of(data_get($data, 'Company'))->lower()->trim()->value();
 
-            $company = Company::whereRaw('Lower(name) = ?', [$lowerCompanyName])->first();
+            $company = Company::query()->whereRaw('Lower(name) = ?', [$lowerCompanyName])->first();
 
             $dataFields = [
                 'valuation' => data_get($data, 'Valuation'),
@@ -35,12 +37,12 @@ class ImportUnicornTechAvivCommand extends Command
                 'total_funding' => data_get($data, 'Total Funding'),
                 'last_funding_date' => data_get($data, 'Last Funding'),
                 'headquarter' => data_get($data, 'HQ Location'),
-                'founded_at' => \Carbon\Carbon::createFromFormat('Y', data_get($data, 'Founded')),
+                'founded_at' => Carbon::createFromFormat('Y', data_get($data, 'Founded')),
                 'description' => data_get($data, 'Description'),
             ];
             if (is_null($company)) {
-                $company = Company::create(array_merge([
-                    'name' => trim(data_get($data, 'Company')),
+                $company = Company::query()->create(array_merge([
+                    'name' => trim((string) data_get($data, 'Company')),
                 ], $dataFields));
             }
 
@@ -57,13 +59,10 @@ class ImportUnicornTechAvivCommand extends Command
             $founders = Str::of($foundersString)
                 ->chopEnd('...')
                 ->explode(',')
-                ->reject(fn ($founder) => empty(trim($founder)));
+                ->reject(fn ($founder): bool => in_array(trim((string) $founder), ['', '0'], true));
 
             foreach ($founders as $founder) {
-                $person = Person::firstOrCreate(
-                    ['name' => trim($founder)],
-                    ['job_title' => 'Founder ' . $company->name]
-                );
+                $person = Person::query()->firstOrCreate(['name' => trim($founder)], ['job_title' => 'Founder ' . $company->name]);
 
                 if (empty($person->job_title)) {
                     $person->update(['job_title' => 'Founder ' . $company->name]);
@@ -83,15 +82,15 @@ class ImportUnicornTechAvivCommand extends Command
             $investorsString = data_get($data, 'Top Investors');
             $investors = Str::of($investorsString)
                 ->explode(',')
-                ->reject(fn ($investor) => empty(trim($investor)));
+                ->reject(fn ($investor): bool => in_array(trim((string) $investor), ['', '0'], true));
 
             foreach ($investors as $investorData) {
 
                 $lowerInvestorName = Str::of($investorData)->lower()->trim()->value();
-                $investor = Investor::whereRaw('LOWER(name) = ?', [$lowerInvestorName])->first();
+                $investor = Investor::query()->whereRaw('LOWER(name) = ?', [$lowerInvestorName])->first();
 
                 if (is_null($investor)) {
-                    $investor = Investor::create([
+                    $investor = Investor::query()->create([
                         'name' => trim($investorData),
                     ]);
                 }
@@ -108,18 +107,18 @@ class ImportUnicornTechAvivCommand extends Command
             }
 
             $tagsString = data_get($data, 'Sectors');
-            $tags = \Str::of($tagsString)
+            $tags = Str::of($tagsString)
                 ->explode(',')
-                ->reject(fn ($investor) => empty(trim($investor)));
+                ->reject(fn ($investor): bool => in_array(trim((string) $investor), ['', '0'], true));
 
             $tagsIds = [];
             foreach ($tags as $tagData) {
                 $lowerTagName = Str::of($tagData)->lower()->trim()->value();
-                $tag = \App\Models\Tag::whereRaw('LOWER(name) = ?', [$lowerTagName])->first();
+                $tag = Tag::query()->whereRaw('LOWER(name) = ?', [$lowerTagName])->first();
 
                 if (is_null($tag)) {
-                    $tag = \App\Models\Tag::create([
-                        'name' => trim($tagData),
+                    $tag = Tag::query()->create([
+                        'name' => trim((string) $tagData),
                     ]);
                 }
 

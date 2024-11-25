@@ -33,16 +33,6 @@ class Alternative extends Model
      */
     protected $fillable = ['name', 'description', 'approved_at', 'logo', 'notes', 'url'];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'approved_at' => 'timestamp',
-    ];
-
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class);
@@ -56,5 +46,21 @@ class Alternative extends Model
     public function logo(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->whereNotNull('approved_at');
+    }
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'approved_at' => 'timestamp',
+        ];
     }
 }

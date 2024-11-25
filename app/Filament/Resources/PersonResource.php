@@ -3,7 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
-use App\Filament\Resources\PersonResource\Pages;
+use App\Filament\Resources\PersonResource\Pages\CreatePerson;
+use App\Filament\Resources\PersonResource\Pages\EditPerson;
+use App\Filament\Resources\PersonResource\Pages\ListPeople;
 use App\Models\Person;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
@@ -12,7 +14,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -47,7 +52,7 @@ class PersonResource extends Resource
                     ]),
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('social_links')->columnSpanFull()
-                    ->formatStateUsing(function ($state) {
+                    ->formatStateUsing(function ($state): string {
                         return implode(',', $state);
                     })
                     ->placeholder('Enter links separated by commas')
@@ -69,7 +74,7 @@ class PersonResource extends Resource
                 TextColumn::make('resources.url')
                     ->label('Resources')
                     ->formatStateUsing(function ($record) {
-                        return $record->resources->map(function ($resource) {
+                        return $record->resources->map(function ($resource): string {
                             return "<a href='{$resource->url}' target='_blank'>" . Str::limit($resource->url, 50) . '</a>';
                         })->implode('<br>');
                     })
@@ -78,10 +83,10 @@ class PersonResource extends Resource
                     ->color('info'),
                 TextColumn::make('location')->searchable()->sortable(),
                 TextColumn::make('social_links')
-                    ->formatStateUsing(function (Person $record) {
+                    ->formatStateUsing(function (Person $record): string {
                         $links = $record->social_links ?? [];
 
-                        $formattedLinks = array_map(function ($name, $url) {
+                        $formattedLinks = array_map(function ($name, $url): string {
                             return "<a href='{$url}' class='text-blue-500 target='_blank'>{$url}</a>";
                         }, array_keys($links), $links);
 
@@ -100,12 +105,12 @@ class PersonResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label(''),
-                Tables\Actions\DeleteAction::make()->label(''),
+                EditAction::make()->label(''),
+                DeleteAction::make()->label(''),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -120,9 +125,9 @@ class PersonResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPeople::route('/'),
-            'create' => Pages\CreatePerson::route('/create'),
-            'edit' => Pages\EditPerson::route('/{record}/edit'),
+            'index' => ListPeople::route('/'),
+            'create' => CreatePerson::route('/create'),
+            'edit' => EditPerson::route('/{record}/edit'),
         ];
     }
 }

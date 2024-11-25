@@ -4,7 +4,9 @@ namespace App\Filament\Resources\CompanyResource\RelationManagers;
 
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables;
+use Filament\Tables\Actions\AttachAction;
+use Filament\Tables\Actions\DetachAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class AlternativesRelationManager extends RelationManager
@@ -23,16 +25,16 @@ class AlternativesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                TextColumn::make('name'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\AttachAction::make()->preloadRecordSelect(),
+                AttachAction::make()->preloadRecordSelect(),
             ])
             ->actions([
-                Tables\Actions\DetachAction::make(),
+                DetachAction::make(),
             ])
             ->bulkActions([
             ]);

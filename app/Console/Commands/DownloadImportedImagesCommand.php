@@ -7,7 +7,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use WatheqAlshowaiter\BackupTables\BackupTables;
 
 class DownloadImportedImagesCommand extends Command
 {
@@ -28,12 +27,12 @@ class DownloadImportedImagesCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
 
         //BackupTables::generateBackup(Person::class);
 
-        $peopleImagePath = storage_path('app/public/images/people/');
+        storage_path('app/public/images/people/');
         $peopleOptimizedImagePath = storage_path('app/public/images/people/optimized/');
 
         File::makeDirectory(
@@ -45,8 +44,8 @@ class DownloadImportedImagesCommand extends Command
 
         $progressBar = $this->output->createProgressBar(Person::nonEmptyAvatar()->count());
 
-        Person::nonEmptyAvatar()->chunk(70, function ($persons) use ($progressBar) {
-            $persons->each(function ($person) use ($progressBar) {
+        Person::nonEmptyAvatar()->chunk(70, function ($persons) use ($progressBar): void {
+            $persons->each(function ($person) use ($progressBar): void {
                 /**
                  * if file exists in the folders, don't download it again
                  */

@@ -2,12 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TaggableResource\Pages;
+use App\Filament\Resources\TaggableResource\Pages\CreateTaggable;
+use App\Filament\Resources\TaggableResource\Pages\EditTaggable;
+use App\Filament\Resources\TaggableResource\Pages\ListTaggables;
 use App\Models\Taggable;
-use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class TaggableResource extends Resource
@@ -22,12 +28,12 @@ class TaggableResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('tag_id')
+                Select::make('tag_id')
                     ->relationship('tag', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('taggable_type')
+                TextInput::make('taggable_type')
                     ->required(),
-                Forms\Components\TextInput::make('taggable_id')
+                TextInput::make('taggable_id')
                     ->required()
                     ->numeric(),
             ]);
@@ -37,19 +43,19 @@ class TaggableResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('tag.name')
+                TextColumn::make('tag.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('taggable_type')
+                TextColumn::make('taggable_type')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('taggable_id')
+                TextColumn::make('taggable_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -58,11 +64,11 @@ class TaggableResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -77,9 +83,9 @@ class TaggableResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTaggables::route('/'),
-            'create' => Pages\CreateTaggable::route('/create'),
-            'edit' => Pages\EditTaggable::route('/{record}/edit'),
+            'index' => ListTaggables::route('/'),
+            'create' => CreateTaggable::route('/create'),
+            'edit' => EditTaggable::route('/{record}/edit'),
         ];
     }
 }

@@ -32,10 +32,10 @@ class ImportJobCompaniesTechAvivCommand extends Command
                 'url' => data_get($data, 'domain') ?? data_get($data, 'website.url'),
                 'description' => data_get($data, 'description'),
             ];
-            $company = Company::whereRaw('LOWER(name) = ?', [$lowerName])->first();
+            $company = Company::query()->whereRaw('LOWER(name) = ?', [$lowerName])->first();
 
             if (is_null($company)) { // create if not exists
-                $company = Company::create(array_merge($dataFields, [
+                $company = Company::query()->create(array_merge($dataFields, [
                     'name' => data_get($data, 'name'),
                 ]));
 
@@ -76,10 +76,10 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
             foreach ($investors as $investorName) {
                 $lowerName = Str::of($investorName)->lower()->trim()->value();
-                $investor = Investor::whereRaw('LOWER(name) = ?', [$lowerName])->first();
+                $investor = Investor::query()->whereRaw('LOWER(name) = ?', [$lowerName])->first();
 
                 if (is_null($investor)) { // create if not exists
-                    $investor = Investor::create([
+                    $investor = Investor::query()->create([
                         'name' => $investorName,
                     ]);
                 }
@@ -99,9 +99,9 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
             foreach ($officeLocations as $officeLocationData) {
                 $officeLocationLowerName = Str::of($officeLocationData)->lower()->squish()->value();
-                $officeLocation = OfficeLocation::whereRaw('LOWER(name) = ?', [$officeLocationLowerName])->first();
+                $officeLocation = OfficeLocation::query()->whereRaw('LOWER(name) = ?', [$officeLocationLowerName])->first();
                 if (is_null($officeLocation)) {
-                    $officeLocation = OfficeLocation::create([
+                    $officeLocation = OfficeLocation::query()->create([
                         'name' => Str::of($officeLocationData)->squish()->value(),
                     ]);
                 }
@@ -115,16 +115,16 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
             foreach ($markets as $market) {
                 $lowerTagName = Str::of($market)->lower()->trim()->value();
-                $tag = Tag::whereRaw('LOWER(name) = ?', [$lowerTagName])->first();
+                $tag = Tag::query()->whereRaw('LOWER(name) = ?', [$lowerTagName])->first();
 
                 if (is_null($tag)) {
-                    $tag = Tag::create([
-                        'name' => trim($market),
+                    $tag = Tag::query()->create([
+                        'name' => trim((string) $market),
                     ]);
                 }
 
                 if (! $tag->wasRecentlyCreated) {
-                    $tag->update(['name' => trim($market)]);
+                    $tag->update(['name' => trim((string) $market)]);
                 }
 
                 if ($company->tagsRelation()->where('tag_id', $tag->id)->doesntExist()) {

@@ -9,26 +9,26 @@ class PersonController extends Controller
 {
     public function index()
     {
-        $people = Person::paginate(20, ['people.id', 'name', 'description', 'avatar']);
+        $people = Person::query()->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug']);
 
-        return view('people.index', compact('people'));
+        return view('people.index', ['people' => $people]);
     }
 
     public function show(Request $request, Person $person)
     {
         $person->load([
             'resources:id,resourceable_id,url',
-            'companies' => function ($query) {
-                $query->with('logo:id,imageable_id,path')->select('id', 'name', 'description');
+            'companies' => function ($query): void {
+                $query->with('logo:id,imageable_id,path')->select('id', 'name', 'description', 'slug');
             },
         ]);
 
-        return view('people.show', compact('person'));
+        return view('people.show', ['person' => $person]);
     }
 
     public function loadMore(Request $request)
     {
-        $people = Person::paginate(20, ['people.id', 'name', 'description', 'avatar'], 'page', $request->page);
+        $people = Person::query()->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug'], 'page', $request->page);
 
         return response()->json(['people' => $people]);
     }
@@ -36,9 +36,9 @@ class PersonController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $people = Person::where('name', 'like', "%{$search}%")
+        $people = Person::query()->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
-            ->paginate(40, ['people.id', 'name', 'description', 'avatar']);
+            ->paginate(40, ['people.id', 'name', 'description', 'avatar', 'slug']);
 
         return response()->json(['people' => $people]);
     }

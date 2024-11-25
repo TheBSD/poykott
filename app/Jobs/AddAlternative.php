@@ -9,15 +9,10 @@ class AddAlternative implements ShouldQueue
 {
     use Queueable;
 
-    public $alternative;
-
     /**
      * Create a new job instance.
      */
-    public function __construct($alternative)
-    {
-        $this->alternative = $alternative;
-    }
+    public function __construct(public $alternative) {}
 
     /**
      * Execute the job.

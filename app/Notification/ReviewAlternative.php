@@ -3,7 +3,6 @@
 namespace App\Notification;
 
 use App\Models\Alternative;
-use App\Models\Company;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;

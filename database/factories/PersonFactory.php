@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Person>
+ */
 class PersonFactory extends Factory
 {
     /**
@@ -20,12 +23,12 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
-            'avatar' => $this->faker->word(),
-            'job_title' => $this->faker->word(),
-            'approved_at' => $this->faker->dateTime(),
-            'location' => $this->faker->word(),
-            'biography' => $this->faker->text(),
+            'name' => fake()->word(),
+            'avatar' => fake()->word(),
+            'job_title' => fake()->word(),
+            'approved_at' => fake()->dateTime(),
+            'location' => fake()->word(),
+            'biography' => fake()->text(),
             'social_links' => '{}',
         ];
     }

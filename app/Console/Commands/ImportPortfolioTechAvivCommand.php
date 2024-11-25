@@ -6,6 +6,7 @@ use App\Enums\CompanyPersonType;
 use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Person;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -20,7 +21,7 @@ class ImportPortfolioTechAvivCommand extends Command
      */
     public static function companyPersonCategories(): array
     {
-        $categories = [
+        return [
             'Executive' => [
                 'CEO',
                 'Co-founder & CEO',
@@ -100,8 +101,6 @@ class ImportPortfolioTechAvivCommand extends Command
                 'Professor',
             ],
         ];
-
-        return $categories;
     }
 
     public function handle(): void
@@ -114,7 +113,7 @@ class ImportPortfolioTechAvivCommand extends Command
 
         foreach ($allData as $data) {
             $lowerCompanyName = Str::of(data_get($data, 'name'))->lower()->trim()->value();
-            $company = Company::whereRaw('Lower(name) = ?', [$lowerCompanyName])->first();
+            $company = Company::query()->whereRaw('Lower(name) = ?', [$lowerCompanyName])->first();
 
             $dataFields = [
                 'url' => data_get($data, 'link') ?? data_get($data, 'url'),
@@ -123,8 +122,8 @@ class ImportPortfolioTechAvivCommand extends Command
             ];
 
             if (is_null($company)) {
-                $company = Company::create(array_merge([
-                    'name' => trim(data_get($data, 'name')),
+                $company = Company::query()->create(array_merge([
+                    'name' => trim((string) data_get($data, 'name')),
                 ], $dataFields));
 
                 $company->logo()->create([
@@ -145,13 +144,10 @@ class ImportPortfolioTechAvivCommand extends Command
             $founders = data_get($data, 'founders');
 
             foreach ($founders as $founder) {
-                $person = Person::updateOrCreate(
-                    ['name' => trim(data_get($founder, 'name'))],
-                    [
-                        'job_title' => trim(data_get($founder, 'title')),
-                        'avatar' => data_get($founder, 'avatar'),
-                    ]
-                );
+                $person = Person::query()->updateOrCreate(['name' => trim((string) data_get($founder, 'name'))], [
+                    'job_title' => trim((string) data_get($founder, 'title')),
+                    'avatar' => data_get($founder, 'avatar'),
+                ]);
 
                 $personResource = $person->resources()->updateOrCreate([
                     'url' => data_get($data, 'url'),
@@ -189,7 +185,7 @@ class ImportPortfolioTechAvivCommand extends Command
 
             foreach ($stats as $stat) {
                 if (data_get($stat, 'value') == 'Founded') {
-                    $date = \Carbon\Carbon::createFromFormat('Y', data_get($stat, 'key'));
+                    $date = Carbon::createFromFormat('Y', data_get($stat, 'key'));
                     $company->update(['founded_at' => $date]);
                 }
             }

@@ -27,10 +27,10 @@ class ImportCompaniesOldSiteCommand extends Command
 
             $lowerName = Str::lower(data_get($companyData, 'name'));
 
-            $company = Company::whereRaw('LOWER(name) = ?', [$lowerName])->first();
+            $company = Company::query()->whereRaw('LOWER(name) = ?', [$lowerName])->first();
 
             if (is_null($company)) {
-                $company = Company::create([
+                $company = Company::query()->create([
                     'name' => data_get($companyData, 'name'),
                     'description' => data_get($companyData, 'description'),
                     'url' => '#',

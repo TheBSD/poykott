@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\Investor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Investor>
+ */
 class InvestorFactory extends Factory
 {
     /**
@@ -20,10 +23,10 @@ class InvestorFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'url' => $this->faker->url(),
-            'logo' => $this->faker->word(),
+            'name' => fake()->name(),
+            'description' => fake()->text(),
+            'url' => fake()->url(),
+            'logo' => fake()->word(),
         ];
     }
 }

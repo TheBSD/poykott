@@ -27,12 +27,12 @@ class ApproveOurDataCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $progressBar = $this->output->createProgressBar(4);
 
-        $innerProgressBar = $this->output->createProgressBar(Company::count());
-        Company::select(['id', 'approved_at'])->get()->each(function (Company $company) use ($innerProgressBar) {
+        $innerProgressBar = $this->output->createProgressBar(Company::query()->count());
+        Company::query()->select(['id', 'approved_at'])->get()->each(function (Company $company) use ($innerProgressBar): void {
             if (empty($company->approved_at)) {
                 $company->updateQuietly(['approved_at' => now()]);
             }
@@ -40,8 +40,8 @@ class ApproveOurDataCommand extends Command
         });
         $progressBar->advance();
 
-        $innerProgressBar = $this->output->createProgressBar(Person::count());
-        Person::select(['id', 'approved_at'])->get()->each(function (Person $person) use ($innerProgressBar) {
+        $innerProgressBar = $this->output->createProgressBar(Person::query()->count());
+        Person::query()->select(['id', 'approved_at'])->get()->each(function (Person $person) use ($innerProgressBar): void {
             if (empty($person->approved_at)) {
                 $person->updateQuietly(['approved_at' => now()]);
             }
@@ -49,8 +49,8 @@ class ApproveOurDataCommand extends Command
         });
         $progressBar->advance();
 
-        $innerProgressBar = $this->output->createProgressBar(Investor::count());
-        Investor::select(['id', 'approved_at'])->get()->each(function (Investor $investor) use ($innerProgressBar) {
+        $innerProgressBar = $this->output->createProgressBar(Investor::query()->count());
+        Investor::query()->select(['id', 'approved_at'])->get()->each(function (Investor $investor) use ($innerProgressBar): void {
             if (empty($investor->approved_at)) {
                 $investor->updateQuietly(['approved_at' => now()]);
             }
@@ -58,8 +58,8 @@ class ApproveOurDataCommand extends Command
         });
         $progressBar->advance();
 
-        $innerProgressBar = $this->output->createProgressBar(Alternative::count());
-        Alternative::select(['id', 'approved_at'])->get()->each(function (Alternative $alternative) use ($innerProgressBar) {
+        $innerProgressBar = $this->output->createProgressBar(Alternative::query()->count());
+        Alternative::query()->select(['id', 'approved_at'])->get()->each(function (Alternative $alternative) use ($innerProgressBar): void {
             if (empty($alternative->approved_at)) {
                 $alternative->updateQuietly(['approved_at' => now()]);
             }

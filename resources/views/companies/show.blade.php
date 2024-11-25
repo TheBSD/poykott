@@ -103,26 +103,79 @@
                             </div>
                         </div>
                     @endif
+                </div>
 
-                    <!-- Alternatives -->
+                <!-- Alternatives -->
+                <div class="sm-px-6 max-w-7xl border-t py-6 lg:px-8">
+                    <h2 class="mb-4 text-xl font-semibold">Alternatives</h2>
                     @if ($company->alternatives->count() > 0)
-                        <div class="rounded-lg border p-4">
-                            <h2 class="mb-4 text-xl font-semibold">Alternatives</h2>
-                            <div class="space-y-4">
-                                @foreach ($company->alternatives as $alternative)
-                                    <div>
-                                        <h3 class="font-medium">{{ $alternative->name }}</h3>
-                                        <p class="text-gray-600">{{ $alternative->description }}</p>
-                                        @if ($alternative->url && $alternative->url !== '#')
-                                            <a href="{{ $alternative->url }}" class="text-blue-500 hover:underline">
-                                                {{ $alternative->url }}
-                                            </a>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                            @foreach ($company->alternatives as $alternative)
+                                <div class="rounded-lg border p-4">
+                                    <h3 class="font-medium">{{ $alternative->name }}</h3>
+                                    <p class="text-gray-600">{{ $alternative->description }}</p>
+                                    @if ($alternative->url && $alternative->url !== '#')
+                                        <a
+                                            href="{{ $alternative->url }}"
+                                            class="break-all text-blue-500 hover:underline"
+                                        >
+                                            {{ $alternative->url }}
+                                        </a>
+                                    @endif
+                                </div>
+                            @endforeach
                         </div>
                     @endif
+
+                    <!-- Add Alternative -->
+                    <div class="mt-8 rounded-md border border-t border-orange-300 p-4 pt-6">
+                        <h3 class="mb-4 text-lg font-medium">Suggest an Alternative</h3>
+                        <form
+                            action="{{ route('companies.alternatives.store', $company) }}"
+                            method="POST"
+                            class="space-y-4"
+                        >
+                            @csrf
+
+                            {{-- Honeypot field --}}
+                            <div class="hidden">
+                                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+                            </div>
+
+                            <div class="flex flex-col items-center gap-4 rounded-md md:flex-row">
+                                <div class="w-full md:w-1/4">
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        class="w-full rounded-md border p-2"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="w-full md:w-2/4">
+                                    <label for="url" class="block text-sm font-medium text-gray-700">URL</label>
+                                    <input
+                                        type="url"
+                                        name="url"
+                                        id="url"
+                                        class="w-full rounded-md border p-2"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="mt-4 w-full md:w-1/4">
+                                    <button
+                                        type="submit"
+                                        class="rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                    >
+                                        Submit Alternative
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <!-- Resources -->

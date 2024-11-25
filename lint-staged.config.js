@@ -1,5 +1,4 @@
 export default {
+    '**/*': 'npx prettier --write --ignore-unknown',
     '**/*.php*': ['vendor/bin/duster fix'],
-    '**/*': 'prettier --write --ignore-unknown',
-    git: '--allow-empty',
 };

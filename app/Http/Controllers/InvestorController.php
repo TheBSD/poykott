@@ -9,14 +9,14 @@ class InvestorController extends Controller
 {
     public function index()
     {
-        $investors = Investor::paginate(20, ['investors.id', 'name', 'description']);
+        $investors = Investor::query()->paginate(20, ['investors.id', 'name', 'description']);
 
-        return view('investors.index', compact('investors'));
+        return view('investors.index', ['investors' => $investors]);
     }
 
     public function loadMore(Request $request)
     {
-        $investors = Investor::paginate(20, ['investors.id', 'name', 'description'], 'page', $request->page);
+        $investors = Investor::query()->paginate(20, ['investors.id', 'name', 'description'], 'page', $request->page);
 
         return response()->json(['investors' => $investors]);
     }
@@ -24,7 +24,7 @@ class InvestorController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $investors = Investor::where('name', 'like', "%{$search}%")
+        $investors = Investor::query()->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['investors.id', 'name', 'description']);
 

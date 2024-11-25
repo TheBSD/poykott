@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\ExitStrategyResource\Pages;
 
 use App\Filament\Resources\ExitStrategyResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListExitStrategies extends ListRecords
@@ -13,7 +13,7 @@ class ListExitStrategies extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

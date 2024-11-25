@@ -9,7 +9,10 @@ class CompanyPerson extends Pivot
 {
     protected $fillable = ['company_id', 'person_id', 'type'];
 
-    protected $casts = [
-        'type' => CompanyPersonType::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'type' => CompanyPersonType::class,
+        ];
+    }
 }

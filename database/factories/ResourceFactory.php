@@ -8,6 +8,9 @@ use App\Models\Person;
 use App\Models\Resource;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Resource>
+ */
 class ResourceFactory extends Factory
 {
     /**
@@ -23,12 +26,12 @@ class ResourceFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(4),
-            'type' => $this->faker->randomElement(ResourceType::values()),
-            'description' => $this->faker->text(),
-            'url' => $this->faker->url(),
-            'resourceable_id' => $this->faker->numberBetween(1, 3),
-            'resourceable_type' => $this->faker->randomElement([
+            'title' => fake()->sentence(4),
+            'type' => fake()->randomElement(ResourceType::values()),
+            'description' => fake()->text(),
+            'url' => fake()->url(),
+            'resourceable_id' => fake()->numberBetween(1, 3),
+            'resourceable_type' => fake()->randomElement([
                 Person::class,
                 Company::class,
             ]),

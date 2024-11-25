@@ -15,15 +15,10 @@ class AddResource implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public $resource;
-
     /**
      * Create a new job instance.
      */
-    public function __construct($resource)
-    {
-        $this->resource = $resource;
-    }
+    public function __construct(public $resource) {}
 
     /**
      * Execute the job.

@@ -3,12 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\Company;
-use App\Models\Image;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use WatheqAlshowaiter\BackupTables\BackupTables;
 
 class DownloadImportedICompaniesImagesCommand extends Command
 {
@@ -33,7 +31,7 @@ class DownloadImportedICompaniesImagesCommand extends Command
     {
         //BackupTables::generateBackup([Company::class, Image::class]);
 
-        $companiesImagePath = storage_path('app/public/images/companies/');
+        storage_path('app/public/images/companies/');
         $companiesOptimizedImagePath = storage_path('app/public/images/companies/optimized/');
 
         File::makeDirectory(
@@ -48,12 +46,12 @@ class DownloadImportedICompaniesImagesCommand extends Command
         );
 
         Company::query()
-            ->withWhereHas('logo', function ($query) {
+            ->withWhereHas('logo', function ($query): void {
                 $query->whereNull('type')
                     ->whereRaw("path IS NOT NULL and path != ''");
             })
-            ->chunk(30, function ($companies) use ($progressBar) {
-                $companies->each(callback: function ($company) use ($progressBar) {
+            ->chunk(30, function ($companies) use ($progressBar): void {
+                $companies->each(callback: function ($company) use ($progressBar): void {
                     /**
                      * if file exists in the folders, don't download it again
                      */

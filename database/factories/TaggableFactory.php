@@ -6,6 +6,9 @@ use App\Models\Tag;
 use App\Models\Taggable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Taggable>
+ */
 class TaggableFactory extends Factory
 {
     /**
@@ -22,8 +25,8 @@ class TaggableFactory extends Factory
     {
         return [
             'tag_id' => Tag::factory(),
-            'taggable_id' => $this->faker->randomDigitNotNull(),
-            'taggable_type' => $this->faker->word(),
+            'taggable_id' => fake()->randomDigitNotNull(),
+            'taggable_type' => fake()->word(),
         ];
     }
 }

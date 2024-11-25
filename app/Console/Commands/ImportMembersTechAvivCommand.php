@@ -24,7 +24,7 @@ class ImportMembersTechAvivCommand extends Command
         $progressBar = $this->output->createProgressBar(count($allData));
 
         foreach ($allData as $data) {
-            $person = Person::updateOrCreate([
+            $person = Person::query()->updateOrCreate([
                 'name' => data_get($data, 'name'),
             ], [
                 'url' => data_get($data, 'url'),
@@ -61,11 +61,11 @@ class ImportMembersTechAvivCommand extends Command
                 //'logo' => data_get($data, 'company.logo'),
             ];
             $companyLowerName = Str::of(data_get($data, 'company.name'))->lower()->trim()->value();
-            $company = Company::whereRaw('Lower(name)  = ?', [$companyLowerName])->first();
+            $company = Company::query()->whereRaw('Lower(name)  = ?', [$companyLowerName])->first();
 
             if (is_null($company)) {
-                $company = Company::create(array_merge([
-                    'name' => trim(data_get($data, 'company.name')),
+                $company = Company::query()->create(array_merge([
+                    'name' => trim((string) data_get($data, 'company.name')),
                 ], $dataFields));
 
                 $company->logo()->create([

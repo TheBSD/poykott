@@ -27,7 +27,7 @@ class ResourceController extends Controller
 
     public function store(ResourceStoreRequest $request): RedirectResponse
     {
-        $resource = Resource::create($request->validated());
+        $resource = Resource::query()->create($request->validated());
 
         AddResource::dispatch($resource);
 
