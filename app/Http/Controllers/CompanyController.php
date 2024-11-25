@@ -11,7 +11,7 @@ class CompanyController extends Controller
     public function show(Request $request, Company $company): View
     {
         $company->load([
-            'founders:id,name,avatar',
+            'founders:id,name,avatar,slug',
             'resources:id,resourceable_id,url',
             'officeLocations:id,name',
             'logo:id,imageable_id,path',

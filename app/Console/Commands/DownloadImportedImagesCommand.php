@@ -67,7 +67,7 @@ class DownloadImportedImagesCommand extends Command
                 }
 
                 $person
-                    ->addMediaFromUrl(Str::isUrl($person->avatar) ?? null)
+                    ->addMediaFromUrl($person->avatar)
                     ->toMediaCollection();
 
                 // after we download the image and move it from avatar column to media library

@@ -58,7 +58,7 @@
 
                                         <div>
                                             <a
-                                                href="{{ route('people.show', $founder->id) }}"
+                                                href="{{ route('people.show', $founder->slug) }}"
                                                 class="font-medium hover:text-blue-500"
                                             >
                                                 {{ $founder->name }}

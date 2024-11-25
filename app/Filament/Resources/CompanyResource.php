@@ -11,11 +11,9 @@ use App\Filament\Resources\CompanyResource\RelationManagers\OfficeLocationsRelat
 use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -25,7 +23,7 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -45,14 +43,8 @@ class CompanyResource extends Resource
                 DateTimePicker::make('approved_at'),
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
-                Fieldset::make('logo')
-                    ->relationship('logo',
-                        condition: fn (?array $state): bool => filled($state['path']),
-                    )
-                    ->schema([
-                        Hidden::make('type')->default('logo'),
-                        FileUpload::make('path')->image(),
-                    ])->columnSpan(1)->columns(1),
+                SpatieMediaLibraryFileUpload::make('logo'),
+
                 Select::make('tags')->relationship('tagsRelation', 'name')
                     ->multiple()->searchable()->preload()->native(false)
                     ->createOptionForm([
@@ -88,7 +80,7 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('logo.path')->size(70),
+                SpatieMediaLibraryImageColumn::make('logo')->size(70),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),

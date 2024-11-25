@@ -10,6 +10,7 @@ use App\Models\Person;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -19,7 +20,7 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -35,7 +36,6 @@ class PersonResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('avatar'),
                 TextInput::make('slug')->required(),
                 TextInput::make('job_title'),
                 DateTimePicker::make('approved_at'),
@@ -50,10 +50,11 @@ class PersonResource extends Resource
                                 ->required(),
                         ]),
                     ]),
-                Textarea::make('description')->columnSpanFull(),
+                SpatieMediaLibraryFileUpload::make('avatar'),
+                Textarea::make('description'),
                 Textarea::make('social_links')->columnSpanFull()
                     ->formatStateUsing(function ($state): string {
-                        return implode(',', $state);
+                        return is_array($state) ? implode(', ', $state) : '';
                     })
                     ->placeholder('Enter links separated by commas')
                     ->helperText('Enter each link separated by a comma (e.g., https://link1.com, https://link2.com)'),
@@ -65,7 +66,7 @@ class PersonResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->searchable()->sortable(),
-                ImageColumn::make('avatar')->circular(),
+                SpatieMediaLibraryImageColumn::make('avatar')->circular(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
                 TextColumn::make('job_title')->searchable()->sortable(),

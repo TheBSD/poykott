@@ -2,6 +2,7 @@
 
 namespace App\Supports\MediaLibrary;
 
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 
@@ -14,13 +15,7 @@ class CustomPathGenerator implements PathGenerator
     {
         $imagesFolder = 'images';
 
-        return match ($media->model_type) {
-            'person' => "$imagesFolder/people/",
-            'company' => "$imagesFolder/companies/",
-            'investor' => "$imagesFolder/investors/",
-            'alternative' => "$imagesFolder/alternatives/",
-            default => "$imagesFolder"
-        };
+        return $this->getPathFromModelType($media, $imagesFolder);
     }
 
     /*
@@ -28,7 +23,10 @@ class CustomPathGenerator implements PathGenerator
      */
     public function getPathForConversions(Media $media): string
     {
-        return $this->getBasePath($media) . '/conversions/';
+        $imagesFolder = 'images';
+        $optimizedString = Str::finish('optimized/', '/');
+
+        return $this->getPathFromModelType($media, $imagesFolder, $optimizedString);
     }
 
     /*
@@ -36,12 +34,12 @@ class CustomPathGenerator implements PathGenerator
      */
     public function getPathForResponsiveImages(Media $media): string
     {
-        return $this->getBasePath($media) . '/responsive-images/';
+        $imagesFolder = 'images';
+        $responsiveString = Str::finish('responsive-images/', '/');
+
+        return $this->getPathFromModelType($media, $imagesFolder, $responsiveString);
     }
 
-    /*
-     * Get a unique base path for the given media.
-     */
     protected function getBasePath(Media $media): string
     {
         $prefix = config('media-library.prefix', '');
@@ -51,5 +49,19 @@ class CustomPathGenerator implements PathGenerator
         }
 
         return $media->getKey();
+    }
+
+    /*
+     * Get a unique base path for the given media, imageFolder, and addedString
+     */
+    private function getPathFromModelType(Media $media, string $imagesFolder, ?string $addedString = null): string
+    {
+        return match ($media->model_type) {
+            'person' => "$imagesFolder/people/$addedString",
+            'company' => "$imagesFolder/companies/$addedString",
+            'investor' => "$imagesFolder/investors/$addedString",
+            'alternative' => "$imagesFolder/alternatives/$addedString",
+            default => "$imagesFolder"
+        };
     }
 }

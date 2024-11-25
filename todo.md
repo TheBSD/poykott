@@ -24,26 +24,30 @@
 -   [x] make it open source on https://github.com/TheBSD/
 -   [x] paid for the domain
 -   [x] use https://github.com/tighten/duster in project/actions/husky
--
+-   [x] import all images for companies and people
+-   [x] Use Spatie media library to optimize images
+-   [x] spatie media filament
+-   [x] get image optimized, then the original one
 
 ## Important
 
 -   TheBSD
-    -   [x] import all images for companies and people
-    -   [ ] Use Spatie media library for images (reduce sizes and make width/length fixed)
+
+    -   [ ] have a fallback image for company/person/alternative if no image available
     -   [ ] remove any field/table that was not used at all for all of these imported data (until tech aviv\*\*\*\*)
     -   [ ] publish this to server
     -   [ ] test it with laravel friends and others
-    -   [ ] change username and email git for to theBSD
+    -   [ ] change username and email git history for to theBSD
     -   [ ] make backup like pinkary.com did
--   [ ] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
--   [ ] add backup to data every day
--   [ ] about page
--   [ ] friends sites
--   [ ] inform users that this information are scraped we need their help to improve it
+    -   [ ] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
+    -   [ ] add backup to data every day
+    -   [ ] about page
+    -   [ ] friends sites
+    -   [ ] inform users that this information are scraped we need their help to improve it
 
 -   Hamza
-    -   [ ] people cards (getFirstMediaUrl)
+    -   [ ] people cards (getFirstMediaUrl) in javascript
+    -   [ ] show person image in person details
     -   [ ] the whole cards is clickable
     -   [ ] investor details page
     -   [ ] form for users to add alternative
