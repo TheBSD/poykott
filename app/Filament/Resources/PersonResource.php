@@ -88,7 +88,7 @@ class PersonResource extends Resource
                         $links = $record->social_links ?? [];
 
                         $formattedLinks = array_map(function ($name, $url): string {
-                            return "<a href='{$url}' class='text-blue-500 target='_blank'>{$url}</a>";
+                            return "<a href='{$url}' class='text-blue-500 target=' target='_blank'>{$url}</a>";
                         }, array_keys($links), $links);
 
                         return implode('<br>', $formattedLinks);
