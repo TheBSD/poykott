@@ -21,7 +21,7 @@
 
                     <form action="{{ route('contact') }}" method="POST">
                         @csrf
-
+                        <x-honeypot />
                         <div class="space-y-6">
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Name</label>

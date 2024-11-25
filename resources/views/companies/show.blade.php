@@ -136,11 +136,7 @@
                             class="space-y-4"
                         >
                             @csrf
-
-                            {{-- Honeypot field --}}
-                            <div class="hidden">
-                                <input type="text" name="website" tabindex="-1" autocomplete="off" />
-                            </div>
+                            <x-honeypot />
 
                             <div class="flex flex-col items-center gap-4 rounded-md md:flex-row">
                                 <div class="w-full md:w-1/4">

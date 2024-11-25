@@ -28,6 +28,7 @@
 -   [x] Use Spatie media library to optimize images
 -   [x] spatie media filament
 -   [x] get image optimized, then the original one
+-   [x] slug instead of id for companies/investors/people ..etc
 
 ## Important
 
@@ -38,7 +39,7 @@
     -   [ ] publish this to server
     -   [ ] test it with laravel friends and others
     -   [ ] change username and email git history for to theBSD
-    -   [ ] make backup like pinkary.com did
+    -   [ ] make backup like pinkary.com did and backup the images
     -   [ ] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
     -   [ ] add backup to data every day
     -   [ ] about page
@@ -52,7 +53,6 @@
     -   [ ] investor details page
     -   [ ] form for users to add alternative
     -   [ ] form for users to add company
-    -   [ ] slug instead of id for companies/investors/people ..etc
 
 ## Nice to have
 
@@ -73,6 +73,8 @@
     -   [ ] use https://extract.pics/projects for image extraction easily
     -   [ ] status page like https://instatus.com/
     -   [ ] for feature requests https://www.featurebase.app/
+    -   [ ] make automated tests for the whole site
+    -   [ ] make readme file fot steps to run the project in your machine
 
 -   Hamza
     -   [ ] tags page

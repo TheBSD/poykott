@@ -17,6 +17,7 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "spatie/image-optimizer": "^1.8",
+        "spatie/laravel-honeypot": "^4.5",
         "spatie/laravel-medialibrary": "^11.10",
         "spatie/laravel-sluggable": "^3.6",
         "watheqalshowaiter/backup-tables": "^1.2"

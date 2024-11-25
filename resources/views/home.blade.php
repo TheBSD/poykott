@@ -169,7 +169,7 @@
                     const data = await response.json();
                     companyList.innerHTML = ''; // Clear loading message
 
-                    // Hide/show show more button based on search
+                    // Hide/show more button based on search
                     document.getElementById('show-more').style.display = query ? 'none' : 'block';
 
                     if (data.companies.data.length === 0) {
