@@ -62,7 +62,7 @@ class PersonController extends Controller
             'companies' => function ($query): void {
                 $query->with([
                     'media' => function ($query) {
-                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions','collection_name');
+                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
                     }])
                     ->select('id', 'name', 'description', 'slug');
             },
