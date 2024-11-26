@@ -22,6 +22,22 @@ class InvestorController extends Controller
         return view('investors.index', ['investors' => $investors]);
     }
 
+    public function show(Investor $investor)
+    {
+        $investor->load([
+            'resources:id,resourceable_id,url',
+            'companies' => function ($query): void {
+                $query->with([
+                    'media' => function ($query) {
+                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
+                    }])
+                    ->select('id', 'name', 'description', 'slug');
+            },
+        ]);
+
+        return view('investors.show', ['investor' => $investor]);
+    }
+
     public function loadMore(Request $request)
     {
         $investors = Investor::query()
@@ -54,21 +70,4 @@ class InvestorController extends Controller
 
         return response()->json(['investors' => $investors]);
     }
-
-    public function show(Investor $investor)
-    {
-        $investor->load([
-            'resources:id,resourceable_id,url',
-            'companies' => function ($query): void {
-                $query->with([
-                    'media' => function ($query) {
-                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
-                    }])
-                    ->select('id', 'name', 'description', 'slug');
-            },
-        ]);
-
-        return view('investors.show', ['investor' => $investor]);
-    }
-
 }

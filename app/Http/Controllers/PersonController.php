@@ -22,6 +22,22 @@ class PersonController extends Controller
         return view('people.index', ['people' => $people]);
     }
 
+    public function show(Request $request, Person $person)
+    {
+        $person->load([
+            'resources:id,resourceable_id,url',
+            'companies' => function ($query): void {
+                $query->with([
+                    'media' => function ($query) {
+                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
+                    }])
+                    ->select('id', 'name', 'description', 'slug');
+            },
+        ]);
+
+        return view('people.show', ['person' => $person]);
+    }
+
     public function loadMore(Request $request)
     {
         $people = Person::query()
@@ -53,21 +69,5 @@ class PersonController extends Controller
             ->paginate(40, ['people.id', 'name', 'description', 'avatar', 'slug']);
 
         return response()->json(['people' => $people]);
-    }
-
-    public function show(Request $request, Person $person)
-    {
-        $person->load([
-            'resources:id,resourceable_id,url',
-            'companies' => function ($query): void {
-                $query->with([
-                    'media' => function ($query) {
-                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
-                    }])
-                    ->select('id', 'name', 'description', 'slug');
-            },
-        ]);
-
-        return view('people.show', ['person' => $person]);
     }
 }
