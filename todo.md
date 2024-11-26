@@ -50,8 +50,8 @@
     -   [x] people cards (getFirstMediaUrl) in javascript
     -   [x] show person image in person details
     -   [x] Make the whole cards is clickable on companies and people
-    -   [ ] investor details page
-    -   [ ] form for users to add alternative
+    -   [x] investor details page
+    -   [x] form for users to add alternative
     -   [ ] form for users to add company
 
 ## Nice to have

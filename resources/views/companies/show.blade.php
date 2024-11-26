@@ -89,15 +89,22 @@
                             <div class="grid grid-cols-2 gap-4">
                                 @foreach ($company->investors as $investor)
                                     <div class="flex items-center space-x-3">
-                                        @if ($investor->logo)
+                                        @if ($investor->getFirstMediaUrl())
                                             <img
-                                                src="{{ $investor->logo->path }}"
-                                                alt="{{ $investor->name }}"
+                                                src="{{ $investor->getFirstMediaUrl() }}"
+                                                alt="logo"
                                                 class="h-8 w-8 rounded object-cover"
                                             />
                                         @endif
 
-                                        <span>{{ $investor->name }}</span>
+                                        <div>
+                                            <a
+                                                href="{{ route('investors.show', $investor->slug) }}"
+                                                class="font-medium hover:text-blue-500"
+                                            >
+                                                {{ $investor->name }}
+                                            </a>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

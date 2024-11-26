@@ -16,7 +16,11 @@ class CompanyController extends Controller
             'officeLocations:id,name',
             'tagsRelation:id,name',
             'investors' => function ($query): void {
-                $query->with('logo:id,imageable_id,path')->select('id', 'name');
+                $query->with([
+                    'media' => function ($query) {
+                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
+                    }])
+                    ->select('id', 'name', 'slug');
             },
             'media' => function ($query) {
                 $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
