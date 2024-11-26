@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $companies = Company::with([
             'media' => function ($query) {
-                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions','collection_name');
+                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
             },
             'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);

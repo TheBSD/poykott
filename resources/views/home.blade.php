@@ -133,7 +133,7 @@
                 const companyList = document.getElementById('company-list');
 
                 console.log(data);
-                
+
 
                 // Hide show more button if no more pages
                 if (page >= data.companies.last_page) {
