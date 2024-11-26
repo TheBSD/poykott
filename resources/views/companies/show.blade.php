@@ -13,9 +13,9 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <!-- Company Header -->
                 <div class="flex items-center space-x-6 p-6">
-                    @if ($company->logo)
+                    @if ($company->media)
                         <img
-                            src="{{ $company->logo->path }}"
+                            src="{{ $company->getFirstMediaUrl() }}"
                             alt="{{ $company->name }}"
                             class="h-24 w-24 rounded-lg object-cover"
                         />

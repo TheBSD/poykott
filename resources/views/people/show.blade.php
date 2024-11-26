@@ -30,9 +30,9 @@
                         <div class="flex flex-wrap gap-4">
                             @foreach ($person->companies as $company)
                                 <div class="flex flex-col items-center rounded-lg border p-4">
-                                    @if ($company->logo)
+                                    @if ($company->media)
                                         <img
-                                            src="{{ $company->logo->path }}"
+                                            src="{{ $company->getFirstMediaUrl() }}"
                                             alt="logo"
                                             class="h-30 w-40 rounded-full"
                                         />

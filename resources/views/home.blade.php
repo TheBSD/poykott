@@ -43,7 +43,7 @@
                 <div class="space-y-2 rounded-lg border border-blue-700 p-4">
                     <div class="flex items-center justify-between">
                         <img
-                            src="{{ file_exists($company->getMedia()->first() ?->getPath('optimized'),) ? $company->getMedia()->first() ?->getUrl('optimized') : $company->getFirstMedia()?->getUrl() }}"
+                            src="{{ $company->getFirstMediaUrl() }}"
                             width="100"
                             alt="logo"
                             loading="lazy"
@@ -100,7 +100,7 @@
             return `
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
                     <div class="flex justify-between items-center">
-                        <img src="${company.logo?.path}" width="100" alt="logo" loading="lazy">
+                        <img src="${company.media?.[0]?.original_url}" width="100" alt="logo" loading="lazy">
                         <h3 class="text-xl font-semibold">${company.name}</h3>
                     </div>
                     <p class="text-gray-400">${company.description?.substring(0, 100) ?? ''}</p>
@@ -131,6 +131,9 @@
 
                 const data = await response.json();
                 const companyList = document.getElementById('company-list');
+
+                console.log(data);
+                
 
                 // Hide show more button if no more pages
                 if (page >= data.companies.last_page) {

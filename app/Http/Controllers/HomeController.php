@@ -11,7 +11,9 @@ class HomeController extends Controller
     public function index()
     {
         $companies = Company::with([
-            'logo:id,imageable_id,path',
+            'media' => function ($query) {
+                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions','collection_name');
+            },
             'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },
@@ -23,7 +25,9 @@ class HomeController extends Controller
     public function loadMore(Request $request)
     {
         $companies = Company::with([
-            'logo:id,imageable_id,path',
+            'media' => function ($query) {
+                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
+            },
             'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },
@@ -36,7 +40,9 @@ class HomeController extends Controller
     {
         $search = $request->input('search');
         $companies = Company::with([
-            'logo:id,imageable_id,path',
+            'media' => function ($query) {
+                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
+            },
             'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },

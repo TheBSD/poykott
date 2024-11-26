@@ -43,7 +43,7 @@
                 <div class="space-y-2 rounded-lg border border-blue-700 p-4">
                     <div class="flex items-center justify-between">
                         <img
-                            src="{{ file_exists($person->getMedia()->first()->getPath('optimized'),) ? $person->getMedia()->first()->getUrl('optimized') : $person->getFirstMedia()->getUrl() }}"
+                            src="{{ $person->getFirstMediaUrl() }}"
                             class="h-24 w-24 rounded-full object-cover"
                             alt="logo"
                             loading="lazy"
@@ -89,7 +89,7 @@
             return `
                 <div class="p-4 rounded-lg space-y-2 border border-blue-700">
                     <div class="flex justify-between items-center">
-                        <img src="${person}" class="rounded-full h-[100px] object-cover" width="100" alt="logo" loading="lazy">
+                        <img src="${person.media?.[0]?.original_url}" class="rounded-full h-[100px] object-cover" width="100" alt="logo" loading="lazy">
                         <h3 class="text-xl font-semibold">${person.name}</h3>
                     </div>
                     <p class="text-gray-400">${person.description?.substring(0, 100) ?? ''}</p>
