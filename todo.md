@@ -47,8 +47,8 @@
     -   [ ] inform users that this information are scraped we need their help to improve it
 
 -   Hamza
-    -   [ ] people cards (getFirstMediaUrl) in javascript
-    -   [ ] show person image in person details
+    -   [x] people cards (getFirstMediaUrl) in javascript
+    -   [x] show person image in person details
     -   [ ] the whole cards is clickable
     -   [ ] investor details page
     -   [ ] form for users to add alternative

@@ -13,8 +13,8 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <!-- Person Header -->
                 <div class="flex items-center space-x-6 p-6">
-                    @if ($person->avatar)
-                        <img src="{{ $person->avatar }}" alt="avatar" class="h-40 w-40 rounded-lg object-cover" />
+                    @if ($person->media)
+                        <img src="{{ $person->getFirstMediaUrl() }}" alt="avatar" class="h-40 w-40 rounded-lg object-cover" />
                     @endif
 
                     <div>
