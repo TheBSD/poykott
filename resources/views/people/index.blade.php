@@ -36,45 +36,32 @@
             </div>
         </section>
 
-        <!-- Products Grid -->
+        <!-- Perosn Grid -->
         <section id="person-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <!-- Product Card -->
             @foreach ($people as $person)
-                <div class="space-y-2 rounded-lg border border-blue-700 p-4">
+                <a href="{{ route('people.show', $person) }}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
                     <div class="flex items-center justify-between">
                         <img
                             src="{{ $person->getFirstMediaUrl() }}"
-                            class="h-24 w-24 rounded-full object-cover"
+                            width="100"
+                            class="rounded-full object-cover"
                             alt="logo"
                             loading="lazy"
                         />
                         <h3 class="text-xl font-semibold">{{ $person->name }}</h3>
                     </div>
                     <p class="text-gray-400">{{ Str::limit($person->description, 100) }}</p>
-                    <div class="flex items-center justify-between gap-2 text-sm">
-                        <a href="{{ route('people.show', $person) }}" class="text-blue-400">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                class="h-6 w-6"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-                                />
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                            </svg>
-                        </a>
+                    <div class="flex items-center justify-end gap-2 text-sm">
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-1">
+                            @foreach ($person->tagsRelation as $tag)
+                                <span class="rounded-md border border-blue-400 px-2 py-1 text-blue-400">
+                                    {{ $tag->name }}
+                                </span>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </section>
     </main>
@@ -87,24 +74,18 @@
     <script>
         function createPeopleCard(person) {
             return `
-                <div class="p-4 rounded-lg space-y-2 border border-blue-700">
-                    <div class="flex justify-between items-center">
-                        <img src="${person.media?.[0]?.original_url}" class="rounded-full h-[100px] object-cover" width="100" alt="logo" loading="lazy">
+                <a href="/people/${person.slug}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
+                    <div class="flex items-center justify-between">
+                        <img src="${person.media?.[0]?.original_url}" width="100" class="rounded-full object-cover" alt="logo" loading="lazy">
                         <h3 class="text-xl font-semibold">${person.name}</h3>
                     </div>
                     <p class="text-gray-400">${person.description?.substring(0, 100) ?? ''}</p>
-                    <div class="flex gap-2 justify-between items-center text-sm">
-                        <a href="/people/${person.slug}"  class="text-blue-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                        </a>
+                    <div class="flex items-center justify-end gap-2 text-sm">
+                        <div class="flex flex-wrap gap-1">
+                            ${person.tags_relation.map((tag) => `<span class="rounded-md border border-blue-400 px-2 py-1 text-blue-400">${tag.name}</span>`).join('')}
+                        </div>
                     </div>
-                </div>
+                </a>
             `;
         }
     </script>

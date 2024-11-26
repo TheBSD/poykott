@@ -49,7 +49,7 @@
 -   Hamza
     -   [x] people cards (getFirstMediaUrl) in javascript
     -   [x] show person image in person details
-    -   [ ] the whole cards is clickable
+    -   [x] Make the whole cards is clickable on companies and people
     -   [ ] investor details page
     -   [ ] form for users to add alternative
     -   [ ] form for users to add company
