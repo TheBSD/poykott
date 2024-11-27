@@ -42,12 +42,7 @@
             @foreach ($companies as $company)
                 <div class="space-y-2 rounded-lg border border-blue-700 p-4">
                     <div class="flex items-center justify-between">
-                        <img
-                            src="{{ file_exists($company->getMedia()->first() ?->getPath('optimized'),) ? $company->getMedia()->first() ?->getUrl('optimized') : $company->getFirstMedia()?->getUrl() }}"
-                            width="100"
-                            alt="logo"
-                            loading="lazy"
-                        />
+                        <img src="{{ $company->image_path }}" width="100" alt="logo" loading="lazy" />
                         <h3 class="text-xl font-semibold">{{ $company->name }}</h3>
                     </div>
                     <p class="text-gray-400">{{ Str::limit($company->description, 100) }}</p>

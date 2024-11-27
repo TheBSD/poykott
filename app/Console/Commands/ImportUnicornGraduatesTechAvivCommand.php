@@ -70,7 +70,7 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             $founders = Str::of($foundersString)
                 ->chopEnd('...')
                 ->explode(',')
-                ->reject(fn ($founder): bool => in_array(trim((string) $founder), ['', '0'], true));
+                ->reject(fn ($founder): bool => in_array(trim($founder), ['', '0'], true));
 
             foreach ($founders as $founder) {
                 $person = Person::query()->firstOrCreate(['name' => trim((string) $founder)], ['job_title' => 'Founder ' . $company->name]);
@@ -93,8 +93,8 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             $investorsString = data_get($data, 'Top Investors');
             $investors = Str::of($investorsString)
                 ->explode(',')
-                ->reject(fn ($investor): bool => in_array(trim((string) $investor), ['', '0'], true))
-                ->map(fn ($investor): string => trim((string) $investor));
+                ->reject(fn ($investor): bool => in_array(trim($investor), ['', '0'], true))
+                ->map(fn ($investor): string => trim($investor));
 
             foreach ($investors as $investorData) {
                 $lowerInvestorName = Str::of($investorData)->lower()->trim();
@@ -120,7 +120,7 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
             $tagsString = data_get($data, 'Sectors');
             $tags = Str::of($tagsString)
                 ->explode(',')
-                ->reject(fn ($investor): bool => in_array(trim((string) $investor), ['', '0'], true));
+                ->reject(fn ($investor): bool => in_array(trim($investor), ['', '0'], true));
 
             $tagsIds = [];
             foreach ($tags as $tag) {

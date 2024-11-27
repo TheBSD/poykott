@@ -9,13 +9,18 @@ class PersonController extends Controller
 {
     public function index()
     {
-        $people = Person::query()->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug']);
+        $people = Person::query()
+            ->approved()
+            ->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug']);
 
         return view('people.index', ['people' => $people]);
     }
 
     public function show(Request $request, Person $person)
     {
+
+        abort_if(! $person->approved_at, 404);
+
         $person->load([
             'resources:id,resourceable_id,url',
             'companies' => function ($query): void {
@@ -28,7 +33,7 @@ class PersonController extends Controller
 
     public function loadMore(Request $request)
     {
-        $people = Person::query()->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug'], 'page', $request->page);
+        $people = Person::query()->approved()->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug'], 'page', $request->page);
 
         return response()->json(['people' => $people]);
     }
@@ -36,7 +41,9 @@ class PersonController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $people = Person::query()->where('name', 'like', "%{$search}%")
+        $people = Person::query()
+            ->approved()
+            ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['people.id', 'name', 'description', 'avatar', 'slug']);
 

@@ -29,12 +29,14 @@
 -   [x] spatie media filament
 -   [x] get image optimized, then the original one
 -   [x] slug instead of id for companies/investors/people ..etc
+-   [x] form for users to add alternative
+-   [x] have a fallback image for company/person if no image available
+-   [x] only approve data on users pages
 
 ## Important
 
 -   TheBSD
 
-    -   [ ] have a fallback image for company/person/alternative if no image available
     -   [ ] remove any field/table that was not used at all for all of these imported data (until tech aviv\*\*\*\*)
     -   [ ] publish this to server
     -   [ ] test it with laravel friends and others
@@ -45,14 +47,15 @@
     -   [ ] about page
     -   [ ] friends sites
     -   [ ] inform users that this information are scraped we need their help to improve it
+    -   [ ] add roles: admin (can change everything), editor (change everything except user management), user can only read data
+    -   [ ] add data from https://www.israelitechalternatives.com/category/all/
+    -   [ ] add data from https://github.com/ourcmcc/il-orgs
 
 -   Hamza
     -   [ ] people cards (getFirstMediaUrl) in javascript
     -   [ ] show person image in person details
     -   [ ] the whole cards is clickable
     -   [ ] investor details page
-    -   [ ] form for users to add alternative
-    -   [ ] form for users to add company
 
 ## Nice to have
 
@@ -68,7 +71,8 @@
     -   [ ] scrape finder.startupnation.com data and imported here
     -   [ ] add ads using https://www.madvert.co/
     -   [ ] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
-    -   [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs or www.tinybird.co
+    -   [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs
+            or www.tinybird.co , https://simplestats.io/
     -   [ ] add to google search, bing search,
     -   [ ] use https://extract.pics/projects for image extraction easily
     -   [ ] status page like https://instatus.com/
@@ -78,6 +82,7 @@
 
 -   Hamza
     -   [ ] tags page
+    -   [ ] form for users to add company
     -   [ ] Alternatives page
 -   Abdu
     -   [ ] add proper design from Abdu

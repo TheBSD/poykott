@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasTags;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -31,8 +32,16 @@ class Investor extends Model
         'logo',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'approved_at' => 'timestamp',
+        ];
+    }
+
     /**
-     * Get the options for generating the slug.
+     * Packages configurations
      */
     public function getSlugOptions(): SlugOptions
     {
@@ -41,6 +50,17 @@ class Investor extends Model
             ->saveSlugsTo('slug');
     }
 
+    /**
+     * Scopes
+     */
+    public function scopeApproved(Builder $query): Builder
+    {
+        return $query->whereNotNull('approved_at');
+    }
+
+    /**
+     * Relations
+     */
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class);
@@ -54,16 +74,5 @@ class Investor extends Model
     public function logo(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
-    }
-
-    /**
-     * The attributes that should be cast to native types.
-     */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'integer',
-            'approved_at' => 'timestamp',
-        ];
     }
 }
