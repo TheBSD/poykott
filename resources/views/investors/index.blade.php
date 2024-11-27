@@ -40,16 +40,15 @@
         <section id="investor-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <!-- Investor Card -->
             @foreach ($investors as $investor)
-                <a href="{{ route('investors.show', $investor) }}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
+                <a
+                    href="{{ route('investors.show', $investor) }}"
+                    class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:scale-105 hover:border-blue-500 hover:bg-gray-50 hover:shadow-lg"
+                >
                     <div class="flex items-center justify-between">
                         @if ($investor->getFirstMediaUrl())
-                            <img
-                                src="{{ $investor->getFirstMediaUrl() }}"
-                                width="100"
-                                alt="logo"
-                                loading="lazy"
-                            />
+                            <img src="{{ $investor->getFirstMediaUrl() }}" width="100" alt="logo" loading="lazy" />
                         @endif
+
                         <h3 class="text-xl font-semibold">{{ $investor->name }}</h3>
                     </div>
                     <p class="text-gray-400">{{ Str::limit($investor->description, 100) }}</p>

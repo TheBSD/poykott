@@ -40,14 +40,12 @@
         <section id="company-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <!-- Product Card -->
             @foreach ($companies as $company)
-                <a href="{{ route('companies.show', $company) }}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
+                <a
+                    href="{{ route('companies.show', $company) }}"
+                    class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:scale-105 hover:border-blue-500 hover:bg-gray-50 hover:shadow-lg"
+                >
                     <div class="flex items-center justify-between">
-                        <img
-                            src="{{ $company->getFirstMediaUrl() }}"
-                            width="100"
-                            alt="logo"
-                            loading="lazy"
-                        />
+                        <img src="{{ $company->getFirstMediaUrl() }}" width="100" alt="logo" loading="lazy" />
                         <h3 class="text-xl font-semibold">{{ $company->name }}</h3>
                     </div>
                     <p class="text-gray-400">{{ Str::limit($company->description, 100) }}</p>
@@ -100,7 +98,6 @@
                 const companyList = document.getElementById('company-list');
 
                 console.log(data);
-
 
                 // Hide show more button if no more pages
                 if (page >= data.companies.last_page) {

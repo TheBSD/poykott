@@ -14,7 +14,11 @@
                 <!-- Investor Header -->
                 <div class="flex items-center space-x-6 p-6">
                     @if ($investor->getFirstMediaUrl())
-                        <img src="{{ $investor->getFirstMediaUrl() }}" alt="avatar" class="h-40 w-40 rounded-lg object-cover" />
+                        <img
+                            src="{{ $investor->getFirstMediaUrl() }}"
+                            alt="avatar"
+                            class="h-40 w-40 rounded-lg object-cover"
+                        />
                     @endif
 
                     <div>

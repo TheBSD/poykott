@@ -39,7 +39,10 @@
         <!-- Perosn Grid -->
         <section id="person-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($people as $person)
-                <a href="{{ route('people.show', $person) }}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
+                <a
+                    href="{{ route('people.show', $person) }}"
+                    class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:scale-105 hover:border-blue-500 hover:bg-gray-50 hover:shadow-lg"
+                >
                     <div class="flex items-center justify-between">
                         <img
                             src="{{ $person->getFirstMediaUrl() }}"
