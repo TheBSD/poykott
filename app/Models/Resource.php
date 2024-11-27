@@ -36,14 +36,6 @@ class Resource extends Model
     ];
 
     /**
-     * Relations
-     */
-    public function resourceable(): MorphTo
-    {
-        return $this->morphTo();
-    }
-
-    /**
      * The attributes that should be cast to native types.
      */
     protected function casts(): array
@@ -52,5 +44,13 @@ class Resource extends Model
             'id' => 'integer',
             'type' => ResourceType::class,
         ];
+    }
+
+    /**
+     * Relations
+     */
+    public function resourceable(): MorphTo
+    {
+        return $this->morphTo();
     }
 }

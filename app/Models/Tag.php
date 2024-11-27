@@ -32,6 +32,16 @@ class Tag extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+        ];
+    }
+
+    /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions(): SlugOptions
@@ -59,15 +69,5 @@ class Tag extends Model
     public function people(): MorphToMany
     {
         return $this->morphedByMany(Person::class, 'taggable');
-    }
-
-    /**
-     * The attributes that should be cast to native types.
-     */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'integer',
-        ];
     }
 }

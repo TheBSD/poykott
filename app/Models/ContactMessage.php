@@ -14,19 +14,19 @@ class ContactMessage extends Model
         'read_at',
     ];
 
-    public function markAsRead(): void
-    {
-        $this->update([
-            'is_read' => true,
-            'read_at' => now(),
-        ]);
-    }
-
     protected function casts(): array
     {
         return [
             'is_read' => 'boolean',
             'read_at' => 'datetime',
         ];
+    }
+
+    public function markAsRead(): void
+    {
+        $this->update([
+            'is_read' => true,
+            'read_at' => now(),
+        ]);
     }
 }
