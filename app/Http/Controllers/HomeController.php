@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $companies = Company::query()
             ->with([
-                'logo:id,imageable_id,path',
+                //'logo:id,imageable_id,path',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'name')->limit(3);
                 },
@@ -43,7 +43,7 @@ class HomeController extends Controller
         $search = $request->input('search');
         $companies = Company::query()
             ->with([
-                'logo:id,imageable_id,path',
+                //'logo:id,imageable_id,path',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'name')->limit(3);
                 },

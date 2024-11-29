@@ -16,10 +16,10 @@ class CompanyController extends Controller
             'founders:id,name,avatar,slug',
             'resources:id,resourceable_id,url',
             'officeLocations:id,name',
-            'logo:id,imageable_id,path',
+            //'logo:id,imageable_id,path',
             'tagsRelation:id,name',
             'investors' => function ($query): void {
-                $query->with('logo:id,imageable_id,path')->select('id', 'name');
+                $query->approved()->select('id', 'name');
             },
             'alternatives' => function ($query): void {
                 $query->approved()->select('id', 'name', 'description', 'url');

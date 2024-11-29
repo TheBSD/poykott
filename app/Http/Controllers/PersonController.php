@@ -24,7 +24,9 @@ class PersonController extends Controller
         $person->load([
             'resources:id,resourceable_id,url',
             'companies' => function ($query): void {
-                $query->with('logo:id,imageable_id,path')->select('id', 'name', 'description', 'slug');
+                $query
+                    //->with('logo:id,imageable_id,path')
+                    ->select('id', 'name', 'description', 'slug');
             },
         ]);
 
