@@ -16,7 +16,7 @@ class SimilarSiteResource extends Resource
 {
     protected static ?string $model = SimilarSite::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrow-top-right-on-square';
 
     public static function form(Form $form): Form
     {
