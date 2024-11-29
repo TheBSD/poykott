@@ -1,4 +1,4 @@
-\*\*\*\*# Todo
+# Todo
 
 ## Done
 
@@ -36,15 +36,15 @@
 -   [x] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
 -   [x] inform users that this information are scraped we need their help to improve it
 -   [x] Similar Sites
+-   [x] change App name
+-   [x] site logo
 
 ## Important
 
 -   TheBSD
 
-    -   [ ] remove any field/table that was not used at all for all of these imported data (until tech aviv\*\*\*\*)
+    -   [ ] remove any field/table that was not used at all for all of these imported data (until tech aviv)
     -   [ ] add indexes for approved_at fields
-    -   [ ] site logo
-    -   [ ] change App name
     -   [ ] remove unused comments
     -   [ ] publish this to server
     -   [ ] test it with laravel friends and others

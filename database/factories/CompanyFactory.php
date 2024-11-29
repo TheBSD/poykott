@@ -6,7 +6,6 @@ use App\Models\Company;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Str;
 
 /**
@@ -36,10 +35,10 @@ class CompanyFactory extends Factory
         ];
     }
 
-    public function approved(DateTime|Carbon|SupportCarbon|null $datTime = null): static
+    public function approved(DateTime|Carbon|null $datTime = null): static
     {
         return $this->state(fn (array $attributes) => [
-            'approved_at' => $datTime ?? SupportCarbon::now(),
+            'approved_at' => $datTime ?? Carbon::now(),
         ]);
     }
 }
