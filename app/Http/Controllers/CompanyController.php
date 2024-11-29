@@ -10,6 +10,8 @@ class CompanyController extends Controller
 {
     public function show(Request $request, Company $company): View
     {
+        abort_if(! $company->approved_at, 404);
+
         $company->load([
             'founders:id,name,avatar,slug',
             'resources:id,resourceable_id,url',

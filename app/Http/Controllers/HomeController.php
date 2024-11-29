@@ -17,7 +17,9 @@ class HomeController extends Controller
             'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },
-        ])->paginate(20, ['companies.id', 'name', 'description', 'slug']);
+        ])
+          ->approved()
+          ->paginate(20, ['companies.id', 'name', 'description', 'slug']);
 
         return view('home', ['companies' => $companies]);
     }
@@ -31,7 +33,9 @@ class HomeController extends Controller
             'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },
-        ])->paginate(20, ['companies.id', 'name', 'description', 'slug'], 'page', $request->page);
+        ])
+        ->approved()
+        ->paginate(20, ['companies.id', 'name', 'description', 'slug'], 'page', $request->page);
 
         return response()->json(['companies' => $companies]);
     }
@@ -47,9 +51,10 @@ class HomeController extends Controller
                 $query->select('tags.id', 'name')->limit(3);
             },
         ])
-            ->where('name', 'like', "%{$search}%")
-            ->orWhere('description', 'like', "%{$search}%")
-            ->paginate(40, ['companies.id', 'name', 'description', 'slug']);
+        ->approved()
+        ->where('name', 'like', "%{$search}%")
+        ->orWhere('description', 'like', "%{$search}%")
+        ->paginate(40, ['companies.id', 'name', 'description', 'slug']);
 
         return response()->json(['companies' => $companies]);
     }

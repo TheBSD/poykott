@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasTags;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -33,8 +34,16 @@ class Investor extends Model implements HasMedia
         'logo',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'approved_at' => 'timestamp',
+        ];
+    }
+
     /**
-     * Get the options for generating the slug.
+     * Packages configurations
      */
     public function getSlugOptions(): SlugOptions
     {
@@ -43,6 +52,17 @@ class Investor extends Model implements HasMedia
             ->saveSlugsTo('slug');
     }
 
+    /**
+     * Scopes
+     */
+    public function scopeApproved(Builder $query): Builder
+    {
+        return $query->whereNotNull('approved_at');
+    }
+
+    /**
+     * Relations
+     */
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class);

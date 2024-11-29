@@ -46,8 +46,7 @@
                     <div class="flex items-center justify-between">
                         <img
                             src="{{ $person->getFirstMediaUrl() }}"
-                            width="100"
-                            class="rounded-full object-cover"
+                            class="h-24 w-24 rounded-full object-cover"
                             alt="logo"
                             loading="lazy"
                         />

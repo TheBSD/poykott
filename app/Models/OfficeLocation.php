@@ -21,11 +21,6 @@ class OfficeLocation extends Model
         'lng',
     ];
 
-    public function companies(): BelongsToMany
-    {
-        return $this->belongsToMany(Company::class);
-    }
-
     /**
      * The attributes that should be cast to native types.
      */
@@ -36,5 +31,10 @@ class OfficeLocation extends Model
             'lat' => 'decimal',
             'lng' => 'decimal',
         ];
+    }
+
+    public function companies(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class);
     }
 }

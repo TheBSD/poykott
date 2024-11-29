@@ -17,6 +17,7 @@ class PersonController extends Controller
                 'media' => function ($query) {
                     $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
                 }])
+            ->approved()
             ->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug']);
 
         return view('people.index', ['people' => $people]);
@@ -24,6 +25,9 @@ class PersonController extends Controller
 
     public function show(Request $request, Person $person)
     {
+
+        abort_if(! $person->approved_at, 404);
+
         $person->load([
             'resources:id,resourceable_id,url',
             'companies' => function ($query): void {
@@ -64,6 +68,7 @@ class PersonController extends Controller
                 'media' => function ($query) {
                     $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
                 }])
+            ->approved()
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['people.id', 'name', 'description', 'avatar', 'slug']);

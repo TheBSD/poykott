@@ -28,11 +28,6 @@ class ExitStrategy extends Model
         'description',
     ];
 
-    public function companies(): HasMany
-    {
-        return $this->hasMany(Company::class);
-    }
-
     /**
      * The attributes that should be cast to native types.
      */
@@ -41,5 +36,10 @@ class ExitStrategy extends Model
         return [
             'id' => 'integer',
         ];
+    }
+
+    public function companies(): HasMany
+    {
+        return $this->hasMany(Company::class);
     }
 }

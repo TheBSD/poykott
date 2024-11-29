@@ -56,8 +56,8 @@ class CompanyResource extends Resource
                         ]),
                     ]),
                 TextInput::make('headquarter'),
-                TextInput::make('valuation')->numeric(),
-                TextInput::make('exit_valuation')->numeric(),
+                TextInput::make('valuation')->nullable()->numeric(),
+                TextInput::make('exit_valuation')->nullable(),
                 Select::make('category_id')
                     ->relationship('category', 'title'),
                 Select::make('exit_strategy_id')
@@ -67,10 +67,9 @@ class CompanyResource extends Resource
                 Select::make('company_size_id')
                     ->relationship('companySize', 'title'),
                 TextInput::make('stock_symbol'),
-                TextInput::make('total_funding')->numeric(),
+                TextInput::make('total_funding')->nullable(),
                 DatePicker::make('last_funding_date'),
                 DatePicker::make('founded_at'),
-                //Textarea::make('office_locations'), // to many-to-many
                 TextInput::make('employee_count')->numeric(),
                 TextInput::make('stock_quote'),
             ]);

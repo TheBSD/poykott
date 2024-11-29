@@ -8,6 +8,17 @@ use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 
 class CustomPathGenerator implements PathGenerator
 {
+    protected function getBasePath(Media $media): string
+    {
+        $prefix = config('media-library.prefix', '');
+
+        if ($prefix !== '') {
+            return $prefix . '/' . $media->getKey();
+        }
+
+        return $media->getKey();
+    }
+
     /*
      * Get the path for the given media, relative to the root storage path.
      */
@@ -38,17 +49,6 @@ class CustomPathGenerator implements PathGenerator
         $responsiveString = Str::finish('responsive-images/', '/');
 
         return $this->getPathFromModelType($media, $imagesFolder, $responsiveString);
-    }
-
-    protected function getBasePath(Media $media): string
-    {
-        $prefix = config('media-library.prefix', '');
-
-        if ($prefix !== '') {
-            return $prefix . '/' . $media->getKey();
-        }
-
-        return $media->getKey();
     }
 
     /*
