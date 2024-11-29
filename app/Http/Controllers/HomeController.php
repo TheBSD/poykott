@@ -10,13 +10,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $companies = Company::query()
-            ->with([
-                'logo:id,imageable_id,path',
-                'tagsRelation' => function ($query): void {
-                    $query->select('tags.id', 'name')->limit(3);
-                },
-            ])
+        $companies = Company::with([
+            'media' => function ($query) {
+                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
+            },
+            'tagsRelation' => function ($query): void {
+                $query->select('tags.id', 'name')->limit(3);
+            },
+        ])
             ->approved()
             ->paginate(20, ['companies.id', 'name', 'description', 'slug']);
 
@@ -25,13 +26,14 @@ class HomeController extends Controller
 
     public function loadMore(Request $request)
     {
-        $companies = Company::query()
-            ->with([
-                'logo:id,imageable_id,path',
-                'tagsRelation' => function ($query): void {
-                    $query->select('tags.id', 'name')->limit(3);
-                },
-            ])
+        $companies = Company::with([
+            'media' => function ($query) {
+                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
+            },
+            'tagsRelation' => function ($query): void {
+                $query->select('tags.id', 'name')->limit(3);
+            },
+        ])
             ->approved()
             ->paginate(20, ['companies.id', 'name', 'description', 'slug'], 'page', $request->page);
 
@@ -41,13 +43,14 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $companies = Company::query()
-            ->with([
-                'logo:id,imageable_id,path',
-                'tagsRelation' => function ($query): void {
-                    $query->select('tags.id', 'name')->limit(3);
-                },
-            ])
+        $companies = Company::with([
+            'media' => function ($query) {
+                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
+            },
+            'tagsRelation' => function ($query): void {
+                $query->select('tags.id', 'name')->limit(3);
+            },
+        ])
             ->approved()
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")

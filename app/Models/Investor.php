@@ -8,15 +8,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Investor extends Model
+class Investor extends Model implements HasMedia
 {
     use HasFactory;
     use HasSlug;
     use HasTags;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +34,9 @@ class Investor extends Model
         'logo',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     */
     protected function casts(): array
     {
         return [
@@ -69,10 +74,5 @@ class Investor extends Model
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
-    }
-
-    public function logo(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
     }
 }

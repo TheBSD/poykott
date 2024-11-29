@@ -10,6 +10,13 @@ class PersonController extends Controller
     public function index()
     {
         $people = Person::query()
+            ->with([
+                'tagsRelation' => function ($query) {
+                    $query->select('tags.id', 'tags.name');
+                },
+                'media' => function ($query) {
+                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
+                }])
             ->approved()
             ->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug']);
 
@@ -24,7 +31,11 @@ class PersonController extends Controller
         $person->load([
             'resources:id,resourceable_id,url',
             'companies' => function ($query): void {
-                $query->with('logo:id,imageable_id,path')->select('id', 'name', 'description', 'slug');
+                $query->with([
+                    'media' => function ($query) {
+                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
+                    }])
+                    ->select('id', 'name', 'description', 'slug');
             },
         ]);
 
@@ -33,7 +44,15 @@ class PersonController extends Controller
 
     public function loadMore(Request $request)
     {
-        $people = Person::query()->approved()->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug'], 'page', $request->page);
+        $people = Person::query()
+            ->with([
+                'tagsRelation' => function ($query) {
+                    $query->select('tags.id', 'tags.name');
+                },
+                'media' => function ($query) {
+                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
+                }])
+            ->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug'], 'page', $request->page);
 
         return response()->json(['people' => $people]);
     }
@@ -42,6 +61,13 @@ class PersonController extends Controller
     {
         $search = $request->input('search');
         $people = Person::query()
+            ->with([
+                'tagsRelation' => function ($query) {
+                    $query->select('tags.id', 'tags.name');
+                },
+                'media' => function ($query) {
+                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
+                }])
             ->approved()
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
