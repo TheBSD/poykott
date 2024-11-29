@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class DownloadImportedImagesCommand extends Command
+class DownloadImportedPeopleImagesCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -32,7 +32,7 @@ class DownloadImportedImagesCommand extends Command
 
         //BackupTables::generateBackup(Person::class);
 
-        storage_path('app/public/images/people/');
+        //storage_path('app/public/images/people/');
         $peopleOptimizedImagePath = storage_path('app/public/images/people/optimized/');
 
         File::makeDirectory(

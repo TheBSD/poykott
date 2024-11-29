@@ -20,7 +20,7 @@ class ImportUnicornTechAvivCommand extends Command
 
     public function handle(): void
     {
-        $json = file_get_contents(storage_path('app/private/1-unicorn.json'));
+        $json = file_get_contents(database_path('seeders/data/1-unicorn.json'));
 
         $allData = json_decode($json, true);
 

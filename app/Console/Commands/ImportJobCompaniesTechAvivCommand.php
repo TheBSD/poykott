@@ -18,7 +18,7 @@ class ImportJobCompaniesTechAvivCommand extends Command
 
     public function handle(): void
     {
-        $json = file_get_contents(storage_path('app/private/5-job-companies.json'));
+        $json = file_get_contents(database_path('seeders/data/5-job-companies.json'));
 
         $allData = json_decode($json, true);
         $companies = data_get($allData, 'companies');

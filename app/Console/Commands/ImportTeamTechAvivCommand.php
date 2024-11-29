@@ -17,7 +17,7 @@ class ImportTeamTechAvivCommand extends Command
 
     public function handle(): void
     {
-        $json = file_get_contents(storage_path('app/private/0-team.json'));
+        $json = file_get_contents(database_path('seeders/data/0-team.json'));
 
         $allData = json_decode($json, true);
 

@@ -105,7 +105,7 @@ class ImportPortfolioTechAvivCommand extends Command
 
     public function handle(): void
     {
-        $json = file_get_contents(storage_path('app/private/3-portfolio.json'));
+        $json = file_get_contents(database_path('seeders/data/3-portfolio.json'));
 
         $allData = json_decode($json, true);
 
