@@ -11,6 +11,12 @@
                         Israeli tech, we can help bring about change and hold those responsible for human rights abuses
                         accountable.
                     </p>
+
+                    <p class="leading-relaxed text-gray-600">
+                        Note that this data is obtained from public resources, and while we strive to be as accurate as
+                        possible, there may be some incorrect information. We encourage you to contact us and help us
+                        improve it.
+                    </p>
                 </div>
             </div>
 
