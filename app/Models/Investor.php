@@ -34,14 +34,6 @@ class Investor extends Model implements HasMedia
         'logo',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'id' => 'integer',
-            'approved_at' => 'timestamp',
-        ];
-    }
-
     /**
      * The attributes that should be cast to native types.
      */
