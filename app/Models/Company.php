@@ -149,6 +149,37 @@ class Company extends Model implements HasMedia
     }
 
     /**
+     * @return Attribute
+     *
+     * The source provides only the founding year. When stored in the database,
+     * * the current month and day are also recorded, which is incorrect. This method
+     * * ensures we only retrieve and store the founding year.
+     */
+    protected function foundedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value): ?string => $value !== null && $value !== '' && $value !== '0' ? Carbon::parse($value)->format('Y') : null
+        );
+    }
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'category_id' => 'integer',
+            'exit_strategy_id' => 'integer',
+            'funding_level_id' => 'integer',
+            'company_size_id' => 'integer',
+            'approved_at' => 'timestamp',
+            'last_funding_date' => 'date',
+            'founded_at' => 'date',
+        ];
+    }
+
+    /**
      * Packages configurations.
      */
     public function getSlugOptions(): SlugOptions
@@ -222,36 +253,5 @@ class Company extends Model implements HasMedia
     public function officeLocations(): BelongsToMany
     {
         return $this->belongsToMany(OfficeLocation::class);
-    }
-
-    /**
-     * @return Attribute
-     *
-     * The source provides only the founding year. When stored in the database,
-     * * the current month and day are also recorded, which is incorrect. This method
-     * * ensures we only retrieve and store the founding year.
-     */
-    protected function foundedAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn (?string $value): ?string => $value !== null && $value !== '' && $value !== '0' ? Carbon::parse($value)->format('Y') : null
-        );
-    }
-
-    /**
-     * The attributes that should be cast to native types.
-     */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'integer',
-            'category_id' => 'integer',
-            'exit_strategy_id' => 'integer',
-            'funding_level_id' => 'integer',
-            'company_size_id' => 'integer',
-            'approved_at' => 'timestamp',
-            'last_funding_date' => 'date',
-            'founded_at' => 'date',
-        ];
     }
 }

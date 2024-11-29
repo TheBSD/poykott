@@ -43,6 +43,17 @@ class Investor extends Model implements HasMedia
     }
 
     /**
+     * The attributes that should be cast to native types.
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'approved_at' => 'timestamp',
+        ];
+    }
+
+    /**
      * Packages configurations
      */
     public function getSlugOptions(): SlugOptions
@@ -71,16 +82,5 @@ class Investor extends Model implements HasMedia
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
-    }
-
-    /**
-     * The attributes that should be cast to native types.
-     */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'integer',
-            'approved_at' => 'timestamp',
-        ];
     }
 }
