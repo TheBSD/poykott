@@ -1,8 +1,14 @@
 created:
-    - database/factories/CompanyFactory.php
-    - database/migrations/2024_11_13_200611_create_companies_table.php
-    - database/migrations/2024_11_13_200612_create_company_office_location_table.php
-    - app/Models/Company.php
+    - app/Http/Controllers/SimilarSiteController.php
+    - database/factories/SimilarSiteFactory.php
+    - database/migrations/2024_11_29_184358_create_similar_sites_table.php
+    - app/Models/SimilarSite.php
+    - database/seeders/SimilarSiteSeeder.php
+    - tests/Feature/Http/Controllers/SimilarSiteControllerTest.php
+updated:
+    - routes/web.php
+skipped:
+    - resources/views/similar_sites/index.blade.php
 models:
     Alternative: { name: string, description: 'text nullable', approved_at: 'datetime nullable', logo: 'string nullable', notes: 'text nullable', url: string }
     Category: { title: string, description: 'text nullable' }
@@ -18,3 +24,4 @@ models:
     Tag: { name: string, slug: string }
     Taggable: { tag_id: integer, taggable_type: string, taggable_id: integer }
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
+    SimilarSite: { name: string, url: 'string nullable', description: 'text nullable', relationships: { belongsTo: 'SimilarSite:parent', HasMany: 'SimilarSite:children' } }

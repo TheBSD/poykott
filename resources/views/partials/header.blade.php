@@ -36,6 +36,14 @@
                         Investors
                     </a>
                 </li>
+                <li>
+                    <a
+                        href="{{ route('similar-sites') }}"
+                        class="{{ request()->is('similar-sites') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
+                    >
+                        Similar Sites
+                    </a>
+                </li>
             </ul>
         </nav>
 
@@ -72,6 +80,14 @@
                     class="{{ request()->is('investors') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
                 >
                     Investors
+                </a>
+            </li>
+            <li>
+                <a
+                    href="{{ route('similar-sites') }}"
+                    class="{{ request()->is('similar-sites') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
+                >
+                    Similar Sites
                 </a>
             </li>
             <li>

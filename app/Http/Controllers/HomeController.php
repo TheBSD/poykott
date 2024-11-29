@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\ContactMessage;
+use App\Models\SimilarSite;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -72,5 +73,12 @@ class HomeController extends Controller
         ContactMessage::query()->create($validated);
 
         return back()->with('success', 'Message sent successfully');
+    }
+
+    public function similarSites()
+    {
+        $similarSites = SimilarSite::with('children')->get();
+
+        return view('pages.similar-sites', ['sites' => $similarSites]);
     }
 }
