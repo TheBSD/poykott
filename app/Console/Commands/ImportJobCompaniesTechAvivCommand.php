@@ -10,6 +10,8 @@ use App\Models\Tag;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
+use function App\Helpers\add_image_urls_to_notes;
+
 class ImportJobCompaniesTechAvivCommand extends Command
 {
     protected $signature = 'import:job-companies-tech-aviv';
@@ -31,6 +33,7 @@ class ImportJobCompaniesTechAvivCommand extends Command
             $dataFields = [
                 'url' => data_get($data, 'domain') ?? data_get($data, 'website.url'),
                 'description' => data_get($data, 'description'),
+                'approved_at' => now(),
             ];
             $company = Company::query()->whereRaw('LOWER(name) = ?', [$lowerName])->first();
 
@@ -39,11 +42,13 @@ class ImportJobCompaniesTechAvivCommand extends Command
                     'name' => data_get($data, 'name'),
                 ]));
 
-                if (data_get($data, 'logos.manual.src')) {
-                    $company->logo()->create([
-                        'path' => data_get($data, 'logos.manual.src'),
-                    ]);
-                }
+                //if (data_get($data, 'logos.manual.src')) {
+                //    $company->logo()->create([
+                //        'path' => data_get($data, 'logos.manual.src'),
+                //    ]);
+                //}
+
+                //add_image_urls_to_notes(data_get($data, 'logos.manual.src'), $company, $this);
             }
 
             if (empty($company->description)) {
@@ -56,11 +61,13 @@ class ImportJobCompaniesTechAvivCommand extends Command
                 ]);
             }
 
-            if (empty($company->logo)) {
-                $company->logo()->update([
-                    'path' => data_get($data, 'logos.manual.src'),
-                ]);
-            }
+            //if (empty($company->logo)) {
+            //    $company->logo()->update([
+            //        'path' => data_get($data, 'logos.manual.src'),
+            //    ]);
+            //}
+
+            add_image_urls_to_notes(data_get($data, 'logos.manual.src'), $company, $this);
 
             $company->update(['employee_count' => data_get($data, 'staffCount')]);
 
@@ -81,6 +88,7 @@ class ImportJobCompaniesTechAvivCommand extends Command
                 if (is_null($investor)) { // create if not exists
                     $investor = Investor::query()->create([
                         'name' => $investorName,
+                        'approved_at' => now(),
                     ]);
                 }
 

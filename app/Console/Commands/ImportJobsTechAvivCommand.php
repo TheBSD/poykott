@@ -37,6 +37,7 @@ class ImportJobsTechAvivCommand extends Command
                     $company = Company::query()->create([
                         'name' => data_get($job, 'companyName'),
                         'url' => data_get($job, 'companyDomain'),
+                        'approved_at' => now(),
                     ]);
                 }
 

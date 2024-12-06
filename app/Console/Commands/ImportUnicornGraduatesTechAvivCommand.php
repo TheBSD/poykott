@@ -42,6 +42,7 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 'description' => data_get($data, 'Description'),
                 'last_funding_date' => data_get($data, 'Last Funding'),
                 'stock_quote' => data_get($data, 'Stock Qoute'),
+                'approved_at' => now(),
             ];
 
             $lowerCompanyName = Str::of(data_get($data, 'Company'))->lower()->trim();
@@ -73,7 +74,12 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 ->reject(fn ($founder): bool => in_array(trim($founder), ['', '0'], true));
 
             foreach ($founders as $founder) {
-                $person = Person::query()->firstOrCreate(['name' => trim((string) $founder)], ['job_title' => 'Founder ' . $company->name]);
+                $person = Person::query()->firstOrCreate(
+                    ['name' => trim((string) $founder)],
+                    [
+                        'job_title' => 'Founder ' . $company->name,
+                        'approved_at' => now(),
+                    ]);
 
                 if (empty($person->job_title)) {
                     $person->update(['job_title' => 'Founder ' . $company->name]);
@@ -103,6 +109,7 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 if (is_null($investor)) {
                     $investor = Investor::query()->create([
                         'name' => trim($investorData),
+                        'approved_at' => now(),
                     ]);
                 }
 

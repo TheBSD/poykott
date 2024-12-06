@@ -34,6 +34,7 @@ class ImportCompaniesOldSiteCommand extends Command
                     'name' => data_get($companyData, 'name'),
                     'description' => data_get($companyData, 'description'),
                     'url' => '#',
+                    'approved_at' => now(),
                 ]);
             }
 
@@ -79,6 +80,7 @@ class ImportCompaniesOldSiteCommand extends Command
                     'description' => data_get($alternativeData, 'description'),
                     'url' => data_get($alternativeData, 'url', '#'),
                     'notes' => data_get($alternativeData, 'notes'),
+                    'approved_at' => now(),
                 ]);
 
                 $alternativeResource = $alternative->resources()->updateOrCreate([

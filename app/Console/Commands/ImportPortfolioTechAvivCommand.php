@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
+use function App\Helpers\add_image_urls_to_notes;
+
 class ImportPortfolioTechAvivCommand extends Command
 {
     protected $signature = 'import:portfolio-tech-aviv';
@@ -103,6 +105,11 @@ class ImportPortfolioTechAvivCommand extends Command
         ];
     }
 
+    /**
+     * @throws FileCannotBeAdded
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
     public function handle(): void
     {
         $json = file_get_contents(database_path('seeders/data/3-portfolio.json'));
@@ -119,21 +126,34 @@ class ImportPortfolioTechAvivCommand extends Command
                 'url' => data_get($data, 'link') ?? data_get($data, 'url'),
                 'description' => data_get($data, 'description'),
                 'short_description' => data_get($data, 'short_description'),
+                'approved_at' => now(),
             ];
 
             if (is_null($company)) {
                 $company = Company::query()->create(array_merge([
                     'name' => trim((string) data_get($data, 'name')),
                 ], $dataFields));
-
-                $company->logo()->create([
-                    'path' => data_get($data, 'logo'),
-                ]);
             }
 
             if (! $company->wasRecentlyCreated) {
                 $company->update($dataFields);
             }
+
+            // add images
+            add_image_urls_to_notes(data_get($data, 'logo'), $company, $this);
+
+            //dd($company->notes, $company->id);
+
+            //$companyImagePath = get_image_archive_path(data_get($data, 'logo'), 'companies');
+            //
+            //if (!add_image_for_model($companyImagePath, $company)) {
+            //    dump("Failed to add image to model ".get_class($company).":".$company->id);
+            //
+            //    //if (Str::isUrl(data_get($data, 'logo'))) {
+            //    //    dump("\n Try to Download it from Url..");
+            //    //    $company->addMediaFromUrl(data_get($data, 'logo'));
+            //    //}
+            //}
 
             $company->resources()->updateOrCreate([
                 'url' => data_get($data, 'url'),
@@ -146,8 +166,32 @@ class ImportPortfolioTechAvivCommand extends Command
             foreach ($founders as $founder) {
                 $person = Person::query()->updateOrCreate(['name' => trim((string) data_get($founder, 'name'))], [
                     'job_title' => trim((string) data_get($founder, 'title')),
-                    'avatar' => data_get($founder, 'avatar'),
+                    'approved_at' => now(),
                 ]);
+
+                //try{
+                //    $person->addMediaFromUrl(data_get($founder, 'avatar'));
+                //}catch (\Exception $exception){
+                //    dd($exception->getMessage());
+                //}
+
+                // add images
+                $avatar = data_get($founder, 'avatar');
+
+                add_image_urls_to_notes($avatar, $person, $this);
+
+                //dd($person->notes);
+                //dd($avatar);
+                //$personImagePath = get_image_archive_path($data_get, 'people');
+
+                //if (!add_image_for_model($personImagePath, $person)) {
+                //    dump("Failed to add image to model ".get_class($company).":".$company->id);
+                //
+                //    //if (Str::isUrl($data_get)) {
+                //    //    dump("\n Try to Download it from Url..");
+                //    //    $person->addMediaFromUrl($data_get);
+                //    //}
+                //}
 
                 $personResource = $person->resources()->updateOrCreate([
                     'url' => data_get($data, 'url'),

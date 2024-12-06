@@ -9,6 +9,8 @@ use App\Models\Person;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
+use function App\Helpers\add_image_urls_to_notes;
+
 class ImportMembersTechAvivCommand extends Command
 {
     protected $signature = 'import:members-tech-aviv';
@@ -28,12 +30,14 @@ class ImportMembersTechAvivCommand extends Command
                 'name' => data_get($data, 'name'),
             ], [
                 'url' => data_get($data, 'url'),
-                'avatar' => data_get($data, 'avatar'),
                 'job_title' => data_get($data, 'title'),
                 'location' => data_get($data, 'location'),
                 'description' => data_get($data, 'description'),
                 'social_links' => data_get($data, 'socials'),
+                'approved_at' => now(),
             ]);
+
+            add_image_urls_to_notes(data_get($data, 'avatar'), $person, $this);
 
             $personResource = $person->resources()->updateOrCreate([
                 'url' => data_get($data, 'url'),
@@ -58,7 +62,7 @@ class ImportMembersTechAvivCommand extends Command
 
             $dataFields = [
                 'url' => data_get($data, 'company.link'),
-                //'logo' => data_get($data, 'company.logo'),
+                'approved_at' => now(),
             ];
             $companyLowerName = Str::of(data_get($data, 'company.name'))->lower()->trim()->value();
             $company = Company::query()->whereRaw('Lower(name)  = ?', [$companyLowerName])->first();
@@ -68,14 +72,24 @@ class ImportMembersTechAvivCommand extends Command
                     'name' => trim((string) data_get($data, 'company.name')),
                 ], $dataFields));
 
-                $company->logo()->create([
-                    'path' => data_get($data, 'company.logo'),
-                ]);
+                //$company->logo()->create([
+                //    'path' => data_get($data, 'company.logo'),
+                //]);
             }
 
             if (! $company->wasRecentlyCreated) {
                 $company->update($dataFields);
             }
+
+            add_image_urls_to_notes(data_get($data, 'company.logo'), $company, $this);
+
+            //
+            //dd(
+            //    data_get($data, 'company')
+            //);
+            //dd(
+            //    $company->name,$company->notes
+            //);
 
             $companyResource = $company->resources()->updateOrCreate([
                 'url' => data_get($data, 'url'),

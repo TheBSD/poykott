@@ -11,6 +11,9 @@ use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class ImportUnicornTechAvivCommand extends Command
 {
@@ -18,6 +21,11 @@ class ImportUnicornTechAvivCommand extends Command
 
     protected $description = 'Command description';
 
+    /**
+     * @throws FileCannotBeAdded
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
     public function handle(): void
     {
         $json = file_get_contents(database_path('seeders/data/1-unicorn.json'));
@@ -39,7 +47,9 @@ class ImportUnicornTechAvivCommand extends Command
                 'headquarter' => data_get($data, 'HQ Location'),
                 'founded_at' => Carbon::createFromFormat('Y', data_get($data, 'Founded')),
                 'description' => data_get($data, 'Description'),
+                'approved_at' => now(),
             ];
+
             if (is_null($company)) {
                 $company = Company::query()->create(array_merge([
                     'name' => trim((string) data_get($data, 'Company')),
@@ -62,7 +72,14 @@ class ImportUnicornTechAvivCommand extends Command
                 ->reject(fn ($founder): bool => in_array(trim($founder), ['', '0'], true));
 
             foreach ($founders as $founder) {
-                $person = Person::query()->firstOrCreate(['name' => trim($founder)], ['job_title' => 'Founder ' . $company->name]);
+                $person = Person::query()->firstOrCreate(
+                    [
+                        'name' => trim($founder),
+                    ],
+                    [
+                        'job_title' => 'Founder ' . $company->name,
+                        'approved_at' => now(),
+                    ]);
 
                 if (empty($person->job_title)) {
                     $person->update(['job_title' => 'Founder ' . $company->name]);
@@ -92,6 +109,7 @@ class ImportUnicornTechAvivCommand extends Command
                 if (is_null($investor)) {
                     $investor = Investor::query()->create([
                         'name' => trim($investorData),
+                        'approved_at' => now(),
                     ]);
                 }
 
