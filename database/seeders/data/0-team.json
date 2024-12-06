@@ -1,19 +1,5 @@
 [
     {
-        "name": "Monte Magdy",
-        "url": "https://www.techaviv.com/people/monte-magdy",
-        "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/647d9bcda7f545c909298ca8_FE1zO4h6pSfhcUV1BIGijpEOrTJAB1EEkStzFy0m-ow.jpeg",
-        "title": "Founder ",
-        "location": "Cairo, Egypt",
-        "company": {
-            "name": "Rise",
-            "link": "https://www.riseco.ai",
-            "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/658d1607e33467ac53541594_5XOdI8NKt0aQFqBi6wr7lJrL0B-0gc_b1S94pibqFV4.png"
-        },
-        "description": null,
-        "socials": ["https://www.linkedin.com/in/monte-magdy-66961041/"]
-    },
-    {
         "name": "Arun Poojari",
         "url": "https://www.techaviv.com/people/arun-poojari",
         "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64ac4a18ede03af0b5c5cb7e_PxTdngqMrZPWYeAhJ3jppBgjNl0O__WAGodKA5XRp8w.jpeg",
@@ -1058,20 +1044,6 @@
         },
         "description": "Alon Rosenberg is a Go-to-market (GTM) executive with vast experience in startups and large organizations. He has worked with customers from small and medium-sized businesses (SMBs) to large enterprises and has scaled and built teams that achieved outstanding results.\n",
         "socials": ["https://www.linkedin.com/in/alonrozenberg/"]
-    },
-    {
-        "name": "Abe Abdulla",
-        "url": "https://www.techaviv.com/people/abe-abdulla",
-        "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a45770f2449d849b2c14_IhNmKpLnt0ZslKZTcvWrQb63a3jnygukPakOGKIDt8U.jpeg",
-        "title": "Founder & CEO",
-        "location": "Cairo, Egypt",
-        "company": {
-            "name": "Rise",
-            "link": "https://www.riseco.ai",
-            "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/658d1607e33467ac53541594_5XOdI8NKt0aQFqBi6wr7lJrL0B-0gc_b1S94pibqFV4.png"
-        },
-        "description": "Abe is co-founder and CEO of Rise (formerly Deall), working to help create a more inclusive world by providing emerging markets with convenient access to modern, transparent financial technology, products, and services. Prior to Rise, Abe spent a decade in investment banking with Lazard and CIBC World Markets, working in M&A, and co-founded two companies in the financial services space. Abe has an MBA from McGill, and a B.Sc. in Electrical Engineering from WPI. \n",
-        "socials": ["https://www.linkedin.com/in/abe-abdulla-a618b11a/"]
     },
     {
         "name": "Alon Arabov",

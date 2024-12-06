@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\SimilarSite;
+use App\Models\SimilarSiteCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SimilarSiteFactory extends Factory
@@ -20,10 +21,10 @@ class SimilarSiteFactory extends Factory
     public function definition(): array
     {
         return [
+            'similar_site_category_id' => SimilarSiteCategory::factory(),
             'name' => $this->faker->name(),
             'url' => $this->faker->url(),
             'description' => $this->faker->text(),
-            'parent_id' => SimilarSite::factory(),
         ];
     }
 }

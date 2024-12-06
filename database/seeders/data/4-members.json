@@ -1,5 +1,19 @@
 [
     {
+        "name": "Amos Haggiag",
+        "url": "https://www.techaviv.com/people/amos-haggiag",
+        "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a4d4c7040461b7e51feb_LZsrPkIP5l2_1H3e4iCPkCnB16UtBZeJahhk40M5q0A.jpeg",
+        "title": "Founder & CEO",
+        "location": "Israel",
+        "company": {
+            "name": "Optibus",
+            "link": "https://www.optibus.com",
+            "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64e9fb465a73ea7848142286_NTvS3N6_NPo1t4ubxREGUfoU6ZMc9mOIPv1LMOfGg5M.png"
+        },
+        "description": null,
+        "socials": ["https://www.linkedin.com/in/amoshag/"]
+    },
+    {
         "name": "Eyal Manor",
         "url": "https://www.techaviv.com/people/eyal-manor",
         "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64ad392839dead05fe38c790_aF-MYCG-A48ALGlOXfjAqJXgBur50hBS8MbC3RR0qmk.jpeg",
@@ -70,20 +84,6 @@
         },
         "description": "Adam Singolda is the founder and CEO of Taboola, a content discovery, and native advertising platform. With his experience in machine learning and data-driven technologies, Singolda has developed Taboola to be a leader in the field of content recommendation. His company reaches over a billion users monthly. Singolda has been an active contributor to industry thought leadership, speaking at technology conferences and writing for respected business publications. His entrepreneurial mindset and leadership skills enable him to drive continuous growth and innovation in the digital advertising industry.\n",
         "socials": ["https://www.linkedin.com/in/adamsingolda"]
-    },
-    {
-        "name": "Amos Haggiag",
-        "url": "https://www.techaviv.com/people/amos-haggiag",
-        "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a4d4c7040461b7e51feb_LZsrPkIP5l2_1H3e4iCPkCnB16UtBZeJahhk40M5q0A.jpeg",
-        "title": "Founder & CEO",
-        "location": "Israel",
-        "company": {
-            "name": "Optibus",
-            "link": "https://www.optibus.com",
-            "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64e9fb465a73ea7848142286_NTvS3N6_NPo1t4ubxREGUfoU6ZMc9mOIPv1LMOfGg5M.png"
-        },
-        "description": null,
-        "socials": ["https://www.linkedin.com/in/amoshag/"]
     },
     {
         "name": "Allon Bloch",

@@ -48,13 +48,11 @@
                             <div class="space-y-4">
                                 @foreach ($company->founders as $founder)
                                     <div class="flex items-center space-x-3">
-                                        @if ($founder->avatar)
-                                            <img
-                                                src="{{ $founder->avatar }}"
-                                                alt="avatar"
-                                                class="h-24 w-24 rounded-full"
-                                            />
-                                        @endif
+                                        <img
+                                            src="{{ $founder->image_path }}"
+                                            alt="avatar"
+                                            class="h-24 w-24 rounded-full"
+                                        />
 
                                         <div>
                                             <a

@@ -38,23 +38,21 @@
 -   [x] Similar Sites
 -   [x] change App name
 -   [x] site logo
+-   [x] show person image in person details
+-   [x] add indexes for approved_at fields
+-   [x] remove any field/table that was not used at all for all of these imported data (until tech aviv)
+-   [x] make proper seeders
 
 ## Important
 
 -   TheBSD
 
-    -   [ ] remove any field/table that was not used at all for all of these imported data (until tech aviv)
-    -   [ ] add indexes for approved_at fields
-    -   [ ] remove unused comments
     -   [ ] publish this to server
     -   [ ] test it with laravel friends and others
-    -   [ ] make backup like pinkary.com did and backup the images
-    -   [ ] add backup to data every day
-    -   [ ] return simple pagination instead of javascript one
 
 -   Hamza
-    -   [ ] people cards (getFirstMediaUrl) in javascript
-    -   [ ] show person image in person details
+    -   [ ] fix people cards
+    -   [ ] fix search in
     -   [ ] the whole cards is clickable
     -   [ ] investor details page
 -   Data
@@ -69,6 +67,7 @@
 
 -   TheBSD
 
+    -   [ ] improve design
     -   [ ] add images/avatars to cloudflare R2
     -   [ ] activity log in the filament dashboard
     -   [ ] add a blog (we can either use Statmic or take wave demo blog or prezet package)
@@ -88,14 +87,21 @@
     -   [ ] make automated tests for the whole site
     -   [ ] make readme file fot steps to run the project in your machine
     -   [ ] fix all tests then fix them with mutations
-    -   [ ] add roles: admin (can change everything), editor (change everything except user management), user can only read data
+    -   [ ] add roles: admin (can change everything), editor (change everything except user management), user can only
+            read data
     -   [ ] add simple authorization system for admin, editor, and user
-    -   [ ] add inviting system using filamentphp [link](https://filamentapps.dev/blog/filament-invite-only-registration-via-email-invitations)
+    -   [ ] add inviting system using
+            filamentphp [link](https://filamentapps.dev/blog/filament-invite-only-registration-via-email-invitations)
     -   [ ] change username and email git history for to theBSD
+    -   [ ] return simple pagination instead of javascript one
+    -   [ ] make backup like pinkary.com did and backup the images
+    -   [ ] add backup to data every day
+    -   [ ] remove unused comments
 
 -   Hamza
     -   [ ] tags page
     -   [ ] form for users to add company
     -   [ ] Alternatives page
+    -   [ ] media manager in filament using https://filamentphp.com/plugins/3x1io-tomato-media-manager
 -   Abdu
     -   [ ] add proper design from Abdu

@@ -82,6 +82,9 @@
                     </div>
                 </div>
             @endforeach
+
+            {{-- Maybe I will add simple pagination for SEO --}}
+            {{-- {{$companies->links()}} --}}
         </section>
     </main>
 

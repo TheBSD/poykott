@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\User;
+use App\Notification\ReviewAlternative;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 
 class CompanyController extends Controller
@@ -13,7 +16,7 @@ class CompanyController extends Controller
         abort_if(! $company->approved_at, 404);
 
         $company->load([
-            'founders:id,name,avatar,slug',
+            'founders:id,name,slug',
             'resources:id,resourceable_id,url',
             'officeLocations:id,name',
             //'logo:id,imageable_id,path',
@@ -31,10 +34,13 @@ class CompanyController extends Controller
 
     public function storeAlternative(Request $request, Company $company)
     {
-        $company->alternatives()->create([
+        $alternative = $company->alternatives()->create([
             'name' => $request->name,
             'url' => $request->url,
         ]);
+
+        $admin = User::first();
+        Notification::send($admin, new ReviewAlternative($alternative, $company));
 
         return redirect()->back()->with('success', 'Thank you for suggesting an alternative');
     }

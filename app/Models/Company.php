@@ -21,29 +21,6 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
 
-/**
- * @property int $id
- * @property int $category_id
- * @property int $exit_strategy_id
- * @property int $funding_level_id
- * @property int $company_size_id
- * @property \Carbon\Carbon $approved_at
- * @property string $name
- * @property string $slug
- * @property string $description
- * @property string $notes
- * @property int $valuation
- * @property int $exit_valuation
- * @property string $stock_symbol
- * @property string $url
- * @property int $total_funding
- * @property \Carbon\Carbon $last_funding_date
- * @property string $headquarter
- * @property \Carbon\Carbon $founded_at
- * @property int $employee_count
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- */
 class Company extends Model implements HasMedia
 {
     use HasFactory;
@@ -58,10 +35,7 @@ class Company extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'category_id',
         'exit_strategy_id',
-        'funding_level_id',
-        'company_size_id',
         'approved_at',
         'name',
         'slug',
@@ -139,13 +113,11 @@ class Company extends Model implements HasMedia
     {
         return [
             'id' => 'integer',
-            'category_id' => 'integer',
             'exit_strategy_id' => 'integer',
-            'funding_level_id' => 'integer',
-            'company_size_id' => 'integer',
             'approved_at' => 'timestamp',
             'last_funding_date' => 'date',
             'founded_at' => 'date',
+            'notes' => 'collection',
         ];
     }
 
@@ -162,6 +134,11 @@ class Company extends Model implements HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('optimized')->optimize()->format('webp');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')->singleFile();
     }
 
     /**
@@ -183,16 +160,6 @@ class Company extends Model implements HasMedia
     public function exitStrategy(): BelongsTo
     {
         return $this->belongsTo(ExitStrategy::class);
-    }
-
-    public function companySize(): BelongsTo
-    {
-        return $this->belongsTo(CompanySize::class);
-    }
-
-    public function fundingLevel(): BelongsTo
-    {
-        return $this->belongsTo(FundingLevel::class, 'funding_level_id');
     }
 
     public function people(): BelongsToMany

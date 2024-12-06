@@ -15,11 +15,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminSeeder::class,
-            //UserSeeder::class,
+
             //            ResourceSeeder::class,
-            //            FundingLevelSeeder::class,
-            //            CompanySizeSeeder::class,
-            //            CategorySeeder::class,
             //            ExitStrategySeeder::class,
             //            CompanySeeder::class,
             //            AlternativeSeeder::class,

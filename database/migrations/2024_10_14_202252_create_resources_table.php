@@ -11,9 +11,8 @@ return new class extends Migration
         Schema::create('resources', function (Blueprint $table): void {
             $table->id();
             $table->morphs('resourceable');
-            $table->string('title')->nullable();
             $table->string('type');
-            $table->text('description')->nullable();
+            $table->text('notes')->nullable();
             $table->string('url');
             $table->timestamps();
         });

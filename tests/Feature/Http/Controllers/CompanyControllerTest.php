@@ -5,10 +5,8 @@ namespace Tests\Feature\Http\Controllers;
 use App\Http\Controllers\CompanyController;
 use App\Jobs\AddCompany;
 use App\Models\Alternative;
-use App\Models\Category;
 use App\Models\Company;
 use App\Models\ExitStrategy;
-use App\Models\FundingLevel;
 use App\Models\User;
 use App\Notification\ReviewCompany;
 use Illuminate\Support\Carbon;
@@ -99,9 +97,7 @@ test('store an alternative inside company show', function (): void {
 //test('store saves and redirects', function (): void {
 //    $this->withoutExceptionHandling();
 //
-//    $category = Category::factory()->create();
 //    $exit_strategy = ExitStrategy::factory()->create();
-//    $funding_level = FundingLevel::factory()->create();
 //    $name = fake()->name();
 //    $slug = fake()->slug();
 //    $url = fake()->url();
@@ -124,9 +120,7 @@ test('store an alternative inside company show', function (): void {
 //    Notification::fake();
 //
 //    $response = post(route('companies.store'), [
-//        'category_id' => $category->id,
 //        'exit_strategy_id' => $exit_strategy->id,
-//        'funding_level_id' => $funding_level->id,
 //        'name' => $name,
 //        'slug' => $slug,
 //        'url' => $url,
@@ -147,9 +141,7 @@ test('store an alternative inside company show', function (): void {
 //    ]);
 //
 //    $companies = Company::query()
-//        ->where('category_id', $category->id)
 //        ->where('exit_strategy_id', $exit_strategy->id)
-//        ->where('funding_level_id', $funding_level->id)
 //        ->where('name', $name)
 //        ->where('slug', $slug)
 //        ->where('url', $url)

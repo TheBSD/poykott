@@ -25,9 +25,8 @@ class ResourcesRelationManager extends RelationManager
         return $form
             ->schema([
                 TextInput::make('url')->label('URL')->required(),
-                TextInput::make('title')->required(),
                 Select::make('type')->options(ResourceType::class)->required(),
-                Textarea::make('description')->columnSpanFull(),
+                Textarea::make('notes')->columnSpanFull(),
             ]);
     }
 
@@ -37,9 +36,8 @@ class ResourcesRelationManager extends RelationManager
             ->recordTitleAttribute('url')
             ->columns([
                 TextColumn::make('url'),
-                TextColumn::make('title'),
                 TextColumn::make('type'),
-                TextColumn::make('description')->limit(50),
+                TextColumn::make('notes')->limit(50),
             ])
             ->filters([
                 //

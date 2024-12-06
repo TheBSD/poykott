@@ -2,19 +2,11 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @property int $id
- * @property string $title
- * @property string $description
- * @property Carbon $created_at
- * @property Carbon $updated_at
- */
-class CompanySize extends Model
+class SimilarSiteCategory extends Model
 {
     use HasFactory;
 
@@ -24,22 +16,21 @@ class CompanySize extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
+        'name',
         'description',
     ];
 
     /**
      * The attributes that should be cast to native types.
+     *
+     * @var array
      */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'integer',
-        ];
-    }
+    protected $casts = [
+        'id' => 'integer',
+    ];
 
-    public function companies(): HasMany
+    public function similarSites(): HasMany
     {
-        return $this->hasMany(Company::class);
+        return $this->hasMany(SimilarSite::class);
     }
 }

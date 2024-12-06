@@ -11,14 +11,13 @@ return new class extends Migration
         Schema::create('people', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
-            $table->string('avatar')->nullable();
             $table->string('slug')->unique();
             $table->string('job_title')->nullable();
             $table->string('url')->nullable();
             $table->text('description')->nullable();
-            $table->timestamp('approved_at')->nullable();
+            $table->timestamp('approved_at')->nullable()->index();
             $table->string('location')->nullable();
-            $table->text('biography')->nullable();
+            $table->text('notes')->nullable();
             $table->json('social_links')->nullable();
             $table->timestamps();
         });

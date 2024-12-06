@@ -28,7 +28,7 @@ class PersonFactory extends Factory
             'job_title' => fake()->word(),
             'approved_at' => fake()->dateTime(),
             'location' => fake()->word(),
-            'biography' => fake()->text(),
+            'notes' => fake()->text(),
             'social_links' => '{}',
         ];
     }

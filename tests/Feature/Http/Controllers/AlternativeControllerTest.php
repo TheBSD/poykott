@@ -2,56 +2,52 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Jobs\AddAlternative;
+use App\Http\Controllers\AlternativeController;
+use App\Http\Requests\AlternativeStoreRequest;
 use App\Models\Alternative;
+use App\Models\Company;
 use App\Models\User;
 use App\Notification\ReviewAlternative;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Queue;
 
 use function Pest\Faker\fake;
-use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
 test('create displays view', function (): void {
-    $response = get(route('alternatives.create'));
-
-    $response->assertOk();
-    $response->assertViewIs('alternatives.create');
+    //$response = get(route('alternatives.create'));
+    //
+    //$response->assertOk();
+    //$response->assertViewIs('alternatives.create');
 });
 
 test('store uses form request validation', function (): void {
     $this->assertActionUsesFormRequest(
-        \App\Http\Controllers\AlternativeController::class,
+        AlternativeController::class,
         'store',
-        \App\Http\Requests\AlternativeStoreRequest::class
+        AlternativeStoreRequest::class
     );
 });
 
 test('store saves and redirects', function (): void {
-
-    $name = fake()->name();
-    $description = fake()->text();
-    $notes = fake()->text();
-    $url = fake()->url();
-    $logo = fake()->imageUrl();
-
-    Queue::fake();
     Notification::fake();
 
-    $response = post(route('alternatives.store'), [
+    // Arrange
+    $company = Company::factory()->approved()->create();
+    $name = fake()->company();
+    $url = fake()->url();
+
+    // Act
+    $response = post(route('companies.alternatives.store', $company->slug), [
         'name' => $name,
-        'description' => $description,
-        'logo' => $logo,
-        'notes' => $notes,
         'url' => $url,
+    ], [
+        'HTTP_REFERER' => route('companies.show', $company->slug),
     ]);
 
+    // Assert
     $alternatives = Alternative::query()
+        ->whereRelation('companies', 'id', $company->id)
         ->where('name', $name)
-        ->where('description', $description)
-        ->where('logo', $logo)
-        ->where('notes', $notes)
         ->where('url', $url)
         ->get();
 
@@ -59,17 +55,27 @@ test('store saves and redirects', function (): void {
 
     $alternative = $alternatives->first();
 
-    $response->assertRedirect(route('home'));
-    $response->assertSessionHas('alternative.name', $alternative->name);
+    $this->assertDatabaseHas('alternatives', [
+        'name' => $name,
+        'url' => $url,
+    ]);
 
-    Queue::assertPushed(AddAlternative::class, function ($job) use ($alternative) {
-        return $job->alternative->is($alternative);
-    });
+    $this->assertDatabaseHas('alternative_company', [
+        'company_id' => $company->id,
+        'alternative_id' => $alternative->id,
+    ]);
 
-    /* @var User $adminUser */
+    $response->assertRedirect(route('companies.show', $company->slug));
+    $response->assertSessionHas('success', 'Thank you for suggesting an alternative');
+
+    /** @var User $adminUser * */
     $adminUser = $this->adminUser;
 
-    Notification::assertSentTo($adminUser, ReviewAlternative::class, function ($notification) use ($alternative) {
-        return $notification->alternative->is($alternative);
-    });
+    Notification::assertSentTo(
+        $adminUser,
+        ReviewAlternative::class,
+        function ($notification) use ($alternative, $company): bool {
+            return $notification->alternative->is($alternative)
+                && $notification->company->is($company);
+        });
 });

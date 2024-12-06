@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class ContactMessage extends Model
@@ -10,23 +12,38 @@ class ContactMessage extends Model
         'name',
         'email',
         'message',
-        'is_read',
         'read_at',
     ];
 
     protected function casts(): array
     {
         return [
-            'is_read' => 'boolean',
             'read_at' => 'datetime',
         ];
+    }
+
+    /**
+     * get boolean value for is_read to make Filament IconColumn boolean
+     * shows false icon as well as true icon
+     */
+    protected function isRead(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return $this->read_at !== null;
+            }
+        );
     }
 
     public function markAsRead(): void
     {
         $this->update([
-            'is_read' => true,
             'read_at' => now(),
         ]);
+    }
+
+    public function scopeNotRead(Builder $query): Builder
+    {
+        return $query->whereNull('read_at');
     }
 }

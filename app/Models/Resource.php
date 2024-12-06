@@ -3,20 +3,10 @@
 namespace App\Models;
 
 use App\Enums\ResourceType;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-/**
- * @property int $id
- * @property string $title
- * @property string $type
- * @property string $description
- * @property string $url
- * @property Carbon $created_at
- * @property Carbon $updated_at
- */
 class Resource extends Model
 {
     use HasFactory;
@@ -27,9 +17,8 @@ class Resource extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
         'type',
-        'description',
+        'notes',
         'url',
         'resourceable_id',
         'resourceable_type',

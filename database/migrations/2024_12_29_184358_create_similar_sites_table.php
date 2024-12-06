@@ -10,13 +10,11 @@ return new class extends Migration
     {
         Schema::create('similar_sites', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('similar_site_category_id')->constrained()->nullOnDelete();
             $table->string('name');
             $table->string('url')->nullable()->unique();
             $table->text('description')->nullable();
-            $table->foreignId('parent_id')->nullable()->constrained('similar_sites')->nullOnDelete();
             $table->timestamps();
-
-            $table->index('parent_id');
         });
     }
 

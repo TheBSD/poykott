@@ -11,7 +11,7 @@ class PersonController extends Controller
     {
         $people = Person::query()
             ->approved()
-            ->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug']);
+            ->paginate(20, ['people.id', 'name', 'description', 'slug']);
 
         return view('people.index', ['people' => $people]);
     }
@@ -35,7 +35,7 @@ class PersonController extends Controller
 
     public function loadMore(Request $request)
     {
-        $people = Person::query()->approved()->paginate(20, ['people.id', 'name', 'description', 'avatar', 'slug'], 'page', $request->page);
+        $people = Person::query()->approved()->paginate(20, ['people.id', 'name', 'description', 'slug'], 'page', $request->page);
 
         return response()->json(['people' => $people]);
     }
@@ -47,7 +47,7 @@ class PersonController extends Controller
             ->approved()
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
-            ->paginate(40, ['people.id', 'name', 'description', 'avatar', 'slug']);
+            ->paginate(40, ['people.id', 'name', 'description', 'slug']);
 
         return response()->json(['people' => $people]);
     }

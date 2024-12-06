@@ -3,27 +3,14 @@
 namespace App\Models;
 
 use App\Traits\HasTags;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Facades\URL;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-/**
- * @property int $id
- * @property string $name
- * @property string $description
- * @property Carbon $approved_at
- * @property string $logo
- * @property string $notes
- * @property string $url
- * @property Carbon $created_at
- * @property Carbon $updated_at
- */
 class Alternative extends Model
 {
     use HasFactory;
@@ -34,7 +21,7 @@ class Alternative extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'approved_at', 'logo', 'notes', 'url'];
+    protected $fillable = ['name', 'description', 'approved_at', 'notes', 'url'];
 
     protected function casts(): array
     {
@@ -107,10 +94,5 @@ class Alternative extends Model
     public function resources(): MorphMany
     {
         return $this->morphMany(Resource::class, 'resourceable');
-    }
-
-    public function logo(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
     }
 }

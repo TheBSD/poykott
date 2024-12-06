@@ -30,6 +30,8 @@ class InvestorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
+    protected static ?string $navigationGroup = 'Investors';
+
     public static function form(Form $form): Form
     {
         return $form

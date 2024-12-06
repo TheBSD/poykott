@@ -2,20 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\CompanySize;
+use App\Models\SimilarSiteCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<CompanySize>
- */
-class CompanySizeFactory extends Factory
+class SimilarSiteCategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = CompanySize::class;
+    protected $model = SimilarSiteCategory::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +20,8 @@ class CompanySizeFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(4),
-            'description' => fake()->text(),
+            'name' => $this->faker->name(),
+            'description' => $this->faker->text(),
         ];
     }
 }

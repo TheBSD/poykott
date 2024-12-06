@@ -1,5 +1,25 @@
 [
     {
+        "url": "https://www.techaviv.com/companies/nas-company",
+        "short_description": "The fastest-growing community platform for memberships",
+        "name": "Nas Company",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc34154bba66b63e4936_vN8YyaxQ_GHhVqS7x_T183zyeBkOucxQbr1_LQjJ9ZM.png",
+        "link": "http://www.nas.io",
+        "description": "Nas means people – and we, as Nas Company, are on a mission to build community products that bring people together! From the early days of ",
+        "founders": [
+            {
+                "name": "Nuseir Yassin",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a8cab232973cb0731986_nOvOCUQSDKPRK8-22mGcMinXROcLPxGid7HNFKHuq1w.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2021", "value": "Founded" },
+            { "key": "2021", "value": "Partnered" },
+            { "key": "Series A", "value": "First Check" }
+        ]
+    },
+    {
         "url": "https://www.techaviv.com/companies/torq",
         "short_description": "The no-code, low-code, and full-code security automation platform",
         "name": "Torq",
@@ -347,26 +367,6 @@
             { "key": "2022", "value": "Founded" },
             { "key": "2023", "value": "Partnered" },
             { "key": "Seed", "value": "First Check" }
-        ]
-    },
-    {
-        "url": "https://www.techaviv.com/companies/nas-company",
-        "short_description": "The fastest-growing community platform for memberships",
-        "name": "Nas Company",
-        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc34154bba66b63e4936_vN8YyaxQ_GHhVqS7x_T183zyeBkOucxQbr1_LQjJ9ZM.png",
-        "link": "http://www.nas.io",
-        "description": "Nas means people – and we, as Nas Company, are on a mission to build community products that bring people together! From the early days of ",
-        "founders": [
-            {
-                "name": "Nuseir Yassin",
-                "title": "Founder & CEO",
-                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a8cab232973cb0731986_nOvOCUQSDKPRK8-22mGcMinXROcLPxGid7HNFKHuq1w.jpeg"
-            }
-        ],
-        "stats": [
-            { "key": "2021", "value": "Founded" },
-            { "key": "2021", "value": "Partnered" },
-            { "key": "Series A", "value": "First Check" }
         ]
     },
     {

@@ -1,12 +1,11 @@
 #models:
-#    SimilarSite:
+#    SimilarSiteCategory:
 #      name: string
-#      url: string nullable
 #      description: text nullable
-#      relationships:
-#        belongsTo: SimilarSite:parent
-#        HasMany: SimilarSite:children
 #
+#      relationships:
+#        HasMany: SimilarSite
+
 ##  OfficeLocation:
 ##    name: string
 ##    lat: decimal nullable
@@ -15,7 +14,7 @@
 ##    relationships:
 ##       belongsTo: Company
 ##
-#seeders: SimilarSite
+#seeders: SimilarSiteCategory
 #
 #
 ##  Resource:
@@ -23,17 +22,6 @@
 ##    type: string
 ##    description: nullable text
 ##    url: string
-##
-##  FundingLevel:
-##    title: string
-##    description: nullable text
-##
-##    relationships:
-##      hasMany: Company
-##
-##  CompanySize:
-##    title: string
-##    description: nullable text
 ##
 ##    relationships:
 ##      hasMany: Company
@@ -53,10 +41,7 @@
 ##     hasMany: Company
 ##
 ##  Company:
-##    category_id: foreign
 ##    exit_strategy_id: nullable foreign
-##    funding_level_id: nullable integer
-##    company_size_id: nullable integer
 ##
 ##    approved_at: nullable timestamp
 ##    name: string
@@ -76,7 +61,7 @@
 ##    employee_count: nullable integer
 ##
 ##    relationships:
-##     belongsTo: Category, ExitStrategy, CompanySize, FundingLevel
+##     belongsTo: Category, ExitStrategy
 ##     belongsToMany: Person, Alternative
 ##     hasMany: CompanyResources
 ##
@@ -101,7 +86,6 @@
 ##
 ##  Person:
 ##     name: string
-##     avatar: nullable string
 ##     job_title: nullable string
 ##     approved_at: nullable timestamp
 ##     location: nullable string
@@ -136,7 +120,7 @@
 #
 ##seeders: Investor
 #
-##seeders: User, Resource, FundingLevel, CompanySize, Category, ExitStrategy, Company, Alternative, CompanyResources, Person, PersonResources, Tag, Taggable
+##seeders: User, Resource, Category, ExitStrategy, Company, Alternative, CompanyResources, Person, PersonResources, Tag, Taggable
 #
 ## relationships
 ## - resourceable (morph Company/Person to Resource)
@@ -161,7 +145,7 @@
 ##     create:
 ##       render: company.create
 ##     store:
-##         validate: category_id, exit_strategy_id, funding_level_id, company_size_, approved_at, name, slug, description, logo, notes, valuation, exit_valuation, stock_symbol, url, total_funding, last_funding_date, headquarter, founded_at, office_locations, employee_count
+##         validate: exit_strategy_id, company_size_, approved_at, name, slug, description, logo, notes, valuation, exit_valuation, stock_symbol, url, total_funding, last_funding_date, headquarter, founded_at, office_locations, employee_count
 ##         save: company
 ##         dispatch: AddCompany with:company
 ##         flash: company.name
