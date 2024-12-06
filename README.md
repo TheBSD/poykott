@@ -2,7 +2,7 @@
 
 ## Install the Project
 
-### ### 1. Download the binaries for image optimization
+### 1. Download the binaries for image optimization
 
 if you are in ubuntu
 
