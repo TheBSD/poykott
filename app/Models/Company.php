@@ -19,7 +19,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use WatheqAlshowaiter\ModelRequiredFields\RequiredFields;
 
 class Company extends Model implements HasMedia
 {
@@ -27,7 +26,6 @@ class Company extends Model implements HasMedia
     use HasSlug;
     use HasTags;
     use InteractsWithMedia;
-    use RequiredFields;
 
     /**
      * The attributes that are mass assignable.
