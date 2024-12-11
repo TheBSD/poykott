@@ -85,7 +85,9 @@ class HomeController extends Controller
 
     public function similarSites()
     {
-        $similarSites = SimilarSite::with('children')->get();
+        $similarSites = SimilarSite::
+            // with('children')->
+            get();
 
         return view('pages.similar-sites', ['sites' => $similarSites]);
     }
