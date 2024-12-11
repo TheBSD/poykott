@@ -38,14 +38,14 @@ class InvestorResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('slug')->required(),
-                Fieldset::make('logo')
-                    ->relationship('logo',
-                        condition: fn (?array $state): bool => filled($state['path']),
-                    )
-                    ->schema([
-                        Hidden::make('type')->default('logo'),
-                        FileUpload::make('path')->image(),
-                    ])->columnSpan(1)->columns(1),
+                //Fieldset::make('logo')
+                //    ->relationship('logo',
+                //        condition: fn (?array $state): bool => filled($state['path']),
+                //    )
+                //    ->schema([
+                //        Hidden::make('type')->default('logo'),
+                //        FileUpload::make('path')->image(),
+                //    ])->columnSpan(1)->columns(1),
                 Select::make('tags')->relationship('tagsRelation', 'name')
                     ->multiple()->searchable()->preload()->native(false)
                     ->createOptionForm([
@@ -65,7 +65,7 @@ class InvestorResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('logo.path')->circular(),
+                //ImageColumn::make('logo.path')->circular(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
