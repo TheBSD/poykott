@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
  */
 function get_image_archive_path(mixed $data, $archiveFolder): string
 {
-    return Storage::path("images-archive/$archiveFolder/" . pathinfo($data)['filename']);
+    return Storage::path("images-archive/$archiveFolder/" . pathinfo((string) $data)['filename']);
 }
 
 /**
@@ -35,19 +36,27 @@ function add_image_for_model(string $imagePath, $model): bool
         $model->media()->delete();
 
         return (bool) $model->addMedia($imagePath . '.jpeg')->preservingOriginal()->toMediaCollection();
-    } elseif (File::exists($imagePath . '.jpg')) {
+    }
+    if (File::exists($imagePath . '.jpg')) {
         $model->media()->delete();
 
         return (bool) $model->addMedia($imagePath . '.jpg')->preservingOriginal()->toMediaCollection();
-    } elseif (File::exists($imagePath . '.png')) {
+    }
+    if (File::exists($imagePath . '.png')) {
         $model->media()->delete();
 
         return (bool) $model->addMedia($imagePath . '.png')->preservingOriginal()->toMediaCollection();
-    } elseif (File::exists($imagePath . '.webp')) {
+    }
+    if (File::exists($imagePath . '.webp')) {
         $model->media()->delete();
 
         return (bool) $model->addMedia($imagePath . '.webp')->preservingOriginal()->toMediaCollection();
-    } elseif (File::exists($imagePath . '.gif')) {
+    }
+    /**
+     * Delete old media if there is another media added from the archive folder
+     * This prevents corruption when new media is uploaded.
+     */
+    if (File::exists($imagePath . '.gif')) {
         $model->media()->delete();
 
         return (bool) $model->addMedia($imagePath . '.gif')->preservingOriginal()->toMediaCollection();
@@ -56,7 +65,7 @@ function add_image_for_model(string $imagePath, $model): bool
     return false;
 }
 
-function add_image_urls_to_notes(?string $url, \Illuminate\Database\Eloquent\Model $model, $class): bool
+function add_image_urls_to_notes(?string $url, Model $model, $class): bool
 {
     if (is_null($url)) {
         return false;

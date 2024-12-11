@@ -17,9 +17,12 @@ class SimilarSite extends Model
         'description',
     ];
 
-    protected $casts = [
-        'id' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+        ];
+    }
 
     /**
      * Relations

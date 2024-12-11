@@ -11,7 +11,7 @@ class InvestorController extends Controller
     {
         $investors = Investor::query()
             ->with([
-                'tagsRelation' => function ($query) {
+                'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'tags.name');
                 },
             ])
@@ -36,7 +36,7 @@ class InvestorController extends Controller
     {
         $investors = Investor::query()
             ->with([
-                'tagsRelation' => function ($query) {
+                'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'tags.name');
                 }])
             ->paginate(20, ['investors.id', 'name', 'description', 'slug'], 'page', $request->page);
@@ -55,7 +55,7 @@ class InvestorController extends Controller
         $search = $request->input('search');
         $investors = Investor::query()
             ->with([
-                'tagsRelation' => function ($query) {
+                'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'tags.name');
                 },
             ])

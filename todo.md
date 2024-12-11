@@ -42,12 +42,12 @@
 -   [x] add indexes for approved_at fields
 -   [x] remove any field/table that was not used at all for all of these imported data (until tech aviv)
 -   [x] make proper seeders
+-   [x] publish this to server
 
 ## Important
 
 -   TheBSD
 
-    -   [ ] publish this to server
     -   [ ] test it with laravel friends and others
 
 -   Hamza
@@ -56,11 +56,11 @@
     -   [x] Make the whole cards is clickable on companies and people
     -   [x] investor details page
     -   [x] form for users to add alternative
-    -   [ ] form for users to add company
-    -   [ ] fix people cards
-    -   [ ] fix search in
-    -   [ ] the whole cards is clickable
-    -   [ ] investor details page
+    -   [x] form for users to add company
+    -   [x] fix people cards
+    -   [x] fix search in
+    -   [x] the whole cards is clickable
+    -   [x] investor details page
 -   Data
     -   [ ] add data from https://www.israelitechalternatives.com/category/all/
     -   [ ] add data from https://github.com/ourcmcc/il-orgs

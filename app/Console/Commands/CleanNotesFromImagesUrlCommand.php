@@ -25,14 +25,14 @@ class CleanNotesFromImagesUrlCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $progressBar = $this->output->createProgressBar(
             $count = Person::query()->whereNotNull('notes')->count()
                 + Company::query()->whereNotNull('notes')->count()
         );
 
-        Person::lazy()->each(function ($person) use ($progressBar) {
+        Person::query()->lazy()->each(function ($person) use ($progressBar): void {
             if ($person->notes?->first() === 'image attached') {
                 $person->update(['notes' => null]);
 
@@ -40,7 +40,7 @@ class CleanNotesFromImagesUrlCommand extends Command
             }
         });
 
-        Company::lazy()->each(function ($person) use ($progressBar) {
+        Company::query()->lazy()->each(function ($person) use ($progressBar): void {
             if ($person->notes?->first() === 'image attached') {
                 $person->update(['notes' => null]);
 

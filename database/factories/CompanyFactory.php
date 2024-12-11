@@ -26,18 +26,18 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
 
-        $name = $this->faker->company();
+        $name = fake()->company();
 
         return [
             'name' => $name,
-            'url' => $this->faker->url(),
+            'url' => fake()->url(),
             'slug' => Str::slug($name),
         ];
     }
 
     public function approved(DateTime|Carbon|null $datTime = null): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'approved_at' => $datTime ?? Carbon::now(),
         ]);
     }

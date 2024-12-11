@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('similar_sites', function (Blueprint $table) {
+        Schema::create('similar_sites', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('similar_site_category_id')->constrained()->nullOnDelete();
             $table->string('name');

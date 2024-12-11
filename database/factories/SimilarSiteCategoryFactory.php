@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\SimilarSiteCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<SimilarSiteCategory>
+ */
 class SimilarSiteCategoryFactory extends Factory
 {
     /**
@@ -20,8 +23,8 @@ class SimilarSiteCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
+            'name' => fake()->name(),
+            'description' => fake()->text(),
         ];
     }
 }

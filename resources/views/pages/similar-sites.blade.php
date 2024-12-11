@@ -19,24 +19,22 @@
                     <h2 class="mb-8 text-3xl font-bold text-gray-900">Here is the list</h2>
                     <ul>
                         <div class="grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                            @foreach ($sites as $parent)
-                                @if (isset($parent->parent_id) && $parent->parent_id === null)
-                                    <h3 class="text-lg font-bold">#{{ $parent->name }}</h3>
-                                    <p class="text-gray-600">{{ $parent->description }}</p>
-                                    @if ($parent->children()->exists())
-                                        <ul>
-                                            @foreach ($parent->children as $site)
-                                                <li>
-                                                    <a
-                                                        href="{{ $site->url }}"
-                                                        class="break-all text-blue-500 hover:underline"
-                                                    >
-                                                        {{ $site->name }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
+                            @foreach ($similarSitesCategories as $category)
+                                <h3 class="text-lg font-bold">#{{ $category->name }}</h3>
+                                <p class="text-gray-600">{{ $category->description }}</p>
+                                @if ($category->similarSites()->exists())
+                                    <ul>
+                                        @foreach ($category->similarSites as $site)
+                                            <li>
+                                                <a
+                                                    href="{{ $site->url }}"
+                                                    class="break-all text-blue-500 hover:underline"
+                                                >
+                                                    {{ $site->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 @endif
                             @endforeach
                         </div>

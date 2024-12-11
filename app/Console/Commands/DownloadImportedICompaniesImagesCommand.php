@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-use function App\Helpers\get_image_archive_path;
-
 class DownloadImportedICompaniesImagesCommand extends Command
 {
     /**

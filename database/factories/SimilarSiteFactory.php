@@ -6,6 +6,9 @@ use App\Models\SimilarSite;
 use App\Models\SimilarSiteCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<SimilarSite>
+ */
 class SimilarSiteFactory extends Factory
 {
     /**
@@ -22,9 +25,9 @@ class SimilarSiteFactory extends Factory
     {
         return [
             'similar_site_category_id' => SimilarSiteCategory::factory(),
-            'name' => $this->faker->name(),
-            'url' => $this->faker->url(),
-            'description' => $this->faker->text(),
+            'name' => fake()->name(),
+            'url' => fake()->url(),
+            'description' => fake()->text(),
         ];
     }
 }

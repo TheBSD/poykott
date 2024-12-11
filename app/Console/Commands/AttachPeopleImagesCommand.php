@@ -3,10 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Person;
+use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use WatheqAlshowaiter\BackupTables\BackupTables;
 
 use function App\Helpers\add_image_for_model;
 use function App\Helpers\get_image_archive_path;
@@ -30,7 +31,7 @@ class AttachPeopleImagesCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $progressBar = $this->output->createProgressBar(
             $count = Person::query()->whereNotNull('notes')->count()
@@ -47,7 +48,7 @@ class AttachPeopleImagesCommand extends Command
         //$people(30, function ($people) use (&$succeeded, &$failed, $progressBar): void {
         $people->lazy()->each(callback: function (Person $person) use (&$succeeded, &$failed): void {
 
-            /** @var \Illuminate\Support\Collection $notes * */
+            /** @var Collection $notes * */
             $notes = $person->notes;
 
             if ($notes->first() == 'image attached') {
@@ -70,7 +71,7 @@ class AttachPeopleImagesCommand extends Command
                         try {
                             $person->addMediaFromUrl($url)->toMediaCollection();
                             $this->info("Successfully add image from Url for person:$person->name");
-                        } catch (\Exception $exception) {
+                        } catch (Exception) {
                             $this->info("Failed to add image from url for person:$person->name");
                             $failed++;
                         }
@@ -83,7 +84,7 @@ class AttachPeopleImagesCommand extends Command
                 $person->update(['notes' => 'image attached']);
 
                 DB::commit();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 DB::rollback();
                 $this->error($e->getMessage());
             }

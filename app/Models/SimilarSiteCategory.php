@@ -22,12 +22,13 @@ class SimilarSiteCategory extends Model
 
     /**
      * The attributes that should be cast to native types.
-     *
-     * @var array
      */
-    protected $casts = [
-        'id' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+        ];
+    }
 
     public function similarSites(): HasMany
     {

@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\SimilarSiteResource\Pages;
 
 use App\Filament\Resources\SimilarSiteResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListSimilarSites extends ListRecords
@@ -13,7 +13,7 @@ class ListSimilarSites extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

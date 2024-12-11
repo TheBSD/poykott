@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\SimilarSiteCategoryResource\Pages;
 
 use App\Filament\Resources\SimilarSiteCategoryResource;
-use Filament\Actions;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditSimilarSiteCategory extends EditRecord
@@ -13,7 +13,7 @@ class EditSimilarSiteCategory extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

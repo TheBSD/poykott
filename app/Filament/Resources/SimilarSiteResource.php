@@ -2,16 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SimilarSiteResource\Pages;
+use App\Filament\Resources\SimilarSiteResource\Pages\CreateSimilarSite;
+use App\Filament\Resources\SimilarSiteResource\Pages\EditSimilarSite;
+use App\Filament\Resources\SimilarSiteResource\Pages\ListSimilarSites;
 use App\Models\SimilarSite;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 class SimilarSiteResource extends Resource
 {
@@ -25,10 +29,10 @@ class SimilarSiteResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->required(),
-                Forms\Components\TextInput::make('url'),
-                Forms\Components\Textarea::make('description')
+                TextInput::make('url'),
+                Textarea::make('description')
                     ->columnSpanFull(),
                 //Forms\Components\Select::make('parent_id')
                 //    ->relationship(
@@ -46,9 +50,9 @@ class SimilarSiteResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('url')
+                TextColumn::make('url')
                     ->searchable(),
 
                 TextColumn::make('similarSiteCategory.name')
@@ -57,11 +61,11 @@ class SimilarSiteResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -70,11 +74,11 @@ class SimilarSiteResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -89,9 +93,9 @@ class SimilarSiteResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSimilarSites::route('/'),
-            'create' => Pages\CreateSimilarSite::route('/create'),
-            'edit' => Pages\EditSimilarSite::route('/{record}/edit'),
+            'index' => ListSimilarSites::route('/'),
+            'create' => CreateSimilarSite::route('/create'),
+            'edit' => EditSimilarSite::route('/{record}/edit'),
         ];
     }
 }

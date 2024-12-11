@@ -29,7 +29,7 @@ class ContactMessage extends Model
     protected function isRead(): Attribute
     {
         return Attribute::make(
-            get: function () {
+            get: function (): bool {
                 return $this->read_at !== null;
             }
         );

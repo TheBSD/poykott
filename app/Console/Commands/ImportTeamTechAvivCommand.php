@@ -7,15 +7,12 @@ use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
-use function App\Helpers\add_image_for_model;
 use function App\Helpers\add_image_urls_to_notes;
-use function App\Helpers\get_image_archive_path;
 
 class ImportTeamTechAvivCommand extends Command
 {

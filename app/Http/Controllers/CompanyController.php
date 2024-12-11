@@ -39,7 +39,7 @@ class CompanyController extends Controller
             'url' => $request->url,
         ]);
 
-        $admin = User::first();
+        $admin = User::query()->first();
         Notification::send($admin, new ReviewAlternative($alternative, $company));
 
         return redirect()->back()->with('success', 'Thank you for suggesting an alternative');

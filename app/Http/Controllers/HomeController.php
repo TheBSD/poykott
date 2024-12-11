@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\ContactMessage;
-use App\Models\SimilarSite;
+use App\Models\SimilarSiteCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -85,10 +85,8 @@ class HomeController extends Controller
 
     public function similarSites()
     {
-        $similarSites = SimilarSite::
-            // with('children')->
-            get();
+        $similarSitesCategories = SimilarSiteCategory::query()->with('similarSites')->get();
 
-        return view('pages.similar-sites', ['sites' => $similarSites]);
+        return view('pages.similar-sites', ['similarSitesCategories' => $similarSitesCategories]);
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Company;
+use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -29,7 +31,7 @@ class AttachCompaniesImagesCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $progressBar = $this->output->createProgressBar(
             $count = Company::query()->whereNotNull('notes')->count()
@@ -43,7 +45,7 @@ class AttachCompaniesImagesCommand extends Command
         //$companies->chunk(30, function ($companies) use ($progressBar): void {
         $companies->lazy()->each(callback: function (Company $company) use (&$succeeded, &$failed): void {
 
-            /** @var \Illuminate\Support\Collection $notes * */
+            /** @var Collection $notes * */
             $notes = $company->notes;
 
             if ($notes->first() == 'image attached') {
@@ -67,7 +69,7 @@ class AttachCompaniesImagesCommand extends Command
                             $company->addMediaFromUrl($url)->toMediaCollection();
                             $this->info("Successfully add image from Url for person:$company->name");
                             $succeeded++;
-                        } catch (\Exception $exception) {
+                        } catch (Exception) {
                             $this->info("Failed to add image from url for person:$company->name");
                             $failed++;
                         }
@@ -80,7 +82,7 @@ class AttachCompaniesImagesCommand extends Command
                 $company->update(['notes' => 'image attached']);
 
                 DB::commit();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 DB::rollback();
                 $this->error($e->getMessage());
             }
