@@ -45,7 +45,7 @@
                 >
                     <div class="flex items-center justify-between">
                         <img
-                            src="{{ $person->getFirstMediaUrl() }}"
+                            src="{{ $person->image_path }}"
                             class="h-24 w-24 rounded-full object-cover"
                             alt="logo"
                             loading="lazy"
@@ -81,7 +81,7 @@
             return `
                 <a href="/people/${person.slug}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
                     <div class="flex items-center justify-between">
-                        <img src="${person.media?.[0]?.original_url}" width="100" class="rounded-full object-cover" alt="logo" loading="lazy">
+                        <img src="${person.image_path}" width="100" class="rounded-full object-cover" alt="logo" loading="lazy">
                         <h3 class="text-xl font-semibold">${person.name}</h3>
                     </div>
                     <p class="text-gray-400">${person.description?.substring(0, 100) ?? ''}</p>

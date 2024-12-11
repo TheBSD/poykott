@@ -14,9 +14,7 @@ class PersonController extends Controller
                 'tagsRelation' => function ($query) {
                     $query->select('tags.id', 'tags.name');
                 },
-                'media' => function ($query) {
-                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
-                }])
+            ])
             ->approved()
             ->paginate(20, ['people.id', 'name', 'description', 'slug']);
 
@@ -32,7 +30,6 @@ class PersonController extends Controller
             'resources:id,resourceable_id,url',
             'companies' => function ($query): void {
                 $query
-                    //->with('logo:id,imageable_id,path')
                     ->select('id', 'name', 'description', 'slug');
             },
         ]);
@@ -42,7 +39,20 @@ class PersonController extends Controller
 
     public function loadMore(Request $request)
     {
-        $people = Person::query()->approved()->paginate(20, ['people.id', 'name', 'description', 'slug'], 'page', $request->page);
+        $people = Person::query()
+            ->with([
+                'tagsRelation' => function ($query) {
+                    $query->select('tags.id', 'tags.name');
+                },
+            ])
+            ->approved()
+            ->paginate(20, ['people.id', 'name', 'description', 'slug'], 'page', $request->page);
+
+        $people->getCollection()->transform(function ($person) {
+            $person->image_path = $person->imagePath;
+
+            return $person;
+        });
 
         return response()->json(['people' => $people]);
     }
@@ -55,13 +65,17 @@ class PersonController extends Controller
                 'tagsRelation' => function ($query) {
                     $query->select('tags.id', 'tags.name');
                 },
-                'media' => function ($query) {
-                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
-                }])
+            ])
             ->approved()
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['people.id', 'name', 'description', 'slug']);
+
+        $people->getCollection()->transform(function ($person) {
+            $person->image_path = $person->imagePath;
+
+            return $person;
+        });
 
         return response()->json(['people' => $people]);
     }
