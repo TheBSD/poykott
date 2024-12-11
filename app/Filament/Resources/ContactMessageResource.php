@@ -22,6 +22,8 @@ class ContactMessageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
+    protected static ?string $navigationGroup = 'Contacts';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -68,7 +70,7 @@ class ContactMessageResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('is_read', false)->count();
+        return static::getModel()::notRead()->count();
     }
 
     public static function getPages(): array

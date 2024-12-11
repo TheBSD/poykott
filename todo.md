@@ -32,24 +32,23 @@
 -   [x] form for users to add alternative
 -   [x] have a fallback image for company/person if no image available
 -   [x] only approve data on users pages
+-   [x] about page / contact page
+-   [x] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
+-   [x] inform users that this information are scraped we need their help to improve it
+-   [x] Similar Sites
+-   [x] change App name
+-   [x] site logo
+-   [x] show person image in person details
+-   [x] add indexes for approved_at fields
+-   [x] remove any field/table that was not used at all for all of these imported data (until tech aviv)
+-   [x] make proper seeders
 
 ## Important
 
 -   TheBSD
 
-    -   [ ] remove any field/table that was not used at all for all of these imported data (until tech aviv\*\*\*\*)
     -   [ ] publish this to server
     -   [ ] test it with laravel friends and others
-    -   [ ] change username and email git history for to theBSD
-    -   [ ] make backup like pinkary.com did and backup the images
-    -   [ ] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
-    -   [ ] add backup to data every day
-    -   [ ] about page
-    -   [ ] friends sites
-    -   [ ] inform users that this information are scraped we need their help to improve it
-    -   [ ] add roles: admin (can change everything), editor (change everything except user management), user can only read data
-    -   [ ] add data from https://www.israelitechalternatives.com/category/all/
-    -   [ ] add data from https://github.com/ourcmcc/il-orgs
 
 -   Hamza
     -   [x] people cards (getFirstMediaUrl) in javascript
@@ -58,19 +57,31 @@
     -   [x] investor details page
     -   [x] form for users to add alternative
     -   [ ] form for users to add company
+    -   [ ] fix people cards
+    -   [ ] fix search in
+    -   [ ] the whole cards is clickable
+    -   [ ] investor details page
+-   Data
+    -   [ ] add data from https://www.israelitechalternatives.com/category/all/
+    -   [ ] add data from https://github.com/ourcmcc/il-orgs
+    -   [ ] data from https://stripealternatives.com/
+    -   [ ] data from https://github.com/TechForPalestine/boycott-israeli-tech-companies-dataset especially alternatives
+    -   [ ] data from https://www.usisrael.co/unicorn-tracker
+    -   [ ] data from https://finder.startupnationcentral.org/
 
 ## Nice to have
 
 -   TheBSD
 
+    -   [ ] improve design
     -   [ ] add images/avatars to cloudflare R2
+    -   [ ] activity log in the filament dashboard
     -   [ ] add a blog (we can either use Statmic or take wave demo blog or prezet package)
     -   [ ] make the whole data translatable using spatie translatable and \_\_()
     -   [ ] make the site with roles: admin, publisher/content reviewer,
     -   [ ] add volunteers to add and update data
     -   [ ] add caching for data to make it faster
     -   [ ] office location lat lng https://www.latlong.net/
-    -   [ ] scrape finder.startupnation.com data and imported here
     -   [ ] add ads using https://www.madvert.co/
     -   [ ] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
     -   [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs
@@ -81,10 +92,22 @@
     -   [ ] for feature requests https://www.featurebase.app/
     -   [ ] make automated tests for the whole site
     -   [ ] make readme file fot steps to run the project in your machine
+    -   [ ] fix all tests then fix them with mutations
+    -   [ ] add roles: admin (can change everything), editor (change everything except user management), user can only
+            read data
+    -   [ ] add simple authorization system for admin, editor, and user
+    -   [ ] add inviting system using
+            filamentphp [link](https://filamentapps.dev/blog/filament-invite-only-registration-via-email-invitations)
+    -   [ ] change username and email git history for to theBSD
+    -   [ ] return simple pagination instead of javascript one
+    -   [ ] make backup like pinkary.com did and backup the images
+    -   [ ] add backup to data every day
+    -   [ ] remove unused comments
 
 -   Hamza
     -   [ ] tags page
     -   [ ] form for users to add company
     -   [ ] Alternatives page
+    -   [ ] media manager in filament using https://filamentphp.com/plugins/3x1io-tomato-media-manager
 -   Abdu
     -   [ ] add proper design from Abdu

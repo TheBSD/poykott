@@ -7,7 +7,15 @@ use App\Enums\ResourceType;
 use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
+
+use function App\Helpers\add_image_for_model;
+use function App\Helpers\add_image_urls_to_notes;
+use function App\Helpers\get_image_archive_path;
 
 class ImportTeamTechAvivCommand extends Command
 {
@@ -15,9 +23,14 @@ class ImportTeamTechAvivCommand extends Command
 
     protected $description = 'Command description';
 
+    /**
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     * @throws FileCannotBeAdded
+     */
     public function handle(): void
     {
-        $json = file_get_contents(storage_path('app/private/0-team.json'));
+        $json = file_get_contents(database_path('seeders/data/0-team.json'));
 
         $allData = json_decode($json, true);
 
@@ -28,12 +41,27 @@ class ImportTeamTechAvivCommand extends Command
                 'name' => data_get($data, 'name'),
             ], [
                 'url' => data_get($data, 'url'),
-                'avatar' => data_get($data, 'avatar'),
                 'job_title' => data_get($data, 'title'),
                 'location' => data_get($data, 'location'),
                 'description' => data_get($data, 'description'),
                 'social_links' => data_get($data, 'socials'),
+                'approved_at' => now(),
             ]);
+
+            add_image_urls_to_notes(data_get($data, 'avatar'), $person, $this);
+
+            //if($person->wasRecentlyCreated) {
+            //    $imagePath = get_image_archive_path(data_get($data, 'avatar'), 'people');
+            //
+            //    if (!add_image_for_model($imagePath, $person)) {
+            //        dump("Failed to add image to model ".get_class($person).":".$person->id);
+            //
+            //        if (Str::isUrl(data_get($data, 'avatar'))) {
+            //            dump("\n Try to Download it from Url..");
+            //            $person->addMediaFromUrl(data_get($data, 'avatar'));
+            //        }
+            //    }
+            //}
 
             $personResource = $person->resources()->updateOrCreate([
                 'url' => $person->url,
@@ -49,13 +77,18 @@ class ImportTeamTechAvivCommand extends Command
             if (in_array(data_get($data, 'title'), [
                 'CISO', 'Investor', 'General Partner', 'GM, Google Cloud', 'VP Engineering',
                 'VP Engineering, Search & AI', 'Senior Engineering Director', 'Senior Director of Engineering',
-                'Fmr. VP Global Sales & Operation', 'Professor', 'GM', 'SVP Real Time Operations, Head of European R&D',
-                'Growth Partner', 'Head of WorldWide Innovation', 'EVP Product & Strategy', 'Director of Product Management',
+                'Fmr. VP Global Sales & Operation', 'Professor', 'GM',
+                'SVP Real Time Operations, Head of European R&D',
+                'Growth Partner', 'Head of WorldWide Innovation', 'EVP Product & Strategy',
+                'Director of Product Management',
                 'President of Technology', 'CEO, Uber Freight', 'Founder & Managing Partner', 'Managing Director',
-                'VP & GM, Opendoor Exclusives', 'Chief Digital Officer', 'Fmr. VP Global Sales & Operations', 'GM, Caviar',
-                'VP, Trust & Safety', 'VP Applications', 'Chairman Itaú Latin America', 'Chief Public Affairs Officer',
+                'VP & GM, Opendoor Exclusives', 'Chief Digital Officer', 'Fmr. VP Global Sales & Operations',
+                'GM, Caviar',
+                'VP, Trust & Safety', 'VP Applications', 'Chairman Itaú Latin America',
+                'Chief Public Affairs Officer',
                 'Founder & VP R&', 'Senior Managing Director',
-                'SVP Real Time Operations, Head of European R&D', 'Founder & VP Customer Success', 'General Partner',
+                'SVP Real Time Operations, Head of European R&D', 'Founder & VP Customer Success',
+                'General Partner',
             ]) && data_get($data, 'location') != 'Israel') {
                 continue;
             }
@@ -68,22 +101,27 @@ class ImportTeamTechAvivCommand extends Command
                 $company = Company::query()->create([
                     'name' => trim((string) data_get($data, 'company.name')),
                     'url' => data_get($data, 'company.link'),
-                    //'logo' => data_get($data, 'company.logo'),
+                    'approved_at' => now(),
                 ]);
 
-                $company->logo()->create([
-                    'path' => data_get($data, 'company.logo') ?? data_get($data, 'company.url'),
-                ]);
+                //$company->update(['notes' => 'img:'.data_get($data, 'company.logo')]);
+                add_image_urls_to_notes(data_get($data, 'company.logo'), $company, $this);
+
+                //$companyImagePath = get_image_archive_path(data_get($data, 'company.logo'), 'companies');
+                //
+                //if (!add_image_for_model($companyImagePath, $company)) {
+                //    dump("Failed to add image to model ".get_class($company).":".$company->id);
+                //
+                //    if (Str::isUrl(data_get($data, 'company.logo'))) {
+                //        dump("\n Try to Download it from Url..");
+                //        $person->addMediaFromUrl(data_get($data, 'company.logo'));
+                //    }
+                //}
             }
 
             if (empty($company->url)) {
                 $company->update(['url' => data_get($data, 'company.link')]);
             }
-
-            // no logo now
-            // if (empty($company->logo)) {
-            //     $company->update(['logo' => data_get($data, 'company.logo')]);
-            // }
 
             $companyResource = $company->resources()->updateOrCreate([
                 'url' => $person->url,

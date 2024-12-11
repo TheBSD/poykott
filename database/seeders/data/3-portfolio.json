@@ -1,0 +1,592 @@
+[
+    {
+        "url": "https://www.techaviv.com/companies/nas-company",
+        "short_description": "The fastest-growing community platform for memberships",
+        "name": "Nas Company",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc34154bba66b63e4936_vN8YyaxQ_GHhVqS7x_T183zyeBkOucxQbr1_LQjJ9ZM.png",
+        "link": "http://www.nas.io",
+        "description": "Nas means people – and we, as Nas Company, are on a mission to build community products that bring people together! From the early days of ",
+        "founders": [
+            {
+                "name": "Nuseir Yassin",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a8cab232973cb0731986_nOvOCUQSDKPRK8-22mGcMinXROcLPxGid7HNFKHuq1w.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2021", "value": "Founded" },
+            { "key": "2021", "value": "Partnered" },
+            { "key": "Series A", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/torq",
+        "short_description": "The no-code, low-code, and full-code security automation platform",
+        "name": "Torq",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f488717361c5acb1949e44_7Xnkc3Jia0-1nu_G7F6gRHa66_uwFHtpUf_aG16A8zY.png",
+        "link": "http://www.torq.io",
+        "description": "Torq is the only no-code, low-code, and full-code security automation platform with true enterprise-grade scalability. With Torq, frontline security professionals can easily create automated flows that help them respond to threats faster, remediate risks automatically, and deliver better security to their teams.",
+        "founders": [
+            {
+                "name": "Ofer Smadari",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a8dba90f36885da8c3c4_8Q36e0YLFnkKN73PwGwGC8V-GIeOaxSZlOy-0ls1kS0.jpeg"
+            },
+            {
+                "name": "Leonid Belkind",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f589b50bf20e4ccc1bbc15_cVNwNBODblqXiBQU3kKgRhNLkJ6FUvyvVHwKVr6yt8w.jpeg"
+            },
+            {
+                "name": "Eldad Livni",
+                "title": "Founder & CPO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f5899e81e898443728ac1c_pU_U9S_BE9j3PQExPdedgefsAQEQLTzVbCjLT-YPhhs.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2020", "value": "Founded" },
+            { "key": "2020", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/linearb",
+        "short_description": "Software delivery management for engineering leaders",
+        "name": "LinearB",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc10ae41f615afa433b5_igx4KYNkbIDHXeEm2Lx81IKBpFg_mfL6FOANldy7sIw.png",
+        "link": "http://www.linearb.io",
+        "description": "LinearB is a software delivery management platform that empowers engineering leaders to increase efficiency on their teams and deliver results consistently for their businesses. ",
+        "founders": [
+            {
+                "name": "Ori Keren",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a941fc938e3b0124a1be_3ib1BlnDrqU0FmIqGbA0sTnv9j9NMy0D1KGLwwSA5Gs.jpeg"
+            },
+            {
+                "name": "Dan Lines",
+                "title": "Founder & COO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a5790ad183e1ff3644b9_0_78li75Zjk9cKrSpc69dpmSRMkkrOZsll3tWwJtph4.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2018", "value": "Founded" },
+            { "key": "2021", "value": "Partnered" },
+            { "key": "Series A", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/descope",
+        "short_description": "Drag-and-drop passwordless authentication for any app",
+        "name": "Descope",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bb612582bcfc2f1f5178_vIxsllbQMZaiA6NrQCnCNepuzxjgCeU-56rW2s8qdOw.png",
+        "link": "http://www.descope.com",
+        "description": "Descope is an passwordless authentication and user management platform for application developers. Its no-code workflow builder, software development kits, and application programming interfaces enable developers to easily create secure and frictionless authentication flows for every user interaction.",
+        "founders": [
+            {
+                "name": "Slavik Markovich",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650cc0040e1c4795862bc0fb_OYsasSmLd6yyeA6pEQuZoVPnGwIcDI6kscQarNIcy5s.jpeg"
+            },
+            {
+                "name": "Rishi Bhargava",
+                "title": "Founder & CBO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650cc74392aaf4be7c50d3f8_N8h9GzziYuFfL8OXTcQljxSMt_zwMU93uuj6KbEbvEU.jpeg"
+            },
+            {
+                "name": "Guy Rinat",
+                "title": "Founder & COO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650cbffec3245769e0343b79_5hNbpZvNd2fQtDgmIGfPJ_vlSlFDeEMQ34d2MVsakyI.jpeg"
+            },
+            {
+                "name": "Dan Sarel",
+                "title": "Founder & VP Product",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650cbffbed5de83efc48ee26_lTesls1GnX_b2trS483XM3Rq-8omXkN5AWcGdS6JfRs.jpeg"
+            },
+            {
+                "name": "Aviad Lichtenstadt",
+                "title": "Founder & VP R&D",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650ccbb69988f33af649751d_MJn0CzBmpE1KPB88tvCNfCanK5qh5WSAAlU7szLHyFk.jpeg"
+            },
+            {
+                "name": "Doron Sharon",
+                "title": "Founder & Chief Architect",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650ccbb81bf4135e754fdd4c_K0DQxJCIKFA4ZO7EHYgn4yEJOk9lHvCTjpXZSggAaH0.jpeg"
+            },
+            {
+                "name": "Meir Wahnon",
+                "title": "Founder & Director of Engineering",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650ccbbbe08f7205daa55cb1_mk06j2Aa6FNaPOCLER7m2h7aytBSBfbUUyGxArg48vU.jpeg"
+            },
+            {
+                "name": "Gilad Shriki",
+                "title": "Founder & VP Customer Success",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650ccbc11e8170fc95284396_Gvj2v4o3kat0EiOSQNdb0pHDt2NPTTo706RHJUsqjXs.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2022", "value": "Founded" },
+            { "key": "2022", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/retrain-ai",
+        "short_description": "Talent intelligence platform powering the future of work",
+        "name": "retrain.ai",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc919fb9559f53072d0c_wc83gOHJ1_7nEUuqeQXrKzeVAqVoCLahLumSiEmQK8o.png",
+        "link": "http://www.retrain.ai",
+        "description": "retrain.ai empowers the world’s best employers with the most robust, actionable, and responsible skills framework, and a human-level generative AI co-pilot that optimizes the existing HR tech stack and adds intelligence to talent acquisition, talent management, and skills architecture, all in one unified platform. Businesses using retrain.ai enjoy dramatic ROI by shortening hire times, increasing retention, and growing productivity.",
+        "founders": [
+            {
+                "name": "Avi Simon",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a521f23d430259391815_Ndq-3PxJXX3qvEUCos7RPDaD56Sx7Z-v4SWD20qrtyY.jpeg"
+            },
+            {
+                "name": "Isabelle Bichler-Eliasaf",
+                "title": "Founder & COO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a7a0c7040461b7e736aa_QQ2c_YQ-BzDyOhwvSLfr8bOVd8yJz41ysIGXX8XK4ao.jpeg"
+            },
+            {
+                "name": "Shay David",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478aa28619a69ed363d4c25_O8R8fe7R58zu2VYNEswNGb91JOi2tVvbtW5WiLvi5j4.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2020", "value": "Founded" },
+            { "key": "2020", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/flytrex",
+        "short_description": "#1 Fastest-growing autonomous drone food delivery company",
+        "name": "Flytrex",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bb94988c90d30310ab84_OpIw_fw6ih7hWcVk7kscDWUW25n4_XGIfQWE7FlEF3k.png",
+        "link": "http://www.flytrex.com",
+        "description": "Flytrex is the \"DoorDash of the Skies\", developing autonomous drone delivery systems that simplify deliveries and enhance efficiency by shortening delivery times and lowering costs of on-demand consumer food delivery in the US.",
+        "founders": [
+            {
+                "name": "Yariv Bash",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64aa955258a64b8a7a364c5b_cKDxWdh8SXLng2KRNNmfg9iHhOL-RulvDGXxTOaqt_4.png"
+            },
+            {
+                "name": "Amit Regev",
+                "title": "Founder & CPO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a4ceec49d7b76808e969_6dhyJxguN0RBqSwVKpZfb04VqkLnGxk52_-8d_f5jvU.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2013", "value": "Founded" },
+            { "key": "2021", "value": "Partnered" },
+            { "key": "Series B", "value": "First-Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/leo",
+        "short_description": "World's first generative AI engineering design copilot",
+        "name": "Leo AI",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64aac7f4d66b44d94450f19f_1WOmBkBvIOOSZWZ1bodv8udCnGOTaTLqRF7vey2Iiz4.png",
+        "link": "http://www.getleo.ai",
+        "description": "Leo™ is the world's first engineering design copilot, empowering engineers and designers to turn ideas into products in seconds. Leo's generative AI platform transforms text, sketches, specs, and CAD constraints into DFMA-optimized, full-assembly 3D CAD models, saving companies up to 70% of their engineering time and cost. Leo is built by leading AI researchers and mechanical engineers from Microsoft, MIT, and the Technion.",
+        "founders": [
+            {
+                "name": "Maor Farid",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f7048bad31f641c011e16e_2i-7H5z7ZuY9VFjQyhc1syTMKZLcmXbU5XL1xkhWeuA.jpeg"
+            },
+            {
+                "name": "Moti Moravia",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f7048d9cf7fabcea34e2b7_dopQAh0mt-9n2DPfq13aNM_aRTMTzEXokzvNaCXy_Wc.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2023", "value": "Founded" },
+            { "key": "2022", "value": "Partnered" },
+            { "key": "Pre-Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/slim-ai",
+        "short_description": "Automatic vulnerability removal for app developers",
+        "name": "Slim.ai",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64aac1aa18e9f1a4315670b2_sMFBUZtgFLfBJs0iKAT7bny-EjI6Pz7-P8VIHqEHbHc.png",
+        "link": "http://www.slim.ai",
+        "description": "Slim.AI helps application developers create, build, deploy, and run their cloud-native apps with zero friction, complexity, and waste. The company's solutions automatically optimize the composition and construction of containerized applications, improve build and deploy cycles, and provide deep insight into application behavior and performance. With Slim, developers can gain control over containerized app size, performance, cost, security, and deployment times without specialized knowledge. Developers can focus on writing great code, maintain high velocity, and easily “build, run and own” their apps with low overhead and DevOps burden.",
+        "founders": [
+            {
+                "name": "John Amaral",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a7ec98a706aeab9d3beb_6YqCTTiJh0XqrzQuAqbMGbaCK--grHEQxJzk6xWqgEg.jpeg"
+            },
+            {
+                "name": "Kyle Quest",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a819ef9462252fc50a87_3FVMO_JuacpHOLdU-A4_TQsTJl0LwjQcMfmkxQORXVI.png"
+            }
+        ],
+        "stats": [
+            { "key": "2020", "value": "Founded" },
+            { "key": "2020", "value": "Partnered" },
+            { "key": "Pre-Seed", "value": "Seed" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/skippr",
+        "short_description": "Generative AI product UI design copilot",
+        "name": "Skippr",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64aac590d440d50efe6c1102_CdEgTxS2CktWko7IMijwLT9yj_fDCgS-Kqxgbw-C4fM.png",
+        "link": "http://www.skippr.com",
+        "description": "Skippr is an augmented design platform that makes digital product designs for managers and other stakeholders. Skippr is led by a team of entrepreneurs with experience from leading companies in the spaces of design, product and machine learning.",
+        "founders": [
+            {
+                "name": "Sagi Shorrer",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a9ffeacc8a709e7b2b4c_ik7o4VF4tBMUCAkuu4mqP0mKQAj5eJ7370DVAGHRjj0.jpeg"
+            },
+            {
+                "name": "Noam Tenne",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a8c5bf584c4b2b69f061_ywWwdxh43BjxjzOJy3h_pYWj2eP92rpKUr0U5l6RF1A.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2023", "value": "Founded" },
+            { "key": "2020", "value": "Partnered" },
+            { "key": "Seed", "value": "First-Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/remepy",
+        "short_description": "The software-drug combination platform enhancing medicine",
+        "name": "Remepy",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc8d7b75c4cc4d01739a_lK3EgExzBOlgl6ideAAShFjL7A5-72lIHOoFgCsA0Kk.png",
+        "link": "http://www.remepy.com",
+        "description": "Remepy enables pharma companies to launch software-drug combinations. Remepy apps are tailored to specific clinical indications and drug mechanisms of action, increasing the drug’s efficacy. Engagement with Remepy apps activates brain mechanisms with a downstream impact on the immune system and direct improvement of synaptic connectivity and neuroplasticity.",
+        "founders": [
+            {
+                "name": "Or Shoval",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650a26eec94f28695a82beec_SylDqGTam7vRG4TyhYlCJvmI4vIlt5Z2l5apk_EmP5Y.png"
+            },
+            {
+                "name": "Michal Tsur",
+                "title": "Founder & Chairman",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6508cfc4a028895585b8b21c_qfwzKKi3yIdKkI11wjDV3s80gdQDA1D24qUrP2ijwl0.jpeg"
+            },
+            {
+                "name": "Amir Amedi",
+                "title": "Founder & CSO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/650a1c47e15a1229a150bf95_8GSgZZOWoqKNq38K6uA-egTjViCxwSuRnY_DZAS-kGs.jpeg"
+            },
+            {
+                "name": "Nira Saporta",
+                "title": "Founder & CPO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6503744ce86b2636c96d1e25_nira.jpg"
+            },
+            {
+                "name": "Shahar Shelly",
+                "title": "Founder & CMO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6503748899d65576df7669ac_shahar.jpg"
+            }
+        ],
+        "stats": [
+            { "key": "2022", "value": "Founded" },
+            { "key": "2022", "value": "Partnered" },
+            { "key": "Pre-Seed", "value": "First-Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/oshi",
+        "short_description": "World's best plant-based seafood company",
+        "name": "Oshi",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64aabca33e39e5bffacbe176_qGQ9gWbcmkMyyTOkw190LgJet3ntF4MkYHHZ2-j7_jw.png",
+        "link": "http://www.oshi.com",
+        "description": "Oshi is on a mission to eliminate sea pollution and overfishing by crafting the world's tastiest premium whole-cut seafood fillets made exclusively from plants. Their first product, the Oshi Salmon, is the world's first 100% plant-based, whole-cut Salmon fillet.",
+        "founders": [
+            {
+                "name": "Ofek Ron",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a8cfa90f36885da8be14_qE-Y_TijIwusxh6g1I-SvjmFbW2HX7916WMv7sf6PmY.jpeg"
+            },
+            {
+                "name": "Ron Sicsic",
+                "title": "Founder & CSO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a9ce0f4561db4f67f1f5_E8Q00F6sES9GfBTxYhOVMON9iO4oGysUk8AEANaPc50.jpeg"
+            },
+            {
+                "name": "Ariel Szklanny",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a4eba8478dbe1cc7d685_UAN2Dotue7tA94lNh9IrG7bDZyIdZBXQk2-4Mpx407w.jpeg"
+            },
+            {
+                "name": "Hila Elimelech",
+                "title": "Founder",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a76d60ff251175193a57_YM0e3Da4u7n_EDbPLaq_xa6YIBiVpky_9LP1IuiI_-0.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2021", "value": "Founded" },
+            { "key": "2021", "value": "Partnered" },
+            { "key": "Pre-Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/gosource",
+        "short_description": "#1 Fastest-growing building materials marketplace in the U.S.",
+        "name": "GoSource",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bbabde8b0452a9537354_5OVn5ZnDsAuTLpA-31zZmOE2nxNyzBtmiRmfFOW_pPk.png",
+        "link": "http://www.gosource.us",
+        "description": "GoSource is the fastest-growing construction material marketplace for construction professionals in the US. The B2B platform and app utilizes AI to provide real-time access to wholesale prices, product databases and inventory availability from hundreds of vendors, and real-time project tracking and reporting. GoSource reduces fulfillment turnaround time by 50% and the cost of materials by 25%, significantly increasing revenue per project.",
+        "founders": [
+            {
+                "name": "Shahar Koren Pinto",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4af6145ead4d507c23332_7ueSe8rK4t5TawXHlzH34e2R2wkSGIDH_edRHb2PjoQ.jpeg"
+            },
+            {
+                "name": "Nick Tischenko",
+                "title": "Founder & CPO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4a7cd941eb1d9b87d658c_cIxBh26Q3ydoouljK1oWeDeudfwCp6s7gF4UCFbHbmo.jpeg"
+            },
+            {
+                "name": "Yuval Mekler",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4b241a5e7f2ca5ab3438d_bB7jBShVewXtOAZ1Rlg56eX29PRLAGwPQPfP9ZsAKdI.jpeg"
+            },
+            {
+                "name": "Ori Birnbaum",
+                "title": "Founder & COO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4a7cf6b7775fc7ff338e8_vnwQfIw9pecyazEpSreULz6-dOmk73xnEFKg3wCGbmA.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2022", "value": "Founded" },
+            { "key": "2023", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/one-ai",
+        "short_description": "AI Agents for every business and web site",
+        "name": "One AI",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc47a77e6deaee76f623_YfNeaVOIUsqtKm8XAHSBVg1N1CyOzLxRhcNQ6WisRPQ.png",
+        "link": "http://www.oneai.com",
+        "description": "One AI is a platform that provides AI Agents, Language Analytics, and APIs for businesses and individuals. We offer seamless integration of accurate, production-ready language capabilities into products and services. Our OneAgent solution equips businesses with dedicated agents that respond solely based on their most up-to-date content, with built-in fact-checking for enhanced trust.",
+        "founders": [
+            {
+                "name": "Amit Ben",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a4bdef9462252fc2704e_RQl3LZMBmoX5CB00YC1Bd7WNQS9Lo0KZhuHp-8aONmA.jpeg"
+            },
+            {
+                "name": "Asi Shefer",
+                "title": "Founder & CSO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a50a595b02ed3b448c6e_XKSc7a_GDvb4yZhbYjcCz8nW-fRkWB6PBeIp8RwJxV8.jpeg"
+            },
+            {
+                "name": "Aviv Dror",
+                "title": "Founder & CPO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a53642144685f514bd6b_6Bd1CXW-hMKHcFrjCJurQo-gcXuw64QA8-qIKIb5hZg.jpeg"
+            },
+            {
+                "name": "Yochai Levi",
+                "title": "Founder & CMO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/647d9b33471c6dc0a80bdfd9_LINPqb40T2V_AVUjOHQyc9iQ1BXWEF1ENYj3W2FsJ94.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2021", "value": "Founded" },
+            { "key": "2021", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/knock",
+        "short_description": "The next gen B2B engagement platform ",
+        "name": "Knock",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/658d1605d0f14ac79b2d2651_iYTAyPc7Zo4wuEU68STczhJ7kaLRn0o-KvvF7jmKhiw.png",
+        "link": null,
+        "description": "Knock is re-inventing the B2B buyer journey by enabling a B2C-like engagement from any content at any time with the buyer’s preferred communication channel (Slack, Teams, X, etc.). The Knock platform leverages a powerful combination of conversational AI, messaging apps, and human interactions. It enables marketers and revenue teams, among other things, to \"kill forms” and cold emails to improve conversions, increase revenue, and grow customer LTV.",
+        "founders": [
+            {
+                "name": "Alon Rosenberg",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/658d8401012e5807c624e389_YCBDXTsPe1J8LIsS7Hb62s2pUxRcKn6my6LWra5JAzI.jpeg"
+            },
+            {
+                "name": "Stav Aldaag",
+                "title": "Founder & CPO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/658d83fa8b3136fd62605c05_ocB8C0TGIGz5A1HCqQ2Jpv3beGJzkR8K_ZTf4iXXul0.jpeg"
+            },
+            {
+                "name": "Eldad Giladi",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/658d83fefc96227d17ecba1a_W51FefxrI1JD-Qs4LO0RsObTU2LvJDHtmFyBCU0uICo.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2023", "value": "Founded" },
+            { "key": "2023", "value": "Partnered" },
+            { "key": "Pre-Seed", "value": "Round" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/aktivate",
+        "short_description": "#1 Fastest-growing scholastic sports management platform",
+        "name": "Aktivate",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478baebbde36a8cfb544191_BUV6Aw68ihn21uX9NT7vWEBij_BFRI-rFQHALVNE-oQ.png",
+        "link": "http://www.aktivate.com",
+        "description": "Aktivate provides a SaaS based tecnology platform for K-12 schools to manage and fund scholastic sports. The system features administration and engagement tools to bring together student-athletes, their families, schools, and valued partners.",
+        "founders": [
+            {
+                "name": "Hesky Kutscher",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64ecbb10f9337ce073a88a52_LMqbSRNvIFUQOxwztO7H-e5WnAjbmN24JpLrwpdJeTo.png"
+            },
+            {
+                "name": "Dhruv Singh",
+                "title": "Founder & CFO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64ecba9011478cc624b7ced0_N20JdiaMaQGjG9FsLqPLAoZHwd1KAtpli0PhrKkdXK4.png"
+            },
+            {
+                "name": "Jonathan Miller",
+                "title": "Founder & Chairman",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4c699307faac861b9b2a2_xk5JIjV_dGFPaXDO0xGlw5XVvgKEbs8nTw1MEmN81sw.png"
+            }
+        ],
+        "stats": [
+            { "key": "2020", "value": "Founded" },
+            { "key": "2020", "value": "Partnered" },
+            { "key": "Pre-Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/jit",
+        "short_description": "Product security automation platform for modern engineering teams",
+        "name": "Jit",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bbf16c7a63baaf14f503_bbyV-E9JOka0sDnHgyx5MQcqsj38rhs2DxqS-i0ZdXQ.png",
+        "link": "http://www.jit.io",
+        "description": "Jit is a product security automation platform, built for modern engineering teams. Like Terraform does for infrastructure, Jit codifies and automates the implementation of product security plans, by orchestrating all needed security tools across AppSec-CICD-Cloud-DAST , enabling developers with in-line AI-remediations and providing a unified AppSec management Dashboard.",
+        "founders": [
+            {
+                "name": "Shai Horovitz",
+                "title": "CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4bf7071c69b9f594965a0_bL_H1cX2JMno0kNe178EMyOydqDRz3MA8U0a6sxthr0.jpeg"
+            },
+            {
+                "name": "David Melamed, PhD",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4c08c9441abd279d6a3af_oMiMJZBIKbBW3h6z60Nn43XqrN6VybcAj473G2BtWsE.jpeg"
+            },
+            {
+                "name": "Aviram Shmueli",
+                "title": "Founder & Chief Research & Innovation Officer",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f4c08a1eea683b142f821a_GnHu0PO2LZBSDBBJ_1UgBG0hkL7SeM7U72q7b1ICeVk.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2021", "value": "Founded" },
+            { "key": "2021", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/rise",
+        "short_description": "The MENA Neobank",
+        "name": "Rise",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/658d1607e33467ac53541594_5XOdI8NKt0aQFqBi6wr7lJrL0B-0gc_b1S94pibqFV4.png",
+        "link": "http://www.riseco.ai",
+        "description": "Rise is a credit-led digital bank for consumers in developing economies across Africa and the Middle East. Rise offers convenient access to modern, transparent, and inclusive financial technology products and digital banking services including installment payment options at POS for consumers in Egypt, a large, fast-growing, highly underdeveloped market.",
+        "founders": [
+            {
+                "name": "Abe Abdulla",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a45770f2449d849b2c14_IhNmKpLnt0ZslKZTcvWrQb63a3jnygukPakOGKIDt8U.jpeg"
+            },
+            {
+                "name": "Elad Shoushan",
+                "title": "Founder & CPO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a66c20a880fe9dae336d_4HmtPIGAOA5r3BG9TQTIdF-wuDstbg3b2nfGZXjjpAY.png"
+            },
+            {
+                "name": "Rotem Hayoun",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a9e240f8e2e88a92fb1d_4XsLCim0nwvA5_XuZoEhNZ4UZn4tmLblfFbT_euYWmI.png"
+            },
+            {
+                "name": "Monte Magdy",
+                "title": "Founder ",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/647d9bcda7f545c909298ca8_FE1zO4h6pSfhcUV1BIGijpEOrTJAB1EEkStzFy0m-ow.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2023", "value": "Founded" },
+            { "key": "2023", "value": "Partnered" },
+            { "key": "Seed", "value": "First-Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/pattern-insurance",
+        "short_description": "The embedded insurance platform for online booking sites",
+        "name": "Pattern Insurance",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bc5ef03625cc63fc29c7_SCCjxmgyIEJSIyS6o411frDKmGzxFH48-VMObenO5l8.png",
+        "link": "http://www.patterninsurance.com",
+        "description": "Pattern provides an insurance platform that allows any business to create a white-labeled insurance proposition that is integrated into its own customer journey. Included in the Pattern platform is a library of coverages that protect consumers from every possible risk, as well as a designer tool that allows businesses to create their own claim-free, automated coverages which identify incidents and reimburse immediately without the need to prove loss. Pattern is unique in how it empowers the business to create, and control, the insurance propositions on its own.",
+        "founders": [
+            {
+                "name": "Meitav Harpaz",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a868ad32898c4ee170a0_6G1Tu-XgIJ0e2nLTuOAEmqiPHGVjgrce5sNTXVU_4AU.jpeg"
+            },
+            {
+                "name": "Eyal Gluska",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6503790e5b4f32e67220019d_Y35mdMix5mw-9B8skGo_Q5nrC3qdlcXfvyt5Gbxdbj4.jpeg"
+            },
+            {
+                "name": "Assaf Wand",
+                "title": "Founder & Director",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a515c42631acdd69ecae_ssQRJZ7Z8Iy51zv_Dc4GuS5RTUOixgThTiiGJFknW80.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2020", "value": "Founded" },
+            { "key": "2020", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    },
+    {
+        "url": "https://www.techaviv.com/companies/coho",
+        "short_description": "AI-powered product-led revenue growth for SaaS companies",
+        "name": "Coho",
+        "logo": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478bb43504506e357e18719_vjVTVrgN8SUGe4PYLDZQYSS9mWW4JR4SsE1oRrS7NxE.png",
+        "link": "http://www.coho.ai",
+        "description": "Coho data-driven revenue growth platform empowers B2B SaaS companies to boost their product-led sales. Coho tracks signals from the sales team, CS, and usage data and generates signals, dashboards and intelligence that drives the sales process. Coho is automating the no-touch and low-touch sales funnel for self serve and PLG motions, and provides insights and enrichment of the high-touch funnel for upselling, cross-selling, and growth. Coho's AI and ML algorithms build a data plane for managing and boosting revenue.",
+        "founders": [
+            {
+                "name": "Itamar Falcon",
+                "title": "Founder & CEO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f8a528e2d7fe0661f106f7_MNSnqqUfgl2BeNbP9VuVYMuy3W1TCtq5OxdR-nO38Ww.jpeg"
+            },
+            {
+                "name": "Michael Ehrlich",
+                "title": "Founder & CTO",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/6478a86e8aad7f3f7d69cf60_cUYGL-Xyfn_AFI43l5O3AFGZil23fKCMlXtFR1ui7jQ.jpeg"
+            },
+            {
+                "name": "Ariel Maislos",
+                "title": "Founder & Chairman",
+                "avatar": "https://assets-global.website-files.com/637f4f9bd8c0f734f7361a76/64f8a4bf5259f880fe9490f2_H4Bn10NDPhkcqQAMGbkiDuX9h7afmjo9uny7FHHROx4.jpeg"
+            }
+        ],
+        "stats": [
+            { "key": "2020", "value": "Founded" },
+            { "key": "2020", "value": "Partnered" },
+            { "key": "Seed", "value": "First Check" }
+        ]
+    }
+]

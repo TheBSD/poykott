@@ -13,14 +13,9 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <!-- Person Header -->
                 <div class="flex items-center space-x-6 p-6">
-                    @if ($person->media)
-                        <img
-                            src="{{ $person->getFirstMediaUrl() }}"
-                            alt="avatar"
-                            class="h-40 w-40 rounded-lg object-cover"
-                        />
-                    @endif
-
+                    {{-- @if ($person->image_path) --}}
+                    <img src="{{ $person->image_path }}" alt="avatar" class="h-40 w-40 rounded-lg object-cover" />
+                    {{-- @endif --}}
                     <div>
                         <h1 class="text-3xl font-bold text-gray-900">{{ $person->name }}</h1>
                         <p class="mt-2 text-gray-600">{{ $person->description }}</p>
@@ -34,13 +29,9 @@
                         <div class="flex flex-wrap gap-4">
                             @foreach ($person->companies as $company)
                                 <div class="flex flex-col items-center rounded-lg border p-4">
-                                    @if ($company->media)
-                                        <img
-                                            src="{{ $company->getFirstMediaUrl() }}"
-                                            alt="logo"
-                                            class="h-30 w-40 rounded-full"
-                                        />
-                                    @endif
+                                    {{-- @if ($company->logo) --}}
+                                    <img src="{{ $company->image_path }}" alt="logo" class="h-30 w-40 rounded-full" />
+                                    {{-- @endif --}}
 
                                     <a
                                         href="{{ route('companies.show', $company) }}"

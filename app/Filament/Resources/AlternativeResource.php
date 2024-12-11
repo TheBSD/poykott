@@ -33,6 +33,8 @@ class AlternativeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
 
+    protected static ?string $navigationGroup = 'Alternatives';
+
     public static function form(Form $form): Form
     {
         return $form->schema([

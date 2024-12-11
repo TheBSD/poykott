@@ -29,9 +29,8 @@ class ResourceResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')->required(),
                 TextInput::make('type')->required(),
-                Textarea::make('description')->columnSpanFull(),
+                Textarea::make('notes')->columnSpanFull(),
                 TextInput::make('url')->required(),
             ]);
     }
@@ -40,7 +39,6 @@ class ResourceResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->searchable(),
                 TextColumn::make('type')->searchable(),
                 TextColumn::make('url')->searchable(),
                 TextColumn::make('created_at')->dateTime()->sortable()

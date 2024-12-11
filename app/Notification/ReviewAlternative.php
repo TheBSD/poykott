@@ -3,6 +3,7 @@
 namespace App\Notification;
 
 use App\Models\Alternative;
+use App\Models\Company;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -18,10 +19,10 @@ class ReviewAlternative extends Notification
     /**
      * Create a new message instance.
      */
-    public function __construct(public Alternative $alternative)
-    {
-        //        $this->company = $company;
-    }
+    public function __construct(
+        public Alternative $alternative,
+        public Company $company,
+    ) {}
 
     /**
      * Get the notification's delivery channels.

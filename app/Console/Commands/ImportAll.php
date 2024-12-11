@@ -29,32 +29,42 @@ class ImportAll extends Command
 
         $progressBar = $this->output->createProgressBar(9);
 
-        Artisan::call(ImportTeamTechAvivCommand::class);
+        // for better, add images links to notes fields as img:<image link>,
+        // and make the adding as updated ".="
+        //then in one command get and download all images
+
+        Artisan::call(ImportTeamTechAvivCommand::class); // done
         $progressBar->advance();
 
-        Artisan::call(ImportUnicornTechAvivCommand::class);
+        Artisan::call(ImportUnicornTechAvivCommand::class); // done
         $progressBar->advance();
 
-        Artisan::call(ImportUnicornGraduatesTechAvivCommand::class);
+        Artisan::call(ImportUnicornGraduatesTechAvivCommand::class); // done
         $progressBar->advance();
 
-        Artisan::call(ImportPortfolioTechAvivCommand::class);
+        Artisan::call(ImportPortfolioTechAvivCommand::class); // done
         $progressBar->advance();
 
-        Artisan::call(ImportMembersTechAvivCommand::class);
+        Artisan::call(ImportMembersTechAvivCommand::class); // done
         $progressBar->advance();
 
-        Artisan::call(ImportJobCompaniesTechAvivCommand::class);
+        Artisan::call(ImportJobCompaniesTechAvivCommand::class); // done
         $progressBar->advance();
 
-        Artisan::call(ImportJobsTechAvivCommand::class);
+        Artisan::call(ImportJobsTechAvivCommand::class);  // done
         $progressBar->advance();
 
         Artisan::call(ImportCompaniesOldSiteCommand::class);
         $progressBar->advance();
 
-        Artisan::call(ApproveOurDataCommand::class);
-        $progressBar->advance();
+        //Artisan::call(AttachCompaniesImagesCommand::class);
+        //$progressBar->advance();
+
+        //Artisan::call(AttachPeopleImagesCommand::class);
+        //$progressBar->advance();
+
+        //Artisan::call(CleanNotesFromImagesUrlCommand::class);
+        //$progressBar->advance();
 
         $progressBar->finish();
     }

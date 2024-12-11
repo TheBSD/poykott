@@ -9,6 +9,7 @@ use App\Models\Person;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,9 +27,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::shouldBeStrict();
-
         DB::prohibitDestructiveCommands($this->app->isProduction());
+
+        URL::forceHttps($this->app->isProduction());
+
+        Model::shouldBeStrict(! $this->app->isProduction());
 
         Relation::enforceMorphMap([
             'company' => Company::class,

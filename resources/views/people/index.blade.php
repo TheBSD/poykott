@@ -65,6 +65,9 @@
                     </div>
                 </a>
             @endforeach
+
+            {{-- Maybe I will add simple pagination for SEO --}}
+            {{-- {{$people->links()}} --}}
         </section>
     </main>
 

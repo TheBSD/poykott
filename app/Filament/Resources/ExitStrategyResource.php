@@ -23,6 +23,8 @@ class ExitStrategyResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-backward';
 
+    protected static ?string $navigationGroup = 'Companies';
+
     public static function form(Form $form): Form
     {
         return $form

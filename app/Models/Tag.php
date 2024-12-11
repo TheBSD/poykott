@@ -2,20 +2,12 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-/**
- * @property int $id
- * @property string $name
- * @property string $slug
- * @property Carbon $created_at
- * @property Carbon $updated_at
- */
 class Tag extends Model
 {
     use HasFactory;

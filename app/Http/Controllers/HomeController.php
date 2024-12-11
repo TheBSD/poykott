@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\ContactMessage;
+use App\Models\SimilarSite;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $companies = Company::with([
-            'media' => function ($query) {
-                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
-            },
-            'tagsRelation' => function ($query): void {
-                $query->select('tags.id', 'name')->limit(3);
-            },
-        ])
+        $companies = Company::query()
+            ->with([
+                //'logo:id,imageable_id,path',
+                'tagsRelation' => function ($query): void {
+                    $query->select('tags.id', 'name')->limit(3);
+                },
+            ])
             ->approved()
             ->paginate(20, ['companies.id', 'name', 'description', 'slug']);
 
@@ -43,14 +43,13 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $companies = Company::with([
-            'media' => function ($query) {
-                $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions');
-            },
-            'tagsRelation' => function ($query): void {
-                $query->select('tags.id', 'name')->limit(3);
-            },
-        ])
+        $companies = Company::query()
+            ->with([
+                //'logo:id,imageable_id,path',
+                'tagsRelation' => function ($query): void {
+                    $query->select('tags.id', 'name')->limit(3);
+                },
+            ])
             ->approved()
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
@@ -75,5 +74,12 @@ class HomeController extends Controller
         ContactMessage::query()->create($validated);
 
         return back()->with('success', 'Message sent successfully');
+    }
+
+    public function similarSites()
+    {
+        $similarSites = SimilarSite::with('children')->get();
+
+        return view('pages.similar-sites', ['sites' => $similarSites]);
     }
 }

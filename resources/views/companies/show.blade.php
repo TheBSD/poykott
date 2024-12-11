@@ -13,13 +13,13 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <!-- Company Header -->
                 <div class="flex items-center space-x-6 p-6">
-                    @if ($company->media)
-                        <img
-                            src="{{ $company->getFirstMediaUrl() }}"
-                            alt="{{ $company->name }}"
-                            class="h-24 w-24 rounded-lg object-cover"
-                        />
-                    @endif
+                    {{-- @if ($company->media()?->first()) --}}
+                    <img
+                        src="{{ $company->image_path }}"
+                        alt="{{ $company->name }}"
+                        class="h-24 w-24 rounded-lg object-cover"
+                    />
+                    {{-- @endif --}}
 
                     <div>
                         <h1 class="text-3xl font-bold text-gray-900">{{ $company->name }}</h1>
@@ -48,13 +48,11 @@
                             <div class="space-y-4">
                                 @foreach ($company->founders as $founder)
                                     <div class="flex items-center space-x-3">
-                                        @if ($founder->avatar)
-                                            <img
-                                                src="{{ $founder->avatar }}"
-                                                alt="avatar"
-                                                class="h-24 w-24 rounded-full"
-                                            />
-                                        @endif
+                                        <img
+                                            src="{{ $founder->image_path }}"
+                                            alt="avatar"
+                                            class="h-24 w-24 rounded-full"
+                                        />
 
                                         <div>
                                             <a
@@ -89,22 +87,14 @@
                             <div class="grid grid-cols-2 gap-4">
                                 @foreach ($company->investors as $investor)
                                     <div class="flex items-center space-x-3">
-                                        @if ($investor->getFirstMediaUrl())
-                                            <img
-                                                src="{{ $investor->getFirstMediaUrl() }}"
-                                                alt="logo"
-                                                class="h-8 w-8 rounded object-cover"
-                                            />
-                                        @endif
-
-                                        <div>
-                                            <a
-                                                href="{{ route('investors.show', $investor->slug) }}"
-                                                class="font-medium hover:text-blue-500"
-                                            >
-                                                {{ $investor->name }}
-                                            </a>
-                                        </div>
+                                        {{-- @if ($investor->logo) --}}
+                                        {{-- <img --}}
+                                        {{-- src="{{ $investor->logo->path }}" --}}
+                                        {{-- alt="{{ $investor->name }}" --}}
+                                        {{-- class="h-8 w-8 rounded object-cover" --}}
+                                        {{-- /> --}}
+                                        {{-- @endif --}}
+                                        <span>{{ $investor->name }}</span>
                                     </div>
                                 @endforeach
                             </div>

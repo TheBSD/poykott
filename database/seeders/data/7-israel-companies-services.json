@@ -1,0 +1,4510 @@
+{
+    "companiesAndServices": [
+        {
+            "id": 1,
+            "name": "Payoneer",
+            "description": "شركة خدمات مالية تقدم خدمات تحويل الأموال عبر الإنترنت، وخدمات الدفع الرقمية",
+            "logo": "./logo/payoneer.png",
+            "notes": "",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Payoneer"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Taboola",
+            "description": "شركة إعلانات برمجية",
+            "logo": "./logo/taboola.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "Google AdWords",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A8%D9%88%D9%84%D8%A9_(%D8%B4%D8%B1%D9%83%D8%A9)"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Wix",
+            "description": "شركة إنشاء مواقع بدون تكويد بالسحب والإدراج",
+            "logo": "./logo/wix.webp",
+            "notes": "",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "Wuilt",
+                    "description": "",
+                    "link": "https://app.wuilt.com",
+                    "logo": "./logo/",
+                    "notes": ""
+                },
+                {
+                    "name": "Dsite",
+                    "description": "شركة سعودية عربية لانشاء المواقع بدون كتابة كود",
+                    "link": "https://www.dsite.sa",
+                    "logo": "./logo/dsite-logo.svg",
+                    "notes": ""
+                },
+                {
+                    "name": "WordPress",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                },
+                {
+                    "name": "Webflow",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Wix.com"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Fiverr",
+            "description": "شركة خدمات مصغرة",
+            "logo": "./logo/fiverr.avif",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "khamsat",
+                    "description": "",
+                    "link": "https://khamsat.com",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Fiverr"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Appsflyer",
+            "description": "منصة تحليلات تسويقية",
+            "logo": "./logo/appsflyer.avif",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": "https://www.secrettelaviv.com/best/tags/cool-israeli-companies/appsflyer"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Monday.com",
+            "description": "منصة إدارة التعامل مع العملاء",
+            "logo": "./logo/monday.com.avif",
+            "notes": "",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "Workiom",
+                    "description": "هي أداة إدارة المهام والفرق السحابية التي تساعد المنظمات على تبسيط التعاون، وتتبع تقدم المشروع، وأتمتة سير العمل بكفاءة.",
+                    "link": "https://workiom.com",
+                    "logo": "./logo/workiom.png",
+                    "notes": "بديل عربي لـ Monday.com"
+                },
+                {
+                    "name": "DataLexing",
+                    "description": "all-in-one AI software for any team to collaborate on Tables Kanban Surveys and Live dashboard",
+                    "link": "https://www.datalexing.com",
+                    "logo": "./logo/datalexing_logo.jpeg",
+                    "notes": "منتج سعودي ويدعم اللغة العربيه"
+                },
+                {
+                    "name": "Bitrix24",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Monday.com"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Waze",
+            "description": "تطبيق جي بي إس تفاعلي",
+            "logo": "./logo/waze.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "HERE WeGo",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Waze"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Elementor",
+            "description": "",
+            "logo": "./logo/elementor.avif",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "King composer",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                },
+                {
+                    "name": "SiteOrigin Page Builder",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                },
+                {
+                    "name": "nicepage",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                },
+                {
+                    "name": "divi",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Twitter",
+                    "link": "https://twitter.com/elemntor/status/1713586652768084368"
+                },
+                {
+                    "name": "Wikipedia",
+                    "resource2": "https://en.wikipedia.org/wiki/Elementor"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Mobileye",
+            "description": "شركة تطوير مركبات ذاتية القيادة وأنظمة مساعدة السائق المتقدمة",
+            "logo": "./logo/Mobileye_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Mobileye"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Cybereason",
+            "description": "شركة أمن سيبراني",
+            "logo": "./logo/Cybereason_logo.webp",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "LinkedIn",
+                    "link": "https://www.linkedin.com/in/liordiv"
+                },
+                {
+                    "name": "LinkedIn",
+                    "resource2": "https://il.linkedin.com/in/yossi-n-35113b1"
+                },
+                {
+                    "name": "LinkedIn",
+                    "resource3": "https://www.linkedin.com/in/yonatanstriemamit"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Sisense",
+            "description": "برمجية ذكاء أعمال  للمشاريع الصغيرة والمتوسطة",
+            "logo": "./logo/Sisense_logo.svg",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "Tableau",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                },
+                {
+                    "name": "RAWGraphs",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                },
+                {
+                    "name": "Microsoft Power BI",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Sisense"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "name": "Check Point Software Technologies",
+            "description": "شركة حلول أمن رقمي/سيبراني ويطلق عليها CheckPoint",
+            "logo": "./logo/checkout.avif",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Check_Point"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "name": "IronSource",
+            "description": "",
+            "logo": "./logo/IronSource_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/IronSource"
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "name": "Outbrain",
+            "description": "شركة إعلانات",
+            "logo": "./logo/Outbrain_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Outbrain"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "name": "OrCam device",
+            "description": "شركة تنتج أجهزة تتيح للمعاقين بصرياً فهم النصوص الكتابية وتحديد الأشياء",
+            "logo": "./logo/OrCam-technology-logo.webp",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://ar.wikipedia.org/wiki/%D8%A3%D9%88%D8%B1%D9%83%D8%A7%D9%85_%D8%AF%D9%8A%D9%81%D8%A7%D9%8A%D8%B3"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Riskified",
+            "description": "شركة مكافحة احتيال",
+            "logo": "./logo/Riskified_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Riskified"
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "name": "Gett",
+            "description": "B2B Ground Transportation Management",
+            "logo": "./logo/Gett_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Gett"
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "name": "Lemonade",
+            "description": "شركة تأمين",
+            "logo": "./logo/lemonade_logo.jpeg",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "LinkedIn",
+                    "link": "https://www.linkedin.com/company/lemonade-inc-"
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "name": "Vayyar Imaging",
+            "description": "شركة لأشباه الموصلات تنتج مستشعرات رادار للتصوير الرباعي الأبعاد",
+            "logo": "./logo/vayyar_Imaging_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Vayyar"
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "name": "Playtika",
+            "description": "شركة تطوير ألعاب جوال",
+            "logo": "./logo/playtika_Logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Playtika"
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "name": "Gong.io",
+            "description": "",
+            "logo": "./logo/Gong_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "name": "JFrog",
+            "description": "",
+            "logo": "./logo/JFrog_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "name": "Moovit",
+            "description": "شركة مخطط الرحلات",
+            "logo": "./logo/Moovit_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "name": "SafeBreach",
+            "description": "شركة للأمن السيبراني لمحاكاة اختراق القراصنة",
+            "logo": "./logo/SafeBreach_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/SafeBreach"
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "name": "Cellebrite",
+            "description": "شركة حلول ذكاء أعمال رقمي",
+            "logo": "./logo/Cellebrite_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Cellebrite"
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "name": "Bringg",
+            "description": "",
+            "logo": "./logo/Bringg_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "name": "Zebra Medical Vision",
+            "description": "",
+            "logo": "./logo/ZebraMedicalVision_Logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "name": "SolarEdge",
+            "description": "",
+            "logo": "./logo/SolarEdge_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/SolarEdge"
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "name": "Amdocs",
+            "description": "شركة متخصصة في تطوير البرمجيات الخاصة بأنظمة الفوترة ومنظومات إدارة علاقات العملاء",
+            "logo": "./logo/Amdocs_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://ar.wikipedia.org/wiki/%D8%A3%D9%85%D8%AF%D9%88%D9%83%D8%B3"
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "name": "Tipalti",
+            "description": "شركة متخصصة في التكنولوجيا المالية لبرامج المحاسبة توفر حسابات الدفع والمشتريات وبرامج التشغيل الآلي للمدفوعات العالمية للشركات",
+            "logo": "./logo/Tipalti_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://he.wikipedia.org/wiki/%D7%98%D7%99%D7%A4%D7%9C%D7%AA%D7%99_%D7%A4%D7%AA%D7%A8%D7%95%D7%A0%D7%95%D7%AA"
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "name": "Argus Cyber Security",
+            "description": "شركة الأمن السيبراني للسيارات الإسرائيلية",
+            "logo": "./logo/ArgusCyberSecurity.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Argus_Cyber_Security"
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "name": "Cato Networks",
+            "description": "شركة أمن شبكات",
+            "logo": "./logo/Cato_Networks_Logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Cato_Networks"
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "name": "StoreDot",
+            "description": "شركة مطورة لبطاريات الليثيوم أيون للسيارات الكهربائية",
+            "logo": "./logo/StoreDot_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/StoreDot"
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "name": "Kaltura",
+            "description": "شركة برمجيات متخصصة في الوسائط وغيرها",
+            "logo": "./logo/Kaltura_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Kaltura"
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "name": "SentinelOne",
+            "description": "شركة أمن سيبراني",
+            "logo": "./logo/SentinelOne_logo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/SentinelOne"
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "name": "SysAid Technologies",
+            "description": "شركة تطوير وتوفير برامج إدارة خدمات تكنولوجيا المعلومات",
+            "logo": "./logo/SysAid_Technologies_logo.jpeg",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/SysAid_Technologies"
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "name": "Innoviz Technologies",
+            "description": "",
+            "logo": "./logo/innoviz-technologies.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://he.wikipedia.org/wiki/%D7%90%D7%99%D7%A0%D7%95%D7%95%D7%99%D7%96_%D7%98%D7%9B%D7%A0%D7%95%D7%9C%D7%95%D7%92%D7%99%D7%95%D7%AA"
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "name": "NICE Ltd.",
+            "description": "شركة متخصصة في برامج إدارة علاقات العملاء والذكاء الاصطناعي والحلول الرقمية وإدارة مشاركة القوى العاملة",
+            "logo": "./logo/nice-ltd.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/NICE_Ltd"
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "name": "Via Transportation",
+            "description": "شركة نقل عام تعمل على إعادة هندسة وتطوير حلول النقل العام وتوفيرها حسب الطلب للركاب",
+            "logo": "./logo/via-transportation.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://he.wikipedia.org/wiki/Via_(%D7%AA%D7%97%D7%91%D7%95%D7%A8%D7%94"
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "name": "Flytrex",
+            "description": "",
+            "logo": "./logo/flytrex.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "name": "Pecan.ai",
+            "description": "برمجية ذكاء اصطناعي",
+            "logo": "./logo/pecanai.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Pecan"
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "name": "BioCatch",
+            "description": "شركة أمن سيبراني",
+            "logo": "./logo/biocatch.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikitia",
+                    "link": "https://wikitia.com/wiki/BioCatch"
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "name": "Optimal+",
+            "description": "",
+            "logo": "./logo/optimal.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 45,
+            "name": "OurCrowd",
+            "description": "منصة عالمية للاستثمار في المشاريع عبر الإنترنت",
+            "logo": "./logo/ourcrowd.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/OurCrowd"
+                }
+            ]
+        },
+        {
+            "id": 46,
+            "name": "JoyTunes",
+            "description": "شركة تعمل على تطوير برامج لتعليم الهوايات الإبداعية",
+            "logo": "./logo/joytunes.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/JoyTunes"
+                }
+            ]
+        },
+        {
+            "id": 47,
+            "name": "AnyVision",
+            "description": "",
+            "logo": "./logo/anyvision.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 48,
+            "name": "Lightico",
+            "description": "",
+            "logo": "./logo/lightico.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 49,
+            "name": "ThetaRay",
+            "description": "شركة متخصصة في تحليل البرمجيات والبيانات الضخمة",
+            "logo": "./logo/thetaray.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/ThetaRay"
+                }
+            ]
+        },
+        {
+            "id": 50,
+            "name": "Quali",
+            "description": "",
+            "logo": "./logo/quali.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/QualiSystems"
+                }
+            ]
+        },
+        {
+            "id": 51,
+            "name": "Redis Labs",
+            "description": "شركة برمجيات ",
+            "logo": "./logo/redis-labs.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Redis_(company)"
+                }
+            ]
+        },
+        {
+            "id": 52,
+            "name": "mPrest",
+            "description": "شركة برمجيات",
+            "logo": "./logo/mprest.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/MPrest_Systems"
+                }
+            ]
+        },
+        {
+            "id": 53,
+            "name": "Logz.io",
+            "description": "شركة إدارة أرشيف البيانات (Log) وتحليل الأرشيف",
+            "logo": "./logo/logzio.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://he.wikipedia.org/wiki/Logz.io"
+                }
+            ]
+        },
+        {
+            "id": 54,
+            "name": "Windward",
+            "description": "",
+            "logo": "./logo/windward.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 55,
+            "name": "Vayavision",
+            "description": "",
+            "logo": "./logo/vayavision.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 56,
+            "name": "MyHeritage",
+            "description": "منصة على الإنترنت مهتمة بعلم الأنساب",
+            "logo": "./logo/my-heritage.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://ar.wikipedia.org/wiki/%D9%85%D8%A7%D9%8A_%D9%87%D9%8A%D8%B1%D8%AA%D8%AC"
+                }
+            ]
+        },
+        {
+            "id": 57,
+            "name": "Yotpo",
+            "description": "",
+            "logo": "./logo/yotpo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikidata",
+                    "link": "https://www.wikidata.org/wiki/Q58207104"
+                }
+            ]
+        },
+        {
+            "id": 58,
+            "name": "RapidAPI",
+            "description": "",
+            "logo": "./logo/rapid-api.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 59,
+            "name": "Guesty",
+            "description": "برنامج لإدارة الممتلكات. يتم استخدامه من قبل مديري العقارات لإدارة الإيجارات قصيرة الأجل المدرجة على منصات متعددة مثل Airbnb وVrbo وBooking.com",
+            "logo": "./logo/guesty.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Guesty"
+                }
+            ]
+        },
+        {
+            "id": 60,
+            "name": "Dynamic Yield",
+            "description": "Ecommerce personalization engine",
+            "logo": "./logo/dynamic-yield.png",
+            "notes": "Used by over 100 arab sites. Estimated revenue in the region is about 10 million",
+            "category": "Ecommerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "golden.com",
+                    "link": "https://golden.com/wiki/Dynamic_Yield-99BMAJ9"
+                }
+            ]
+        },
+        {
+            "id": 61,
+            "name": "Snyk",
+            "description": "شركة أمن سيبراني",
+            "logo": "./logo/snyk.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Snyk"
+                }
+            ]
+        },
+        {
+            "id": 62,
+            "name": "Bizzabo",
+            "description": "شركة توفر منصة برمجية لاستضافة وإدارة الأحداث الشخصية والأحداث الافتراضية والأحداث المختلطة",
+            "logo": "./logo/bizzabo.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "golden.com",
+                    "link": "https://golden.com/wiki/Bizzabo-4NNEN98"
+                }
+            ]
+        },
+        {
+            "id": 63,
+            "name": "Ezbob",
+            "description": "شركة تقنية مالية",
+            "logo": "./logo/ezbob.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "golden.com",
+                    "link": "https://golden.com/wiki/Ezbob-GA6K4D"
+                }
+            ]
+        },
+        {
+            "id": 64,
+            "name": "Stellar Cyber",
+            "description": "",
+            "logo": "./logo/stellar-cyber.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 65,
+            "name": "Kryon Systems",
+            "description": "أتمتة العمليات الآلية كخدمة وحلول التحليلات للشركات",
+            "logo": "./logo/kryon-systems.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "golden.com",
+                    "link": "https://golden.com/wiki/Kryon_(company)-99AZZJK"
+                }
+            ]
+        },
+        {
+            "id": 66,
+            "name": "StartApp",
+            "description": "",
+            "logo": "./logo/startapp.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "verify.wiki",
+                    "link": "https://verify.wiki/wiki/StartApp"
+                }
+            ]
+        },
+        {
+            "id": 67,
+            "name": "Forter",
+            "description": "",
+            "logo": "./logo/forter.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 68,
+            "name": "Lusha",
+            "description": "",
+            "logo": "./logo/lusha.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "golden.com",
+                    "link": "https://golden.com/wiki/Assaf_Eisenstein-EAAP6AM"
+                }
+            ]
+        },
+        {
+            "id": 69,
+            "name": "Spot.IM (now OpenWeb)",
+            "description": "",
+            "logo": "./logo/openweb.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 70,
+            "name": "Nanit",
+            "description": "",
+            "logo": "./logo/nanit.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 71,
+            "name": "Soluto",
+            "description": "",
+            "logo": "./logo/soluto.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Soluto"
+                }
+            ]
+        },
+        {
+            "id": 72,
+            "name": "Jolt",
+            "description": "",
+            "logo": "./logo/jolt.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 73,
+            "name": "Oribi",
+            "description": "",
+            "logo": "./logo/oribi.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 74,
+            "name": "Partner Communications",
+            "description": "شركة اتصالات",
+            "logo": "./logo/partner.png",
+            "notes": "",
+            "category": "",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "id": 75,
+            "name": "CyberArk",
+            "description": "شركة أمن الهويات",
+            "logo": "./logo/cyberark.avif",
+            "notes": "",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database/cyberark"
+                },
+                {
+                    "name": "bloomberg",
+                    "link": "https://www.bloomberg.com/news/articles/2014-09-24/cyberark-rallies-69-after-pricing-shares-above-targeted-range"
+                }
+            ]
+        },
+        {
+            "id": 76,
+            "name": "A.Team",
+            "description": "A.Team is a distributed, on-demand team formation platform that allows members to team up and build things.",
+            "logo": "./logo/A.Team_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 77,
+            "name": "Affogata",
+            "description": "Affogata is a single source of customer voice truth, that gathers and analyzes millions of data points of customer data in real-time.",
+            "logo": "./logo/Affogata_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 78,
+            "name": "AI21 Labs",
+            "description": "AI21 Labs is an AI lab & product company whose mission is to reimagine the way we read and write by making the machine a thought partner to humans.",
+            "logo": "./logo/AI21 Labs_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 79,
+            "name": "Aidoc",
+            "description": "Clinical AI focusing on aiding and empowering healthcare teams to optimize patient treatment, resulting in improved economic value and clinical outcomes.",
+            "logo": "./logo/Aidoc_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 80,
+            "name": "Aligned",
+            "description": "Create a personalized workspace for each deal, and design a buyer journey that wins quota.",
+            "logo": "./logo/Aligned_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 81,
+            "name": "Anima",
+            "description": "Automated design to code.",
+            "logo": "./logo/Anima_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 82,
+            "name": "Apiiro",
+            "description": "Secure your development and delivery to the cloud",
+            "logo": "./logo/Apiiro_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 83,
+            "name": "Appwrite",
+            "description": "Appwrite is the end-to-end Backend-as-a-Service (BaaS) platform built for web, mobile, native and backend apps.",
+            "logo": "./logo/Appwrite_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 84,
+            "name": "Aqua Security",
+            "description": "As the pioneer in cloud native security, Aqua helps customers reduce risk while building the future of their businesses.",
+            "logo": "./logo/Aqua Security_logo.svg",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 85,
+            "name": "Axonius",
+            "description": "With Axonius, see all assets in context, uncover gaps, and automate action. Get a demo. Give IT and security the confidence to control complexity with Axonius.",
+            "logo": "./logo/Axonius_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 86,
+            "name": "Balance",
+            "description": "Balance is a B2B financial technology company, powering every stage of the business transaction for mid-market and enterprise brands, distributors and marketplaces",
+            "logo": "./logo/Balance_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 87,
+            "name": "BigPanda",
+            "description": "BigPanda keeps businesses running with AIOps that transform IT data into insights and action. BigPanda’s autonomous operations platform enables businesses to prevent IT outages, improve incident management and deliver extraordinary customer experiences.",
+            "logo": "./logo/BigPanda_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 88,
+            "name": "Blink Ops",
+            "description": "Blink is a security automation copilot that generates automated workflows to handle repetitive tasks or enforce security policies – simply by typing a prompt.",
+            "logo": "./logo/Blink Ops_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 89,
+            "name": "Bob",
+            "description": "Bob's HR platform helps modern, dynamic companies drive productivity, engagement, and retention.",
+            "logo": "./logo/Bob_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 90,
+            "name": "Celery",
+            "description": "Celery’s automated audit layer helps finance teams improve cost-efficiency, prevent expensive mistakes & save hours on internal controls.",
+            "logo": "./logo/Celery_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 91,
+            "name": "CEVA",
+            "description": "",
+            "logo": "./logo/CEVA_logo.png",
+            "category": "Semiconductors",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 92,
+            "name": "Chargeflow",
+            "description": "Chargeflow is a data-driven chargeback recovery and prevention solution, using advanced automation technology and AI to boost chargeback recovery rates.",
+            "logo": "./logo/Chargeflow_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 93,
+            "name": "CheckPoint",
+            "description": "A leading provider of cyber security solutions to governments and enterprises globally",
+            "logo": "./logo/CheckPoint_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 94,
+            "name": "Claroty",
+            "description": "Claroty secures the Extended Internet of Things (XIoT) to achieve unmatched visibility, protection, and threat detection across all cyber-physical systems.",
+            "logo": "./logo/Claroty_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 95,
+            "name": "Cloudinary",
+            "description": "A single source of truth for managing the entireimage and video lifecycle trusted by 1.5 milliondevelopers and 10,000 enterprise andhyper-growth companies.",
+            "logo": "./logo/Cloudinary_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 96,
+            "name": "Codium",
+            "description": "With CodiumAI, you get non-trivial tests suggested right inside your IDE, so you can code smart, create more value, and stay confident when you push.",
+            "logo": "./logo/Codium_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "Cody ai",
+                    "description": "كودي هو مساعد ذكي بالذكاء الاصطناعي مثل ChatGPT - مع فائدة إضافية تتمثل في القدرة على تدريبه على أعمالك، وفريقك، وعملياتك، وعملائك باستخدام قاعدة معرفتك الخاصة. استخدم كودي كموظف لدعم فريقك، والرد على الأسئلة، والمساعدة في العمل الإبداعي، وحل المشكلات، والتفكير المشترك في الأفكار.",
+                    "link": "https://meetcody.ai",
+                    "logo": "./logo/cody-ai-logo.svg",
+                    "notes": "Cody is an AI-powered virtual employee that can assist your business in various tasks, such as answering questions, completing tasks, onboarding new hires, providing support and troubleshooting, and bringing new ideas and insights."
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                },
+                {
+                    "name": "عن الموقع",
+                    "link": "https://www.codium.ai/contact"
+                }
+            ]
+        },
+        {
+            "id": 97,
+            "name": "Connecteam",
+            "description": "Connecteam is a time tracking software that offers a multitude of features aimed at improving productivity and increasing team connectivity.",
+            "logo": "./logo/Connecteam_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 98,
+            "name": "Coralogix",
+            "description": "Full stack observability",
+            "logo": "./logo/Coralogix_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 99,
+            "name": "DagsHub",
+            "description": "DagsHub helps AI teams build better models and manage data projects.",
+            "logo": "./logo/DagsHub_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 100,
+            "name": "Dany",
+            "description": "Dany is the autonomous sales agent for businesses. Experience the magic of Dany getting you more customers with just one line of code.",
+            "logo": "./logo/Dany_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 101,
+            "name": "Dealhub",
+            "description": "Accelerate your sales process with a unified revenue platform: CPQ, Contract Management, Subscription Management, Proposals and e-Signature",
+            "logo": "./logo/Dealhub_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 102,
+            "name": "Deel",
+            "description": "Deel is the all-in-one HR platform for global teams. It helps companies simplify every aspect of managing an international workforce.",
+            "logo": "./logo/Deel_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 103,
+            "name": "DeepCure",
+            "description": "Using AI to rethink the science of drug development.",
+            "logo": "./logo/DeepCure_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 104,
+            "name": "Demoleap",
+            "description": "Demoleap is an AI-powered live demo assistant and sales discovery platform empowering sales teams.",
+            "logo": "./logo/Demoleap_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 105,
+            "name": "Descope",
+            "description": "Drag & drop your auth. Improve user onboarding and conversion for your B2C app. Get your B2B app enterprise ready with SSO, RBAC, and SCIM provisioning. Prevent identity fraud and account takeover attacks.",
+            "logo": "./logo/Descope_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 106,
+            "name": "Dig Security",
+            "description": "Dig’s comprehensive solution gives you instant visibility into your data risk in real-time.",
+            "logo": "./logo/Dig Security_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 107,
+            "name": "Draftboard",
+            "description": "Draftboard is where companies publicly post what referral bonus they'll pay for a new hire and Scouts (referrers) compete to earn that referral bonus.",
+            "logo": "./logo/Draftboard_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 108,
+            "name": "Droxi.ai",
+            "description": "Droxi's AI saves doctors 50% of the time by showing the most relevant parameters for each request in their inbox, allowing them to make a fast, informed decisions.",
+            "logo": "./logo/Droxi.ai_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 109,
+            "name": "Eleos Health",
+            "description": "Eleos makes evidence-based behavioral care a reality so clinicians, providers and networks can measurably and comparatively track treatment.",
+            "logo": "./logo/Eleos Health_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 110,
+            "name": "Explorium",
+            "description": "The world's first External Data Platform.",
+            "logo": "./logo/Explorium_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 111,
+            "name": "Fabric",
+            "description": "Future-proof your supply chain and meet customer expectations. Fabric helps you achieve same-day delivery to drive loyalty and revenue.",
+            "logo": "./logo/Fabric_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 112,
+            "name": "Finaloop",
+            "description": "Hands-off, real-time ecommerce accounting service",
+            "logo": "./logo/Finaloop_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 113,
+            "name": "Finout",
+            "description": "Monitor, manage & optimize cloud spend across all cloud providers and services by using Finout's powerful cloud cost management tools.",
+            "logo": "./logo/Finout_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 114,
+            "name": "Fintastic",
+            "description": "The first complete FP&A solution that uses probability science and risk-derived planning to give actionable insights and recommendations.",
+            "logo": "./logo/Fintastic_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 115,
+            "name": "Firebolt",
+            "description": "The cloud data warehouse for sub-second analytics. Deliver the most efficiently fast dashboards and data apps.",
+            "logo": "./logo/Firebolt_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 116,
+            "name": "Firefly",
+            "description": "Instantly manage your cloud with Infrastructure-as-Code. Save time, pay less, and prevent errors.",
+            "logo": "./logo/Firefly_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 117,
+            "name": "Frontegg",
+            "description": "Frontegg is an end-to-end user management platform for B2B SaaS, powering strategies from PLG to enterprise readiness.",
+            "logo": "./logo/Frontegg_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 118,
+            "name": "Fundbox",
+            "description": "Working capital loans for small businesses",
+            "logo": "./logo/Fundbox_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 119,
+            "name": "FundGuard",
+            "description": "AI driven investment fund accounting platform for asset managers & service providers.",
+            "logo": "./logo/FundGuard_logo.png",
+            "category": "Fintech",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 120,
+            "name": "Gelt",
+            "description": "Premium tax solutions. Pay less and keep more.",
+            "logo": "./logo/Gelt_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 121,
+            "name": "Global-e",
+            "description": "Expand your brand worldwide in a simple and cost-effective way, with the world’s leading end-to-end cross-border ecommerce solutions.",
+            "logo": "./logo/Global-e_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 122,
+            "name": "Gloww",
+            "description": "Gloww is the modern way to run your video meetings. With minimal efforts, design and host fully customized stunning and interactive virtual meetings.",
+            "logo": "./logo/Gloww_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 123,
+            "name": "Gong",
+            "description": "Gong captures customer interactions then delivers insights at scale, empowering teams to make decisions based on data instead of opinions.",
+            "logo": "./logo/Gong_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 124,
+            "name": "Graphiti",
+            "description": "Graphiti boosts your revenue engine with an engaging and easy-to-use AI-powered platform.",
+            "logo": "./logo/Graphiti_logo.svg",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 125,
+            "name": "Groove",
+            "description": "The coworking app for creative entrepreneurs looking to level up how they work from home.",
+            "logo": "./logo/Groove_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 126,
+            "name": "GrowthSpace",
+            "description": "Growthspace gives you the power to develop, implement and scale employee development programs",
+            "logo": "./logo/GrowthSpace_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 127,
+            "name": "Habana Labs",
+            "description": "",
+            "logo": "./logo/HabanaLabs_logo.png",
+            "category": "Semiconductors",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 128,
+            "name": "Healthy.io",
+            "description": "Delivering home urinalysis and digitized wound care in minutes.",
+            "logo": "./logo/Healthy.io_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 129,
+            "name": "Honeybook",
+            "description": "Tools for the Modern Creative Professional: Proposals, Contracts, Payments, and More. Manage projects, book clients, send invoices and get paid.",
+            "logo": "./logo/Honeybook_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 130,
+            "name": "Immunai",
+            "description": "Immunai is leveraging our technology platform and patient-derived multi-omic data to drive target and therapeutic discovery.",
+            "logo": "./logo/Immunai_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 131,
+            "name": "Imperva",
+            "description": "End-to-end application and data security.",
+            "logo": "./logo/Imperva_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 132,
+            "name": "Indeitq",
+            "description": "With Identiq's truly anonymous verification network, members fight fraud and improve user experience by validating new users, and vouching for ones they already have.",
+            "logo": "./logo/Indeitq_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 133,
+            "name": "Intail.ai",
+            "description": "Identify champions, track relationships, and turn churn risk accounts into sales opportunities using Intail's AI relationship engine.",
+            "logo": "./logo/Intail.ai_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 134,
+            "name": "Jifiti",
+            "description": "Jifiti is a leading global fintech company that powers white-labeled embedded lending solutions for banks, lenders and merchants worldwide.",
+            "logo": "./logo/Jifiti_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 135,
+            "name": "K Health",
+            "description": "We pair clinicians with advanced AI to provide data-driven, personalized care around the clock. Chat with your medical team today.",
+            "logo": "./logo/K Health_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 136,
+            "name": "Komodor",
+            "description": "The Only Unified, Dev-First Kubernetes Platform. Easily Operate, Troubleshoot & Optimize Your K8s Applications.",
+            "logo": "./logo/Komodor_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 137,
+            "name": "Lightricks",
+            "description": "Experience the magic of creating with the best tools and services for creators.",
+            "logo": "./logo/Lightricks_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 138,
+            "name": "Mapme",
+            "description": "Mapme allows users to create collaborative, customizable maps and embed them on any website, with no coding required.",
+            "logo": "./logo/Mapme_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 139,
+            "name": "Melio",
+            "description": "Melio gives businesses the flexibility to pay vendors, suppliers, and contractors exactly the way they want.",
+            "logo": "./logo/Melio_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 140,
+            "name": "Mellanox",
+            "description": "",
+            "logo": "./logo/Mellanox_logo.png",
+            "category": "Semiconductors",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 141,
+            "name": "Mesh Payments",
+            "description": "Global travel & expense management platform for modern enterprises.",
+            "logo": "./logo/Mesh Payments_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 142,
+            "name": "Mixtiles",
+            "description": "Mixtiles is on a mission to make the most beautiful, affordable and simple wall photos in the world. They rely heavily on design, software, industrial design, and manufacturing know-how to get this done.",
+            "logo": "./logo/Mixtiles_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 143,
+            "name": "Monto",
+            "description": "Monto is the first AI connector designed for collecting on-time payments and real-time data on all transactions, from any AP platform.",
+            "logo": "./logo/Monto_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 144,
+            "name": "myInterview",
+            "description": "myInterview’s Candidate Experience Platform empowers the world’s leading brands to streamline and scale their recruitment.",
+            "logo": "./logo/myInterview_logo.svg",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 145,
+            "name": "myQuest",
+            "description": "myQuest LMS leverages action-based learning, gamification, and social interactions to boost engagement and achieve optimal learning outcomes.",
+            "logo": "./logo/myQuest_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 146,
+            "name": "Navina",
+            "description": "Navina's powerful AI organizes data from multiple sources, enabling clinicians to quickly act to maintain and improve their patients' health status.",
+            "logo": "./logo/Navina_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 147,
+            "name": "Nexite",
+            "description": "Nexite develops a platform that provides item tracking, inventory transparency and business intelligence from manufacturing to the customer's home.",
+            "logo": "./logo/Nexite_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 148,
+            "name": "Nice Systems",
+            "description": "NICE develops intent-based solutions designed to capture and analyze interactions and transactions, realize intent, and extract and leverage insights to enable real-time responses",
+            "logo": "./logo/Nice Systems_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 149,
+            "name": "Noble",
+            "description": "No-code risk decisioning. Power your identity verification, underwriting, and monitoring decisioning at any step of the customer journey, for any financial product.",
+            "logo": "./logo/Noble_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 150,
+            "name": "Noname Security",
+            "description": "The complete AI Security Platform",
+            "logo": "./logo/Noname Security_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 151,
+            "name": "Optimove",
+            "description": "Optimove ensures marketing starts with the customer and not campaign/product. Customer-led marketing delivers brands an average increase of 33% in CLTV.",
+            "logo": "./logo/Optimove_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 152,
+            "name": "Pagaya",
+            "description": "AI-powered credit analysis. More credit approvals without undue risk. It's all possible when you partner with Pagaya.",
+            "logo": "./logo/Pagaya_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 153,
+            "name": "Panoray",
+            "description": "Panorays is a provider of third-party security risk management software, offered as a SaaS-based platform.",
+            "logo": "./logo/Panoray_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 154,
+            "name": "Papaya Global",
+            "description": "Papaya integrates your entire global workforce and payroll management onto a single global platform connecting you to a network of verified local vendors.",
+            "logo": "./logo/Papaya Global_logo.png",
+            "category": "HR",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 155,
+            "name": "PayEm",
+            "description": "Global procurement and spend management platform that automates finance and procurement processes from request to reconciliation.",
+            "logo": "./logo/PayEm_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 156,
+            "name": "PDQ",
+            "description": "Software to make your sales grow and deliveries flow. Get an Amazon-like checkout and delivery experience.",
+            "logo": "./logo/PDQ_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 157,
+            "name": "PeerSpot",
+            "description": "Review site for enterprise technology. Providing bottom of funnel leads and intent data to marketing teams.",
+            "logo": "./logo/PeerSpot_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 158,
+            "name": "Permit.io",
+            "description": "Full Stack Permissions as a service. Check authorization as done, focus on your core product.",
+            "logo": "./logo/Permit.io_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 159,
+            "name": "Placer.ai",
+            "description": "Make smarter real estate decisions and close more deals with Placer.ai's location intelligence and foot traffic insights.",
+            "logo": "./logo/Placer.ai_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 160,
+            "name": "Powtoon",
+            "description": "Cloud-based animation software for creating animated presentations and animated explainer videos.",
+            "logo": "./logo/Powtoon_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 161,
+            "name": "Qwak",
+            "description": "A fully managed platform that unifies ML engineering and data operations.",
+            "logo": "./logo/Qwak_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 162,
+            "name": "Radware",
+            "description": "",
+            "logo": "./logo/Radware_logo.png",
+            "category": "Hardware",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 163,
+            "name": "Rapyd",
+            "description": "Accept payments, send payouts, issue cards and embed fintech anywhere.",
+            "logo": "./logo/Rapyd_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 164,
+            "name": "Receive",
+            "description": "Instant Liquidity for your Business, Accesses, Anywhere, Anytime for Free!",
+            "logo": "./logo/Receive_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 165,
+            "name": "Regatta Data",
+            "description": "Regatta is the world's first scale-out OLxP database. Regatta adapts and morphs to the needs of your application, not the other way around.",
+            "logo": "./logo/Regatta Data_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 166,
+            "name": "Ritual",
+            "description": "Relationship guidance should be schedule-friendly, easy-to-follow and affordable.",
+            "logo": "./logo/Ritual_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 167,
+            "name": "Riverside.fm",
+            "description": "Riverside.fm makes it easy for podcasters and media companies to record remote interviews in studio quality.",
+            "logo": "./logo/Riverside.fm_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 168,
+            "name": "Rivery",
+            "description": "Provides a fully-managed solution for data ingestion, data transformation, data orchestration, reverse ETL and more",
+            "logo": "./logo/Rivery_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 169,
+            "name": "Rupert",
+            "description": "Data-Driven Alerts, Simplified. Create custom alerts that your stakeholders will love. No engineering or development ever required. It's time to let your data shine.",
+            "logo": "./logo/Rupert_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 170,
+            "name": "Salt Security",
+            "description": "The Salt API security platform discovers all APIs and their exposed data, stops attackers in their tracks, and provides remediation insights for dev teams.",
+            "logo": "./logo/Salt Security_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 171,
+            "name": "Salto",
+            "description": "Salto translates your business applications’ configuration into text, allowing you\nto search, compare, test, deploy, and track changes across your environments",
+            "logo": "./logo/Salto_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 172,
+            "name": "Sentra",
+            "description": "Platform that discovers and classifies sensitive data, continuously analyzes your data security controls.",
+            "logo": "./logo/Sentra_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 173,
+            "name": "Silverfort",
+            "description": "Silverfort’s authentication platform for enterprises is capable of enforcing adaptive authentication (AI-based) across the entire corporate network & cloud, without changing endpoints or servers.",
+            "logo": "./logo/Silverfort_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 174,
+            "name": "Similarweb",
+            "description": "Get in-depth insights on any website you visit.",
+            "logo": "./logo/Similarweb_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 175,
+            "name": "Stuff That Works",
+            "description": "We're building the biggest patient reported knowledge base for every chronic condition.",
+            "logo": "./logo/Stuff That Works_logo.png",
+            "category": "Healthcare",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 176,
+            "name": "Substrata",
+            "description": "AI-Powered Behavioral Intelligence for Professional Dealmakers.",
+            "logo": "./logo/Substrata_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 177,
+            "name": "Sweep",
+            "description": "Sweep enables you to customize and scale any Salesforce configuration, without the dev time.",
+            "logo": "./logo/Sweep_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 178,
+            "name": "Swimm",
+            "description": "Swimm is a knowledge management tool for code, built for dev teams committed to effective knowledge sharing.",
+            "logo": "./logo/Swimm_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 179,
+            "name": "Talon",
+            "description": "Talon Cyber Security provides cybersecurity solutions for the distributed workforce.",
+            "logo": "./logo/Talon_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 180,
+            "name": "TimeOS",
+            "description": "Personalized AI for meeting notes & scheduling.",
+            "logo": "./logo/TimeOS_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 181,
+            "name": "Tolstoy",
+            "description": "Create and host videos without impacting site speed. Engage your customers and boost sales with Tolstoy's interactive and shoppable video platform.",
+            "logo": "./logo/Tolstoy_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 182,
+            "name": "Trendemon",
+            "description": "Trendemon is a B2B Personalization and Journey Orchestration platform that uses AI to automatically optimize buyer journeys and increase conversion rates.",
+            "logo": "./logo/Trendemon_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 183,
+            "name": "Trigo",
+            "description": "Leveraging smart sensors to enable frictionless checkout and deliver data insights that drive revenue and optimize store operations.",
+            "logo": "./logo/Trigo_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 184,
+            "name": "TripleWhale",
+            "description": "TripleWhale is an app used by e-commerce businesses to track profits, blended ROAS, LTV, and much more.",
+            "logo": "./logo/TripleWhale_logo.png",
+            "category": "Marketing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 185,
+            "name": "Trullion",
+            "description": "Trullion is a platform that uses AI to automate workflows for finance and audit teams.",
+            "logo": "./logo/Trullion_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 186,
+            "name": "Tufin",
+            "description": "Global network security, continuous compliance.",
+            "logo": "./logo/Tufin_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 187,
+            "name": "Unit",
+            "description": "Unit is the platform that helps leading tech companies store, move, and lend money. Unlock new revenue streams and delight your customers.",
+            "logo": "./logo/Unit_logo.png",
+            "category": "Finance",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 188,
+            "name": "Verbit",
+            "description": "Verbit’s voice AI and human solutions help customers to offer engaging and equitable experiences. Verbit not only supports them in meeting accessibility guidelines, but in making verbal information searchable and actionable.",
+            "logo": "./logo/Verbit_logo.png",
+            "category": "Productivity",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 189,
+            "name": "Walkme",
+            "description": "Create people-first, frictionless experiences across apps and workflows to improve software adoption.",
+            "logo": "./logo/Walkme_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                },
+                {
+                    "name": "LinkedIn",
+                    "link": "https://il.linkedin.com/in/yuvalozanna"
+                }
+            ]
+        },
+        {
+            "id": 190,
+            "name": "Walnut",
+            "description": "Interactive demo platform that helps you demo your product. It provides a simple, clean interface for you to walk through your product's features and benefits.",
+            "logo": "./logo/Walnut_logo.png",
+            "category": "Sales",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 191,
+            "name": "Wilco",
+            "description": "Accelerate your professional development with Wilco. Improve engineering skills by solving hands-on dev challenges that simulate real-world scenarios.",
+            "logo": "./logo/Wilco_logo.png",
+            "category": "Development",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 192,
+            "name": "Wiz",
+            "description": "Agentless cloud security and compliance for AWS, Azure, Google Cloud, and Kubernetes.",
+            "logo": "./logo/Wiz_logo.png",
+            "category": "Security",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 193,
+            "name": "Zesty",
+            "description": "Cloud cost optimization tools allow you to slash cloud costs & reduce manual effort while maintaining perfect app performance.",
+            "logo": "./logo/Zesty_logo.png",
+            "category": "Cloud",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 194,
+            "name": "8fig",
+            "description": "8fig provides a development planning and funding platform for e-commerce sellers accelerating their path to growth",
+            "logo": "./logo/8fig_logo.png",
+            "category": "Commerce",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "./logo/",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Buy Israeli Tech",
+                    "link": "https://buyisraelitech.com/database"
+                }
+            ]
+        },
+        {
+            "id": 195,
+            "name": "riverside",
+            "description": "شركة تقدم حلول تسجيل البودكاست والمقابلات عن بعد",
+            "logo": "./logo/riverside-logo.jpeg",
+            "notes": "المنصة التي يستخدمها بودكاست syntax.fm مثلا للتسجيل",
+            "category": "SaaS",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "عن الموقع",
+                    "link": "https://riverside.fm/about"
+                }
+            ]
+        },
+        {
+            "id": 196,
+            "name": "PractiTest",
+            "description": "End-to-End Test Management Platform",
+            "logo": "./logo/",
+            "notes": "",
+            "category": "Software testing",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "عن الموقع",
+                    "link": "https://www.practitest.com/about-us/"
+                }
+            ]
+        },
+        {
+            "id": 197,
+            "name": "Zencity",
+            "description": "مساعدة حكومات والبلديات المحلية على بناء الثقة مع مجتمعاتهم",
+            "logo": "./logo/",
+            "notes": "تقوم الشركة بتحليل المنشورات العامة على السوشال ميديا باستخدام الذكاء الاصطناعي لاظهار اهتمامات الناس ومعرفة مشاكلهم واحتياجاتهم وحلها اولا بأول",
+            "category": "AI",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "عن الموقع",
+                    "link": "https://www.practitest.com/about-us/"
+                }
+            ]
+        },
+        {
+            "id": 198,
+            "name": "Sapiens",
+            "description": "Sapiens International Corporation (NASDAQ and TASE: SPNS) empowers the financial sector, with a focus on insurance, to transform and become digital, innovative, and agile. (Software solutions company)",
+            "logo": "./logo/",
+            "notes": "تقوم الشركة بتحليل المنشورات العامة على السوشال ميديا باستخدام الذكاء الاصطناعي لاظهار اهتمامات الناس ومعرفة مشاكلهم واحتياجاتهم وحلها اولا بأول",
+            "category": "Software",
+            "alternatives": [
+                {
+                    "name": "",
+                    "description": "",
+                    "link": "",
+                    "logo": "",
+                    "notes": ""
+                }
+            ],
+            "resources": [
+                {
+                    "name": "Wikipedia",
+                    "link": "https://en.wikipedia.org/wiki/Sapiens_International_Corporation"
+                }
+            ]
+        }
+    ]
+}

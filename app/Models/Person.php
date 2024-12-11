@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\HasTags;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,18 +16,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-/**
- * @property int $id
- * @property string $name
- * @property string $avatar
- * @property string $job_title
- * @property Carbon $approved_at
- * @property string $location
- * @property string $biography
- * @property string $social_links
- * @property Carbon $created_at
- * @property Carbon $updated_at
- */
 class Person extends Model implements HasMedia
 {
     use HasFactory;
@@ -44,11 +31,10 @@ class Person extends Model implements HasMedia
     protected $fillable = [
         'name',
         'slug',
-        'avatar',
         'job_title',
         'approved_at',
         'location',
-        'biography',
+        'notes',
         'social_links',
         'url',
         'description',
@@ -60,6 +46,7 @@ class Person extends Model implements HasMedia
             'id' => 'integer',
             'approved_at' => 'timestamp',
             'social_links' => 'array',
+            'notes' => 'collection',
         ];
     }
 
@@ -112,31 +99,31 @@ class Person extends Model implements HasMedia
             ->addMediaConversion('optimized')
             ->optimize()
             ->format('webp');
-    }
+        }
 
-    /**
-     * Scopes
-     */
-    public function scopeNonEmptyAvatar(Builder $query): Builder
-    {
-        return $query->whereRaw("avatar IS NOT NULL and avatar != ''");
-    }
+        public function registerMediaCollections(): void
+        {
+            $this->addMediaCollection('default')->singleFile();
+        }
 
-    public function scopeApproved(Builder $query): Builder
-    {
-        return $query->whereNotNull('approved_at');
-    }
+        /**
+         * Scopes
+         */
+        public function scopeApproved(Builder $query): Builder
+        {
+            return $query->whereNotNull('approved_at');
+        }
 
-    /**
-     * Relations
-     */
-    public function companies(): BelongsToMany
-    {
-        return $this->belongsToMany(Company::class);
-    }
+        /**
+         * Relations
+         */
+        public function companies(): BelongsToMany
+        {
+            return $this->belongsToMany(Company::class);
+        }
 
-    public function resources(): MorphMany
-    {
-        return $this->morphMany(Resource::class, 'resourceable');
-    }
+        public function resources(): MorphMany
+        {
+            return $this->morphMany(Resource::class, 'resourceable');
+        }
 }

@@ -1,6 +1,8 @@
 <header class="px-6 pt-10">
     <div class="flex items-center justify-between">
-        <a href="{{ route('home') }}" class="text-4xl font-extrabold">The BSD</a>
+        <a href="{{ route('home') }}" class="text-4xl font-extrabold">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-[100px]" />
+        </a>
 
         <!-- Mobile menu button -->
         <button class="lg:hidden" onclick="toggleMenu()">
@@ -34,6 +36,14 @@
                         class="{{ request()->is('investors') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
                     >
                         Investors
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="{{ route('similar-sites') }}"
+                        class="{{ request()->is('similar-sites') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
+                    >
+                        Similar Sites
                     </a>
                 </li>
             </ul>
@@ -72,6 +82,14 @@
                     class="{{ request()->is('investors') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
                 >
                     Investors
+                </a>
+            </li>
+            <li>
+                <a
+                    href="{{ route('similar-sites') }}"
+                    class="{{ request()->is('similar-sites') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
+                >
+                    Similar Sites
                 </a>
             </li>
             <li>

@@ -23,6 +23,8 @@ class OfficeLocationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-map-pin';
 
+    protected static ?string $navigationGroup = 'Companies';
+
     public static function form(Form $form): Form
     {
         return $form

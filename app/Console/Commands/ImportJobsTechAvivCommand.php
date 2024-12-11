@@ -16,7 +16,7 @@ class ImportJobsTechAvivCommand extends Command
 
     public function handle(): void
     {
-        $files = glob(storage_path('app/private/6-jobs*.json'));
+        $files = glob(database_path('seeders/data/6-jobs*.json'));
 
         foreach ($files as $file) {
 
@@ -37,6 +37,7 @@ class ImportJobsTechAvivCommand extends Command
                     $company = Company::query()->create([
                         'name' => data_get($job, 'companyName'),
                         'url' => data_get($job, 'companyDomain'),
+                        'approved_at' => now(),
                     ]);
                 }
 

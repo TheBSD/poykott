@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use function App\Helpers\get_image_archive_path;
+
 class DownloadImportedICompaniesImagesCommand extends Command
 {
     /**
@@ -44,6 +46,17 @@ class DownloadImportedICompaniesImagesCommand extends Command
         $progressBar = $this->output->createProgressBar(
             Company::query()->has('logo')->count()
         );
+
+        //$companyImagePath = get_image_archive_path(data_get($data, 'logo'), 'companies');
+        //
+        //if (!add_image_for_model($companyImagePath, $company)) {
+        //    dump("Failed to add image to model ".get_class($company).":".$company->id);
+        //
+        //    //if (Str::isUrl(data_get($data, 'logo'))) {
+        //    //    dump("\n Try to Download it from Url..");
+        //    //    $company->addMediaFromUrl(data_get($data, 'logo'));
+        //    //}
+        //}
 
         Company::query()
             ->withWhereHas('logo', function ($query): void {

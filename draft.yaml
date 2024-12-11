@@ -1,198 +1,190 @@
 #models:
-#    Company:
+#    SimilarSiteCategory:
+#      name: string
+#      description: text nullable
 #
 #      relationships:
-#        belongsToMany: OfficeLocation
+#        HasMany: SimilarSite
 
-#  OfficeLocation:
-#    name: string
-#    lat: decimal nullable
-#    lng: decimal nullable
+##  OfficeLocation:
+##    name: string
+##    lat: decimal nullable
+##    lng: decimal nullable
+##
+##    relationships:
+##       belongsTo: Company
+##
+#seeders: SimilarSiteCategory
 #
-#    relationships:
-#       belongsTo: Company
 #
-#seeders: OfficeLocation
-
-
-#  Resource:
-#    title: string
-#    type: string
-#    description: nullable text
-#    url: string
+##  Resource:
+##    title: string
+##    type: string
+##    description: nullable text
+##    url: string
+##
+##    relationships:
+##      hasMany: Company
+##
+##  Category:
+##    title: string
+##    description: nullable text
+##
+##    relationships:
+##      hasMany: Company
+##
+##  ExitStrategy:
+##   title: string
+##   description: nullable text
+##
+##   relationships:
+##     hasMany: Company
+##
+##  Company:
+##    exit_strategy_id: nullable foreign
+##
+##    approved_at: nullable timestamp
+##    name: string
+##    slug: string unique index
+##    description: nullable text
+##    logo: nullable string
+##    notes: nullable text
+##    valuation: nullable integer
+##    exit_valuation: nullable integer
+##    stock_symbol: nullable string
+##    url: string
+##    total_funding: nullable integer
+##    last_funding_date: nullable date
+##    headquarter: nullable string
+##    founded_at: nullable date
+##    office_locations: nullable json
+##    employee_count: nullable integer
+##
+##    relationships:
+##     belongsTo: Category, ExitStrategy
+##     belongsToMany: Person, Alternative
+##     hasMany: CompanyResources
+##
+##  Alternative:
+##     name: string
+##     description: nullable text
+##     approved_at: nullable timestamp
+##     logo: nullable string
+##     notes: nullable text
+##     url: string
+##
+##     relationships:
+##       belongsToMany: Company
+##
+##  CompanyResources:
+##     company_id: foreign
+##     title: string
+##     url: string
+##
+##     relationships:
+##       belongsTo: Company
+##
+##  Person:
+##     name: string
+##     job_title: nullable string
+##     approved_at: nullable timestamp
+##     location: nullable string
+##     biography: nullable text
+##     social_links: nullable json
+##
+##     relationships:
+##       belongsToMany: Company
+##
+##  PersonResources:
+##     person_id: foreign
+##     title: string
+##     url: string
+##
+##  Tag:
+##     name: string unique # get from parent_stages,
+##     slug: string unique index
+##
+##  Taggable:
+##     tag_id: foreign
+##     taggable: morphs
 #
-#  FundingLevel:
-#    title: string
-#    description: nullable text
 #
-#    relationships:
-#      hasMany: Company
+##  Investor:
+##    name: string
+##    description: nullable text
+##    url: nullable string
+##    logo: nullable string
+##
+##    relationships:
+##       belongsToMany: Company
 #
-#  CompanySize:
-#    title: string
-#    description: nullable text
+##seeders: Investor
 #
-#    relationships:
-#      hasMany: Company
+##seeders: User, Resource, Category, ExitStrategy, Company, Alternative, CompanyResources, Person, PersonResources, Tag, Taggable
 #
-#  Category:
-#    title: string
-#    description: nullable text
+## relationships
+## - resourceable (morph Company/Person to Resource)
+## - investors (many-to-many relationship between Company and Person or Investor) from top investors
+## - tags (or sectors; consider using a pivot table for many-to-many relationships). from parent_stages, from  funding_stages
+## - company_parent for parent and children belongs to many
 #
-#    relationships:
-#      hasMany: Company
 #
-#  ExitStrategy:
-#   title: string
-#   description: nullable text
+#controllers:
+#  SimilarSite:
+#    index:
+#      query: all
+#      render: similar_sites.index
 #
-#   relationships:
-#     hasMany: Company
+##   Company:
+##     index:
+##       query: all
+##       render: company.index with company
+##     show:
+##        query: all:alternatives
+##        render: company.show with company,alternatives
+##     create:
+##       render: company.create
+##     store:
+##         validate: exit_strategy_id, company_size_, approved_at, name, slug, description, logo, notes, valuation, exit_valuation, stock_symbol, url, total_funding, last_funding_date, headquarter, founded_at, office_locations, employee_count
+##         save: company
+##         dispatch: AddCompany with:company
+##         flash: company.name
+##         notify: user.first ReviewCompany with:company
+##         redirect: company.index
+##
+##   Resource:
+##        index:
+##          query: all
+##          render: resource.index with resources
+##        create:
+##          render: resource.create
+##        store:
+##          validate: title, type, description, url
+##          save: resource
+##          dispatch: AddCompany with:resource
+##          flash: resource.title
+##          notify: user.first ReviewCompany with:resource
+##          redirect: resource.index
+##
+##   Alternative:
+##     create:
+##       render: alternative.create
+##     store:
+##       validate: name, description, logo, notes, url
+##       save: alternative
+##       dispatch: AddCompany with:alternative
+##       flash: alternative.name
+##       notify: user.first ReviewCompany with:alternative
+##       redirect: company.show with alternative.company
 #
-#  Company:
-#    category_id: foreign
-#    exit_strategy_id: nullable foreign
-#    funding_level_id: nullable integer
-#    company_size_id: nullable integer
-#
-#    approved_at: nullable timestamp
-#    name: string
-#    slug: string unique index
-#    description: nullable text
-#    logo: nullable string
-#    notes: nullable text
-#    valuation: nullable integer
-#    exit_valuation: nullable integer
-#    stock_symbol: nullable string
-#    url: string
-#    total_funding: nullable integer
-#    last_funding_date: nullable date
-#    headquarter: nullable string
-#    founded_at: nullable date
-#    office_locations: nullable json
-#    employee_count: nullable integer
-#
-#    relationships:
-#     belongsTo: Category, ExitStrategy, CompanySize, FundingLevel
-#     belongsToMany: Person, Alternative
-#     hasMany: CompanyResources
-#
-#  Alternative:
-#     name: string
-#     description: nullable text
-#     approved_at: nullable timestamp
-#     logo: nullable string
-#     notes: nullable text
-#     url: string
-#
-#     relationships:
-#       belongsToMany: Company
-#
-#  CompanyResources:
-#     company_id: foreign
-#     title: string
-#     url: string
-#
-#     relationships:
-#       belongsTo: Company
-#
-#  Person:
-#     name: string
-#     avatar: nullable string
-#     job_title: nullable string
-#     approved_at: nullable timestamp
-#     location: nullable string
-#     biography: nullable text
-#     social_links: nullable json
-#
-#     relationships:
-#       belongsToMany: Company
-#
-#  PersonResources:
-#     person_id: foreign
-#     title: string
-#     url: string
-#
-#  Tag:
-#     name: string unique # get from parent_stages,
-#     slug: string unique index
-#
-#  Taggable:
-#     tag_id: foreign
-#     taggable: morphs
-
-
-#  Investor:
-#    name: string
-#    description: nullable text
-#    url: nullable string
-#    logo: nullable string
-#
-#    relationships:
-#       belongsToMany: Company
-
-#seeders: Investor
-
-#seeders: User, Resource, FundingLevel, CompanySize, Category, ExitStrategy, Company, Alternative, CompanyResources, Person, PersonResources, Tag, Taggable
-
-# relationships
-# - resourceable (morph Company/Person to Resource)
-# - investors (many-to-many relationship between Company and Person or Investor) from top investors
-# - tags (or sectors; consider using a pivot table for many-to-many relationships). from parent_stages, from  funding_stages
-# - company_parent for parent and children belongs to many
-
-
-controllers:
-#   Company:
-#     index:
-#       query: all
-#       render: company.index with company
-#     show:
-#        query: all:alternatives
-#        render: company.show with company,alternatives
-#     create:
-#       render: company.create
-#     store:
-#         validate: category_id, exit_strategy_id, funding_level_id, company_size_, approved_at, name, slug, description, logo, notes, valuation, exit_valuation, stock_symbol, url, total_funding, last_funding_date, headquarter, founded_at, office_locations, employee_count
-#         save: company
-#         dispatch: AddCompany with:company
-#         flash: company.name
-#         notify: user.first ReviewCompany with:company
-#         redirect: company.index
-#
-#   Resource:
-#        index:
-#          query: all
-#          render: resource.index with resources
-#        create:
-#          render: resource.create
-#        store:
-#          validate: title, type, description, url
-#          save: resource
-#          dispatch: AddCompany with:resource
-#          flash: resource.title
-#          notify: user.first ReviewCompany with:resource
-#          redirect: resource.index
-#
-#   Alternative:
-#     create:
-#       render: alternative.create
-#     store:
-#       validate: name, description, logo, notes, url
-#       save: alternative
-#       dispatch: AddCompany with:alternative
-#       flash: alternative.name
-#       notify: user.first ReviewCompany with:alternative
-#       redirect: company.show with alternative.company
-
-#   Investor:
-#     index:
-#       query: all
-#       render: investors.index with investors
-#     store:
-#       validate: name, description, url, logo
-#       save: investor
-#       dispatch: AddInvestor with:investor
-#       flash: investor.name
-#       notify: user.first ReviewInvestor with:investor
-#       redirect: investors.index
+##   Investor:
+##     index:
+##       query: all
+##       render: investors.index with investors
+##     store:
+##       validate: name, description, url, logo
+##       save: investor
+##       dispatch: AddInvestor with:investor
+##       flash: investor.name
+##       notify: user.first ReviewInvestor with:investor
+##       redirect: investors.index

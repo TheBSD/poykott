@@ -12,10 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->timestamp('approved_at')->nullable();
+            $table->timestamp('approved_at')->nullable()->index();
             $table->text('description')->nullable();
             $table->string('url')->nullable();
-            //$table->string('logo')->nullable();
             $table->timestamps();
         });
     }

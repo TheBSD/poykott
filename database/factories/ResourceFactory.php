@@ -26,9 +26,8 @@ class ResourceFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(4),
             'type' => fake()->randomElement(ResourceType::values()),
-            'description' => fake()->text(),
+            'notes' => fake()->text(),
             'url' => fake()->url(),
             'resourceable_id' => fake()->numberBetween(1, 3),
             'resourceable_type' => fake()->randomElement([
