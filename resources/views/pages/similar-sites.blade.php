@@ -20,7 +20,7 @@
                     <ul>
                         <div class="grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                             @foreach ($sites as $parent)
-                                @if ($parent->parent_id === null)
+                                @if (isset($parent->parent_id) && $parent->parent_id === null)
                                     <h3 class="text-lg font-bold">#{{ $parent->name }}</h3>
                                     <p class="text-gray-600">{{ $parent->description }}</p>
                                     @if ($parent->children()->exists())

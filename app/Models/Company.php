@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
 use Spatie\MediaLibrary\HasMedia;
@@ -105,7 +104,7 @@ class Company extends Model implements HasMedia
     }
 
     /**
-     * Casts
+     * The attributes that should be cast to native types.
      */
     protected function casts(): array
     {

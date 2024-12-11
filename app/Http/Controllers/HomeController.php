@@ -13,28 +13,31 @@ class HomeController extends Controller
     {
         $companies = Company::query()
             ->with([
-                //'logo:id,imageable_id,path',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'name')->limit(3);
                 },
             ])
             ->approved()
-            ->paginate(20, ['companies.id', 'name', 'description', 'slug']);
+            ->paginate(20, ['companies.id', 'name', 'description', 'slug', 'image_path']);
 
         return view('home', ['companies' => $companies]);
     }
 
     public function loadMore(Request $request)
     {
-        $companies = Company::query()
-            ->with([
-                'logo:id,imageable_id,path',
-                'tagsRelation' => function ($query): void {
-                    $query->select('tags.id', 'name')->limit(3);
-                },
-            ])
+        $companies = Company::with([
+            'tagsRelation' => function ($query): void {
+                $query->select('tags.id', 'name')->limit(3);
+            },
+        ])
             ->approved()
-            ->paginate(20, ['companies.id', 'name', 'description', 'slug'], 'page', $request->page);
+            ->paginate(20, ['companies.id', 'name', 'description', 'slug']);
+
+        $companies->getCollection()->transform(function ($company) {
+            $company->image_path = $company->imagePath;
+
+            return $company;
+        });
 
         return response()->json(['companies' => $companies]);
     }
@@ -44,7 +47,6 @@ class HomeController extends Controller
         $search = $request->input('search');
         $companies = Company::query()
             ->with([
-                //'logo:id,imageable_id,path',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'name')->limit(3);
                 },
@@ -53,6 +55,12 @@ class HomeController extends Controller
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['companies.id', 'name', 'description', 'slug']);
+
+        $companies->getCollection()->transform(function ($company) {
+            $company->image_path = $company->imagePath;
+
+            return $company;
+        });
 
         return response()->json(['companies' => $companies]);
     }
@@ -77,7 +85,9 @@ class HomeController extends Controller
 
     public function similarSites()
     {
-        $similarSites = SimilarSite::with('children')->get();
+        $similarSites = SimilarSite::
+            // with('children')->
+            get();
 
         return view('pages.similar-sites', ['sites' => $similarSites]);
     }
