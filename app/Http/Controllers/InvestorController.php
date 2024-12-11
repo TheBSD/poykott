@@ -14,9 +14,7 @@ class InvestorController extends Controller
                 'tagsRelation' => function ($query) {
                     $query->select('tags.id', 'tags.name');
                 },
-                'media' => function ($query) {
-                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
-                }])
+            ])
             ->paginate(20, ['investors.id', 'name', 'description', 'slug']);
 
         return view('investors.index', ['investors' => $investors]);
@@ -27,11 +25,7 @@ class InvestorController extends Controller
         $investor->load([
             'resources:id,resourceable_id,url',
             'companies' => function ($query): void {
-                $query->with([
-                    'media' => function ($query) {
-                        $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
-                    }])
-                    ->select('id', 'name', 'description', 'slug');
+                $query->select('id', 'name', 'description', 'slug');
             },
         ]);
 
@@ -44,11 +38,14 @@ class InvestorController extends Controller
             ->with([
                 'tagsRelation' => function ($query) {
                     $query->select('tags.id', 'tags.name');
-                },
-                'media' => function ($query) {
-                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
                 }])
             ->paginate(20, ['investors.id', 'name', 'description', 'slug'], 'page', $request->page);
+
+        $investors->getCollection()->transform(function ($investor) {
+            $investor->image_path = $investor->imagePath;
+
+            return $investor;
+        });
 
         return response()->json(['investors' => $investors]);
     }
@@ -61,12 +58,16 @@ class InvestorController extends Controller
                 'tagsRelation' => function ($query) {
                     $query->select('tags.id', 'tags.name');
                 },
-                'media' => function ($query) {
-                    $query->select('id', 'model_id', 'model_type', 'disk', 'file_name', 'generated_conversions', 'collection_name');
-                }])
+            ])
             ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->paginate(40, ['investors.id', 'name', 'description', 'slug']);
+
+        $investors->getCollection()->transform(function ($investor) {
+            $investor->image_path = $investor->imagePath;
+
+            return $investor;
+        });
 
         return response()->json(['investors' => $investors]);
     }

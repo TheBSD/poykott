@@ -45,9 +45,7 @@
                     class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:scale-105 hover:border-blue-500 hover:bg-gray-50 hover:shadow-lg"
                 >
                     <div class="flex items-center justify-between">
-                        @if ($investor->getFirstMediaUrl())
-                            <img src="{{ $investor->getFirstMediaUrl() }}" width="100" alt="logo" loading="lazy" />
-                        @endif
+                        <img src="{{ $investor->image_path }}" width="100" alt="logo" loading="lazy" />
 
                         <h3 class="text-xl font-semibold">{{ $investor->name }}</h3>
                     </div>
@@ -77,7 +75,7 @@
             return `
                 <a href="/investors/${investor.slug}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
                     <div class="flex items-center justify-between">
-                        ${investor.media?.[0]?.original_url ? `<img src="${investor.media?.[0]?.original_url}" width="100" alt="logo" loading="lazy">` : ''}
+                        <img src="${investor.image_path}" width="100" alt="logo" loading="lazy">
                         <h3 class="text-xl font-semibold">${investor.name}</h3>
                     </div>
                     <p class="text-gray-400">${investor.description?.substring(0, 100) ?? ''}</p>
