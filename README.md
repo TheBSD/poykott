@@ -72,3 +72,9 @@ run `php artisan key:generate`
 ```
 
 > This will download some of the companies and people images to be as close as possible to the online system
+
+## How to Contribute
+
+-   go to [todo](./todo.md) file and pick one of the todo items and push it as a pull request
+-   share our links in social media
+-   enrich our database with your contributions especially for alternatives
