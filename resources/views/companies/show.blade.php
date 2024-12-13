@@ -17,7 +17,7 @@
                     <img
                         src="{{ $company->image_path }}"
                         alt="{{ $company->name }}"
-                        class="h-24 w-24 rounded-lg object-cover"
+                        class="h-24 w-24 rounded-lg object-scale-down"
                     />
                     {{-- @endif --}}
 
