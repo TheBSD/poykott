@@ -31,4 +31,6 @@ enum ResourceType: string
     case BuyIsraeliTech = 'buyisraelitech';
 
     case FromUsers = 'from_users';
+
+    case Crunchbase = 'crunchbase';
 }
