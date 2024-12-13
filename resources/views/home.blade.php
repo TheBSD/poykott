@@ -42,7 +42,7 @@
             @foreach ($companies as $company)
                 <a
                     href="{{ route('companies.show', $company) }}"
-                    class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:scale-105 hover:border-blue-500 hover:bg-gray-50 hover:shadow-lg"
+                    class="block space-y-2 rounded-lg border border-blue-700 bg-white p-4 transition duration-300 ease-in-out hover:scale-105 hover:border-blue-500 hover:bg-gray-50 hover:shadow-lg"
                 >
                     <div class="flex items-center justify-between">
                         <img src="{{ $company->image_path }}" width="100" alt="logo" loading="lazy" />
@@ -75,7 +75,7 @@
     <script>
         function createCompanyCard(company) {
             return `
-                <a href="/companies/${company.slug}" class="block space-y-2 rounded-lg border border-blue-700 p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
+                <a href="/companies/${company.slug}" class="block space-y-2 rounded-lg border border-blue-700 bg-white p-4 transition duration-300 ease-in-out hover:border-blue-500 hover:shadow-lg hover:scale-105 hover:bg-gray-50">
                     <div class="flex items-center justify-between">
                         <img src="${company.image_path}" width="100" alt="logo" loading="lazy">
                         <h3 class="text-xl font-semibold">${company.name}</h3>
