@@ -58,7 +58,7 @@ class CompanyResource extends Resource
                         ]),
                     ]),
                 TextInput::make('headquarter'),
-                TextInput::make('valuation')->nullable()->numeric(),
+                TextInput::make('valuation')->nullable(),
                 TextInput::make('exit_valuation')->nullable(),
                 Select::make('exit_strategy_id')
                     ->relationship('exitStrategy', 'title'),
@@ -96,7 +96,7 @@ class CompanyResource extends Resource
                     ->color('info'),
                 IconColumn::make('approved_at')->label('Approved')
                     ->boolean(fn (Company $record): bool => $record->approved_at !== null),
-                TextColumn::make('valuation')->numeric()->sortable(),
+                TextColumn::make('valuation')->sortable(),
                 TextColumn::make('exit_valuation')->numeric()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('exitStrategy.title')->numeric()->sortable()
