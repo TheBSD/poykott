@@ -51,7 +51,7 @@
                                         <img
                                             src="{{ $founder->image_path }}"
                                             alt="avatar"
-                                            class="h-24 w-24 rounded-full"
+                                            class="h-24 w-24 rounded-full object-cover"
                                         />
 
                                         <div>
