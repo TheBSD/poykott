@@ -33,4 +33,6 @@ enum ResourceType: string
     case FromUsers = 'from_users';
 
     case Crunchbase = 'crunchbase';
+
+    case StartupNationFinder = 'startup_nation_finder';
 }
