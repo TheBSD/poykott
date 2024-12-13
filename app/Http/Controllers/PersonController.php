@@ -11,6 +11,7 @@ class PersonController extends Controller
     {
         $people = Person::query()
             ->with([
+                'media',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'tags.name');
                 },
@@ -41,6 +42,7 @@ class PersonController extends Controller
     {
         $people = Person::query()
             ->with([
+                'media',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'tags.name');
                 },
@@ -62,6 +64,7 @@ class PersonController extends Controller
         $search = $request->input('search');
         $people = Person::query()
             ->with([
+                'media',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'tags.name');
                 },

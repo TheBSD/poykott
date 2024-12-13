@@ -13,6 +13,7 @@ class HomeController extends Controller
     {
         $companies = Company::query()
             ->with([
+                'media',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'name')->limit(3);
                 },
@@ -26,6 +27,7 @@ class HomeController extends Controller
     public function loadMore(Request $request)
     {
         $companies = Company::with([
+            'media',
             'tagsRelation' => function ($query): void {
                 $query->select('tags.id', 'name')->limit(3);
             },
@@ -47,6 +49,7 @@ class HomeController extends Controller
         $search = $request->input('search');
         $companies = Company::query()
             ->with([
+                'media',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'name')->limit(3);
                 },
