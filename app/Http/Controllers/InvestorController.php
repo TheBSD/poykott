@@ -11,6 +11,7 @@ class InvestorController extends Controller
     {
         $investors = Investor::query()
             ->with([
+                'media',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'tags.name');
                 },
