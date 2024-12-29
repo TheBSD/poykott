@@ -4,6 +4,7 @@
 
 -   [ ] add data from https://www.israelitechalternatives.com/category/all/
 -   [ ] add data from https://github.com/ourcmcc/il-orgs
+-   [ ] add data from https://github.com/theWallProject/theWallAddon
 -   [ ] data from https://stripealternatives.com/
 -   [ ] data from https://github.com/TechForPalestine/boycott-israeli-tech-companies-dataset especially alternatives
 -   [ ] data from https://www.usisrael.co/unicorn-tracker
@@ -26,7 +27,8 @@
 -   [ ] office location lat lng https://www.latlong.net/
 -   [ ] add ads using https://www.madvert.co/
 -   [ ] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
--   [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs or www.tinybird.co , https://simplestats.io/
+-   [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs
+        or www.tinybird.co , https://simplestats.io/
 -   [ ] add to google search, bing search,
 -   [ ] use https://extract.pics/projects for image extraction easily
 -   [ ] status page like https://instatus.com/
@@ -34,9 +36,11 @@
 -   [ ] make automated tests for the whole site
 -   [ ] make readme file fot steps to run the project in your machine
 -   [ ] fix all tests then fix them with mutations
--   [ ] add roles: admin (can change everything), editor (change everything except user management), user can only read data
+-   [ ] \*\*\*\*add roles: admin (can change everything), editor (change everything except user management), user can only
+        read data
 -   [ ] add simple authorization system for admin, editor, and user
--   [ ] add inviting system using filamentphp [link](https://filamentapps.dev/blog/filament-invite-only-registration-via-email-invitations)
+-   [ ] add inviting system using
+        filamentphp [link](https://filamentapps.dev/blog/filament-invite-only-registration-via-email-invitations)
 -   [ ] change username and email git history for to theBSD
 -   [ ] return simple pagination instead of javascript one
 -   [ ] make backup like pinkary.com did and backup the images
