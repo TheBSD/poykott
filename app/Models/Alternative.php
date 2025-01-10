@@ -52,7 +52,7 @@ class Alternative extends Model implements HasMedia
                 $originalPath = $firstMedia?->getPath();
                 $originalUrl = $firstMedia?->getUrl();
 
-                $defaultUrl = URL::asset('storage/images/people/default/company.webp');
+                $defaultUrl = URL::asset('storage/images/companies/default/company.webp');
 
                 if (file_exists($optimizedPath)) {
                     return $optimizedUrl;
