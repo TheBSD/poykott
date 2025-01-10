@@ -119,6 +119,12 @@
                                             {{ $alternative->url }}
                                         </a>
                                     @endif
+
+                                    <img
+                                        src="{{ $alternative->image_path }}"
+                                        alt="{{ $alternative->name }}"
+                                        class="h-24 w-24 rounded-lg object-scale-down"
+                                    />
                                 </div>
                             @endforeach
                         </div>
