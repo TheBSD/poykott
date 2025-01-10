@@ -189,8 +189,16 @@ class Company extends Model implements HasMedia
         return $this->belongsToMany(OfficeLocation::class);
     }
 
-    //public function logo(): MorphOne
-    //{
-    //    return $this->morphOne(Image::class, 'imageable');
-    //}
+    /**
+     * Methods
+     */
+    public function hasOfficeLocation(OfficeLocation $officeLocation): bool
+    {
+        return $this->officeLocations()->where('office_location_id', $officeLocation->id)->exists();
+    }
+
+    public function doesntHaveOfficeLocation(OfficeLocation $officeLocation): bool
+    {
+        return ! $this->hasOfficeLocation($officeLocation);
+    }
 }

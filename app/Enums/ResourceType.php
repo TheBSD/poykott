@@ -35,4 +35,6 @@ enum ResourceType: string
     case Crunchbase = 'crunchbase';
 
     case StartupNationFinder = 'startup_nation_finder';
+
+    case UsIsraelUnicornTracker = 'us_israel_unicorn_tracker';
 }

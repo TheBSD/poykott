@@ -1,5 +1,6 @@
 # Todo (That have been done)
 
+-   [x] data from https://www.usisrael.co/unicorn-tracker
 -   [x] scaffold using blueprint
 -   [x] test the tests!
 -   [x] add proper data & structure from https://github.com/TheBSD/scraping-israeli-data/ using custom commands

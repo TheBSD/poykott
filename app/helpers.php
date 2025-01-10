@@ -74,6 +74,7 @@ function add_image_urls_to_notes(?string $url, Model $model, $class): bool
     if (! Str::isUrl($url)) {
         return false;
     }
+
     $oldNotes = collect(json_decode($model->notes, true));
 
     $newNote = [

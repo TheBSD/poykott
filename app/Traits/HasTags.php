@@ -32,4 +32,14 @@ trait HasTags
     {
         return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
     }
+
+    public function hasTag(Tag $tag): bool
+    {
+        return $this->tagsRelation()->where('tag_id', $tag->id)->exists();
+    }
+
+    public function doesntHaveTag(Tag $tag): bool
+    {
+        return ! $this->hasTag($tag);
+    }
 }
