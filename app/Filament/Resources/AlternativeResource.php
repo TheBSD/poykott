@@ -70,8 +70,10 @@ class AlternativeResource extends Resource
             ->columns([
                 ImageColumn::make('logo.path')->circular(),
                 TextColumn::make('name')->sortable()->searchable(),
-                IconColumn::make('approved_at')->label('Approved')
-                    ->boolean(fn (Alternative $record): bool => $record->approved_at !== null),
+                IconColumn::make('approved_at')
+                    ->label('Approved')
+                    ->boolean(fn (Alternative $record): bool => $record->approved_at !== null)
+                    ->sortable(),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),
                 TextColumn::make('url')
                     ->url(fn (Alternative $record) => $record->url)

@@ -6,6 +6,7 @@ use App\Models\Alternative;
 use App\Models\Company;
 use App\Models\Investor;
 use App\Models\Person;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
             'person' => Person::class,
             'investor' => Investor::class,
             'alternative' => Alternative::class,
+            'user' => User::class,
         ]);
 
     }

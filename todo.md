@@ -7,7 +7,6 @@
 -   [ ] add data from https://github.com/theWallProject/theWallAddon
 -   [ ] data from https://stripealternatives.com/
 -   [ ] data from https://github.com/TechForPalestine/boycott-israeli-tech-companies-dataset especially alternatives
--   [x] data from https://www.usisrael.co/unicorn-tracker
 -   [ ] data from https://finder.startupnationcentral.org/
 
 ## Important
