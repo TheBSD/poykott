@@ -65,7 +65,7 @@ class CompanyResource extends Resource
                 TextInput::make('stock_symbol'),
                 TextInput::make('total_funding')->nullable(),
                 DatePicker::make('last_funding_date'),
-                DatePicker::make('founded_at'),
+                DatePicker::make('founded_at')->format('Y'),
                 TextInput::make('employee_count')->numeric(),
                 TextInput::make('stock_quote'),
             ]);
@@ -109,7 +109,7 @@ class CompanyResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('headquarter')->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('founded_at')->date()->sortable()
+                TextColumn::make('founded_at')->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('employee_count')->numeric()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

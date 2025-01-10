@@ -65,8 +65,9 @@ class Company extends Model implements HasMedia
     protected function foundedAt(): Attribute
     {
         return Attribute::make(
-            get: fn (?string $value
-            ): ?string => $value !== null && $value !== '' && $value !== '0' ? Carbon::parse($value)->format('Y') : null
+            get: fn (?string $value): ?string => filled($value)
+                ? Carbon::parse($value)->format('Y')
+                : null
         );
     }
 
@@ -149,11 +150,6 @@ class Company extends Model implements HasMedia
     /**
      * Relations
      */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
-
     public function exitStrategy(): BelongsTo
     {
         return $this->belongsTo(ExitStrategy::class);
