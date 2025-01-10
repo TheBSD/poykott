@@ -7,10 +7,7 @@ use App\Filament\Resources\InvestorResource\Pages\CreateInvestor;
 use App\Filament\Resources\InvestorResource\Pages\EditInvestor;
 use App\Filament\Resources\InvestorResource\Pages\ListInvestors;
 use App\Models\Investor;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -20,7 +17,6 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
