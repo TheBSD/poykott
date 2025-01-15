@@ -6,14 +6,17 @@
 
 if you are in ubuntu
 
-    ```bash
-    sudo apt-get install jpegoptim
-    sudo apt-get install optipng
-    sudo apt-get install pngquant
-    sudo apt-get install webp
-    ```
+```bash
+sudo apt-get install jpegoptim
+sudo apt-get install optipng
+sudo apt-get install pngquant
+sudo apt-get install webp
+```
 
 or go to [this link](https://github.com/spatie/image-optimizer?tab=readme-ov-file) for other operating systems.
+
+> If you are running this on the server run `sudo pecl install excimer` for sentry integration. You can know
+> more on [sentry docs](https://docs.sentry.io/platforms/php/guides/laravel/)
 
 ### 2. clone the repo
 
@@ -33,8 +36,7 @@ run `php artisan key:generate`
 -   run `touch database/database.sqlite` to create database file
 -   run `php artisan migrate:fresh --seed`
 -   run `php artisan import:all`
-
-4. run `npm run dev` to run vite
+-   run `npm run dev` to run vite
 
 ### 6. run the project
 
