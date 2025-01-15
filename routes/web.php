@@ -25,9 +25,3 @@ Route::get('investors', [InvestorController::class, 'index'])->name('investors')
 Route::get('investors/load-more', [InvestorController::class, 'loadMore']);
 Route::get('investors/search', [InvestorController::class, 'search']);
 Route::get('investors/{investor:slug}', [InvestorController::class, 'show'])->name('investors.show');
-
-// just test the sentry integration
-// todo remove it later
-Route::get('ex', function (): void {
-    throw new Exception('test exception');
-});
