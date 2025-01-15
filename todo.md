@@ -25,7 +25,6 @@
 -   [ ] add caching for data to make it faster
 -   [ ] office location lat lng https://www.latlong.net/
 -   [ ] add ads using https://www.madvert.co/
--   [ ] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
 -   [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs
         or www.tinybird.co , https://simplestats.io/
 -   [ ] add to google search, bing search,

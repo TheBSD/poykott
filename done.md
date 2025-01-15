@@ -53,3 +53,4 @@
 -   [x] fix search in
 -   [x] the whole cards is clickable
 -   [x] investor details page
+-   [x] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
