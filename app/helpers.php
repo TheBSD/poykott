@@ -52,10 +52,7 @@ function add_image_for_model(string $imagePath, $model): bool
 
         return (bool) $model->addMedia($imagePath . '.webp')->preservingOriginal()->toMediaCollection();
     }
-    /**
-     * Delete old media if there is another media added from the archive folder
-     * This prevents corruption when new media is uploaded.
-     */
+
     if (File::exists($imagePath . '.gif')) {
         $model->media()->delete();
 
