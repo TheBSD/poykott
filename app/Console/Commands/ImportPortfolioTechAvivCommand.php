@@ -10,8 +10,6 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-use function App\Helpers\add_image_urls_to_notes;
-
 class ImportPortfolioTechAvivCommand extends Command
 {
     protected $signature = 'import:portfolio-tech-aviv';

@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Helpers;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;

@@ -10,8 +10,6 @@ use App\Models\Tag;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-use function App\Helpers\add_image_urls_to_notes;
-
 class ImportJobCompaniesTechAvivCommand extends Command
 {
     protected $signature = 'import:job-companies-tech-aviv';

@@ -9,8 +9,6 @@ use App\Models\Person;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-use function App\Helpers\add_image_urls_to_notes;
-
 class ImportMembersTechAvivCommand extends Command
 {
     protected $signature = 'import:members-tech-aviv';

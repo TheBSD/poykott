@@ -12,8 +12,6 @@ use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
-use function App\Helpers\add_image_urls_to_notes;
-
 class ImportTeamTechAvivCommand extends Command
 {
     protected $signature = 'import:team-tech-aviv';

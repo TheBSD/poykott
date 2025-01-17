@@ -9,9 +9,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-use function App\Helpers\add_image_for_model;
-use function App\Helpers\get_image_archive_path;
-
 class AttachCompaniesImagesCommand extends Command
 {
     /**

@@ -33,6 +33,7 @@ run `php artisan key:generate`
 
 ### 5. Set up the database
 
+-   run `composer dump-autoload` .
 -   run `touch database/database.sqlite` to create database file
 -   run `php artisan migrate:fresh --seed`
 -   run `php artisan import:all`
