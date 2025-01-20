@@ -31,7 +31,9 @@ class SimilarSiteResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('url'),
+                TextInput::make('url')
+                    ->unique('url')
+                    ->required(),
                 Textarea::make('description')
                     ->columnSpanFull(),
                 //Forms\Components\Select::make('parent_id')
