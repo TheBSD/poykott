@@ -27,6 +27,7 @@
         "barryvdh/laravel-debugbar": "^3.14",
         "driftingly/rector-laravel": "^1.2",
         "fakerphp/faker": "^1.23",
+        "imanghafoori/laravel-microscope": "^1.0",
         "jasonmccreary/laravel-test-assertions": "^2.4",
         "laravel-shift/blueprint": "^2.10",
         "laravel/pint": "^1.13",
