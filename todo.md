@@ -8,8 +8,7 @@
 -   [ ] data from https://stripealternatives.com/
 -   [ ] data from https://github.com/TechForPalestine/boycott-israeli-tech-companies-dataset especially alternatives
 -   [ ] data from https://finder.startupnationcentral.org/
--   [ ] data
-        from [arabic.tech/community](https://arabic.tech/community/topic/8348/8348-%D8%A8%D8%AF%D8%A7%D8%A6%D9%84-%D8%A7%D9%84%D8%A3%D8%AF%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AA%D9%83)
+-   [ ] data from [arabic.tech/community](https://arabic.tech/community/topic/8348/8348-%D8%A8%D8%AF%D8%A7%D8%A6%D9%84-%D8%A7%D9%84%D8%A3%D8%AF%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AA%D9%83)
 
 ## Important
 

@@ -1,0 +1,542 @@
+[
+    {
+        "Alt Name": "Divi",
+        "AlternateTo": "Elementor",
+        "Description": "Website builder offering tools for WordPress website design and customization",
+        "Funding": [],
+        "Location": "Orlando, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://elegantthemes.com/divi"
+    },
+    {
+        "Alt Name": "Mistral AI",
+        "AlternateTo": "AI21",
+        "Description": "Mistral AI is a French company specializing in artificial intelligence (AI) products, headquartered in Paris.",
+        "Funding": [],
+        "Location": "Paris, France",
+        "Primary Sector": "Business Software",
+        "Website": "https://mistral.ai"
+    },
+    {
+        "Alt Name": "Frontier AI",
+        "AlternateTo": "AI21",
+        "Description": "A team of AI engineers, builders, designers and researchers who help organizations to win with AI using a unique blend of skills.",
+        "Funding": [],
+        "Location": "London, UK",
+        "Primary Sector": "Business Software",
+        "Website": "https://frontierai.company/"
+    },
+    {
+        "Alt Name": "LightOn Ai",
+        "AlternateTo": "AI21",
+        "Description": "Provides large language model (LLM) software to businesses and the French government.",
+        "Funding": [],
+        "Location": "Paris, France",
+        "Primary Sector": "Business Software",
+        "Website": "https://www.lighton.ai/"
+    },
+    {
+        "Alt Name": "Bytescale",
+        "AlternateTo": "Cloudinary",
+        "Description": "Bytescale is the all-in-one platform for file storage, media processing APIs, and content delivery.",
+        "Funding": [],
+        "Location": "London, UK",
+        "Primary Sector": "Business Software",
+        "Website": "https://www.bytescale.com/"
+    },
+    {
+        "Alt Name": "Mindrockets",
+        "AlternateTo": "AccessiBe",
+        "Description": "Mind Rockets develops assistive technology solutions for the deaf and hard of hearing around the world.",
+        "Funding": [],
+        "Location": "",
+        "Primary Sector": "Business Software",
+        "Website": "https://main.mindrocketsinc.com/"
+    },
+    {
+        "Alt Name": "Ping Identity",
+        "AlternateTo": "Okta",
+        "Description": "Enterprise identity and access management software for secure digital experiences",
+        "Funding": [],
+        "Location": "Denver, USA",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://pingidentity.com"
+    },
+    {
+        "Alt Name": "Auth0",
+        "AlternateTo": "Okta",
+        "Description": "Leading identity management solution offering secure single sign-on services",
+        "Funding": [],
+        "Location": "Bellevue, USA",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://auth0.com"
+    },
+    {
+        "Alt Name": "Ampla",
+        "AlternateTo": "8fig",
+        "Description": "Financial platform offering capital and strategic planning for e-commerce businesses",
+        "Funding": [],
+        "Location": "New York, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://getampla.com"
+    },
+    {
+        "Alt Name": "SellerFunding",
+        "AlternateTo": "8fig",
+        "Description": "Capital solutions provider for e-commerce businesses enabling growth and cash flow management",
+        "Funding": [],
+        "Location": "New York, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://sellerfunding.com"
+    },
+    {
+        "Alt Name": "Brandwatch",
+        "AlternateTo": "Affogata",
+        "Description": "Digital consumer intelligence platform providing social media monitoring and marketing analytics",
+        "Funding": [],
+        "Location": "Brighton, UK",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://brandwatch.com"
+    },
+    {
+        "Alt Name": "Sprinklr",
+        "AlternateTo": "Affogata",
+        "Description": "Social media management platform offering customer experience management solutions",
+        "Funding": [],
+        "Location": "New York, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://sprinklr.com"
+    },
+    {
+        "Alt Name": "AudioEye",
+        "AlternateTo": "AccessiBe",
+        "Description": "Digital accessibility solutions helping make websites accessible for individuals with disabilities",
+        "Funding": [],
+        "Location": "Tucson, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://audioeye.com"
+    },
+    {
+        "Alt Name": "Upwork",
+        "AlternateTo": "A.Team",
+        "Description": "World’s largest freelancing platform connecting recruiters with freelancers",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://upwork.com"
+    },
+    {
+        "Alt Name": "Trello",
+        "AlternateTo": "Aligned",
+        "Description": "Project management tool offering boards, lists, and cards for organizing tasks",
+        "Funding": [],
+        "Location": "New York, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://trello.com"
+    },
+    {
+        "Alt Name": "Miro",
+        "AlternateTo": "Aligned",
+        "Description": "Online collaborative whiteboard platform helping teams work together efficiently",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://miro.com"
+    },
+    {
+        "Alt Name": "Qure.ai",
+        "AlternateTo": "Aidoc",
+        "Description": "Healthcare company using AI to aid in the interpretation of radiology images",
+        "Funding": [],
+        "Location": "Mumbai, India",
+        "Primary Sector": "Health Tech & Life Sciences",
+        "Website": "https://qure.ai"
+    },
+    {
+        "Alt Name": "Ericsson",
+        "AlternateTo": "Amdocs",
+        "Description": "Multinational networking and telecommunications company providing solutions to communications service providers",
+        "Funding": [],
+        "Location": "Stockholm, Sweden",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://ericsson.com"
+    },
+    {
+        "Alt Name": "Nokia Networks",
+        "AlternateTo": "Amdocs",
+        "Description": "Leading enterprise and telecommunications technology supplier",
+        "Funding": [],
+        "Location": "Espoo, Finland",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://nokia.com/networks"
+    },
+    {
+        "Alt Name": "Zeplin",
+        "AlternateTo": "Anima",
+        "Description": "Design collaboration tool helping teams optimize their design-to-development workflow",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://zeplin.io"
+    },
+    {
+        "Alt Name": "Supercell",
+        "AlternateTo": "Animal Kingdom",
+        "Description": "Mobile games developer known for massively popular titles like Clash of Clans",
+        "Funding": [],
+        "Location": "Helsinki, Finland",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://supercell.com"
+    },
+    {
+        "Alt Name": "Adjust",
+        "AlternateTo": "AppsFlyer",
+        "Description": "Mobile measurement company providing analytics and fraud prevention solutions",
+        "Funding": [],
+        "Location": "Berlin, Germany",
+        "Primary Sector": "Business Software",
+        "Website": "https://adjust.com"
+    },
+    {
+        "Alt Name": "Affirm",
+        "AlternateTo": "Balance",
+        "Description": "Financial technology company offering point-of-sale loans to consumers",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://affirm.com"
+    },
+    {
+        "Alt Name": "Simility",
+        "AlternateTo": "BioCatch",
+        "Description": "Fraud prevention platform using machine learning to detect fraud patterns",
+        "Funding": [],
+        "Location": "Palo Alto, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://simility.com"
+    },
+    {
+        "Alt Name": "Moogsoft",
+        "AlternateTo": "BigPanda",
+        "Description": "AI-driven IT operations management platform for incident management workflows",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://moogsoft.com"
+    },
+    {
+        "Alt Name": "Onfleet",
+        "AlternateTo": "Bringg",
+        "Description": "Delivery management software offering route optimization and real-time tracking",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Retail Platforms",
+        "Website": "https://onfleet.com"
+    },
+    {
+        "Alt Name": "BackerKit",
+        "AlternateTo": "Celery",
+        "Description": "Crowdfunding platform providing post-campaign management tools",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://backerkit.com"
+    },
+    {
+        "Alt Name": "Zscaler",
+        "AlternateTo": "Cato Networks",
+        "Description": "Cloud security company providing secure web internet access for enterprises",
+        "Funding": [],
+        "Location": "San Jose, USA",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://zscaler.com"
+    },
+    {
+        "Alt Name": "King",
+        "AlternateTo": "Bubble Shooter",
+        "Description": "Mobile games developer known for titles like Candy Crush Saga",
+        "Funding": [],
+        "Location": "London, UK",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://king.com"
+    },
+    {
+        "Alt Name": "MSAB",
+        "AlternateTo": "Cellebrite",
+        "Description": "Digital forensic solutions provider for mobile device investigations",
+        "Funding": [],
+        "Location": "Stockholm, Sweden",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://msab.com"
+    },
+    {
+        "Alt Name": "Scopely",
+        "AlternateTo": "Coin Master",
+        "Description": "Mobile-first video game developer offering interactive entertainment experiences",
+        "Funding": [],
+        "Location": "Los Angeles, USA",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://scopely.com"
+    },
+    {
+        "Alt Name": "ImageKit",
+        "AlternateTo": "Cloudinary",
+        "Description": "Cloud-based digital asset management platform offering image optimization and delivery",
+        "Funding": [],
+        "Location": "Singapore",
+        "Primary Sector": "Business Software",
+        "Website": "https://imagekit.io"
+    },
+    {
+        "Alt Name": "Recharge",
+        "AlternateTo": "Chargeflow",
+        "Description": "Subscription payment platform powering subscription billing and recurring payments",
+        "Funding": [],
+        "Location": "Santa Monica, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://rechargepayments.com"
+    },
+    {
+        "Alt Name": "GitLab",
+        "AlternateTo": "Codium",
+        "Description": "DevOps platform offering tools for software development and CI/CD processes",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://gitlab.com"
+    },
+    {
+        "Alt Name": "Auth0",
+        "AlternateTo": "Descope",
+        "Description": "Identity management platform offering secure authentication services for applications",
+        "Funding": [],
+        "Location": "Bellevue, USA",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://auth0.com"
+    },
+    {
+        "Alt Name": "Deputy",
+        "AlternateTo": "Connecteam",
+        "Description": "Workforce management and scheduling software for businesses",
+        "Funding": [],
+        "Location": "Melbourne, Australia",
+        "Primary Sector": "Business Software",
+        "Website": "https://deputy.com"
+    },
+    {
+        "Alt Name": "Atomwise",
+        "AlternateTo": "DeepCure",
+        "Description": "AI-driven drug discovery platform offering solutions to accelerate pharmaceutical R&D",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Health Tech & Life Sciences",
+        "Website": "https://atomwise.com"
+    },
+    {
+        "Alt Name": "Chorus.ai",
+        "AlternateTo": "Demoleap",
+        "Description": "Conversation intelligence software for sales enablement and coaching",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://chorus.ai"
+    },
+    {
+        "Alt Name": "Vectra AI",
+        "AlternateTo": "Dig Security",
+        "Description": "Network detection and response platform utilizing AI to detect cyber threats",
+        "Funding": [],
+        "Location": "San Jose, USA",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://vectra.ai"
+    },
+    {
+        "Alt Name": "CareMessage",
+        "AlternateTo": "Eleos Health",
+        "Description": "Non-profit organization providing mobile patient-engagement solutions",
+        "Funding": [],
+        "Location": "San Francisco, USA",
+        "Primary Sector": "Health Tech & Life Sciences",
+        "Website": "https://caremessage.org"
+    },
+    {
+        "Alt Name": "Monetate",
+        "AlternateTo": "Dynamic Yield",
+        "Description": "Platform offering personalization solutions for customer experience optimization",
+        "Funding": [],
+        "Location": "Philadelphia, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://monetate.com"
+    },
+    {
+        "Alt Name": "Hasbro",
+        "AlternateTo": "Dominoes Board",
+        "Description": "Global play and entertainment company known for board games and toys",
+        "Funding": [],
+        "Location": "Pawtucket, USA",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://hasbro.com"
+    },
+    {
+        "Alt Name": "Sketch",
+        "AlternateTo": "Draftboard",
+        "Description": "Digital design platform providing tools for user interface and web design",
+        "Funding": [],
+        "Location": "The Hague, Netherlands",
+        "Primary Sector": "Business Software",
+        "Website": "https://sketch.com"
+    },
+    {
+        "Alt Name": "Kabbage",
+        "AlternateTo": "Ezbob",
+        "Description": "Online platform providing small business loans and financial solutions",
+        "Funding": [],
+        "Location": "Atlanta, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://kabbage.com"
+    },
+    {
+        "Alt Name": "Indigo",
+        "AlternateTo": "Fabric",
+        "Description": "AI-powered e-commerce platform providing automated warehouse solutions",
+        "Funding": [],
+        "Location": "Indianapolis, USA",
+        "Primary Sector": "Retail Platforms",
+        "Website": "https://indigoag.com"
+    },
+    {
+        "Alt Name": "SimCorp",
+        "AlternateTo": "FundGuard",
+        "Description": "Investment management software providing asset management and financial services",
+        "Funding": [],
+        "Location": "Copenhagen, Denmark",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://simcorp.com"
+    },
+    {
+        "Alt Name": "Dubsado",
+        "AlternateTo": "Honeybook",
+        "Description": "Business management software offering client and project management solutions",
+        "Funding": [],
+        "Location": "Camarillo, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://dubsado.com"
+    },
+    {
+        "Alt Name": "Splitwise",
+        "AlternateTo": "Gelt",
+        "Description": "Expense splitting and bill management app for shared expenses",
+        "Funding": [],
+        "Location": "Providence, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://splitwise.com"
+    },
+    {
+        "Alt Name": "BambooHR",
+        "AlternateTo": "HiBob",
+        "Description": "HR software providing tools for managing employee information and services",
+        "Funding": [],
+        "Location": "Lindon, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://bamboohr.com"
+    },
+    {
+        "Alt Name": "Auth0",
+        "AlternateTo": "Frontegg",
+        "Description": "Identity management platform providing secure authentication and authorization services",
+        "Funding": [],
+        "Location": "Bellevue, USA",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://auth0.com"
+    },
+    {
+        "Alt Name": "BlueVine",
+        "AlternateTo": "Fundbox",
+        "Description": "Financial technology company providing small business financing solutions",
+        "Funding": [],
+        "Location": "Redwood City, USA",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://bluevine.com"
+    },
+    {
+        "Alt Name": "Bench",
+        "AlternateTo": "Finaloop",
+        "Description": "Online bookkeeping service offering financial reporting for small businesses",
+        "Funding": [],
+        "Location": "Vancouver, Canada",
+        "Primary Sector": "Fintech & Insurtech",
+        "Website": "https://bench.co"
+    },
+    {
+        "Alt Name": "HomeAdvisor",
+        "AlternateTo": "Houzz",
+        "Description": "Digital marketplace offering home improvement services and contractor matches",
+        "Funding": [],
+        "Location": "Denver, USA",
+        "Primary Sector": "Retail Platforms",
+        "Website": "https://homeadvisor.com"
+    },
+    {
+        "Alt Name": "Luminar Technologies",
+        "AlternateTo": "Innoviz Technologies",
+        "Description": "Automotive technology company specializing in LiDAR sensors and perception software",
+        "Funding": [],
+        "Location": "Orlando, USA",
+        "Primary Sector": "Automotive & Mobility Technologies",
+        "Website": "https://luminartech.com"
+    },
+    {
+        "Alt Name": "SingleCell",
+        "AlternateTo": "Immunai",
+        "Description": "Biotechnology company focusing on single-cell genomic analytics",
+        "Funding": [],
+        "Location": "Boston, USA",
+        "Primary Sector": "Health Tech & Life Sciences",
+        "Website": "https://singlecell.com"
+    },
+    {
+        "Alt Name": "Akamai",
+        "AlternateTo": "Imperva",
+        "Description": "Cloud service provider offering solutions for digital content delivery and application security",
+        "Funding": [],
+        "Location": "Cambridge, USA",
+        "Primary Sector": "Cyber Security",
+        "Website": "https://akamai.com"
+    },
+    {
+        "Alt Name": "TuneCore",
+        "AlternateTo": "Indeitq",
+        "Description": "Digital music distribution service offering tools for artists and musicians",
+        "Funding": [],
+        "Location": "Brooklyn, USA",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://tunecore.com"
+    },
+    {
+        "Alt Name": "Cognitivescale",
+        "AlternateTo": "Intail.ai",
+        "Description": "Enterprise AI software enabling businesses to build AI-powered applications",
+        "Funding": [],
+        "Location": "Austin, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://cognitivescale.com"
+    },
+    {
+        "Alt Name": "ProcessMaker",
+        "AlternateTo": "Nintex",
+        "Description": "Open-source business process and workflow automation platform",
+        "Funding": [],
+        "Location": "Durham, USA",
+        "Primary Sector": "Business Software",
+        "Website": "https://processmaker.com"
+    },
+    {
+        "Alt Name": "AppLovin",
+        "AlternateTo": "IronSource",
+        "Description": "Mobile technology company offering app monetization and marketing solutions",
+        "Funding": [],
+        "Location": "Palo Alto, USA",
+        "Primary Sector": "Media & Entertainment Technologies",
+        "Website": "https://applovin.com"
+    }
+]
