@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Actions\CreateOrUpdateCompanyByNameAction;
 use App\Enums\ResourceType;
-use App\Models\Company;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -13,8 +13,9 @@ class ImportCompaniesOldSiteCommand extends Command
 
     protected $description = 'Command description';
 
-    public function handle(): void
-    {
+    public function handle(
+        CreateOrUpdateCompanyByNameAction $createOrUpdateCompanyByNameAction
+    ): void {
         $json = file_get_contents(database_path('seeders/data/7-israel-companies-services.json'));
 
         $allData = json_decode($json, true);
@@ -24,23 +25,18 @@ class ImportCompaniesOldSiteCommand extends Command
         $companies = data_get($allData, 'companiesAndServices');
 
         foreach ($companies as $companyData) {
-
-            $lowerName = Str::lower(data_get($companyData, 'name'));
-
-            $company = Company::query()->whereRaw('LOWER(name) = ?', [$lowerName])->first();
-
-            if (is_null($company)) {
-                $company = Company::query()->create([
-                    'name' => data_get($companyData, 'name'),
+            /**
+             * Company create or update
+             */
+            $companyName = Str::lower(data_get($companyData, 'name'));
+            $company = $createOrUpdateCompanyByNameAction->execute(
+                companyName: $companyName,
+                forcedFields: ['approved_at' => now()],
+                optionalFields: [
                     'description' => data_get($companyData, 'description'),
                     'url' => '#',
-                    'approved_at' => now(),
-                ]);
-            }
-
-            if (empty($company->description)) {
-                $company->update(['description' => data_get($companyData, 'description')]);
-            }
+                ]
+            );
 
             $resourcesData = data_get($companyData, 'resources');
 
