@@ -49,20 +49,21 @@ class CompanyController extends Controller
 
     public function storeNewCompany(NewCompanyRequest $request, Company $newCompany)
     {
-        $validated = collect($request->validated());
+        $validated = $request->validated();
+        extract($validated);
 
         $newCompany->create([
-            'name' => e(strip_tags(trim($validated->pluck('name')))),
-            'slug' => Str::slug($validated->pluck('name')),
-            'email' => e(strip_tags(trim($validated->pluck('email')))),
-            'personal_email' => e(strip_tags(trim($validated->pluck('p_email')))),
-            'url' => e(strip_tags(trim($validated->pluck('url')))),
-            'icon_url' => e(strip_tags(trim($validated->pluck('icon_url')))),
-            'short_description' => e(strip_tags(trim($validated->pluck('short_description')))),
-            'description' => e(strip_tags(trim($validated->pluck('description')))),
-            'tags' => e(strip_tags(trim($validated->pluck('tags')))),
-            'office_locations' => e(strip_tags(trim($validated->pluck('office_locations')))),
-            'resources' => e(strip_tags(trim($validated->pluck('resources')))),
+            'name' => e(strip_tags(trim((string) $name))),
+            'slug' => Str::slug($name),
+            'email' => e(strip_tags(trim((string) $email))),
+            'personal_email' => e(strip_tags(trim((string) $p_email))),
+            'url' => e(strip_tags(trim((string) $url))),
+            'icon_url' => e(strip_tags(trim((string) $icon_url))),
+            'short_description' => e(strip_tags(trim((string) $short_description))),
+            'description' => e(strip_tags(trim((string) $description))),
+            'tags' => e(strip_tags(trim((string) $tags))),
+            'office_locations' => e(strip_tags(trim((string) $office_locations))),
+            'resources' => e(strip_tags(trim((string) $resources))),
         ]);
 
         return redirect()->back();

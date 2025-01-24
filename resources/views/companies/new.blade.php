@@ -88,7 +88,7 @@
                                     type="url"
                                     name="icon_url"
                                     class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    value="icon_url"
+                                    value="{{ old('icon_url') }}"
                                 />
                                 <div class="text-red-500">
                                     {{ $errors->first('icon_url') }}
@@ -115,7 +115,7 @@
                                     rows="5"
                                     class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-{{ old('description') }}</textarea
+                                {{ old('description') }}</textarea
                                 >
                                 <div class="text-red-500">
                                     {{ $errors->first('description') }}

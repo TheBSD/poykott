@@ -33,6 +33,7 @@ return new class extends Migration
         Schema::table('companies', function (Blueprint $table): void {
             $table->dropColumn([
                 'email',
+                'personal_email',
                 'icon_url',
                 'tags',
                 'office_locations',
