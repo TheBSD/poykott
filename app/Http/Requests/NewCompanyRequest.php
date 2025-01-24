@@ -23,7 +23,7 @@ class NewCompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email'],
             'p_email' => ['email', 'nullable'],
             'url' => ['required', 'url'],
@@ -31,8 +31,8 @@ class NewCompanyRequest extends FormRequest
             'short_description' => ['string', 'nullable'],
             'description' => ['string', 'nullable'],
             'tags' => ['string', 'nullable'],
-            'office_locations' => ['string', 'nullable'],
-            'resources' => ['url', 'nullable'],
+            'office_locations' => ['string', 'nullable', 'max:1000'],
+            'resources' => ['url', 'nullable', 'max:1000'],
         ];
     }
 }
