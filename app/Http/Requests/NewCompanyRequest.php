@@ -23,13 +23,13 @@ class NewCompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:companies,name'],
-            'email' => ['required', 'email'],
-            'p_email' => ['email', 'nullable'],
-            'url' => ['required', 'url'],
-            'icon_url' => ['url', 'nullable'],
-            'short_description' => ['string', 'nullable'],
-            'description' => ['string', 'nullable'],
+            'name' => ['required', 'string', 'max:255', 'unique:companies,name', 'trim'],
+            'email' => ['required', 'email:rfc,dns'],
+            'p_email' => ['email:rfc,dns', 'nullable'],
+            'url' => ['required', 'url', 'active_url'],
+            'icon_url' => ['url', 'nullable', 'active_url'],
+            'short_description' => ['string', 'nullable', 'max:255', 'trim'],
+            'description' => ['string', 'nullable', 'max:10000', 'trim'],
             'tags' => ['string', 'nullable'],
             'office_locations' => ['string', 'nullable', 'max:1000'],
             'resources' => ['url', 'nullable', 'max:1000'],
