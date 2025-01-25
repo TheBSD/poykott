@@ -21,16 +21,14 @@
 -   [ ] activity log in the filament dashboard
 -   [ ] security from https://app.aikido.dev/
 -   [ ] add a blog (we can either use Statmic or take wave demo blog or prezet package)
--   [ ] make the whole data translatable using spatie translatable and \_\_()
+-   [ ] make the whole data translatable using spatie translatable and
 -   [ ] make the site with roles: admin, publisher/content reviewer,
 -   [ ] add volunteers to add and update data
 -   [ ] add caching for data to make it faster
 -   [ ] office location lat lng https://www.latlong.net/
 -   [ ] add ads using https://www.madvert.co/
--   [ ] Analytics from google anayltics, Yandex, bing analytics, simpleanaylitecs
-        or www.tinybird.co , https://simplestats.io/
--   [ ] add to google search, bing search,
--   [ ] use https://extract.pics/projects for image extraction e asily
+-   [ ] add to google search console, bing search,
+-   [ ] use https://extract.pics/projects for image extraction e easily
 -   [ ] status page like https://instatus.com/
 -   [ ] for feature requests https://www.featurebase.app/
 -   [ ] make automated tests for the whole site
