@@ -2,25 +2,26 @@
 
 namespace App\Console\Commands;
 
+use App\Services\FileService;
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class TestUploadFilesToR2 extends Command
 {
     /**
      * The name and signature of the console command.
+     * ex: php artisan test:r2-upload storage/app/public/images/alternatives/01JH93MX1A5G43RC9VD8YX9X7V.webp --driver=r2 --disk=r2 --bucket=your-bucket-name
      *
      * @var string
      */
-    protected $signature = 'test:r2-upload {file : The path to the file to upload}';
+    protected $signature = 'test:r2-upload {file : The path to the file to upload} {--driver=local : The storage driver to use} {--disk=public : The storage disk to use} {--bucket= : The bucket name to upload to}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Test file upload to Cloudflare R2';
+    protected $description = 'Test file upload to Cloudflare R2 or other storage services';
 
     /**
      * Execute the console command.
@@ -28,27 +29,18 @@ class TestUploadFilesToR2 extends Command
     public function handle(): int
     {
         $filePath = $this->argument('file');
+        $driver = $this->option('driver');
+        $disk = $this->option('disk');
+        $bucket = $this->option('bucket') ?? config('filesystems.disks.r2.bucket');
 
-        // Check if the file exists
-        if (! file_exists($filePath)) {
-            $this->error("File does not exist at path: {$filePath}");
-
-            return 1;
-        }
-
-        $fileName = basename($filePath); // Extract only the file name
-        $fileContents = file_get_contents($filePath);
+        // Initialize the FileService with dynamic parameters
+        $fileService = new FileService($driver, $disk, $bucket);
 
         try {
-            // Upload the file to the R2 disk
-            Storage::disk('r2')->put($fileName, $fileContents, 'public');
-            $this->info("File {$fileName} uploaded successfully to Cloudflare R2.");
+            // Upload the file and get the URL
+            $fileUrl = $fileService->upload($filePath, basename($filePath));
 
-            // Construct the public URL manually
-            $bucketName = config('filesystems.disks.r2.bucket');
-            $endpoint = config('filesystems.disks.r2.endpoint');
-            $fileUrl = "{$endpoint}/{$bucketName}/{$fileName}";
-
+            $this->info('File uploaded successfully.');
             $this->info("Uploaded file URL: {$fileUrl}");
 
         } catch (Exception $e) {

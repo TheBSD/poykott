@@ -2,48 +2,55 @@
 
 namespace App\Services;
 
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class FileService
 {
-    public static function processMultipleFilesFromRequest($filesInRequest): array
-    {
-        $processedFiles = [];
+    /**
+     * Constructor to set the storage driver, disk, and bucket.
+     */
+    public function __construct(protected string $driver = 'local', protected string $disk = 'public', protected ?string $bucket = null) {}
 
-        foreach ($filesInRequest as $file) {
-            $processedFiles[] = self::storeFileInDisk($file);
+    /**
+     * Configure the storage disk with a specific bucket.
+     */
+    protected function configureDiskWithBucket(string $bucket): void
+    {
+        config([
+            "filesystems.disks.{$this->disk}.bucket" => $bucket,
+        ]);
+    }
+
+    /**
+     * Construct the public URL for the uploaded file.
+     */
+    protected function constructUrl(string $fileName): string
+    {
+        $endpoint = config("filesystems.disks.{$this->disk}.endpoint");
+        $bucketName = config("filesystems.disks.{$this->disk}.bucket");
+
+        return "{$endpoint}/{$bucketName}/{$fileName}";
+    }
+
+    /**
+     * Upload a file to the specified storage.
+     *
+     * @throws Exception
+     */
+    public function upload(string $filePath, string $fileName): string
+    {
+        throw_unless(file_exists($filePath), new Exception("File does not exist at path: {$filePath}"));
+
+        $fileContents = file_get_contents($filePath);
+
+        if ($this->bucket !== '' && $this->bucket !== '0') {
+            $this->configureDiskWithBucket($this->bucket);
         }
 
-        return $processedFiles;
-    }
+        $uploaded = Storage::disk($this->disk)->put($fileName, $fileContents, 'public');
+        throw_unless($uploaded, new Exception("Failed to upload file: {$fileName}"));
 
-    public static function processMultipleFilesWithReturnedUrl($filesInRequest, string $path = 'services'): array
-    {
-        $processedFiles = [];
-
-        foreach ($filesInRequest as $file) {
-            $processedFiles[] = [
-                'url' => self::storeFileInDisk($file, $path),
-            ];
-        }
-
-        return $processedFiles;
-    }
-
-    public static function processSingleFileFromRequest($fileInRequest): string
-    {
-        return self::storeFileInDisk($fileInRequest);
-    }
-
-    public static function storeFileInDisk($file, string $path = 'order/images', string $disk = 'public', string $driver = 's3'): string
-    {
-        $createdFile = Storage::disk($driver)->put($path, $file, $disk);
-
-        return self::getFileUrl($createdFile);
-    }
-
-    public static function getFileUrl(string $path, $driver = 's3'): string
-    {
-        return Storage::disk($driver)->url($path);
+        return $this->constructUrl($fileName);
     }
 }
