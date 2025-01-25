@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-trait HandlesFileMigration
+trait HasFileMigration
 {
     /**
      * Validate that the provided model instance is valid.

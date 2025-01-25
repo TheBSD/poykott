@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasTags;
+use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Alternative extends Model implements HasMedia
 {
     use HasFactory;
+    use HasFileMigration;
     use HasTags;
     use InteractsWithMedia;
 

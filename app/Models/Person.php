@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasTags;
+use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,13 +14,12 @@ use Illuminate\Support\Facades\URL;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Person extends Model implements HasMedia
 {
     use HasFactory;
-    use HasSlug;
+    use HasFileMigration;
     use HasTags;
     use InteractsWithMedia;
 
@@ -99,31 +99,31 @@ class Person extends Model implements HasMedia
             ->addMediaConversion('optimized')
             ->optimize()
             ->format('webp');
-    }
+        }
 
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('default')->singleFile();
-    }
+        public function registerMediaCollections(): void
+        {
+            $this->addMediaCollection('default')->singleFile();
+        }
 
-    /**
-     * Scopes
-     */
-    public function scopeApproved(Builder $query): Builder
-    {
-        return $query->whereNotNull('approved_at');
-    }
+        /**
+         * Scopes
+         */
+        public function scopeApproved(Builder $query): Builder
+        {
+            return $query->whereNotNull('approved_at');
+        }
 
-    /**
-     * Relations
-     */
-    public function companies(): BelongsToMany
-    {
-        return $this->belongsToMany(Company::class);
-    }
+        /**
+         * Relations
+         */
+        public function companies(): BelongsToMany
+        {
+            return $this->belongsToMany(Company::class);
+        }
 
-    public function resources(): MorphMany
-    {
-        return $this->morphMany(Resource::class, 'resourceable');
-    }
+        public function resources(): MorphMany
+        {
+            return $this->morphMany(Resource::class, 'resourceable');
+        }
 }
