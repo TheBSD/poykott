@@ -113,14 +113,12 @@ trait HandlesFileMigration
      *
      * @param  Model  $model
      */
-    public function moveModelFilesToS3($model): void
+    public function moveModelFilesToS3(): void
     {
-        $this->validateModel($model);
-
-        $mediaItems = $this->getModelMedia($model);
-
+        $this->validateModel($this);
+        $mediaItems = $this->getModelMedia($this);
         foreach ($mediaItems as $media) {
-            $this->moveMediaToS3($model, $media);
+            $this->moveMediaToS3($this, $media);
         }
     }
 }
