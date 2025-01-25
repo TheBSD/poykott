@@ -13,7 +13,6 @@
             <div class="mx-auto max-w-2xl">
                 <div class="rounded-2xl bg-white p-8 shadow-xl">
                     <h2 class="mb-8 text-3xl font-bold text-gray-900">Get in Touch</h2>
-
                     <form action="{{ route('insert-new-company') }}" method="POST">
                         @csrf
                         <x-honeypot />
@@ -115,7 +114,7 @@
                                     rows="5"
                                     class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-                                {{ old('description') }}</textarea
+{{ old('description') }}</textarea
                                 >
                                 <div class="text-red-500">
                                     {{ $errors->first('description') }}

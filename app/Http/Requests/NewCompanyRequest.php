@@ -23,7 +23,7 @@ class NewCompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:companies,name'],
             'email' => ['required', 'email'],
             'p_email' => ['email', 'nullable'],
             'url' => ['required', 'url'],

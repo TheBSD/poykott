@@ -6,7 +6,10 @@ use App\Http\Requests\NewCompanyRequest;
 use App\Models\Company;
 use App\Models\User;
 use App\Notification\ReviewAlternative;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -49,23 +52,45 @@ class CompanyController extends Controller
 
     public function storeNewCompany(NewCompanyRequest $request, Company $newCompany)
     {
-        $validated = $request->validated();
-        extract($validated);
+        $data = $request->validated();
 
-        $newCompany->create([
-            'name' => e(strip_tags(trim((string) $name))),
-            'slug' => Str::slug($name),
-            'email' => e(strip_tags(trim((string) $email))),
-            'personal_email' => e(strip_tags(trim((string) $p_email))),
-            'url' => e(strip_tags(trim((string) $url))),
-            'icon_url' => e(strip_tags(trim((string) $icon_url))),
-            'short_description' => e(strip_tags(trim((string) $short_description))),
-            'description' => e(strip_tags(trim((string) $description))),
-            'tags' => e(strip_tags(trim((string) $tags))),
-            'office_locations' => e(strip_tags(trim((string) $office_locations))),
-            'resources' => e(strip_tags(trim((string) $resources))),
-        ]);
+        $sanitized = collect($data)->map(function ($value) {
+            return e(strip_tags(trim($value)));
+        })->all();
 
-        return redirect()->back();
+        try {
+            return DB::transaction(function () use ($sanitized, $newCompany) {
+                $slug = Str::slug($sanitized['name']);
+
+                if ($newCompany->where('slug', '=', $slug)->exists()) {
+                    $slug .= '-' . Str::random(6);
+                }
+
+                $newCompany->create([
+                    'name' => $sanitized['name'],
+                    'slug' => $slug,
+                    'email' => $sanitized['email'],
+                    'personal_email' => $sanitized['p_email'],
+                    'url' => $sanitized['url'],
+                    'icon_url' => $sanitized['icon_url'],
+                    'short_description' => $sanitized['short_description'],
+                    'description' => $sanitized['description'],
+                    'tags' => $sanitized['tags'],
+                    'office_locations' => $sanitized['office_locations'],
+                    'resources' => $sanitized['resources'],
+                ]);
+
+                return redirect()
+                    ->back()
+                    ->with('success', 'company successfully created');
+            });
+        } catch (Exception $e) {
+            Log::error('Failed to create company:' . $e->getMessage());
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('camp_error', 'Failed to create company. please try again later');
+        }
     }
 }
