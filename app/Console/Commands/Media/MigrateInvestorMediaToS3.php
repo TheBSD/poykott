@@ -9,7 +9,7 @@ class MigrateInvestorMediaToS3 extends BaseMigrationCommand
     protected $signature = 'migrate:investors-media-to-s3
                             {--limit= : Limit the number of companies to process in this run}';
 
-    protected $description = 'Migrate media files of companies to S3';
+    protected $description = 'Migrate media files of investors to S3';
 
     /**
      * Get the model to be used for migration.
