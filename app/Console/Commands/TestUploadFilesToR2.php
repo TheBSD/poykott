@@ -2,19 +2,20 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Company;
 use App\Services\FileService;
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class TestUploadFilesToR2 extends Command
 {
     /**
      * The name and signature of the console command.
-     * ex: php artisan test:r2-upload storage/app/public/images/alternatives/01JH93MX1A5G43RC9VD8YX9X7V.webp --driver=r2 --disk=r2 --bucket=your-bucket-name
      *
      * @var string
      */
-    protected $signature = 'test:r2-upload {file : The path to the file to upload} {--driver=local : The storage driver to use} {--disk=public : The storage disk to use} {--bucket= : The bucket name to upload to}';
+    protected $signature = 'test:r2-upload';
 
     /**
      * The console command description.
@@ -28,20 +29,29 @@ class TestUploadFilesToR2 extends Command
      */
     public function handle(): int
     {
-        $filePath = $this->argument('file');
-        $driver = $this->option('driver');
-        $disk = $this->option('disk');
-        $bucket = $this->option('bucket') ?? config('filesystems.disks.r2.bucket');
+        //        $filePath = $this->argument('file');
+        //        $driver = $this->option('driver');
+        //        $disk = $this->option('disk');
+        //        $bucket = $this->option('bucket') ?? config('filesystems.disks.s3.bucket');
+
+        //        $company = Company::find(100);
 
         // Initialize the FileService with dynamic parameters
-        $fileService = new FileService($driver, $disk, $bucket);
+        //        $fileService = new FileService($driver, $disk, $bucket);
 
         try {
             // Upload the file and get the URL
-            $fileUrl = $fileService->upload($filePath, basename($filePath));
+            //            $fileUrl = $fileService->upload($filePath, basename($filePath));
 
-            $this->info('File uploaded successfully.');
-            $this->info("Uploaded file URL: {$fileUrl}");
+            //            $iconPath = Storage::disk('s3')->put('services/icons', $filePath, 'public');
+            //            $fileUrl = Storage::disk('s3')->url($iconPath);
+
+            //            $this->info('File uploaded successfully.');
+            //            $this->info("Uploaded file URL: {$fileUrl}");
+
+            $movedFile = $this->moveCompanyFilesToS3(100);
+
+            //            $this->info("Uploaded file URL: {$movedFile}");
 
         } catch (Exception $e) {
             $this->error('Failed to upload file: ' . $e->getMessage());
@@ -50,5 +60,33 @@ class TestUploadFilesToR2 extends Command
         }
 
         return 0;
+    }
+
+    public function moveCompanyFilesToS3(int $companyId): void
+    {
+        $company = Company::query()->find($companyId);
+
+        throw_unless($company, new Exception("Company not found with ID: {$companyId}"));
+
+        $fileService = new FileService;
+
+        $mediaItems = $company->getMedia();
+
+        foreach ($mediaItems as $media) {
+            $localPath = $media->getPath();
+            $fileName = $media->file_name;
+            $s3Path = "companies/{$companyId}/{$fileName}";
+
+            try {
+                $s3Url = $fileService->moveToS3($localPath, $s3Path);
+
+                // Update the media item URL or any necessary fields.
+                $media->update(['custom_properties->s3_url' => $s3Url]);
+
+                Log::info($s3Url);
+            } catch (Exception $e) {
+                Log::error('Failed to move file to S3', ['error' => $e->getMessage()]);
+            }
+        }
     }
 }
