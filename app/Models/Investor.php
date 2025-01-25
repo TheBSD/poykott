@@ -14,12 +14,14 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Investor extends Model implements HasMedia
 {
     use HasFactory;
     use HasFileMigration;
+    use HasSlug;
     use HasTags;
     use InteractsWithMedia;
 
