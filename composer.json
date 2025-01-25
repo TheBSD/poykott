@@ -16,6 +16,7 @@
         "intervention/image": "^3.9",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "sentry/sentry-laravel": "^4.10",
         "spatie/image-optimizer": "^1.8",
         "spatie/laravel-honeypot": "^4.5",
