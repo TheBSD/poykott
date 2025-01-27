@@ -28,10 +28,7 @@ class BackupCommand extends Command
      */
     public function handle(): ?bool
     {
-        if (! File::isDirectory(database_path('backups'))) {
-            File::makeDirectory(database_path('backups'));
-            $this->info('Directory created: ' . database_path('backups'));
-        }
+        $this->createBackupsDirectoryOrOld('backups');
 
         $fileExists = File::glob(database_path('*.sqlite'));
         $fileExistsInDirectory = File::glob(database_path('*' . DIRECTORY_SEPARATOR . '*.sqlite'));
@@ -53,7 +50,7 @@ class BackupCommand extends Command
 
         if (collect($alreadyBackups)->isNotEmpty()) {
             if ($this->confirmMoveOldBackups()) {
-                $this->createOldBackupsDirectory();
+                $this->createBackupsDirectoryOrOld('oldBackups');
                 $this->moveBackupsToOldBackups($alreadyBackups);
             } else {
                 $this->deleteOldBackups($alreadyBackups);
@@ -62,7 +59,7 @@ class BackupCommand extends Command
 
         if ($this->shouldDeleteOldBackups($oldBackupsFilesCount)) {
             $this->deleteOldBackups($oldBackupsFiles);
-        } else {
+        } elseif ($oldBackupsFilesCount !== 0) {
             $this->info('Old Backups not deleted');
         }
 
@@ -73,17 +70,17 @@ class BackupCommand extends Command
         return true;
     }
 
+    private function createBackupsDirectoryOrOld(string $directory): void
+    {
+        if (! File::isDirectory(database_path($directory))) {
+            File::makeDirectory(database_path($directory));
+            $this->info('Directory created: ' . database_path($directory));
+        }
+    }
+
     private function confirmMoveOldBackups(): bool
     {
         return $this->confirm('Do you want to move already backups files to oldBackups directory (if no it is mean old backups are deleted)?', true);
-    }
-
-    private function createOldBackupsDirectory(): void
-    {
-        if (! File::exists(database_path('oldBackups'))) {
-            File::makeDirectory(database_path('oldBackups'));
-            $this->info('Old Backups created successfully: ' . database_path('oldBackups'));
-        }
     }
 
     private function moveBackupsToOldBackups(array $alreadyBackups): void
