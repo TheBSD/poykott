@@ -115,10 +115,9 @@ class BackupCommand extends Command
     private function shouldDeleteOldBackups(int $oldBackupsFilesCount): bool
     {
         $countOption = $this->option('count');
-        if (filled($countOption)) {
-            return $oldBackupsFilesCount >= $countOption;
-        }
 
-        return $this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete then ?');
+        return (filled($countOption) ?
+            $oldBackupsFilesCount >= $countOption :
+            $oldBackupsFilesCount !== 0) && $this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete then ?');
     }
 }
