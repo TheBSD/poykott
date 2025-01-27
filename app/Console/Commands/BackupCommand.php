@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
@@ -72,9 +73,13 @@ class BackupCommand extends Command
 
     private function createBackupsDirectoryOrOld(string $directory): void
     {
-        if (! File::isDirectory(database_path($directory))) {
-            File::makeDirectory(database_path($directory));
-            $this->info('Directory created: ' . database_path($directory));
+        try {
+            if (! File::isDirectory(database_path($directory))) {
+                File::makeDirectory(database_path($directory));
+                $this->info('Directory created: ' . database_path($directory));
+            }
+        } catch (Exception $e) {
+            $this->error('Directory not created: ' . $e->getMessage());
         }
     }
 
