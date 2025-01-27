@@ -35,32 +35,26 @@ class BackupCommand extends Command
 
         $fileExists = File::glob(database_path('*.sqlite'));
         $fileExistsInDirectory = File::glob(database_path('*' . DIRECTORY_SEPARATOR . '*.sqlite'));
-        $fileExistsTest = Arr::flatten([$fileExists, $fileExistsInDirectory]);
+        $allFileExists = Arr::flatten([$fileExists, $fileExistsInDirectory]);
         $alreadyBackups = File::glob(database_path('backups' . DIRECTORY_SEPARATOR . '*.sql'));
         $oldBackupsFiles = File::glob(database_path('oldBackups' . DIRECTORY_SEPARATOR . '*.sql'));
+        $oldBackupsFilesCount = count($oldBackupsFiles);
 
-        if (collect($fileExistsTest)->isNotEmpty()) {
-            foreach ($fileExistsTest as $file) {
-                $fileNameInDirectory = 'backup-' . date('Y-m-d-H-i-s') . '-' . Str::random(2) . '.sql';
-                File::copy($file, database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
-                $this->info('Backup created successfullt: ' . database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
-            }
-        } else {
+        if (collect($allFileExists)->isEmpty()) {
             $this->error('Backup failed files not found in : ' . database_path());
 
             return false;
         }
+        foreach ($allFileExists as $file) {
+            $fileNameInDirectory = 'backup-' . date('Y-m-d-H-i-s') . '-' . Str::random(2) . '.sql';
+            File::copy($file, database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
+            $this->info('Backup created successfullt: ' . database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
+        }
 
         if (collect($alreadyBackups)->isNotEmpty()) {
-            if ($this->confirm('Do you want to move already backups files to oldBackups directory (if no it is mean old backups are deleted)?', true)) {
-                if (! File::exists(database_path('oldBackups'))) {
-                    File::makeDirectory(database_path('oldBackups'));
-                    $this->info('Old Backups created successfully: ' . database_path('oldBackups'));
-                }
-                foreach ($alreadyBackups as $oldBackup) {
-                    File::move($oldBackup, database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
-                    $this->info('Old Backups moved successfully: ' . database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
-                }
+            if ($this->confirmMoveOldBackups()) {
+                $this->createOldBackupsDirectory();
+                $this->moveBackupsToOldBackups($alreadyBackups);
             } else {
                 foreach ($alreadyBackups as $oldBackup) {
                     File::delete($oldBackup);
@@ -69,15 +63,7 @@ class BackupCommand extends Command
             }
         }
 
-        $oldBackupsFilesCount = count($oldBackupsFiles);
-        if (filled($this->option('count'))) {
-            if ($oldBackupsFilesCount >= $this->option('count')) {
-                foreach ($oldBackupsFiles as $oldBackupFile) {
-                    File::delete($oldBackupFile);
-                    $this->info('Old Backups deleted successfully: ' . $oldBackupFile);
-                }
-            }
-        } elseif ($this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete them ?')) {
+        if ($this->shouldDeleteOldBackups($oldBackupsFilesCount)) {
             foreach ($oldBackupsFiles as $oldBackupFile) {
                 File::delete($oldBackupFile);
                 $this->info('Old Backups deleted successfully: ' . $oldBackupFile);
@@ -90,6 +76,49 @@ class BackupCommand extends Command
         $this->info('|Backup process completed successfully !|');
         $this->info('-----------------------------------------');
 
-        return null;
+        return true;
+    }
+
+    /**
+     * Summary of confirmMoveOldBackups
+     */
+    private function confirmMoveOldBackups(): bool
+    {
+        return $this->confirm('Do you want to move already backups files to oldBackups directory (if no it is mean old backups are deleted)?', true);
+    }
+
+    /**
+     * Summary of createOldBackupsDirectory
+     */
+    private function createOldBackupsDirectory(): void
+    {
+        if (! File::exists(database_path('oldBackups'))) {
+            File::makeDirectory(database_path('oldBackups'));
+            $this->info('Old Backups created successfully: ' . database_path('oldBackups'));
+        }
+    }
+
+    /**
+     * Summary of moveBackupsToOldBackups
+     */
+    private function moveBackupsToOldBackups(array $alreadyBackups): void
+    {
+        foreach ($alreadyBackups as $oldBackup) {
+            File::move($oldBackup, database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
+            $this->info('Old Backups moved successfully: ' . database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
+        }
+    }
+
+    /**
+     * Summary of shouldDeleteOldBackups
+     */
+    private function shouldDeleteOldBackups(int $oldBackupsFilesCount): bool
+    {
+        $countOption = $this->option('count');
+        if (filled($countOption)) {
+            return $oldBackupsFilesCount >= $countOption;
+        }
+
+        return $this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete then ?');
     }
 }
