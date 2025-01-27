@@ -56,18 +56,12 @@ class BackupCommand extends Command
                 $this->createOldBackupsDirectory();
                 $this->moveBackupsToOldBackups($alreadyBackups);
             } else {
-                foreach ($alreadyBackups as $oldBackup) {
-                    File::delete($oldBackup);
-                    $this->info('Old Backups deleted successfully: ' . $oldBackup);
-                }
+                $this->deleteOldBackups($alreadyBackups);
             }
         }
 
         if ($this->shouldDeleteOldBackups($oldBackupsFilesCount)) {
-            foreach ($oldBackupsFiles as $oldBackupFile) {
-                File::delete($oldBackupFile);
-                $this->info('Old Backups deleted successfully: ' . $oldBackupFile);
-            }
+            $this->deleteOldBackups($oldBackupsFiles);
         } else {
             $this->info('Old Backups not deleted');
         }
@@ -79,17 +73,11 @@ class BackupCommand extends Command
         return true;
     }
 
-    /**
-     * Summary of confirmMoveOldBackups
-     */
     private function confirmMoveOldBackups(): bool
     {
         return $this->confirm('Do you want to move already backups files to oldBackups directory (if no it is mean old backups are deleted)?', true);
     }
 
-    /**
-     * Summary of createOldBackupsDirectory
-     */
     private function createOldBackupsDirectory(): void
     {
         if (! File::exists(database_path('oldBackups'))) {
@@ -98,9 +86,6 @@ class BackupCommand extends Command
         }
     }
 
-    /**
-     * Summary of moveBackupsToOldBackups
-     */
     private function moveBackupsToOldBackups(array $alreadyBackups): void
     {
         foreach ($alreadyBackups as $oldBackup) {
@@ -109,9 +94,14 @@ class BackupCommand extends Command
         }
     }
 
-    /**
-     * Summary of shouldDeleteOldBackups
-     */
+    private function deleteOldBackups(array $oldBackupsFiles): void
+    {
+        foreach ($oldBackupsFiles as $oldBackup) {
+            File::delete($oldBackup);
+            $this->info('Old Backups deleted successfully: ' . $oldBackup);
+        }
+    }
+
     private function shouldDeleteOldBackups(int $oldBackupsFilesCount): bool
     {
         $countOption = $this->option('count');
