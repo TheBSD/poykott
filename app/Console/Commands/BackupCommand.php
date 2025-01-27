@@ -14,7 +14,7 @@ class BackupCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'do:database-backup';
+    protected $signature = 'do:database-backup {--count=}';
 
     /**
      * The console command description.
@@ -70,7 +70,14 @@ class BackupCommand extends Command
         }
 
         $oldBackupsFilesCount = count($oldBackupsFiles);
-        if ($this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete them ?')) {
+        if (filled($this->option('count'))) {
+            if ($oldBackupsFilesCount >= $this->option('count')) {
+                foreach ($oldBackupsFiles as $oldBackupFile) {
+                    File::delete($oldBackupFile);
+                    $this->info('Old Backups deleted successfully: ' . $oldBackupFile);
+                }
+            }
+        } elseif ($this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete them ?')) {
             foreach ($oldBackupsFiles as $oldBackupFile) {
                 File::delete($oldBackupFile);
                 $this->info('Old Backups deleted successfully: ' . $oldBackupFile);
