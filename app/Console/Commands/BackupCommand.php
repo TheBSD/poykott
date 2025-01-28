@@ -43,10 +43,16 @@ class BackupCommand extends Command
 
             return false;
         }
-        foreach ($allFileExists as $file) {
-            $fileNameInDirectory = 'backup-' . date('Y-m-d-H-i-s') . '-' . Str::random(2) . '.sql';
-            File::copy($file, database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
-            $this->info('Backup created successfullt: ' . database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
+        try {
+            foreach ($allFileExists as $file) {
+                $fileNameInDirectory = 'backup-' . date('Y-m-d-H-i-s') . '-' . Str::random(2) . '.sql';
+                File::copy($file, database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
+                $this->info('Backup created successfullt: ' . database_path('backups' . DIRECTORY_SEPARATOR . $fileNameInDirectory));
+            }
+        } catch (Exception $e) {
+            $this->error('Backup not created: ' . $e->getMessage());
+
+            return false;
         }
 
         if (collect($alreadyBackups)->isNotEmpty()) {
@@ -90,9 +96,13 @@ class BackupCommand extends Command
 
     private function moveBackupsToOldBackups(array $alreadyBackups): void
     {
-        foreach ($alreadyBackups as $oldBackup) {
-            File::move($oldBackup, database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
-            $this->info('Old Backups moved successfully: ' . database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
+        try {
+            foreach ($alreadyBackups as $oldBackup) {
+                File::move($oldBackup, database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
+                $this->info('Old Backups moved successfully: ' . database_path('oldBackups' . DIRECTORY_SEPARATOR . basename((string) $oldBackup)));
+            }
+        } catch (Exception $e) {
+            $this->error('Old Backups not moved: ' . $e->getMessage());
         }
     }
 
@@ -106,10 +116,20 @@ class BackupCommand extends Command
 
     private function shouldDeleteOldBackups(int $oldBackupsFilesCount): bool
     {
-        $countOption = $this->option('count');
+        if ($countOption = $this->option('count')) {
+            if (! is_numeric($countOption) || $countOption < 0) {
+                $this->error('Count option must be a number and greater than 0.');
 
-        return (filled($countOption) ?
-            $oldBackupsFilesCount >= $countOption :
-            $oldBackupsFilesCount !== 0) && $this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete then ?');
+                return false;
+            }
+
+            return $oldBackupsFilesCount >= $countOption;
+        }
+
+        if ($oldBackupsFilesCount !== 0) {
+            return $this->confirm('You have old backups file count : ' . $oldBackupsFilesCount . ' file do you want to delete them ?');
+        }
+
+        return true;
     }
 }
