@@ -45,6 +45,12 @@ return [
             'throw' => false,
         ],
 
+        /**
+         * Note: we are actually using cloudflare r2, because r2 api is compatible with s3
+         * we used s3 with r2 credentials.
+         *
+         * todo: add r2 filesystem and convert everything related to it for more readability
+         */
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -54,9 +60,8 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
+            'throw' => true,
         ],
-
     ],
 
     /*

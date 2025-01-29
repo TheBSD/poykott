@@ -8,9 +8,6 @@ use App\Models\Company;
 use App\Models\Person;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
-use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
-use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class ImportTeamTechAvivCommand extends Command
 {
@@ -18,11 +15,6 @@ class ImportTeamTechAvivCommand extends Command
 
     protected $description = 'Command description';
 
-    /**
-     * @throws FileDoesNotExist
-     * @throws FileIsTooBig
-     * @throws FileCannotBeAdded
-     */
     public function handle(): void
     {
         $json = file_get_contents(database_path('seeders/data/0-team.json'));

@@ -7,8 +7,10 @@ use App\Models\Company;
 use App\Models\Investor;
 use App\Models\Person;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +36,8 @@ class AppServiceProvider extends ServiceProvider
 
         Model::shouldBeStrict(! $this->app->isProduction());
 
+        Date::use(CarbonImmutable::class);
+
         Relation::enforceMorphMap([
             'company' => Company::class,
             'person' => Person::class,
@@ -41,6 +45,5 @@ class AppServiceProvider extends ServiceProvider
             'alternative' => Alternative::class,
             'user' => User::class,
         ]);
-
     }
 }

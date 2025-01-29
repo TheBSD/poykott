@@ -45,8 +45,8 @@ class CompanyResource extends Resource
                 DateTimePicker::make('approved_at'),
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
-                SpatieMediaLibraryFileUpload::make('logo'),
-
+                SpatieMediaLibraryFileUpload::make('logo')
+                    ->rule(['image', 'mimes:jpeg,jpg,png,svg,webp']),
                 Select::make('tags')->relationship('tagsRelation', 'name')
                     ->multiple()->searchable()->preload()->native(false)
                     ->createOptionForm([

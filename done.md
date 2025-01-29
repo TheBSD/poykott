@@ -55,3 +55,5 @@
 -   [x] investor details page
 -   [x] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
 -   [x] data from Somair
+-   [x] Analytics from Google Analytics, Yandex, bing analytics, simpleanaylitecs
+        or www.tinybird.co , https://simplestats.io/
