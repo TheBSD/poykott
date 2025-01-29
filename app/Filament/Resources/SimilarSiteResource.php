@@ -32,7 +32,7 @@ class SimilarSiteResource extends Resource
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('url')
-                    ->unique('url')
+                    ->unique()
                     ->required(),
                 Textarea::make('description')
                     ->columnSpanFull(),

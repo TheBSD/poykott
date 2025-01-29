@@ -15,6 +15,7 @@
                 <div class="flex items-center space-x-6 p-6">
                     {{-- @if ($company->media()?->first()) --}}
                     <img
+                        loading="lazy"
                         src="{{ $company->image_path }}"
                         alt="{{ $company->name }}"
                         class="h-24 w-24 rounded-lg object-scale-down"
@@ -49,6 +50,7 @@
                                 @foreach ($company->founders as $founder)
                                     <div class="flex items-center space-x-3">
                                         <img
+                                            loading="lazy"
                                             src="{{ $founder->image_path }}"
                                             alt="avatar"
                                             class="h-24 w-24 rounded-full object-cover"
@@ -121,6 +123,7 @@
                                     @endif
 
                                     <img
+                                        loading="lazy"
                                         src="{{ $alternative->image_path }}"
                                         alt="{{ $alternative->name }}"
                                         class="h-24 w-24 rounded-lg object-scale-down"

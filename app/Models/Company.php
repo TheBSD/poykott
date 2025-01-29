@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\CompanyPersonType;
 use App\Traits\HasImagePath;
 use App\Traits\HasTags;
+use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +23,7 @@ use Spatie\Sluggable\SlugOptions;
 class Company extends Model implements HasMedia
 {
     use HasFactory;
+    use HasFileMigration;
     use HasImagePath;
     use HasSlug;
     use HasTags;

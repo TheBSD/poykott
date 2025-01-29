@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasImagePath;
 use App\Traits\HasTags;
+use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,6 +16,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Alternative extends Model implements HasMedia
 {
     use HasFactory;
+    use HasFileMigration;
     use HasImagePath;
     use HasTags;
     use InteractsWithMedia;
