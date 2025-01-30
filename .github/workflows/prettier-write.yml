@@ -21,7 +21,7 @@ jobs:
                   coverage: none
 
             - name: Install dependencies
-              run: composer create-project laravel/laravel your-project-name 11.0.* --no-interaction --prefer-dist --optimize-autoloader
+              run: composer create-project laravel/laravel your-project-name 11.0.* --no-interaction --prefer-dist
 
             - run: npm ci
             - run: npm run prepare
