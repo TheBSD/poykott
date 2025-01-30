@@ -12,6 +12,18 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   node-version: '18.x'
+
+            # setup php/laravel
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.2'
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
+                  coverage: none
+
+            - name: Install dependencies
+              run: composer require "laravel/framework:11" "orchestra/testbench:3" --no-interaction --no-update --prefer-dist --optimize-autoloader
+
             - run: npm ci
             - run: npm run prepare
             - run: npm run format
