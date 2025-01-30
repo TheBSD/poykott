@@ -17,12 +17,18 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: '8.2'
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
+                  extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
                   coverage: none
 
             - name: Install dependencies
-              run: composer create-project laravel/laravel your-project-name 11.0.* --no-interaction --prefer-dist
-
+              run: |
+                  cp .env.example .env
+                  composer install --no-interaction --prefer-dist --optimize-autoloader
+                  php artisan passport:keys
+                  env:
+                  DB_CONNECTION: testing
+            - name: Generate key
+              run: php artisan key:generate
             - run: npm ci
             - run: npm run prepare
             - run: npm run format
