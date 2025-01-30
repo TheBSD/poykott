@@ -76,6 +76,30 @@ run `php artisan key:generate`
 
 > This will download some of the companies and people images to be as close as possible to the online system
 
+### Our deployment script
+
+```bash
+cd /PATH_TO_FOLDER/boycottisraelitech.com
+git pull origin $FORGE_SITE_BRANCH
+
+$FORGE_COMPOSER install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+( flock -w 10 9 || exit 1
+    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
+
+if [ -f artisan ]; then
+    $FORGE_PHP artisan migrate --force
+    $FORGE_PHP artisan optimize:clear
+    $FORGE_PHP artisan optimize
+    $FORGE_PHP artisan filament:optimize-clear
+    $FORGE_PHP artisan filament:optimize
+    $FORGE_PHP artisan queue:work --stop-when-empty
+
+    npm ci
+    npm run build
+fi
+```
+
 ## How to Contribute
 
 -   go to [todo](./todo.md) file and pick one of the todo items and push it as a pull request
