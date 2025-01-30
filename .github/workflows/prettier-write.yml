@@ -24,9 +24,8 @@ jobs:
               run: |
                   cp .env.example .env
                   composer install --no-interaction --prefer-dist --optimize-autoloader
-                  php artisan passport:keys
                   env:
-                  DB_CONNECTION: testing
+                      DB_CONNECTION: testing
             - name: Generate key
               run: php artisan key:generate
             - run: npm ci
