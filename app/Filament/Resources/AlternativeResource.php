@@ -40,7 +40,12 @@ class AlternativeResource extends Resource
             TextInput::make('url')->required(),
             Textarea::make('description')->columnSpanFull(),
             Textarea::make('notes')->columnSpanFull(),
-            SpatieMediaLibraryFileUpload::make('logo')->rule(['image', 'mimes:jpeg,jpg,png,svg,webp']),
+            SpatieMediaLibraryFileUpload::make('logo')
+                ->rule([
+                    'image',
+                    'mimes:jpeg,jpg,png,svg,webp',
+                    'max:2048',  // 2MB limit
+                ]),
             Select::make('tags')->relationship('tagsRelation', 'name')
                 ->multiple()->searchable()->preload()->native(false)
                 ->createOptionForm([

@@ -23,10 +23,11 @@
     -   [x] default url with s3 in HasImagePath Trait
     -   [x] save s3 images in filament admin panel
     -   [x] clean up the .env file in local and production
-        -   [ ] upload to the merge request and refactor the code
-        -   [ ] install Horizon and configure it
-        -   [ ] serving optimized images
+        -   [x] upload to the merge request and refactor the code
+        -   [x] serving optimized images
+        -   [ ] make sure queue is working
 -   [ ] make sure the queue and horizon panel are working
+-   [ ] switch to pnpm if faster
 -   [ ] activity log in the filament dashboard
 -   [ ] upgrade tailwind to v4 for performance boost
 -   [ ] security from https://app.aikido.dev/

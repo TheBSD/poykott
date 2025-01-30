@@ -52,7 +52,12 @@ class PersonResource extends Resource
                                 ->required(),
                         ]),
                     ]),
-                SpatieMediaLibraryFileUpload::make('avatar')->rule(['image', 'mimes:jpeg,jpg,png,svg,webp']),
+                SpatieMediaLibraryFileUpload::make('avatar')
+                    ->rule([
+                        'image',
+                        'mimes:jpeg,jpg,png,svg,webp',
+                        'max:2048',  // 2MB limit
+                    ]),
                 Textarea::make('description'),
                 Textarea::make('social_links')->columnSpanFull()
                     ->formatStateUsing(function ($state): string {
