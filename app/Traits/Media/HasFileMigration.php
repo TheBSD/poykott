@@ -60,7 +60,7 @@ trait HasFileMigration
             $s3Url = $fileService->moveToS3($localPath, $s3Path);
             $this->updateMediaS3Disk($media);
             //$this->updateMediaS3Url($media, $s3Url);
-            $this->logSuccess($media);
+            $this->logSuccess($s3Url);
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
