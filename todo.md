@@ -27,6 +27,7 @@
         -   [x] serving optimized images
         -   [ ] make sure queue is working
 -   [ ] make sure the queue and horizon panel are working
+-   [ ] switch to pnpm if faster
 -   [ ] activity log in the filament dashboard
 -   [ ] upgrade tailwind to v4 for performance boost
 -   [ ] security from https://app.aikido.dev/
