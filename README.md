@@ -22,8 +22,8 @@ or go to [this link](https://github.com/spatie/image-optimizer?tab=readme-ov-fil
 
 ### 3. Install dependencies
 
--   for the backend `composer install`
--   and for the frontend `npm install`
+- for the backend `composer install`
+- and for the frontend `npm install`
 
 > You can use other like `yarn` or `pnpm` if you prefer
 
@@ -33,31 +33,31 @@ run `php artisan key:generate`
 
 ### 5. Set up the database
 
--   run `composer dump-autoload` .
--   run `touch database/database.sqlite` to create database file
--   run `php artisan migrate:fresh --seed`
--   run `php artisan import:all`
--   run `npm run dev` to run vite
+- run `composer dump-autoload` .
+- run `touch database/database.sqlite` to create database file
+- run `php artisan migrate:fresh --seed`
+- run `php artisan import:all`
+- run `npm run dev` to run vite
 
 ### 6. run the project
 
--   for the backend you can use `php artisan serve`
+- for the backend you can use `php artisan serve`
 
 > if you are using valet or herd you can link the site and no need for `php artisan serve`
 
--   for the frontend run `npm run dev`
+- for the frontend run `npm run dev`
 
 > or `yarn dev` or `pnpm install` if you prefer
 
 ### 7. run the queue
 
--   run `php artisan queue:work` to enable queues in the system
+- run `php artisan queue:work` to enable queues in the system
 
 > you can run `php artisan queue:listen` if you want queue to be interactive with queue related changes
 
 ### 8. if You want real-world data run these commands to import the data
 
--   run `php artisan import:all`
+- run `php artisan import:all`
 
 > This will not give you images because they are heavy
 
@@ -82,7 +82,7 @@ run `php artisan key:generate`
 cd /PATH_TO_FOLDER/boycottisraelitech.com
 git pull origin $FORGE_SITE_BRANCH
 
-$FORGE_COMPOSER install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+$FORGE_COMPOSER install --no-dev --no-interaction --prefer-dist
 
 ( flock -w 10 9 || exit 1
     echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
@@ -102,6 +102,6 @@ fi
 
 ## How to Contribute
 
--   go to [todo](./todo.md) file and pick one of the todo items and push it as a pull request
--   share our links in social media
--   enrich our database with your contributions especially for alternatives
+- go to [todo](./todo.md) file and pick one of the todo items and push it as a pull request
+- share our links in social media
+- enrich our database with your contributions especially for alternatives
