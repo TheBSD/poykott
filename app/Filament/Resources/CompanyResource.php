@@ -46,7 +46,11 @@ class CompanyResource extends Resource
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('logo')
-                    ->rule(['image', 'mimes:jpeg,jpg,png,svg,webp']),
+                    ->rule([
+                        'image',
+                        'mimes:jpeg,jpg,png,svg,webp',
+                        'max:2048',  // 2MB limit
+                    ]),
                 Select::make('tags')->relationship('tagsRelation', 'name')
                     ->multiple()->searchable()->preload()->native(false)
                     ->createOptionForm([
