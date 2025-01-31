@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,9 +15,12 @@
 |
 */
 
-pest()->extend(Tests\TestCase::class)
-    ->use(Illuminate\Foundation\Testing\LazilyRefreshDatabase::class)
-    ->in('Feature');
+pest()
+    ->extend(TestCase::class)
+    ->use(LazilyRefreshDatabase::class)
+    ->beforeEach(function (): void {
+        Storage::fake('public');
+    });
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +48,7 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function something(): void
 {
     // ..
 }
