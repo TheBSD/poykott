@@ -3,6 +3,14 @@
     <main class="container mx-auto space-y-6 p-6">
         <!-- Title -->
         <section class="mb-16 space-y-4 text-center">
+            <div class="flex justify-end">
+                <a
+                    href="{{ route('add-company') }}"
+                    class="rounded-md bg-slate-900 p-3 text-lg text-white hover:bg-slate-600"
+                >
+                    New Company
+                </a>
+            </div>
             <h1 class="mt-12 text-6xl font-extrabold">Boycott Israeli Tech</h1>
             <p class="text-xl text-gray-400">
                 Search for Israeli tech
