@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Absctracts;
+namespace App\Models\Abstracts;
 
 use App\Traits\HasImagePath;
 use App\Traits\Media\HasFileMigration;

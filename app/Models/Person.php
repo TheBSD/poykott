@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Absctracts\MediaAbleModel;
+use App\Models\Abstracts\MediaAbleModel;
 use App\Traits\HasTags;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
