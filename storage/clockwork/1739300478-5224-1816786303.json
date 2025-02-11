@@ -1,0 +1,2203 @@
+{
+    "id": "1739300478-5224-1816786303",
+    "version": 1,
+    "type": "request",
+    "time": 1739300478.50901,
+    "method": "GET",
+    "url": "https:\/\/boycottisraelitech.test",
+    "uri": "\/",
+    "headers": {
+        "cookie": [
+            "x-clockwork=%7B%22requestId%22%3A%221739300468-9580-1480639528%22%2C%22version%22%3A%225.3.3%22%2C%22path%22%3A%22%5C%2F__clockwork%5C%2F%22%2C%22webPath%22%3A%22%5C%2Fclockwork%5C%2Fapp%22%2C%22token%22%3A%22711b42ce%22%2C%22metrics%22%3Atrue%2C%22toolbar%22%3Atrue%7D"
+        ],
+        "te": ["trailers"],
+        "priority": ["u=0, i"],
+        "sec-fetch-user": ["?1"],
+        "sec-fetch-site": ["none"],
+        "sec-fetch-mode": ["navigate"],
+        "sec-fetch-dest": ["document"],
+        "upgrade-insecure-requests": ["1"],
+        "accept-encoding": ["gzip, deflate, br, zstd"],
+        "accept-language": ["en-US,en;q=0.5"],
+        "accept": ["text\/html,application\/xhtml+xml,application\/xml;q=0.9,*\/*;q=0.8"],
+        "user-agent": ["Mozilla\/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko\/20100101 Firefox\/134.0"],
+        "host": ["boycottisraelitech.test"]
+    },
+    "controller": "App\\Http\\Controllers\\HomeController@index",
+    "getData": [],
+    "postData": [],
+    "requestData": "",
+    "sessionData": {
+        "_token": "VwlYGpoGabauXNOLIxGTOuCYmm7I16VtdnVpwpBs",
+        "_previous": { "__type__": "array", "url": "https:\/\/boycottisraelitech.test" },
+        "_flash": { "__type__": "array", "old": { "__type__": "array" }, "new": { "__type__": "array" } },
+        "PHPDEBUGBAR_STACK_DATA": { "__type__": "array" }
+    },
+    "authenticatedUser": null,
+    "cookies": {
+        "x-clockwork": "{\"requestId\":\"1739300468-9580-1480639528\",\"version\":\"5.3.3\",\"path\":\"\\\/__clockwork\\\/\",\"webPath\":\"\\\/clockwork\\\/app\",\"token\":\"711b42ce\",\"metrics\":true,\"toolbar\":true}"
+    },
+    "responseTime": 1739300478.640766,
+    "responseStatus": 200,
+    "responseDuration": 131.75582885742188,
+    "memoryUsage": 6291456,
+    "middleware": ["web"],
+    "databaseQueries": [
+        {
+            "query": "SELECT * FROM \"sessions\" WHERE \"id\" = '3zOMMbiqULJElhcs6x8fyU0nvf54XrAiI9b1zKXK' LIMIT 1",
+            "duration": 0.11,
+            "connection": "sqlite",
+            "time": 1739300478.5911212,
+            "trace": [
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Features\/SupportDisablingBackButtonCache\/DisableBackButtonCacheMiddleware.php",
+                    "line": 19,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/Middleware\/InjectDebugbar.php",
+                    "line": 66,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
+                    "line": 21,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ConvertEmptyStringsToNull.php",
+                    "line": 31,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
+                    "line": 21,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TrimStrings.php",
+                    "line": 51,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": null,
+            "tags": []
+        },
+        {
+            "query": "SELECT count(*) as aggregate FROM \"companies\" WHERE \"approved_at\" IS not NULL",
+            "duration": 0.11,
+            "connection": "sqlite",
+            "time": 1739300478.611391,
+            "trace": [
+                {
+                    "call": "Illuminate\\Database\\Eloquent\\Builder->paginate()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/app\/Http\/Controllers\/HomeController.php",
+                    "line": 22,
+                    "isVendor": false
+                },
+                {
+                    "call": "App\\Http\\Controllers\\HomeController->index()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/ControllerDispatcher.php",
+                    "line": 46,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\ControllerDispatcher->dispatch()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 265,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->runController()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 211,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->run()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
+                    "line": 808,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 144,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php",
+                    "line": 51,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/VerifyCsrfToken.php",
+                    "line": 88,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": "App\\Models\\Company",
+            "tags": []
+        },
+        {
+            "query": "SELECT \"companies\".\"id\", \"name\", \"description\", \"slug\", \"image_path\" FROM \"companies\" WHERE \"approved_at\" IS not NULL LIMIT 20 offset 0",
+            "duration": 0.08,
+            "connection": "sqlite",
+            "time": 1739300478.611991,
+            "trace": [
+                {
+                    "call": "Illuminate\\Database\\Eloquent\\Builder->paginate()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/app\/Http\/Controllers\/HomeController.php",
+                    "line": 22,
+                    "isVendor": false
+                },
+                {
+                    "call": "App\\Http\\Controllers\\HomeController->index()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/ControllerDispatcher.php",
+                    "line": 46,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\ControllerDispatcher->dispatch()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 265,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->runController()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 211,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->run()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
+                    "line": 808,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 144,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php",
+                    "line": 51,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/VerifyCsrfToken.php",
+                    "line": 88,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": "App\\Models\\Company",
+            "tags": []
+        },
+        {
+            "query": "SELECT * FROM \"media\" WHERE \"media\".\"model_id\" in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20) and \"media\".\"model_type\" = 'company'",
+            "duration": 0.14,
+            "connection": "sqlite",
+            "time": 1739300478.612905,
+            "trace": [
+                {
+                    "call": "Illuminate\\Database\\Eloquent\\Builder->paginate()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/app\/Http\/Controllers\/HomeController.php",
+                    "line": 22,
+                    "isVendor": false
+                },
+                {
+                    "call": "App\\Http\\Controllers\\HomeController->index()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/ControllerDispatcher.php",
+                    "line": 46,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\ControllerDispatcher->dispatch()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 265,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->runController()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 211,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->run()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
+                    "line": 808,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 144,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php",
+                    "line": 51,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/VerifyCsrfToken.php",
+                    "line": 88,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": "Spatie\\MediaLibrary\\MediaCollections\\Models\\Media",
+            "tags": []
+        },
+        {
+            "query": "SELECT * FROM (SELECT \"tags\".\"id\", \"name\", \"taggables\".\"taggable_id\" as \"pivot_taggable_id\", \"taggables\".\"tag_id\" as \"pivot_tag_id\", \"taggables\".\"taggable_type\" as \"pivot_taggable_type\", \"taggables\".\"created_at\" as \"pivot_created_at\", \"taggables\".\"updated_at\" as \"pivot_updated_at\", row_number() over (partition by \"taggables\".\"taggable_id\") as \"laravel_row\" FROM \"tags\" inner join \"taggables\" on \"tags\".\"id\" = \"taggables\".\"tag_id\" WHERE \"taggables\".\"taggable_id\" in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20) and \"taggables\".\"taggable_type\" = 'company') as \"laravel_table\" WHERE \"laravel_row\" <= 3 ORDER BY \"laravel_row\"",
+            "duration": 0.29,
+            "connection": "sqlite",
+            "time": 1739300478.6141062,
+            "trace": [
+                {
+                    "call": "Illuminate\\Database\\Eloquent\\Builder->paginate()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/app\/Http\/Controllers\/HomeController.php",
+                    "line": 22,
+                    "isVendor": false
+                },
+                {
+                    "call": "App\\Http\\Controllers\\HomeController->index()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/ControllerDispatcher.php",
+                    "line": 46,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\ControllerDispatcher->dispatch()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 265,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->runController()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php",
+                    "line": 211,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Route->run()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
+                    "line": 808,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 144,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php",
+                    "line": 51,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Routing\\Middleware\\SubstituteBindings->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/VerifyCsrfToken.php",
+                    "line": 88,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": "App\\Models\\Tag",
+            "tags": []
+        },
+        {
+            "query": "SELECT * FROM \"sessions\" WHERE \"id\" = '3zOMMbiqULJElhcs6x8fyU0nvf54XrAiI9b1zKXK' LIMIT 1",
+            "duration": 0.07,
+            "connection": "sqlite",
+            "time": 1739300478.62635,
+            "trace": [
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Features\/SupportDisablingBackButtonCache\/DisableBackButtonCacheMiddleware.php",
+                    "line": 19,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/Middleware\/InjectDebugbar.php",
+                    "line": 66,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
+                    "line": 21,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ConvertEmptyStringsToNull.php",
+                    "line": 31,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
+                    "line": 21,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TrimStrings.php",
+                    "line": 51,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": null,
+            "tags": []
+        },
+        {
+            "query": "INSERT INTO \"sessions\" (\"payload\", \"last_activity\", \"user_id\", \"ip_address\", \"user_agent\", \"id\") VALUES ('YTozOntzOjY6Il90b2tlbiI7czo0MDoiVndsWUdwb0dhYmF1WE5PTEl4R1RPdUNZbW03STE2VnRkblZwd3BCcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vYm95Y290dGlzcmFlbGl0ZWNoLnRlc3QiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1739300478, , '127.0.0.1', 'Mozilla\/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko\/20100101 Firefox\/134.0', '3zOMMbiqULJElhcs6x8fyU0nvf54XrAiI9b1zKXK')",
+            "duration": 6.54,
+            "connection": "sqlite",
+            "time": 1739300478.626839,
+            "trace": [
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Features\/SupportDisablingBackButtonCache\/DisableBackButtonCacheMiddleware.php",
+                    "line": 19,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/Middleware\/InjectDebugbar.php",
+                    "line": 66,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
+                    "line": 21,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ConvertEmptyStringsToNull.php",
+                    "line": 31,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
+                    "line": 21,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TrimStrings.php",
+                    "line": 51,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": null,
+            "tags": []
+        },
+        {
+            "query": "SELECT * FROM \"sessions\" WHERE \"id\" = '3zOMMbiqULJElhcs6x8fyU0nvf54XrAiI9b1zKXK' LIMIT 1",
+            "duration": 0.15,
+            "connection": "sqlite",
+            "time": 1739300478.639779,
+            "trace": [
+                {
+                    "call": "Illuminate\\Support\\Manager->__call()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/SymfonyHttpDriver.php",
+                    "line": 52,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\SymfonyHttpDriver->isSessionStarted()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/maximebf\/debugbar\/src\/DebugBar\/DebugBar.php",
+                    "line": 446,
+                    "isVendor": true
+                },
+                {
+                    "call": "DebugBar\\DebugBar->initStackSession()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/maximebf\/debugbar\/src\/DebugBar\/DebugBar.php",
+                    "line": 374,
+                    "isVendor": true
+                },
+                {
+                    "call": "DebugBar\\DebugBar->getStackedData()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/LaravelDebugbar.php",
+                    "line": 1034,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\LaravelDebugbar->getStackedData()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/LaravelDebugbar.php",
+                    "line": 1023,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\LaravelDebugbar->hasStackedData()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/maximebf\/debugbar\/src\/DebugBar\/JavascriptRenderer.php",
+                    "line": 1095,
+                    "isVendor": true
+                },
+                {
+                    "call": "DebugBar\\JavascriptRenderer->render()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/LaravelDebugbar.php",
+                    "line": 982,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\LaravelDebugbar->injectDebugbar()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/LaravelDebugbar.php",
+                    "line": 844,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\LaravelDebugbar->modifyResponse()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/barryvdh\/laravel-debugbar\/src\/Middleware\/InjectDebugbar.php",
+                    "line": 72,
+                    "isVendor": true
+                },
+                {
+                    "call": "Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+                    "line": 183,
+                    "isVendor": true
+                }
+            ],
+            "model": null,
+            "tags": []
+        }
+    ],
+    "databaseQueriesCount": 8,
+    "databaseSlowQueries": 0,
+    "databaseSelects": 7,
+    "databaseInserts": 1,
+    "databaseUpdates": 0,
+    "databaseDeletes": 0,
+    "databaseOthers": 0,
+    "databaseDuration": 7.49,
+    "cacheQueries": [],
+    "cacheReads": 0,
+    "cacheHits": 0,
+    "cacheWrites": 0,
+    "cacheDeletes": 0,
+    "cacheTime": 0,
+    "modelsActions": [],
+    "modelsRetrieved": {
+        "App\\Models\\Company": 20,
+        "Spatie\\MediaLibrary\\MediaCollections\\Models\\Media": 18,
+        "App\\Models\\Tag": 26
+    },
+    "modelsCreated": [],
+    "modelsUpdated": [],
+    "modelsDeleted": [],
+    "redisCommands": [],
+    "queueJobs": [],
+    "timelineData": [
+        {
+            "description": "Controller",
+            "start": 1739300478.542123,
+            "end": 1739300478.640702,
+            "duration": 98.57892990112305,
+            "color": null,
+            "data": null
+        }
+    ],
+    "log": [
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.617996,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        },
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.618573,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        },
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.619031,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        },
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.621313,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        },
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.623115,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        },
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.623572,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        },
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.624074,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        },
+        {
+            "message": "mb_strwidth(): Passing null to parameter #1 ($string) of type string is deprecated in \/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php on line 658",
+            "exception": null,
+            "context": { "__type__": "array" },
+            "level": "warning",
+            "time": 1739300478.624537,
+            "trace": [
+                {
+                    "call": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}()",
+                    "file": null,
+                    "line": null,
+                    "isVendor": false
+                },
+                {
+                    "call": "mb_strwidth()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Str.php",
+                    "line": 658,
+                    "isVendor": true
+                },
+                {
+                    "call": "()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/resources\/views\/home.blade.php",
+                    "line": 60,
+                    "isVendor": false
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/Filesystem\/Filesystem.php",
+                    "line": 124,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\Filesystem\\Filesystem->getRequire()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/PhpEngine.php",
+                    "line": 58,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\PhpEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 22,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/Engines\/CompilerEngine.php",
+                    "line": 74,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\Engines\\CompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/livewire\/livewire\/src\/Mechanisms\/ExtendBlade\/ExtendedCompilerEngine.php",
+                    "line": 10,
+                    "isVendor": true
+                },
+                {
+                    "call": "Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 209,
+                    "isVendor": true
+                },
+                {
+                    "call": "Illuminate\\View\\View->getContents()",
+                    "file": "\/home\/omar\/My_apps\/my_contribute\/poykott\/vendor\/laravel\/framework\/src\/Illuminate\/View\/View.php",
+                    "line": 192,
+                    "isVendor": true
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "routes": [
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/alternatives",
+            "name": "filament.admin.resources.alternatives.index",
+            "action": "App\\Filament\\Resources\\AlternativeResource\\Pages\\ListAlternatives",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/alternatives\/create",
+            "name": "filament.admin.resources.alternatives.create",
+            "action": "App\\Filament\\Resources\\AlternativeResource\\Pages\\CreateAlternative",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/alternatives\/{record}\/edit",
+            "name": "filament.admin.resources.alternatives.edit",
+            "action": "App\\Filament\\Resources\\AlternativeResource\\Pages\\EditAlternative",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/companies",
+            "name": "filament.admin.resources.companies.index",
+            "action": "App\\Filament\\Resources\\CompanyResource\\Pages\\ListCompanies",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/companies\/create",
+            "name": "filament.admin.resources.companies.create",
+            "action": "App\\Filament\\Resources\\CompanyResource\\Pages\\CreateCompany",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/companies\/{record}\/edit",
+            "name": "filament.admin.resources.companies.edit",
+            "action": "App\\Filament\\Resources\\CompanyResource\\Pages\\EditCompany",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/contact-messages",
+            "name": "filament.admin.resources.contact-messages.index",
+            "action": "App\\Filament\\Resources\\ContactMessageResource\\Pages\\ListContactMessages",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/contact-messages\/{record}",
+            "name": "filament.admin.resources.contact-messages.view",
+            "action": "App\\Filament\\Resources\\ContactMessageResource\\Pages\\ViewContactMessage",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/exit-strategies",
+            "name": "filament.admin.resources.exit-strategies.index",
+            "action": "App\\Filament\\Resources\\ExitStrategyResource\\Pages\\ListExitStrategies",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/exit-strategies\/create",
+            "name": "filament.admin.resources.exit-strategies.create",
+            "action": "App\\Filament\\Resources\\ExitStrategyResource\\Pages\\CreateExitStrategy",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/exit-strategies\/{record}\/edit",
+            "name": "filament.admin.resources.exit-strategies.edit",
+            "action": "App\\Filament\\Resources\\ExitStrategyResource\\Pages\\EditExitStrategy",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/investors",
+            "name": "filament.admin.resources.investors.index",
+            "action": "App\\Filament\\Resources\\InvestorResource\\Pages\\ListInvestors",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/investors\/create",
+            "name": "filament.admin.resources.investors.create",
+            "action": "App\\Filament\\Resources\\InvestorResource\\Pages\\CreateInvestor",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/investors\/{record}\/edit",
+            "name": "filament.admin.resources.investors.edit",
+            "action": "App\\Filament\\Resources\\InvestorResource\\Pages\\EditInvestor",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/office-locations",
+            "name": "filament.admin.resources.office-locations.index",
+            "action": "App\\Filament\\Resources\\OfficeLocationResource\\Pages\\ListOfficeLocations",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/office-locations\/create",
+            "name": "filament.admin.resources.office-locations.create",
+            "action": "App\\Filament\\Resources\\OfficeLocationResource\\Pages\\CreateOfficeLocation",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/office-locations\/{record}\/edit",
+            "name": "filament.admin.resources.office-locations.edit",
+            "action": "App\\Filament\\Resources\\OfficeLocationResource\\Pages\\EditOfficeLocation",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/people",
+            "name": "filament.admin.resources.people.index",
+            "action": "App\\Filament\\Resources\\PersonResource\\Pages\\ListPeople",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/people\/create",
+            "name": "filament.admin.resources.people.create",
+            "action": "App\\Filament\\Resources\\PersonResource\\Pages\\CreatePerson",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/people\/{record}\/edit",
+            "name": "filament.admin.resources.people.edit",
+            "action": "App\\Filament\\Resources\\PersonResource\\Pages\\EditPerson",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/resources",
+            "name": "filament.admin.resources.resources.index",
+            "action": "App\\Filament\\Resources\\ResourceResource\\Pages\\ListResources",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/resources\/create",
+            "name": "filament.admin.resources.resources.create",
+            "action": "App\\Filament\\Resources\\ResourceResource\\Pages\\CreateResource",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/resources\/{record}\/edit",
+            "name": "filament.admin.resources.resources.edit",
+            "action": "App\\Filament\\Resources\\ResourceResource\\Pages\\EditResource",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/similar-site-categories",
+            "name": "filament.admin.resources.similar-site-categories.index",
+            "action": "App\\Filament\\Resources\\SimilarSiteCategoryResource\\Pages\\ListSimilarSiteCategories",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/similar-site-categories\/create",
+            "name": "filament.admin.resources.similar-site-categories.create",
+            "action": "App\\Filament\\Resources\\SimilarSiteCategoryResource\\Pages\\CreateSimilarSiteCategory",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/similar-site-categories\/{record}\/edit",
+            "name": "filament.admin.resources.similar-site-categories.edit",
+            "action": "App\\Filament\\Resources\\SimilarSiteCategoryResource\\Pages\\EditSimilarSiteCategory",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/similar-sites",
+            "name": "filament.admin.resources.similar-sites.index",
+            "action": "App\\Filament\\Resources\\SimilarSiteResource\\Pages\\ListSimilarSites",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/similar-sites\/create",
+            "name": "filament.admin.resources.similar-sites.create",
+            "action": "App\\Filament\\Resources\\SimilarSiteResource\\Pages\\CreateSimilarSite",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/similar-sites\/{record}\/edit",
+            "name": "filament.admin.resources.similar-sites.edit",
+            "action": "App\\Filament\\Resources\\SimilarSiteResource\\Pages\\EditSimilarSite",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/tags",
+            "name": "filament.admin.resources.tags.index",
+            "action": "App\\Filament\\Resources\\TagResource\\Pages\\ListTags",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/tags\/create",
+            "name": "filament.admin.resources.tags.create",
+            "action": "App\\Filament\\Resources\\TagResource\\Pages\\CreateTag",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/tags\/{record}\/edit",
+            "name": "filament.admin.resources.tags.edit",
+            "action": "App\\Filament\\Resources\\TagResource\\Pages\\EditTag",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/taggables",
+            "name": "filament.admin.resources.taggables.index",
+            "action": "App\\Filament\\Resources\\TaggableResource\\Pages\\ListTaggables",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/taggables\/create",
+            "name": "filament.admin.resources.taggables.create",
+            "action": "App\\Filament\\Resources\\TaggableResource\\Pages\\CreateTaggable",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/taggables\/{record}\/edit",
+            "name": "filament.admin.resources.taggables.edit",
+            "action": "App\\Filament\\Resources\\TaggableResource\\Pages\\EditTaggable",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/users",
+            "name": "filament.admin.resources.users.index",
+            "action": "App\\Filament\\Resources\\UserResource\\Pages\\ListUsers",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/users\/create",
+            "name": "filament.admin.resources.users.create",
+            "action": "App\\Filament\\Resources\\UserResource\\Pages\\CreateUser",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "admin\/users\/{record}\/edit",
+            "name": "filament.admin.resources.users.edit",
+            "action": "App\\Filament\\Resources\\UserResource\\Pages\\EditUser",
+            "middleware": [
+                "panel:admin",
+                "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                "Illuminate\\Session\\Middleware\\StartSession",
+                "Illuminate\\Session\\Middleware\\AuthenticateSession",
+                "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+                "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "Filament\\Http\\Middleware\\DisableBladeIconComponents",
+                "Filament\\Http\\Middleware\\DispatchServingFilamentEvent",
+                "Filament\\Http\\Middleware\\Authenticate"
+            ],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "\/",
+            "name": "home",
+            "action": "App\\Http\\Controllers\\HomeController@index",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "load-more",
+            "name": null,
+            "action": "App\\Http\\Controllers\\HomeController@loadMore",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "search",
+            "name": null,
+            "action": "App\\Http\\Controllers\\HomeController@search",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "about",
+            "name": "about",
+            "action": "App\\Http\\Controllers\\HomeController@about",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "POST",
+            "uri": "contact",
+            "name": "contact",
+            "action": "App\\Http\\Controllers\\HomeController@contact",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "similar-sites",
+            "name": "similar-sites",
+            "action": "App\\Http\\Controllers\\HomeController@similarSites",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "companies\/{company}",
+            "name": "companies.show",
+            "action": "App\\Http\\Controllers\\CompanyController@show",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "POST",
+            "uri": "companies\/{company}\/alternatives",
+            "name": "companies.alternatives.store",
+            "action": "App\\Http\\Controllers\\CompanyController@storeAlternative",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "people",
+            "name": "people",
+            "action": "App\\Http\\Controllers\\PersonController@index",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "people\/load-more",
+            "name": null,
+            "action": "App\\Http\\Controllers\\PersonController@loadMore",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "people\/search",
+            "name": null,
+            "action": "App\\Http\\Controllers\\PersonController@search",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "people\/{person}",
+            "name": "people.show",
+            "action": "App\\Http\\Controllers\\PersonController@show",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "investors",
+            "name": "investors",
+            "action": "App\\Http\\Controllers\\InvestorController@index",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "investors\/load-more",
+            "name": null,
+            "action": "App\\Http\\Controllers\\InvestorController@loadMore",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "investors\/search",
+            "name": null,
+            "action": "App\\Http\\Controllers\\InvestorController@search",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        },
+        {
+            "method": "GET, HEAD",
+            "uri": "investors\/{investor}",
+            "name": "investors.show",
+            "action": "App\\Http\\Controllers\\InvestorController@show",
+            "middleware": ["web"],
+            "before": "",
+            "after": ""
+        }
+    ],
+    "notifications": [],
+    "emailsData": [],
+    "viewsData": [
+        {
+            "description": "Rendering a view",
+            "start": 1739300478.616517,
+            "end": 1739300478.616517,
+            "duration": 0,
+            "color": null,
+            "data": { "name": "home", "data": { "__type__": "array" } }
+        },
+        {
+            "description": "Rendering a view",
+            "start": 1739300478.624984,
+            "end": 1739300478.624984,
+            "duration": 0,
+            "color": null,
+            "data": { "name": "components.app-layout", "data": { "__type__": "array" } }
+        },
+        {
+            "description": "Rendering a view",
+            "start": 1739300478.625232,
+            "end": 1739300478.625232,
+            "duration": 0,
+            "color": null,
+            "data": { "name": "partials.analytics", "data": { "__type__": "array" } }
+        },
+        {
+            "description": "Rendering a view",
+            "start": 1739300478.625387,
+            "end": 1739300478.625387,
+            "duration": 0,
+            "color": null,
+            "data": { "name": "partials.header", "data": { "__type__": "array" } }
+        }
+    ],
+    "userData": [],
+    "httpRequests": [],
+    "subrequests": [],
+    "xdebug": [],
+    "commandName": null,
+    "commandArguments": [],
+    "commandArgumentsDefaults": [],
+    "commandOptions": [],
+    "commandOptionsDefaults": [],
+    "commandExitCode": null,
+    "commandOutput": null,
+    "jobName": null,
+    "jobDescription": null,
+    "jobStatus": null,
+    "jobPayload": [],
+    "jobQueue": null,
+    "jobConnection": null,
+    "jobOptions": [],
+    "testName": null,
+    "testStatus": null,
+    "testStatusMessage": null,
+    "testAsserts": [],
+    "clientMetrics": [],
+    "webVitals": [],
+    "parent": null,
+    "updateToken": "cdfb486f"
+}
