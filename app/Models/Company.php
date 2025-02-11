@@ -3,31 +3,24 @@
 namespace App\Models;
 
 use App\Enums\CompanyPersonType;
-use App\Traits\HasImagePath;
+use App\Models\Absctracts\MediaAbleModel;
 use App\Traits\HasTags;
-use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Company extends Model implements HasMedia
+class Company extends MediaAbleModel
 {
     use HasFactory;
-    use HasFileMigration;
-    use HasImagePath;
     use HasSlug;
     use HasTags;
-    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -84,6 +77,11 @@ class Company extends Model implements HasMedia
             'founded_at' => 'date',
             'notes' => 'collection',
         ];
+    }
+
+    public function getDefaultImagePath(): string
+    {
+        return 'storage/images/companies/default/company.webp';
     }
 
     /**

@@ -15,17 +15,11 @@ trait HasImagePath
         );
     }
 
-    public function clearImagePathCache(string $collection = 'default'): void
+    public function clearImagesPathCache(): void
     {
-        $cacheKey = $this->generateImagePathCacheKey($collection);
-        Cache::forget($cacheKey);
-    }
-
-    public function clearAllImagePathCaches(): void
-    {
-        $collections = ['default'];
-        foreach ($collections as $collection) {
-            $this->clearImagePathCache($collection);
+        foreach ($this->mediaCollections as $collection) {
+            $cacheKey = $this->generateImagePathCacheKey($collection);
+            Cache::forget($cacheKey);
         }
     }
 
@@ -77,6 +71,6 @@ trait HasImagePath
     {
         static $defaultUrl = null;
 
-        return $defaultUrl ??= URL::asset('storage/images/companies/default/company.webp');
+        return $defaultUrl ??= URL::asset($this->getDefaultImagePath());
     }
 }

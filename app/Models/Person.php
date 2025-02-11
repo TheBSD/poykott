@@ -2,29 +2,21 @@
 
 namespace App\Models;
 
-use App\Traits\HasImagePath;
+use App\Models\Absctracts\MediaAbleModel;
 use App\Traits\HasTags;
-use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Person extends Model implements HasMedia
+class Person extends MediaAbleModel
 {
     use HasFactory;
-    use HasFileMigration;
-    use HasImagePath;
     use HasSlug;
     use HasTags;
-    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -43,6 +35,14 @@ class Person extends Model implements HasMedia
         'description',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::updated(function (): void {
+            $this->clearImagePathCache();
+        });
+    }
+
     protected function casts(): array
     {
         return [
@@ -53,12 +53,9 @@ class Person extends Model implements HasMedia
         ];
     }
 
-    /**
-     * Overrides the imagePath method from the HasImagePath trait
-     */
-    protected function imagePath(): Attribute
+    public function getDefaultImagePath(): string
     {
-        return $this->resolveImagePath('default', 'storage/images/people/default/user.webp');
+        return 'storage/images/people/default/user.webp';
     }
 
     /**
