@@ -3,82 +3,80 @@
 namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
 
 trait HasImagePath
 {
-    /**
-     * Internal method to handle image path logic
-     *
-     * @param  string  $collection  Collection name for the media (optional)
-     * @param  string  $defaultPath  Default image path if no media found
-     */
-    protected function resolveImagePath(
-        string $collection = 'default',
-        string $defaultPath = 'storage/images/companies/default/company.webp',
-    ): Attribute {
+    protected function imagePath(string $collection = 'default'): Attribute
+    {
         return Attribute::make(
-            get: function () use ($collection, $defaultPath) {
-
-                if (config('media-library.disk_name') === 's3') {
-                    return $this->resolveImagePathForS3($collection, $defaultPath);
-                }
-
-                $firstMedia = $this->getMedia($collection)->first();
-
-                $optimizedPath = $firstMedia?->getPath('optimized');
-                $optimizedUrl = $firstMedia?->getUrl('optimized');
-
-                $originalPath = $firstMedia?->getPath();
-                $originalUrl = $firstMedia?->getUrl();
-
-                $defaultUrl = URL::asset($defaultPath);
-
-                if ($optimizedPath && file_exists($optimizedPath)) {
-                    return $optimizedUrl;
-                }
-
-                if ($originalPath && file_exists($originalPath)) {
-                    return $originalUrl;
-                }
-
-                return $defaultUrl;
-            }
+            get: fn () => $this->resolveImagePathWithCache($collection)
         );
     }
 
-    /**
-     * Retrieves the appropriate image path:
-     * - First checks for an optimized version.
-     * - If the optimized version is not available, it checks for the original image.
-     * - If neither the optimized nor original image is available, a default image path is returned.
-     */
-    protected function imagePath(): Attribute
+    public function clearImagePathCache(string $collection = 'default'): void
     {
-        return $this->resolveImagePath();
+        $cacheKey = $this->generateImagePathCacheKey($collection);
+        Cache::forget($cacheKey);
     }
 
-    private function resolveImagePathForS3($collection, $defaultPath)
+    public function clearAllImagePathCaches(): void
+    {
+        $collections = ['default'];
+        foreach ($collections as $collection) {
+            $this->clearImagePathCache($collection);
+        }
+    }
+
+    private function resolveImagePathWithCache(string $collection): string
+    {
+        $cacheKey = $this->generateImagePathCacheKey($collection);
+        $cacheTTL = (int) config('cache.default_ttl', 6);
+
+        return Cache::remember($cacheKey, now()->addHours($cacheTTL), function () use ($collection) {
+            return $this->resolveImagePath($collection);
+        });
+    }
+
+    private function generateImagePathCacheKey(string $collection): string
+    {
+        return 'image_path:' . $this::class . ':' . $this->getKey() . ':' . $collection;
+    }
+
+    private function resolveImagePath(string $collection): string
     {
         $firstMedia = $this->getMedia($collection)->first();
 
-        $optimizedPath = $firstMedia?->getPath('optimized');
-        $optimizedUrl = $firstMedia?->getUrl('optimized');
-
-        $originalPath = $firstMedia?->getPath();
-        $originalUrl = $firstMedia?->getUrl();
-
-        $defaultUrl = URL::asset($defaultPath);
-
-        if ($optimizedPath && Storage::disk('s3')->exists($optimizedPath)) {
-            return $optimizedUrl;
+        if (! $firstMedia) {
+            return $this->getDefaultImageUrl();
         }
 
-        if ($originalPath && Storage::disk('s3')->exists($originalPath)) {
-            return $originalUrl;
+        if (config('media-library.disk_name') === 's3') {
+            return $this->resolveS3ImageUrl($firstMedia);
         }
 
-        return $defaultUrl;
+        return $this->resolveLocalImageUrl($firstMedia);
+    }
+
+    private function resolveS3ImageUrl($media): string
+    {
+        return $media->hasGeneratedConversion('optimized')
+            ? $media->getUrl('optimized')
+            : $media->getUrl();
+    }
+
+    private function resolveLocalImageUrl($media): string
+    {
+        return file_exists($media->getPath('optimized'))
+            ? $media->getUrl('optimized')
+            : ($media->getPath() && file_exists($media->getPath()) ? $media->getUrl() : $this->getDefaultImageUrl());
+    }
+
+    private function getDefaultImageUrl(): string
+    {
+        static $defaultUrl = null;
+
+        return $defaultUrl ??= URL::asset('storage/images/companies/default/company.webp');
     }
 }
