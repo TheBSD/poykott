@@ -17,7 +17,7 @@ class PersonController extends Controller
                 },
             ])
             ->approved()
-            ->paginate(20, ['people.id', 'name', 'description', 'slug']);
+            ->paginate(20, ['people.id', 'name', 'description', 'slug', 'image_path']);
 
         return view('people.index', ['people' => $people]);
     }
