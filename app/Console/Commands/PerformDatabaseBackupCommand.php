@@ -59,6 +59,5 @@ class PerformDatabaseBackupCommand extends Command
     {
         File::makeDirectory($directory, $mode = 0755, $recursive = false, $force = true);
         $this->info('Directory created: ' . database_path($directory));
-        //}
     }
 }
