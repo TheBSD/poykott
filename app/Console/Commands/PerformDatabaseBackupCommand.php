@@ -38,6 +38,7 @@ class PerformDatabaseBackupCommand extends Command
         $this->createDirectoryIfNotExists($backupDirectory);
 
         File::copy(database_path('database.sqlite'), $filePath);
+        $this->info('Backup created: ' . $filePath);
 
         $glob = File::glob(database_path('backups/*.sql'));
 
@@ -57,6 +58,10 @@ class PerformDatabaseBackupCommand extends Command
 
     private function createDirectoryIfNotExists(string $directory): void
     {
+        if (File::exists($directory)) {
+            return;
+        }
+
         File::makeDirectory($directory, $mode = 0755, $recursive = false, $force = true);
         $this->info('Directory created: ' . database_path($directory));
     }
