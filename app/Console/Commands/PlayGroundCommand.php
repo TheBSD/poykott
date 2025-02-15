@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\TestJob;
 use Illuminate\Console\Command;
 
 class PlayGroundCommand extends Command
@@ -23,8 +24,8 @@ class PlayGroundCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): bool
+    public function handle(): void
     {
-        return true;
+        TestJob::dispatch();
     }
 }
