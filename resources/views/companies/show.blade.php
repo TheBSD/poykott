@@ -183,7 +183,7 @@
                 <!-- Resources -->
                 @if ($company->resources->count() > 0)
                     <div class="border-t p-6">
-                        <h2 class="mb-4 text-xl font-semibold">Resources</h2>
+                        <h2 class="mb-4 text-xl font-semibold">References</h2>
                         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                             @foreach ($company->resources as $resource)
                                 <div class="rounded-lg border p-4">
