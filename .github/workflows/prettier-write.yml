@@ -28,13 +28,16 @@ jobs:
               run: |
                   cp .env.example .env
                   composer install --no-interaction --prefer-dist --optimize-autoloader
-                  env:
-                      DB_CONNECTION: testing
+              env:
+                  DB_CONNECTION: testing
+
             - name: Generate key
               run: php artisan key:generate
+
             - run: npm ci
             - run: npm run prepare
             - run: npm run format
+
             - name: Commit changes
               uses: stefanzweifel/git-auto-commit-action@v4
               with:
