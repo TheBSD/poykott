@@ -42,6 +42,3 @@ jobs:
               with:
                   commit_message: Apply formatting changes
                   commit_user_name: GitHub Action
-                  commit_user_email: actions@github.com
-                  branch: ${{ github.head_ref }}
-                  allow_empty_commit: true
