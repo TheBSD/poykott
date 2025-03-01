@@ -93,7 +93,8 @@ if [ -f artisan ]; then
     $FORGE_PHP artisan optimize
     $FORGE_PHP artisan filament:optimize-clear
     $FORGE_PHP artisan filament:optimize
-    $FORGE_PHP artisan queue:work --stop-when-empty
+    $FORGE_PHP artisan queue:restart
+    # $FORGE_PHP artisan horizon:terminate
 
     npm ci
     npm run build

@@ -5,8 +5,10 @@ name: Duster Fix
 
 on:
     push:
-        branches: [main]
+        branches:
+            - main
     pull_request:
+    workflow_dispatch:
 
 jobs:
     duster:

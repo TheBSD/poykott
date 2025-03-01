@@ -1,7 +1,11 @@
 name: Format
 on:
+    push:
+        branches:
+            - main
     pull_request:
-        branches: [main]
+    workflow_dispatch:
+
 jobs:
     format:
         runs-on: ubuntu-latest
