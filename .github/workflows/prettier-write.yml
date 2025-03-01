@@ -22,7 +22,6 @@ jobs:
               with:
                   php-version: '8.2'
                   extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-                  coverage: none
 
             - name: Install dependencies
               run: |
@@ -38,8 +37,5 @@ jobs:
             - run: npm run prepare
             - run: npm run format
 
-            - name: Commit changes
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  commit_message: Apply formatting changes
-                  branch: ${{ github.head_ref }}
+            - name: Check for changes
+              run: git diff --exit-code || git commit -am "Apply formatting changes"
