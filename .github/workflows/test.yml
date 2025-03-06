@@ -1,0 +1,36 @@
+name: run-tests
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        name: Run Tests
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP 8.2
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.2'
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+                  coverage: none
+
+            - name: Install Composer Dependencies
+              run: |
+                  composer require "laravel/framework:^11.0" "orchestra/testbench:^7.0" --no-interaction --no-update
+                  composer update --prefer-dist --no-interaction
+
+            - name: List Installed Dependencies
+              run: composer show -D
+
+            - name: Execute Tests
+              run: vendor/bin/pest --ci
