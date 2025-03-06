@@ -36,6 +36,9 @@ jobs:
                   max_attempts: 5
                   command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
 
+            - name: copy env file
+                  cp .env.example .env
+
             - name: generate key
               run: php artisan key:generate
 
