@@ -27,7 +27,7 @@ jobs:
                   coverage: none
 
             - name: Set Laravel Framework Version
-              run: composer config version "11.x-dev" # Set the Laravel version, replace if needed for specific version.
+              run: composer config version "11.x-dev"
 
             - name: Install dependencies
               uses: nick-fields/retry@v3
@@ -36,17 +36,8 @@ jobs:
                   max_attempts: 5
                   command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
 
-            - name: Prepare environment file
-              run: |
-                  # Create .env file from .env.example if .env is missing
-                  if [ ! -f .env ]; then
-                    cp .env.example .env
-                  fi
-
-                  # Generate application key if it doesn't exist
-                  if ! grep -q 'APP_KEY' .env; then
-                    php artisan key:generate
-                  fi
+            - name: generate key
+              run: php artisan key:generate
 
             - name: Check if the test command exists
               run: php artisan | grep 'test'
