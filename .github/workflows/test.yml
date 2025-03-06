@@ -10,27 +10,32 @@ on:
 jobs:
     test:
         runs-on: ubuntu-latest
-        timeout-minutes: 5
-        name: Run Tests
 
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-
-            - name: Setup PHP 8.2
+              with:
+                  fetch-depth: 0
+            - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.2'
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+                  php-version: 8.2
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, pdo_sqlite, sqlite3
+                  tools: composer:v2
                   coverage: none
 
-            - name: Install Composer Dependencies
-              run: |
-                  composer require "laravel/framework:^11.0" "orchestra/testbench:^7.0" --no-interaction --no-update
-                  composer update --prefer-dist --no-interaction
+            - name: Set Framework version
+              run: composer config version "11.x-dev"
 
-            - name: List Installed Dependencies
-              run: composer show -D
+            - name: Install dependencies
+              uses: nick-fields/retry@v3
+              with:
+                  timeout_minutes: 5
+                  max_attempts: 5
+                  command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
 
-            - name: Execute Tests
-              run: vendor/bin/pest --ci
+            - name: Check if test command is existed
+              run: php artisan | grep 'test'
+
+            - name: Run tests
+              run: php artisan test
