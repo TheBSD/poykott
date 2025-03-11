@@ -57,4 +57,4 @@ jobs:
               run: php artisan | grep 'test'
 
             - name: Run tests
-              run: php artisan test --ci
+              run: php artisan test --compact

@@ -73,7 +73,8 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
-        ]
+        ],
+        "test": "pest --compact --parallel --processes=3 --exclude-testsuite=Arch"
     },
     "extra": {
         "laravel": {
