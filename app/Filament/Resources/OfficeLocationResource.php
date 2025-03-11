@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\OfficeLocationResource\Actions\MergeTwoOfficeLocationsAction;
 use App\Filament\Resources\OfficeLocationResource\Pages\CreateOfficeLocation;
 use App\Filament\Resources\OfficeLocationResource\Pages\EditOfficeLocation;
 use App\Filament\Resources\OfficeLocationResource\Pages\ListOfficeLocations;
@@ -38,6 +39,7 @@ class OfficeLocationResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->recordUrl(null) // make record non-clickable
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('companies.name')->badge()->color('info')->searchable(),
@@ -50,6 +52,7 @@ class OfficeLocationResource extends Resource
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),
+                MergeTwoOfficeLocationsAction::make('MergeWithAnother'),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
@@ -72,5 +75,10 @@ class OfficeLocationResource extends Resource
             'create' => CreateOfficeLocation::route('/create'),
             'edit' => EditOfficeLocation::route('/{record}/edit'),
         ];
+    }
+
+    protected function getTableRecordUrlUsing(): ?Closure
+    {
+        return null;
     }
 }
