@@ -24,7 +24,6 @@ class PersonFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'avatar' => fake()->word(),
             'job_title' => fake()->word(),
             'approved_at' => fake()->dateTime(),
             'location' => fake()->word(),

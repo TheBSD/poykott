@@ -26,7 +26,6 @@ class InvestorFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->text(),
             'url' => fake()->url(),
-            'logo' => fake()->word(),
         ];
     }
 }

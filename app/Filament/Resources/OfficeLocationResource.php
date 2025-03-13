@@ -76,9 +76,4 @@ class OfficeLocationResource extends Resource
             'edit' => EditOfficeLocation::route('/{record}/edit'),
         ];
     }
-
-    protected function getTableRecordUrlUsing(): ?Closure
-    {
-        return null;
-    }
 }

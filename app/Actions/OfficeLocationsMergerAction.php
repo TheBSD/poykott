@@ -5,6 +5,7 @@ namespace App\Actions;
 use App\Models\OfficeLocation;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Throwable;
 
 class OfficeLocationsMergerAction
 {
@@ -12,6 +13,8 @@ class OfficeLocationsMergerAction
 
     /**
      * Merge two office locations that are similar into one office location.
+     *
+     * @throws Throwable
      */
     public function execute(OfficeLocation $from, OfficeLocation $to)
     {
@@ -63,7 +66,7 @@ class OfficeLocationsMergerAction
         $this->line($string, 'info');
     }
 
-    private function line($string, $style = null): void
+    private function line(string $string, $style = null): void
     {
         $styled = $style ? "<$style>$string</$style>" : $string;
 
