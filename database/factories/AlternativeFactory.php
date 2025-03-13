@@ -26,7 +26,6 @@ class AlternativeFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->text(),
             'approved_at' => fake()->dateTime(),
-            'logo' => fake()->word(),
             'notes' => fake()->text(),
             'url' => fake()->url(),
         ];
