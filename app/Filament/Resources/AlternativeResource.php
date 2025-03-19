@@ -127,8 +127,8 @@ class AlternativeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ResourcesRelationManager::class,
             CompaniesRelationManager::class,
+            ResourcesRelationManager::class,
         ];
     }
 
