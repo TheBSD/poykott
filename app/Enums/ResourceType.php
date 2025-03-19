@@ -37,4 +37,6 @@ enum ResourceType: string
     case StartupNationFinder = 'startup_nation_finder';
 
     case UsIsraelUnicornTracker = 'us_israel_unicorn_tracker';
+
+    case StripeAlternatives = 'stripe_alternatives';
 }

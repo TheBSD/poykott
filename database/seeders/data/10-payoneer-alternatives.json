@@ -1,0 +1,207 @@
+[
+    {
+        "title": " Frame",
+        "link": "https://framepayments.com/",
+        "description": "Say goodbye to the stress of payments and rest easy knowing you have a robust and reliable payments processor in your corner via hosted checkout or API.\n\nWhite glove service is available upon request!"
+    },
+    {
+        "title": " Lemon Squeezy (acqd by Stripe)",
+        "link": "https://lemonsqueezy.com/",
+        "description": "Lemon Squeezy offers a streamlined solution for digital goods; focusing on easy setup; strong customer support; and analytics"
+    },
+    {
+        "title": " Gumroad",
+        "link": "https://gumroad.com/",
+        "description": "Gumroad is ideal for creators and small businesses; providing tools for selling comma subscriptions; and more."
+    },
+    {
+        "title": " Paddle",
+        "link": "https://paddle.com/",
+        "description": "Paddle caters to SaaS and software companies; offering a comprehensive platform with billing; licensing; and global tax handling."
+    },
+    {
+        "title": " FastSpring",
+        "link": "https://fastspring.com/",
+        "description": "FastSpring specializes in e-commerce solutions for software and SaaS companies; with a focus on global payments and subscriptions."
+    },
+    {
+        "title": " 2Checkout",
+        "link": "https://2checkout.com/",
+        "description": "2Checkout offers versatile payment solutions; excelling in global payments; subscription billing; and digital commerce."
+    },
+    {
+        "title": " Payoneer",
+        "link": "https://payoneer.com/",
+        "description": "Payoneer simplifies cross-border payments; offering local payment ease globally with a focus on market expansion and Multi-Currency."
+    },
+    {
+        "title": " Chargebee",
+        "link": "https://chargebee.com/",
+        "description": "Chargebee is a subscription management platform; perfect for SaaS and SMBs; with robust features for billing and revenue management."
+    },
+    {
+        "title": " Maxio (ex Chargify)",
+        "link": "https://www.maxio.com/",
+        "description": "Maxio; formerly Chargify; offers a robust platform for B2B SaaS billing and financial operations; focusing on growth and efficiency."
+    },
+    {
+        "title": " Recurly",
+        "link": "https://recurly.com/",
+        "description": "Recurly offers a dynamic subscription management platform; excelling in churn management and actionable data insights for subscription growth."
+    },
+    {
+        "title": " Braintree",
+        "link": "https://braintreepayments.com/",
+        "description": "Braintree provides a versatile global payments platform; integrating multiple payment methods with a focus on conversion and security."
+    },
+    {
+        "title": " PayKickstart",
+        "link": "https://paykickstart.com/",
+        "description": "PayKickstart offers a modern commerce platform for subscription billing and Affiliates; focusing on revenue maximization and churn minimization"
+    },
+    {
+        "title": " PayPro Global",
+        "link": "https://payproglobal.com/",
+        "description": "PayPro Global offers a full-service eCommerce solution for selling software and SaaS; focusing on global payments; tax compliance; and customer support"
+    },
+    {
+        "title": " Shopify Payments",
+        "link": "https://shopify.com/payments",
+        "description": "Integrated with Shopify; this service is ideal for SMBs in e-commerce; offering a seamless shopping cart and payment experience."
+    },
+    {
+        "title": " Square",
+        "link": "https://squareup.com/",
+        "description": "Square provides versatile POS and payment solutions for small businesses; with a strong focus on retail and mobile payments."
+    },
+    {
+        "title": " Zoho Billing",
+        "link": "https://zoho.com/billing",
+        "description": "Zoho Subscriptions is an online recurring billing and subscription management comma ideal for small and medium-sized businesses. Emphasizing professional invoice creation; time and expense tracking."
+    },
+    {
+        "title": " WePay",
+        "link": "https://wepay.com/",
+        "description": "WePay; a Chase company; provides integrated payment solutions focusing on software and SaaS companies; with customizable payment solutions."
+    },
+    {
+        "title": " QuickBooks Payments",
+        "link": "https://quickbooks.intuit.com/payments",
+        "description": "This service provides seamless accounting and payment solutions for SMBs and SaaS businesses. Featuring real-time tracking and automated bookkeeping."
+    },
+    {
+        "title": " Mangopay",
+        "link": "https://mangopay.com/",
+        "description": "Mangopay offers a modular payment infrastructure for marketplaces and platforms; emphasizing flexibility; global payouts; and AI-powered Anti-fraud."
+    },
+    {
+        "title": " Coinbase Commerce",
+        "link": "https://www.coinbase.com/commerce",
+        "description": "Start getting paid with Base; Ethereum; and Polygon. 1% transaction fee."
+    },
+    {
+        "title": " BTCpay",
+        "link": "https://btcpayserver.org/",
+        "description": "BTCPay Server is a self-hosted; open-source cryptocurrency payment processor. 0% Fees & No Third-party."
+    },
+    {
+        "title": " Lago",
+        "link": "https://getlago.com/",
+        "description": "Open-source alternative to Stripe Billing and Chargebee. Billing & metering in one place."
+    },
+    {
+        "title": " Mollie",
+        "link": "https://www.mollie.com/",
+        "description": "EU-focused solution to accept payments; optimise conversion; and access funding."
+    },
+    {
+        "title": " Adyen",
+        "link": "https://adyen.com/",
+        "description": "Adyen offers a single platform for payments; risk management; and optimization; suitable for SMBs and SaaS companies."
+    },
+    {
+        "title": " Speed",
+        "link": "https://www.tryspeed.com/",
+        "description": "Bitcoin/lightning payment processor for e-com. Starts with 0% fee."
+    },
+    {
+        "title": " OpenNode",
+        "link": "https://www.opennode.com/",
+        "description": "Fast bitcoin payments and payouts for business. Comes with API and ecommerce integrations."
+    },
+    {
+        "title": " Coingate",
+        "link": "https://coingate.com/",
+        "description": "Accept Bitcoin & 70+ Cryptocurrencies. Comes with API and ecommerce integrations."
+    },
+    {
+        "title": " Buy Me a Coffee",
+        "link": "https://www.buymeacoffee.com/",
+        "description": "Stupid simple solution for donations or a members-only feed. One-off payments and recurring payments."
+    },
+    {
+        "title": " CheckoutPage",
+        "link": "https://checkoutpage.co/",
+        "description": "The easy-to-use checkout page builder with a variety of templates. Focus on sales funnels and forms."
+    },
+    {
+        "title": " ConvertKit Commerce",
+        "link": "https://convertkit.com/features/commerce",
+        "description": "Easy monetization for creators; offering unique features like direct ebook sales; paid newsletter subscriptions; and integrated payment processing with low fees."
+    },
+    {
+        "title": " Kajabi",
+        "link": "https://kajabi.com/",
+        "description": "Comprehensive platform for creators to build; grow; and manage online courses; coaching; and memberships. 0% share fees but starts from $149/m"
+    },
+    {
+        "title": " Kofi",
+        "link": "https://ko-fi.com/",
+        "description": "A creator-friendly platform for accepting donations; selling memberships; commissions; and shop items with 0% fees on donations."
+    },
+    {
+        "title": " Koji",
+        "link": "https://withkoji.com/",
+        "description": "E-commerce platform designed for social media; offering customizable digital storefronts and templates with confusing transaction fees between 5-15%."
+    },
+    {
+        "title": " Memberful",
+        "link": "https://memberful.com/",
+        "description": "Specialized membership software for creators; offering customizable tools like gated content; private podcasts; and newsletters with easy integration and management."
+    },
+    {
+        "title": " MemberSpace",
+        "link": "https://www.memberspace.com/",
+        "description": "A versatile membership platform enabling creators to sell memberships and digital products on any website; with features like tiered access; customizable billing; and seamless integration with multiple platforms."
+    },
+    {
+        "title": " Outseta",
+        "link": "https://www.outseta.com/",
+        "description": "An all-in-one membership software offering integrated tools like CRM; email marketing; billing; authentication; and help desk; designed to streamline and monetize SaaS or membership businesses efficiently."
+    },
+    {
+        "title": " Patreon",
+        "link": "https://www.patreon.com/",
+        "description": "A platform for creators to build communities; share exclusive content; and monetize their passion through direct fan engagement; offering various revenue streams like memberships and online shops."
+    },
+    {
+        "title": " PayHip",
+        "link": "https://payhip.com/",
+        "description": "An easy-to-use platform for selling digital downloads, courses, coaching, and physical products, featuring customizable store builders, VAT handling, and integrations with tools like Zoom and Calendly."
+    },
+    {
+        "title": " Loofa",
+        "link": "https://loofapay.com/",
+        "description": "Loofa allows SaaS and digital goods merchants to optimize their payment stack by easily swtiching between Paddle and Stripe depending on if they need to charge sales tax/VAT. This way, merchants can stay compliant with global sales tax/VAT AND save on payment fees where possible."
+    },
+    {
+        "title": " PayIt",
+        "link": "https://www.payyit.com/",
+        "description": "Payyit helps small businesses manage money easily. It lets you make invoices, get paid online, do accounting, and get expert advice all in one place."
+    },
+    {
+        "title": " PaymentsLabs",
+        "link": "https://www.paymentlabs.io/",
+        "description": "Payment Labs helps businesses pay people worldwide easily. It handles cross-border payments in many currencies, follows tax rules, and makes sure everything is legal and secure."
+    }
+]
