@@ -39,8 +39,11 @@ class CompanyResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('slug')->required(),
+                TextInput::make('name')
+                    ->required()
+                    ->unique('companies', 'name')
+                    ->required(),
+                TextInput::make('slug'),
                 TextInput::make('url')->required(),
                 DateTimePicker::make('approved_at'),
                 Textarea::make('description')->columnSpanFull(),
