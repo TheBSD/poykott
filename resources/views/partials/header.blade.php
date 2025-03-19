@@ -29,14 +29,6 @@
                 </li>
                 <li>
                     <a
-                        href="{{ route('people') }}"
-                        class="{{ request()->is('people') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
-                    >
-                        People
-                    </a>
-                </li>
-                <li>
-                    <a
                         href="{{ route('investors') }}"
                         class="{{ request()->is('investors') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
                     >
