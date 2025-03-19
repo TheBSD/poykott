@@ -41,7 +41,7 @@ class CompanyResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->required()
-                    ->unique('companies', 'name')
+                    ->unique(table: 'companies', column: 'name', ignoreRecord: true)
                     ->required(),
                 TextInput::make('slug'),
                 TextInput::make('url')->required(),
