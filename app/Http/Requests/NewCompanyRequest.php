@@ -25,7 +25,7 @@ class NewCompanyRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255', 'unique:companies,name'],
             'url' => ['required', 'url', 'active_url'],
-            'description' => ['string', 'nullable', 'max:10000', 'trim'],
+            'description' => ['string', 'nullable', 'max:10000'],
         ];
     }
 }
