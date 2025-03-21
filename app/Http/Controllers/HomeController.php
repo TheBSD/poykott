@@ -68,11 +68,6 @@ class HomeController extends Controller
         return response()->json(['companies' => $companies]);
     }
 
-    public function addCompany()
-    {
-        return view('companies.new');
-    }
-
     public function about()
     {
         return view('pages.about');

@@ -5,7 +5,7 @@
         <section class="mb-16 space-y-4 text-center">
             <div class="flex justify-end">
                 <a
-                    href="{{ route('add-company') }}"
+                    href="{{ route('companies.create') }}"
                     class="rounded-md bg-slate-900 p-3 text-lg text-white hover:bg-slate-600"
                 >
                     New Company
