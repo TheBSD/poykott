@@ -15,6 +15,7 @@
                 <div class="flex items-center space-x-6 p-6">
                     {{-- @if ($company->media()?->first()) --}}
                     <img
+                        loading="lazy"
                         src="{{ $company->image_path }}"
                         alt="{{ $company->name }}"
                         class="h-24 w-24 rounded-lg object-scale-down"
@@ -49,6 +50,7 @@
                                 @foreach ($company->founders as $founder)
                                     <div class="flex items-center space-x-3">
                                         <img
+                                            loading="lazy"
                                             src="{{ $founder->image_path }}"
                                             alt="avatar"
                                             class="h-24 w-24 rounded-full object-cover"
@@ -121,6 +123,7 @@
                                     @endif
 
                                     <img
+                                        loading="lazy"
                                         src="{{ $alternative->image_path }}"
                                         alt="{{ $alternative->name }}"
                                         class="h-24 w-24 rounded-lg object-scale-down"
@@ -180,7 +183,7 @@
                 <!-- Resources -->
                 @if ($company->resources->count() > 0)
                     <div class="border-t p-6">
-                        <h2 class="mb-4 text-xl font-semibold">Resources</h2>
+                        <h2 class="mb-4 text-xl font-semibold">References</h2>
                         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                             @foreach ($company->resources as $resource)
                                 <div class="rounded-lg border p-4">

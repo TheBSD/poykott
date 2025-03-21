@@ -29,10 +29,6 @@ class ImportAll extends Command
 
         $progressBar = $this->output->createProgressBar(9);
 
-        // for better, add images links to notes fields as img:<image link>,
-        // and make the adding as updated ".="
-        //then in one command get and download all images
-
         Artisan::call(ImportTeamTechAvivCommand::class); // done
         $progressBar->advance();
 

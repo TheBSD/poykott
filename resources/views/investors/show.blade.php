@@ -57,7 +57,7 @@
                 <!-- Resources -->
                 @if ($investor->resources->count() > 0)
                     <div class="border-t p-6">
-                        <h2 class="mb-4 text-xl font-semibold">Resources</h2>
+                        <h2 class="mb-4 text-xl font-semibold">References</h2>
                         <div class="grid gap-4">
                             @foreach ($investor->resources as $resource)
                                 <div class="break-words rounded-lg border p-4">

@@ -1,21 +1,48 @@
 name: Format
 on:
+    push:
+        branches:
+            - main
     pull_request:
-        branches: [main]
+    workflow_dispatch:
+
 jobs:
     format:
         runs-on: ubuntu-latest
+
+        permissions:
+            contents: write
+
         steps:
             - uses: actions/checkout@v2
               with:
                   ref: ${{ github.head_ref }}
             - uses: actions/setup-node@v2
               with:
-                  node-version: '14.x'
+                  node-version: '18.x'
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.2'
+                  extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+
+            - name: Install dependencies
+              run: |
+                  cp .env.example .env
+                  composer install --no-interaction --prefer-dist --optimize-autoloader
+              env:
+                  DB_CONNECTION: testing
+
+            - name: Generate key
+              run: php artisan key:generate
+
             - run: npm ci
+            - run: npm run prepare
             - run: npm run format
+
             - name: Commit changes
-              uses: stefanzweifel/git-auto-commit-action@v4
+              uses: stefanzweifel/git-auto-commit-action@v5
               with:
                   commit_message: Apply formatting changes
-                  branch: ${{ github.head_ref }}
+                  commit_user_name: GitHub Action

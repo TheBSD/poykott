@@ -1,3 +1,8 @@
+@if (config('app.env') == 'local')
+    {{-- <header class="bg-green-500 text-center text-white font-bold">LOCAL DEV</header> --}}
+    <header class="sticky top-0 z-50 bg-green-500 p-1 text-center font-bold text-white">LOCAL DEV</header>
+@endif
+
 <header class="px-6 pt-10">
     <div class="flex items-center justify-between">
         <a href="{{ route('home') }}" class="text-4xl font-extrabold">
@@ -20,14 +25,6 @@
                         class="{{ request()->is('/') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
                     >
                         Companies
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="{{ route('people') }}"
-                        class="{{ request()->is('people') ? 'text-blue-600' : '' }} text-lg font-bold uppercase hover:text-blue-600"
-                    >
-                        People
                     </a>
                 </li>
                 <li>

@@ -1,0 +1,60 @@
+name: run-tests
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.2
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, pdo_sqlite, sqlite3
+                  tools: composer:v2
+                  coverage: none
+
+            - name: Set Laravel Framework Version
+              run: composer config version "11.x-dev"
+
+            - name: Install dependencies
+              uses: nick-fields/retry@v3
+              with:
+                  timeout_minutes: 5
+                  max_attempts: 5
+                  command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
+
+            - name: Install Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '18'
+
+            - name: Install NPM dependencies
+              run: npm ci
+
+            - name: Build Vite assets
+              run: npm run build
+
+            - name: copy env file
+              run: cp .env.example .env
+
+            - name: generate key
+              run: php artisan key:generate
+
+            - name: Check if the test command exists
+              run: php artisan | grep 'test'
+
+            - name: Run tests
+              run: php artisan test --compact

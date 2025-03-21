@@ -17,7 +17,9 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
@@ -26,6 +28,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Collection;
 
 class CompanyResource extends Resource
 {
@@ -39,14 +42,21 @@ class CompanyResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('slug')->required(),
+                TextInput::make('name')
+                    ->required()
+                    ->unique(table: 'companies', column: 'name', ignoreRecord: true)
+                    ->required(),
+                TextInput::make('slug'),
                 TextInput::make('url')->required(),
                 DateTimePicker::make('approved_at'),
                 Textarea::make('description')->columnSpanFull(),
                 Textarea::make('notes')->columnSpanFull(),
-                SpatieMediaLibraryFileUpload::make('logo'),
-
+                SpatieMediaLibraryFileUpload::make('logo')
+                    ->rule([
+                        'image',
+                        'mimes:jpeg,jpg,png,svg,webp',
+                        'max:2048',  // 2MB limit
+                    ]),
                 Select::make('tags')->relationship('tagsRelation', 'name')
                     ->multiple()->searchable()->preload()->native(false)
                     ->createOptionForm([
@@ -130,6 +140,21 @@ class CompanyResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    BulkAction::make('approve')
+                        ->icon('heroicon-m-check-circle')
+                        ->modalIcon('heroicon-m-check-circle')
+                        ->color('success')
+                        ->modalHeading('Are you sure you want to approve these companies?')
+                        ->modalSubmitActionLabel('Approve')
+                        ->successNotificationTitle('Companies Approved')
+                        ->action(function (Collection $records, array $data): void {
+                            Company::query()->whereIn('id', $records->pluck('id'))->update(['approved_at' => now()]);
+
+                            Notification::make()
+                                ->success()
+                                ->title('Companies Approved')
+                                ->send();
+                        }),
                 ]),
             ]);
     }
@@ -137,9 +162,9 @@ class CompanyResource extends Resource
     public static function getRelations(): array
     {
         return [
+            AlternativesRelationManager::class,
             ResourcesRelationManager::class,
             OfficeLocationsRelationManager::class,
-            AlternativesRelationManager::class,
         ];
     }
 

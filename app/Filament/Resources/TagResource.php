@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\TagResource\Actions\MergeTwoTagsAction;
 use App\Filament\Resources\TagResource\Pages\CreateTag;
 use App\Filament\Resources\TagResource\Pages\EditTag;
 use App\Filament\Resources\TagResource\Pages\ListTags;
@@ -36,6 +37,7 @@ class TagResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->recordUrl(null) // make record non-clickable
             ->columns([
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable()->sortable(),
@@ -50,6 +52,7 @@ class TagResource extends Resource
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),
+                MergeTwoTagsAction::make('MergeWithAnother'),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
