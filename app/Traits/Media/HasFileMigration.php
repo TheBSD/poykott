@@ -59,7 +59,7 @@ trait HasFileMigration
             DB::beginTransaction();
             $s3Url = $fileService->moveToS3($localPath, $s3Path);
             $this->updateMediaS3Disk($media);
-            //$this->updateMediaS3Url($media, $s3Url);
+            // $this->updateMediaS3Url($media, $s3Url);
             $this->logSuccess($s3Url);
             DB::commit();
         } catch (Exception $e) {

@@ -40,13 +40,13 @@ class ImportJobCompaniesTechAvivCommand extends Command
                     'name' => data_get($data, 'name'),
                 ]));
 
-                //if (data_get($data, 'logos.manual.src')) {
+                // if (data_get($data, 'logos.manual.src')) {
                 //    $company->logo()->create([
                 //        'path' => data_get($data, 'logos.manual.src'),
                 //    ]);
-                //}
+                // }
 
-                //add_image_urls_to_notes(data_get($data, 'logos.manual.src'), $company, $this);
+                // add_image_urls_to_notes(data_get($data, 'logos.manual.src'), $company, $this);
             }
 
             if (empty($company->description)) {
@@ -59,11 +59,11 @@ class ImportJobCompaniesTechAvivCommand extends Command
                 ]);
             }
 
-            //if (empty($company->logo)) {
+            // if (empty($company->logo)) {
             //    $company->logo()->update([
             //        'path' => data_get($data, 'logos.manual.src'),
             //    ]);
-            //}
+            // }
 
             add_image_urls_to_notes(data_get($data, 'logos.manual.src'), $company, $this);
 

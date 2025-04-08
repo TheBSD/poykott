@@ -70,9 +70,9 @@ class ImportMembersTechAvivCommand extends Command
                     'name' => trim((string) data_get($data, 'company.name')),
                 ], $dataFields));
 
-                //$company->logo()->create([
+                // $company->logo()->create([
                 //    'path' => data_get($data, 'company.logo'),
-                //]);
+                // ]);
             }
 
             if (! $company->wasRecentlyCreated) {
@@ -82,12 +82,12 @@ class ImportMembersTechAvivCommand extends Command
             add_image_urls_to_notes(data_get($data, 'company.logo'), $company, $this);
 
             //
-            //dd(
+            // dd(
             //    data_get($data, 'company')
-            //);
-            //dd(
+            // );
+            // dd(
             //    $company->name,$company->notes
-            //);
+            // );
 
             $companyResource = $company->resources()->updateOrCreate([
                 'url' => data_get($data, 'url'),

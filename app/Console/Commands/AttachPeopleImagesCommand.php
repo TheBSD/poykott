@@ -38,11 +38,11 @@ class AttachPeopleImagesCommand extends Command
         $failed = 0;
 
         // Backup for testing and tracing
-        //BackupTables::generateBackup(Person::class);
+        // BackupTables::generateBackup(Person::class);
 
         $people = Person::query()->whereNotNull('notes');
 
-        //$people(30, function ($people) use (&$succeeded, &$failed, $progressBar): void {
+        // $people(30, function ($people) use (&$succeeded, &$failed, $progressBar): void {
         $people->lazy()->each(callback: function (Person $person) use (&$succeeded, &$failed): void {
 
             /** @var Collection $notes * */
