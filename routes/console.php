@@ -1,6 +1,8 @@
 <?php
 
 use App\Console\Commands\PerformDatabaseBackupCommand;
+use App\Console\Commands\TempMediaToMediaCommand;
+use Illuminate\Database\Console\PruneCommand;
 use Illuminate\Support\Facades\Schedule;
 
 /**
@@ -11,3 +13,6 @@ Schedule::command(PerformDatabaseBackupCommand::class)
     ->appendOutputTo(
         storage_path('logs/laravel-' . date('Y-m-d') . '.log')
     );
+
+Schedule::command(PruneCommand::class)->daily();
+Schedule::command(TempMediaToMediaCommand::class)->daily();

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\CompanyPersonType;
 use App\Traits\HasImagePath;
 use App\Traits\HasTags;
+use App\Traits\HasTempMedia;
 use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -27,6 +28,7 @@ class Company extends Model implements HasMedia
     use HasImagePath;
     use HasSlug;
     use HasTags;
+    use HasTempMedia;
     use InteractsWithMedia;
 
     /**
