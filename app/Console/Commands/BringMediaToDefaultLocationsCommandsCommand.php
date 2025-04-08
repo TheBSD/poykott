@@ -14,8 +14,6 @@ class BringMediaToDefaultLocationsCommandsCommand extends Command
     {
         $this->moveDefaultImagesToDefaultLocations();
 
-        dd('after default');
-
         $medias = Media::query()->get();
 
         $this->info("We have {$medias->count()} to add");
