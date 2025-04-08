@@ -94,7 +94,7 @@ test('store an alternative inside company show', function (): void {
     $response->assertSessionHas('success', 'Thank you for suggesting an alternative');
 });
 
-//test('store saves and redirects', function (): void {
+// test('store saves and redirects', function (): void {
 //    $this->withoutExceptionHandling();
 //
 //    $exit_strategy = ExitStrategy::factory()->create();
@@ -178,4 +178,4 @@ test('store an alternative inside company show', function (): void {
 //    Notification::assertSentTo($adminUser, ReviewCompany::class, function ($notification) use ($company) {
 //        return $notification->company->is($company);
 //    });
-//});
+// });

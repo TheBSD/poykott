@@ -37,7 +37,7 @@ class ImportTeamTechAvivCommand extends Command
 
             add_image_urls_to_notes(data_get($data, 'avatar'), $person, $this);
 
-            //if($person->wasRecentlyCreated) {
+            // if($person->wasRecentlyCreated) {
             //    $imagePath = get_image_archive_path(data_get($data, 'avatar'), 'people');
             //
             //    if (!add_image_for_model($imagePath, $person)) {
@@ -48,7 +48,7 @@ class ImportTeamTechAvivCommand extends Command
             //            $person->addMediaFromUrl(data_get($data, 'avatar'));
             //        }
             //    }
-            //}
+            // }
 
             $personResource = $person->resources()->updateOrCreate([
                 'url' => $person->url,
@@ -91,19 +91,19 @@ class ImportTeamTechAvivCommand extends Command
                     'approved_at' => now(),
                 ]);
 
-                //$company->update(['notes' => 'img:'.data_get($data, 'company.logo')]);
+                // $company->update(['notes' => 'img:'.data_get($data, 'company.logo')]);
                 add_image_urls_to_notes(data_get($data, 'company.logo'), $company, $this);
 
-                //$companyImagePath = get_image_archive_path(data_get($data, 'company.logo'), 'companies');
+                // $companyImagePath = get_image_archive_path(data_get($data, 'company.logo'), 'companies');
                 //
-                //if (!add_image_for_model($companyImagePath, $company)) {
+                // if (!add_image_for_model($companyImagePath, $company)) {
                 //    dump("Failed to add image to model ".get_class($company).":".$company->id);
                 //
                 //    if (Str::isUrl(data_get($data, 'company.logo'))) {
                 //        dump("\n Try to Download it from Url..");
                 //        $person->addMediaFromUrl(data_get($data, 'company.logo'));
                 //    }
-                //}
+                // }
             }
 
             if (empty($company->url)) {

@@ -34,7 +34,7 @@ class InvestorResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('slug')->required(),
-                //Fieldset::make('logo')
+                // Fieldset::make('logo')
                 //    ->relationship('logo',
                 //        condition: fn (?array $state): bool => filled($state['path']),
                 //    )
@@ -61,7 +61,7 @@ class InvestorResource extends Resource
     {
         return $table
             ->columns([
-                //ImageColumn::make('logo.path')->circular(),
+                // ImageColumn::make('logo.path')->circular(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('slug')->searchable(),
                 TextColumn::make('tagsRelation.name')->label('Tags')->badge()->searchable(),

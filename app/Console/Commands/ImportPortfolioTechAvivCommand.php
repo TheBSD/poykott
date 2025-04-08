@@ -140,18 +140,18 @@ class ImportPortfolioTechAvivCommand extends Command
             // add images
             add_image_urls_to_notes(data_get($data, 'logo'), $company, $this);
 
-            //dd($company->notes, $company->id);
+            // dd($company->notes, $company->id);
 
-            //$companyImagePath = get_image_archive_path(data_get($data, 'logo'), 'companies');
+            // $companyImagePath = get_image_archive_path(data_get($data, 'logo'), 'companies');
             //
-            //if (!add_image_for_model($companyImagePath, $company)) {
+            // if (!add_image_for_model($companyImagePath, $company)) {
             //    dump("Failed to add image to model ".get_class($company).":".$company->id);
             //
             //    //if (Str::isUrl(data_get($data, 'logo'))) {
             //    //    dump("\n Try to Download it from Url..");
             //    //    $company->addMediaFromUrl(data_get($data, 'logo'));
             //    //}
-            //}
+            // }
 
             $company->resources()->updateOrCreate([
                 'url' => data_get($data, 'url'),
@@ -167,29 +167,29 @@ class ImportPortfolioTechAvivCommand extends Command
                     'approved_at' => now(),
                 ]);
 
-                //try{
+                // try{
                 //    $person->addMediaFromUrl(data_get($founder, 'avatar'));
-                //}catch (\Exception $exception){
+                // }catch (\Exception $exception){
                 //    dd($exception->getMessage());
-                //}
+                // }
 
                 // add images
                 $avatar = data_get($founder, 'avatar');
 
                 add_image_urls_to_notes($avatar, $person, $this);
 
-                //dd($person->notes);
-                //dd($avatar);
-                //$personImagePath = get_image_archive_path($data_get, 'people');
+                // dd($person->notes);
+                // dd($avatar);
+                // $personImagePath = get_image_archive_path($data_get, 'people');
 
-                //if (!add_image_for_model($personImagePath, $person)) {
+                // if (!add_image_for_model($personImagePath, $person)) {
                 //    dump("Failed to add image to model ".get_class($company).":".$company->id);
                 //
                 //    //if (Str::isUrl($data_get)) {
                 //    //    dump("\n Try to Download it from Url..");
                 //    //    $person->addMediaFromUrl($data_get);
                 //    //}
-                //}
+                // }
 
                 $personResource = $person->resources()->updateOrCreate([
                     'url' => data_get($data, 'url'),

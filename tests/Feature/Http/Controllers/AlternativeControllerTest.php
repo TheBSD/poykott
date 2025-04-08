@@ -14,10 +14,10 @@ use function Pest\Faker\fake;
 use function Pest\Laravel\post;
 
 test('create displays view', function (): void {
-    //$response = get(route('alternatives.create'));
+    // $response = get(route('alternatives.create'));
     //
-    //$response->assertOk();
-    //$response->assertViewIs('alternatives.create');
+    // $response->assertOk();
+    // $response->assertViewIs('alternatives.create');
 });
 
 test('store uses form request validation', function (): void {

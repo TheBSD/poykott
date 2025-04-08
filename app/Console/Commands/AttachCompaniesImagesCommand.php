@@ -39,7 +39,7 @@ class AttachCompaniesImagesCommand extends Command
 
         $companies = Company::query()->whereNotNull('notes');
 
-        //$companies->chunk(30, function ($companies) use ($progressBar): void {
+        // $companies->chunk(30, function ($companies) use ($progressBar): void {
         $companies->lazy()->each(callback: function (Company $company) use (&$succeeded, &$failed): void {
 
             /** @var Collection $notes * */
@@ -84,7 +84,7 @@ class AttachCompaniesImagesCommand extends Command
                 $this->error($e->getMessage());
             }
         });
-        //});
+        // });
 
         $progressBar->finish();
 
