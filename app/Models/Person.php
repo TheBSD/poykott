@@ -58,7 +58,7 @@ class Person extends Model implements HasMedia
      */
     protected function imagePath(): Attribute
     {
-        return $this->resolveImagePath('default', 'storage/images/people/default/user.webp');
+        return $this->resolveImagePath('default', 'storage/person-default.webp');
     }
 
     /**

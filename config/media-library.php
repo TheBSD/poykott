@@ -1,6 +1,5 @@
 <?php
 
-use App\Supports\MediaLibrary\CustomPathGenerator;
 use Spatie\ImageOptimizer\Optimizers\Avifenc;
 use Spatie\ImageOptimizer\Optimizers\Cwebp;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
@@ -22,6 +21,7 @@ use Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\Blurred;
 use Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\FileSizeOptimizedWidthCalculator;
 use Spatie\MediaLibrary\Support\FileNamer\DefaultFileNamer;
 use Spatie\MediaLibrary\Support\FileRemover\DefaultFileRemover;
+use Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator;
 use Spatie\MediaLibrary\Support\UrlGenerator\DefaultUrlGenerator;
 use Spatie\MediaLibraryPro\Models\TemporaryUpload;
 
@@ -101,8 +101,8 @@ return [
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    //'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
-    'path_generator' => CustomPathGenerator::class,
+    'path_generator' => DefaultPathGenerator::class,
+    // 'path_generator' => CustomPathGenerator::class,
 
     /*
      * The class that contains the strategy for determining how to remove files.
@@ -167,7 +167,7 @@ return [
             '-m 6', // for the slowest compression method in order to get the best compression.
             '-pass 10', // for maximizing the amount of analysis pass.
             '-mt', // multithreading for some speed improvements.
-            '-q 90', //quality factor that brings the least noticeable changes.
+            '-q 90', // quality factor that brings the least noticeable changes.
         ],
         Avifenc::class => [
             '-a cq-level=23', // constant quality level, lower values mean better quality and greater file size (0-63).

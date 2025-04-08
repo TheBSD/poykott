@@ -90,3 +90,38 @@ if (! function_exists('add_image_urls_to_notes')) {
         return $model->update(['notes' => $appendedNotes->toJson()]);
     }
 }
+
+if (! function_exists('encode_filename_in_url')) {
+    function encode_filename_in_url(string $url): string
+    {
+        $parsedUrl = parse_url($url);
+
+        // If the URL doesn't have a path, return it as-is
+        if (! isset($parsedUrl['path'])) {
+            return $url;
+        }
+
+        $dirname = dirname($parsedUrl['path']);
+        $basename = basename($parsedUrl['path']);
+
+        $encodedFilename = rawurlencode($basename);
+
+        $encodedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
+
+        if (isset($parsedUrl['port'])) {
+            $encodedUrl .= ":{$parsedUrl['port']}";
+        }
+
+        $encodedUrl .= "{$dirname}/{$encodedFilename}";
+
+        if (isset($parsedUrl['query'])) {
+            $encodedUrl .= "?{$parsedUrl['query']}";
+        }
+
+        if (isset($parsedUrl['fragment'])) {
+            $encodedUrl .= "#{$parsedUrl['fragment']}";
+        }
+
+        return $encodedUrl;
+    }
+}

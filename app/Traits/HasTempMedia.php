@@ -22,13 +22,12 @@ trait HasTempMedia
         string $url,
         string $collection = 'default',
         string $disk = 'public',
-        array $meta = []
     ): TempMedia {
-        return $this->tempMedia()->create([
+        return $this->tempMedia()->updateOrCreate([
             'url' => $url,
             'collection_name' => $collection,
             'disk' => $disk,
-            'meta' => $meta,
+        ], [
         ]);
     }
 

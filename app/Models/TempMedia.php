@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class TempMedia extends Model
 {
+    use MassPrunable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +34,13 @@ class TempMedia extends Model
             'is_processed' => 'boolean',
             'meta' => 'array',
         ];
+    }
+
+    public function prunable()
+    {
+        return static::query()
+            ->where('is_processed', true)
+            ->where('updated_at', '<=', now()->subDays(3));
     }
 
     /**

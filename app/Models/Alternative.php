@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasImagePath;
 use App\Traits\HasTags;
+use App\Traits\HasTempMedia;
 use App\Traits\Media\HasFileMigration;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class Alternative extends Model implements HasMedia
     use HasFileMigration;
     use HasImagePath;
     use HasTags;
+    use HasTempMedia;
     use InteractsWithMedia;
 
     /**

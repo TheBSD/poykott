@@ -16,7 +16,7 @@ trait HasImagePath
      */
     protected function resolveImagePath(
         string $collection = 'default',
-        string $defaultPath = 'storage/images/companies/default/company.webp',
+        string $defaultPath = 'storage/company-default.webp',
     ): Attribute {
         return Attribute::make(
             get: function () use ($collection, $defaultPath) {
