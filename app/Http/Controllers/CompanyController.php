@@ -53,6 +53,18 @@ class CompanyController extends Controller
         return view('companies.show', ['company' => $company]);
     }
 
+    public function redirectToSlug(Request $request, $companyUrl)
+    {
+        $parsedUrl = parse_url((string) $companyUrl, PHP_URL_HOST) ?: $companyUrl;
+        $parsedUrl = preg_replace('/^www\./', '', (string) $parsedUrl);
+
+        $company = Company::query()->where('url', 'LIKE', '%' . $parsedUrl . '%')->firstOrFail();
+
+        abort_if(! $company->approved_at, 404);
+
+        return redirect()->route('companies.show', ['company' => $company->slug], 301);
+    }
+
     public function storeAlternative(Request $request, Company $company)
     {
         $alternative = $company->alternatives()->create([

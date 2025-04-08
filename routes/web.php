@@ -17,6 +17,8 @@ Route::get('companies/create', [CompanyController::class, 'create'])->name('comp
 Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
 
 Route::get('companies/{company:slug}', [CompanyController::class, 'show'])->name('companies.show');
+Route::get('companies/url/{companyUrl}', [CompanyController::class, 'redirectToSlug'])->name('companies.show.url');
+
 Route::post('companies/{company:slug}/alternatives', [CompanyController::class, 'storeAlternative'])->name('companies.alternatives.store');
 
 Route::get('people', [PersonController::class, 'index'])->name('people');
