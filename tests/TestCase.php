@@ -17,6 +17,6 @@ abstract class TestCase extends BaseTestCase
         $this->adminUser = User::factory()->create(['email' => 'admin@admin.com']);
 
         // honeypot should be disabled in end-to-end tests: https://github.com/spatie/laravel-honeypot?tab=readme-ov-file#disabling-in-testing
-        //config()->set('honeypot.enabled', false);
+        // config()->set('honeypot.enabled', false);
     }
 }

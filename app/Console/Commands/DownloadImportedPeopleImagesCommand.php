@@ -30,9 +30,9 @@ class DownloadImportedPeopleImagesCommand extends Command
     public function handle(): void
     {
 
-        //BackupTables::generateBackup(Person::class);
+        // BackupTables::generateBackup(Person::class);
 
-        //storage_path('app/public/images/people/');
+        // storage_path('app/public/images/people/');
         $peopleOptimizedImagePath = storage_path('app/public/images/people/optimized/');
 
         File::makeDirectory(

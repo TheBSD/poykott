@@ -101,7 +101,7 @@ return [
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    //'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
+    // 'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
     'path_generator' => CustomPathGenerator::class,
 
     /*
@@ -167,7 +167,7 @@ return [
             '-m 6', // for the slowest compression method in order to get the best compression.
             '-pass 10', // for maximizing the amount of analysis pass.
             '-mt', // multithreading for some speed improvements.
-            '-q 90', //quality factor that brings the least noticeable changes.
+            '-q 90', // quality factor that brings the least noticeable changes.
         ],
         Avifenc::class => [
             '-a cq-level=23', // constant quality level, lower values mean better quality and greater file size (0-63).

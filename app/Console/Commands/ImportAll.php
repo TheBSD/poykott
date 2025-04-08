@@ -53,14 +53,14 @@ class ImportAll extends Command
         Artisan::call(ImportCompaniesOldSiteCommand::class);
         $progressBar->advance();
 
-        //Artisan::call(AttachCompaniesImagesCommand::class);
-        //$progressBar->advance();
+        // Artisan::call(AttachCompaniesImagesCommand::class);
+        // $progressBar->advance();
 
-        //Artisan::call(AttachPeopleImagesCommand::class);
-        //$progressBar->advance();
+        // Artisan::call(AttachPeopleImagesCommand::class);
+        // $progressBar->advance();
 
-        //Artisan::call(CleanNotesFromImagesUrlCommand::class);
-        //$progressBar->advance();
+        // Artisan::call(CleanNotesFromImagesUrlCommand::class);
+        // $progressBar->advance();
 
         $progressBar->finish();
     }
