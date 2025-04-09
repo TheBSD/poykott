@@ -58,9 +58,25 @@ class CompanyController extends Controller
         $parsedUrl = parse_url((string) $companyUrl, PHP_URL_HOST) ?: $companyUrl;
         $parsedUrl = preg_replace('/^www\./', '', (string) $parsedUrl);
 
-        $company = Company::query()->where('url', 'LIKE', '%' . $parsedUrl . '%')->firstOrFail();
+        $company = Company::query()->where('url', 'LIKE', '%' . $parsedUrl . '%')->first();
 
-        abort_if(! $company->approved_at, 404);
+        // If company not found or not approved, show fallback page
+        if (! $company || ! $company->approved_at) {
+            $companies = Company::query()
+                ->with([
+                    'media',
+                    'tagsRelation' => function ($query): void {
+                        $query->select('tags.id', 'name')->limit(3);
+                    },
+                ])
+                ->approved()
+                ->paginate(20, ['companies.id', 'name', 'description', 'slug', 'image_path']);
+
+            return view('companies.not-found-url', [
+                'companies' => $companies,
+                'parsedUrl' => $parsedUrl,
+            ]);
+        }
 
         return redirect()->route('companies.show', ['company' => $company->slug], 301);
     }
