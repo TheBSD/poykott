@@ -28,7 +28,6 @@ class PersonFactory extends Factory
             'approved_at' => fake()->dateTime(),
             'location' => fake()->word(),
             'notes' => fake()->text(),
-            'social_links' => '{}',
         ];
     }
 }

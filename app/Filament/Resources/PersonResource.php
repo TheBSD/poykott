@@ -9,6 +9,7 @@ use App\Filament\Resources\PersonResource\Pages\ListPeople;
 use App\Models\Person;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
@@ -59,12 +60,20 @@ class PersonResource extends Resource
                         'max:2048',  // 2MB limit
                     ]),
                 Textarea::make('description'),
-                Textarea::make('social_links')->columnSpanFull()
-                    ->formatStateUsing(function ($state): string {
-                        return is_array($state) ? implode(', ', $state) : '';
-                    })
-                    ->placeholder('Enter links separated by commas')
-                    ->helperText('Enter each link separated by a comma (e.g., https://link1.com, https://link2.com)'),
+                Repeater::make('socialLinks')
+                    ->label('Social Links')
+                    ->relationship('socialLinks')
+                    ->schema([
+                        TextInput::make('url')
+                            ->label('Social URL')
+                            ->url()
+                            ->required()
+                            ->distinct(),
+                    ])
+                    ->defaultItems(0)
+                    ->addActionLabel('Add Social Link')
+                    ->columnSpanFull()
+                    ->columns(1),
             ]);
     }
 
@@ -90,18 +99,6 @@ class PersonResource extends Resource
                     ->disabledClick()
                     ->color('info'),
                 TextColumn::make('location')->searchable()->sortable(),
-                TextColumn::make('social_links')
-                    ->formatStateUsing(function (Person $record): string {
-                        $links = $record->social_links ?? [];
-
-                        $formattedLinks = array_map(function ($name, $url): string {
-                            return "<a href='{$url}' class='text-blue-500 target=' target='_blank'>{$url}</a>";
-                        }, array_keys($links), $links);
-
-                        return implode('<br>', $formattedLinks);
-                    })
-                    ->html()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('biography')->searchable()->limit(60)
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')->dateTime()->sortable()
