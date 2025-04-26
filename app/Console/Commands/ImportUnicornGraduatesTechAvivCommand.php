@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Enums\CompanyPersonType;
 use App\Enums\ResourceType;
 use App\Models\Company;
-use App\Models\ExitStrategy;
 use App\Models\Investor;
 use App\Models\Person;
 use App\Models\Tag;
@@ -35,9 +34,7 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
                 'total_funding' => data_get($data, 'Total Funding'),
                 'headquarter' => data_get($data, 'HQ'),
                 'founded_at' => Carbon::createFromFormat('Y', data_get($data, 'Founded')),
-                'exit_strategy_id' => ExitStrategy::query()
-                    ->where('title', data_get($data, 'Exit'))
-                    ->firstOrCreate(['title' => data_get($data, 'Exit')])->id,
+                'exit_strategy' => data_get($data, 'Exit'),
                 'stock_symbol' => data_get($data, 'Stock Symbol or Acquirer'),
                 'description' => data_get($data, 'Description'),
                 'last_funding_date' => data_get($data, 'Last Funding'),
