@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
@@ -37,7 +36,7 @@ class Company extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'exit_strategy_id',
+        'exit_strategy',
         'approved_at',
         'name',
         'slug',
@@ -50,6 +49,7 @@ class Company extends Model implements HasMedia
         'url',
         'total_funding',
         'last_funding_date',
+        'funding_stage',
         'headquarter',
         'founded_at',
         'employee_count',
@@ -119,11 +119,6 @@ class Company extends Model implements HasMedia
     /**
      * Relations
      */
-    public function exitStrategy(): BelongsTo
-    {
-        return $this->belongsTo(ExitStrategy::class);
-    }
-
     public function people(): BelongsToMany
     {
         return $this->belongsToMany(Person::class)->withPivot('type');
@@ -152,6 +147,11 @@ class Company extends Model implements HasMedia
     public function officeLocations(): BelongsToMany
     {
         return $this->belongsToMany(OfficeLocation::class);
+    }
+
+    public function socialLinks(): MorphMany
+    {
+        return $this->morphMany(SocialLink::class, 'linkable');
     }
 
     /**

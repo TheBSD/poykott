@@ -12,6 +12,7 @@ use App\Models\Company;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
@@ -40,6 +41,7 @@ class CompanyResource extends Resource
 
     public static function form(Form $form): Form
     {
+
         return $form
             ->schema([
                 TextInput::make('name')
@@ -68,16 +70,31 @@ class CompanyResource extends Resource
                         ]),
                     ]),
                 TextInput::make('headquarter'),
-                TextInput::make('valuation')->nullable(),
-                TextInput::make('exit_valuation')->nullable(),
-                Select::make('exit_strategy_id')
-                    ->relationship('exitStrategy', 'title'),
+                TextInput::make('valuation')->numeric()->nullable(),
+                TextInput::make('exit_valuation')->numeric()->nullable(),
+                TextInput::make('exit_strategy')->nullable(),
                 TextInput::make('stock_symbol'),
                 TextInput::make('total_funding')->nullable(),
                 DatePicker::make('last_funding_date'),
+                TextInput::make('funding_stage')->nullable(),
                 DatePicker::make('founded_at')->format('Y'),
                 TextInput::make('employee_count')->numeric(),
                 TextInput::make('stock_quote'),
+
+                Repeater::make('socialLinks')
+                    ->label('Social Links')
+                    ->relationship('socialLinks')
+                    ->schema([
+                        TextInput::make('url')
+                            ->label('Social URL')
+                            ->url()
+                            ->required()
+                            ->distinct(),
+                    ])
+                    ->defaultItems(0)
+                    ->addActionLabel('Add Social Link')
+                    ->columnSpanFull()
+                    ->columns(1),
             ]);
     }
 
@@ -106,7 +123,7 @@ class CompanyResource extends Resource
                     ->color('info'),
                 IconColumn::make('approved_at')->label('Approved')
                     ->boolean(fn (Company $record): bool => $record->approved_at !== null),
-                TextColumn::make('valuation')->sortable(),
+                TextColumn::make('valuation')->numeric()->sortable(),
                 TextColumn::make('exit_valuation')->numeric()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('exitStrategy.title')->numeric()->sortable()
@@ -116,6 +133,8 @@ class CompanyResource extends Resource
                 TextColumn::make('total_funding')->numeric()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('last_funding_date')->date()->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('funding_stage')->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('headquarter')->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
