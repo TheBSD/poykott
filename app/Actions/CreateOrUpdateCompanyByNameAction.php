@@ -37,10 +37,31 @@ class CreateOrUpdateCompanyByNameAction
 
     private function findCompanyByName(string $companyName): ?Company
     {
+        /**
+         * If the name contains any accented characters (e.g., Á, É), a lowercase
+         * comparison will not behave as expected in SQLite. In such cases, the
+         * method searches using the exact trimmed name instead of lowercasing.
+         *
+         * For non-accented names, it performs a case-insensitive search by applying
+         * lowercase normalization to the input and the database column.
+         */
+        if (app(CheckAccentedCharacterAction::class)->execute($companyName)) {
+            return $this->findCompanyNameWithoutLower($companyName);
+        }
+
         $normalizedName = Str::of($companyName)->lower()->trim()->value();
 
         return Company::query()
             ->whereRaw('LOWER(name) = ?', [$normalizedName])
+            ->first();
+    }
+
+    private function findCompanyNameWithoutLower(string $companyName): ?Company
+    {
+        $trimmedName = Str::trim($companyName);
+
+        return Company::query()
+            ->where('name', $trimmedName)
             ->first();
     }
 

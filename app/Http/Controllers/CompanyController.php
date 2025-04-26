@@ -75,6 +75,7 @@ class CompanyController extends Controller
             return view('companies.not-found-url', [
                 'companies' => $companies,
                 'parsedUrl' => $parsedUrl,
+                'name' => $request->name,
             ]);
         }
 
