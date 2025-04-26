@@ -105,9 +105,8 @@ class Person extends Model implements HasMedia
         return $this->morphMany(Resource::class, 'resourceable');
     }
 
-    // todo add it later and migrate data from table itself
-    // public function socialLinks()
-    // {
-    //    return $this->morphMany(SocialLink::class, 'linkable');
-    // }
+    public function socialLinks(): MorphMany
+    {
+        return $this->morphMany(SocialLink::class, 'linkable');
+    }
 }

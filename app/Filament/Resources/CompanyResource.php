@@ -80,7 +80,6 @@ class CompanyResource extends Resource
                 DatePicker::make('founded_at')->format('Y'),
                 TextInput::make('employee_count')->numeric(),
                 TextInput::make('stock_quote'),
-
                 Repeater::make('socialLinks')
                     ->label('Social Links')
                     ->relationship('socialLinks')
