@@ -112,8 +112,7 @@ class SocialLinkResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('linkable.name')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
 
                 TextColumn::make('url'),
             ])
