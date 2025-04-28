@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Notification\ReviewAlternative;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class CompanyController extends Controller
@@ -25,10 +26,10 @@ class CompanyController extends Controller
             'name' => $data['name'],
             'url' => $data['url'],
             'description' => $data['description'],
+            'notes' => $data['notes'],
         ]);
 
-        return redirect()
-            ->back()
+        return to_route('home')
             ->with('success', 'company successfully created. Wait for approval');
     }
 
@@ -60,21 +61,13 @@ class CompanyController extends Controller
 
         $company = Company::query()->where('url', 'LIKE', '%' . $parsedUrl . '%')->first();
 
-        // If company not found or not approved, show fallback page
+        // If company not found or not approved, show the fallback page
         if (! $company || ! $company->approved_at) {
-            $companies = Company::query()
-                ->with([
-                    'media',
-                    'tagsRelation' => function ($query): void {
-                        $query->select('tags.id', 'name')->limit(3);
-                    },
-                ])
-                ->approved()
-                ->paginate(20, ['companies.id', 'name', 'description', 'slug', 'image_path']);
+            $fullCompanyUrl = Str::start($parsedUrl, 'https://');
 
             return view('companies.not-found-url', [
-                'companies' => $companies,
                 'parsedUrl' => $parsedUrl,
+                'url' => $fullCompanyUrl,
                 'name' => $request->name,
             ]);
         }
