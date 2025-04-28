@@ -84,7 +84,6 @@ class Company extends Model implements HasMedia
             'approved_at' => 'timestamp',
             'last_funding_date' => 'date',
             'founded_at' => 'date',
-            'notes' => 'collection',
         ];
     }
 
