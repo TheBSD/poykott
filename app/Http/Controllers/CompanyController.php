@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\FormatResourcesAction;
 use App\Http\Requests\NewCompanyRequest;
 use App\Models\Company;
 use App\Models\User;
@@ -33,7 +34,7 @@ class CompanyController extends Controller
             ->with('success', 'company successfully created. Wait for approval');
     }
 
-    public function show(Request $request, Company $company): View
+    public function show(Request $request, Company $company, FormatResourcesAction $formatResourcesAction): View
     {
         abort_if(! $company->approved_at, 404);
 
@@ -51,7 +52,9 @@ class CompanyController extends Controller
             },
         ]);
 
-        return view('companies.show', ['company' => $company]);
+        $resources = $formatResourcesAction->execute($company->resources);
+
+        return view('companies.show', ['company' => $company, 'resources' => $resources]);
     }
 
     public function redirectToSlug(Request $request, $companyUrl)

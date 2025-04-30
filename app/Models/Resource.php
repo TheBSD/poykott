@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ResourceType;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -33,6 +34,22 @@ class Resource extends Model
             'id' => 'integer',
             'type' => ResourceType::class,
         ];
+    }
+
+    /**
+     * Generate an archive.org reference URL using the resource's URL and creation timestamp.
+     *
+     *
+     * @todo test this method to be sure
+     */
+    public function archiveUrl(): Attribute
+    {
+        return Attribute::get(function (): string {
+            $encodedUrl = urlencode($this->url);
+            $date = $this->created_at->format('YmdHis');
+
+            return "https://web.archive.org/web/{$date}/{$encodedUrl}";
+        });
     }
 
     /**
