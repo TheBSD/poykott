@@ -77,7 +77,7 @@ class Investor extends Model implements HasMedia
                 $originalUrl = $firstMedia?->getUrl();
 
                 // todo add image for investor
-                $defaultUrl = URL::asset('storage/images/companies/default/company.webp');
+                $defaultUrl = URL::asset('storage/company-default.webp');
 
                 if (file_exists($optimizedPath)) {
                     return $optimizedUrl;
