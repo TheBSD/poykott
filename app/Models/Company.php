@@ -57,12 +57,11 @@ class Company extends Model implements HasMedia
     ];
 
     /**
-     * Attributes
+     * =====================
+     *  Attributes
+     * =====================
      */
-
     /**
-     * @return Attribute
-     *
      * The source provides only the founding year. When stored in the database,
      * * the current month and day are also recorded, which is incorrect. This method
      * * ensures we only retrieve and store the founding year.
@@ -88,7 +87,13 @@ class Company extends Model implements HasMedia
     }
 
     /**
-     * Packages configurations.
+     * =====================
+     *  Packages configurations
+     * =====================
+     */
+
+    /**
+     * Slug options for Spatie package
      */
     public function getSlugOptions(): SlugOptions
     {
@@ -108,7 +113,9 @@ class Company extends Model implements HasMedia
     }
 
     /**
-     * Scopes
+     * =====================
+     *  Scopes
+     * =====================
      */
     public function scopeApproved(Builder $query): Builder
     {

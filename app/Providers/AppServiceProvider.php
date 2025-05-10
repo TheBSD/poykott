@@ -6,6 +6,8 @@ use App\Models\Alternative;
 use App\Models\Company;
 use App\Models\Investor;
 use App\Models\Person;
+use App\Models\SimilarSite;
+use App\Models\Tag;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
@@ -44,6 +46,8 @@ class AppServiceProvider extends ServiceProvider
             'investor' => Investor::class,
             'alternative' => Alternative::class,
             'user' => User::class,
+            'tag' => Tag::class,
+            'similar_site' => SimilarSite::class,
         ]);
     }
 }

@@ -2,7 +2,7 @@
     'items',
 ])
 
-<nav class="mb-4">
+<nav class="mx-8 mb-4 sm:mx-0">
     <ol class="flex items-center space-x-2 text-sm text-gray-500">
         @foreach ($items as $index => $item)
             <li class="flex items-center">

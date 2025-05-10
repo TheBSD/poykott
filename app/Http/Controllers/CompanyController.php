@@ -14,6 +14,21 @@ use Illuminate\View\View;
 
 class CompanyController extends Controller
 {
+    public function index()
+    {
+        $companies = Company::query()
+            ->with([
+                'media',
+                'tagsRelation' => function ($query): void {
+                    $query->select('tags.id', 'name')->limit(3);
+                },
+            ])
+            ->approved()
+            ->simplePaginate(20, ['companies.id', 'name', 'description', 'short_description', 'slug', 'image_path']);
+
+        return view('companies.index', ['companies' => $companies]);
+    }
+
     public function create()
     {
         return view('companies.create');
@@ -45,7 +60,7 @@ class CompanyController extends Controller
             // 'logo:id,imageable_id,path',
             'tagsRelation:id,name',
             'investors' => function ($query): void {
-                $query->approved()->select('id', 'name');
+                $query->approved()->select('id', 'name', 'slug');
             },
             'alternatives' => function ($query): void {
                 $query->approved()->select('id', 'name', 'description', 'url');
@@ -80,9 +95,15 @@ class CompanyController extends Controller
 
     public function storeAlternative(Request $request, Company $company)
     {
+        // validation
+        $validated = $request->validate([
+            'name' => ['required', 'min:2', 'max:255'],
+            'url' => ['required', 'url', 'active_url', 'max:255'],
+        ]);
+
         $alternative = $company->alternatives()->create([
-            'name' => $request->name,
-            'url' => $request->url,
+            'name' => $validated['name'],
+            'url' => $validated['url'],
         ]);
 
         $admin = User::query()->first();
