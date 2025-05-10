@@ -35,10 +35,11 @@
 
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             @foreach ($investor->companies as $company)
-                                <a href="{{ route('companies.show', $company->slug) }}">
-                                    <div
-                                        class="relative overflow-hidden rounded-xl border border-gray-200 shadow-sm transition-all hover:shadow-md"
-                                    >
+                                <a
+                                    href="{{ route('companies.show', $company->slug) }}"
+                                    class="relative overflow-hidden rounded-xl border border-gray-200 shadow-sm transition-all hover:shadow-md"
+                                >
+                                    <div class="">
                                         <!-- Boycott Badge -->
                                         <div
                                             class="absolute right-2 top-2 z-10 flex items-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white"
