@@ -13,12 +13,15 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Alternative extends Model implements HasMedia
 {
     use HasFactory;
     use HasFileMigration;
     use HasImagePath;
+    use HasSlug;
     use HasTags;
     use HasTempMedia;
     use InteractsWithMedia;
@@ -39,14 +42,25 @@ class Alternative extends Model implements HasMedia
     }
 
     /**
-     * Packages configurations
+     * =====================
+     *  Packages configurations
+     * =====================
      */
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this
-            ->addMediaConversion('optimized')
-            ->optimize()
-            ->format('webp');
+        $this->addMediaConversion('optimized')->optimize()->format('webp');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')->singleFile();
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 
     /**

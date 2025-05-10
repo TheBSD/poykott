@@ -20,6 +20,8 @@
         @if (config('services.google.analytics_id') && app()->isProduction())
             @include('partials.analytics')
         @endif
+
+        @livewireStyles
     </head>
 
     <body class="font-sans antialiased">
@@ -29,15 +31,27 @@
             <!-- Success Message -->
             @if (session('success'))
                 <div
-                    id="success-alert"
-                    class="fixed right-40 top-20 mx-auto flex w-fit items-center rounded-md border border-green-400 bg-green-100 px-4 py-3 text-green-700"
+                    x-data="{
+                        show: true,
+                        init() {
+                            setTimeout(() => (this.show = false), 4000)
+                        },
+                    }"
+                    x-show="show"
+                    x-transition:enter="transition duration-300 ease-out"
+                    x-transition:enter-start="translate-y-4 opacity-0"
+                    x-transition:enter-end="translate-y-0 opacity-100"
+                    x-transition:leave="transition duration-200 ease-in"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="top-30 fixed right-4 z-50 mx-auto flex w-fit max-w-[90vw] items-center rounded-md border border-green-400 bg-green-100 px-4 py-3 text-green-700 shadow-lg sm:right-10"
                     role="alert"
                 >
                     <div>
                         <strong class="font-bold">Success!</strong>
                         <span class="block sm:inline">{{ session('success') }}</span>
                     </div>
-                    <button onclick="closeAlert()" class="ml-4 text-green-700 hover:text-green-900">
+                    <button @click="show = false" class="ml-4 text-green-700 hover:text-green-900">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path
                                 stroke-linecap="round"
@@ -54,18 +68,10 @@
             <main>
                 {{ $slot }}
             </main>
+
+            @include('partials.footer')
         </div>
 
-        <script>
-            // Auto-dismiss after 2 seconds
-            setTimeout(() => {
-                document.getElementById('success-alert')?.remove();
-            }, 4000);
-
-            // Close button handler
-            function closeAlert() {
-                document.getElementById('success-alert')?.remove();
-            }
-        </script>
+        @livewireScripts
     </body>
 </html>

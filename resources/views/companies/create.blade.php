@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="min-h-screen">
         <div class="container mx-auto px-4 py-16">
             <!-- Hero Section -->
             <div class="mx-auto mb-16 max-w-4xl text-center">

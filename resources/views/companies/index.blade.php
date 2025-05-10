@@ -6,10 +6,10 @@
             <h1 class="mt-12 text-6xl font-extrabold">Boycott Israeli Tech</h1>
             <p class="text-xl text-gray-400">
                 Search for Israeli tech
-                <strong>Alternatives</strong>
+                <strong>companies</strong>
             </p>
         </section>
 
-        <livewire:alternative-list />
+        <livewire:company-list />
     </main>
 </x-app-layout>

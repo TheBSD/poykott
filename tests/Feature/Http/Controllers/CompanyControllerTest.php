@@ -3,15 +3,8 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Http\Controllers\CompanyController;
-use App\Jobs\AddCompany;
 use App\Models\Alternative;
 use App\Models\Company;
-use App\Models\ExitStrategy;
-use App\Models\User;
-use App\Notification\ReviewCompany;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Queue;
 
 use function Pest\Faker\fake;
 use function Pest\Laravel\get;
@@ -23,10 +16,10 @@ test('index displays view', function (): void {
     $approvedCompanies = Company::factory()->count(2)->approved()->create();
     $notApprovedCompany = Company::factory()->create();
 
-    $response = get(route('home'));
+    $response = get(route('companies.index'));
 
     $response->assertOk();
-    $response->assertViewIs('home');
+    $response->assertViewIs('companies.index');
     $response->assertViewHas('companies');
 
     $response->assertDontSee($notApprovedCompany->name);
@@ -86,7 +79,7 @@ test('store an alternative inside company show', function (): void {
 
     $this->assertDatabaseHas('alternative_company', [
         'company_id' => $company->id,
-        'alternative_id' => Alternative::first()->id,
+        'alternative_id' => Alternative::query()->first()->id,
     ]);
 
     $response->assertRedirect(route('companies.show', $company->slug));

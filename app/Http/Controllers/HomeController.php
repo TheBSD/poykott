@@ -2,75 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\FormatResourcesAction;
+use App\Models\Alternative;
 use App\Models\Company;
 use App\Models\ContactMessage;
+use App\Models\Investor;
 use App\Models\SimilarSiteCategory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $companies = Company::query()
+        $alternatives = Alternative::query()
             ->with([
                 'media',
                 'tagsRelation' => function ($query): void {
                     $query->select('tags.id', 'name')->limit(3);
                 },
-            ])
-            ->approved()
-            ->paginate(20, ['companies.id', 'name', 'description', 'slug', 'image_path']);
+            ])->approved()
+            ->simplePaginate(20, ['alternatives.id', 'name', 'description', 'short_description', 'slug', 'image_path']);
 
-        return view('home', ['companies' => $companies]);
+        return view('home', ['alternatives' => $alternatives]);
     }
 
-    public function loadMore(Request $request)
+    public function show(Request $request, Alternative $alternative, FormatResourcesAction $formatResourcesAction): View
     {
-        $companies = Company::with([
-            'media',
-            'tagsRelation' => function ($query): void {
-                $query->select('tags.id', 'name')->limit(3);
+        abort_if(! $alternative->approved_at, 404);
+
+        $alternative->load([
+            'resources:id,resourceable_id,url',
+            'tagsRelation:id,name',
+            'companies' => function ($query): void {
+                $query->approved()->select('id', 'name', 'description', 'url');
             },
-        ])
-            ->approved()
-            ->paginate(20, ['companies.id', 'name', 'description', 'slug']);
+        ]);
 
-        $companies->getCollection()->transform(function ($company) {
-            $company->image_path = $company->imagePath;
+        $resources = $formatResourcesAction->execute($alternative->resources);
 
-            return $company;
-        });
-
-        return response()->json(['companies' => $companies]);
-    }
-
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-        $companies = Company::query()
-            ->with([
-                'media',
-                'tagsRelation' => function ($query): void {
-                    $query->select('tags.id', 'name')->limit(3);
-                },
-            ])
-            ->approved()
-            ->where('name', 'like', "%{$search}%")
-            ->orWhere('description', 'like', "%{$search}%")
-            ->paginate(40, ['companies.id', 'name', 'description', 'slug']);
-
-        $companies->getCollection()->transform(function ($company) {
-            $company->image_path = $company->imagePath;
-
-            return $company;
-        });
-
-        return response()->json(['companies' => $companies]);
+        return view('alternatives.show', ['alternative' => $alternative, 'resources' => $resources]);
     }
 
     public function about()
     {
-        return view('pages.about');
+        $stats = [];
+
+        $stats['companies'] = Company::approved()->count();
+        $stats['investors'] = Investor::approved()->count();
+        $stats['alternatives'] = Alternative::approved()->count();
+
+        return view('pages.about', ['stats' => $stats]);
     }
 
     public function contact(Request $request)
@@ -78,7 +60,7 @@ class HomeController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'message' => 'required|string',
+            'message' => 'required|string|min:10|max:10000',
         ]);
 
         ContactMessage::query()->create($validated);

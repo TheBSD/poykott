@@ -1,59 +1,87 @@
 # Todo (That have been done)
 
--   [x] data from https://www.usisrael.co/unicorn-tracker
--   [x] scaffold using blueprint
--   [x] test the tests!
--   [x] add proper data & structure from https://github.com/TheBSD/scraping-israeli-data/ using custom commands
-    -   [x] unicorn-graduate
-    -   [x] unicorn
-    -   [x] team
-    -   [x] members
-    -   [x] profiles
-    -   [x] jobs/job companies
-    -   [x] the resources (morph) for person and companies in each command
-    -   [x] fix resource types and titles
-    -   [x] fix OfficeLocation relation to be many to many
-    -   [x] Add Approved at for every resource Added from Commands
--   [x] Filament Admin panel
-    -   [x] proper data and structure
-    -   [x] add relationship for many-to-many and has many
-    -   [x] taggable morph many relationship in admin
-    -   [x] OfficeLocation many to many -> companies
-    -   [x] generate filament admin panel from existing models
--   [x] make it open source on https://github.com/TheBSD/
--   [x] paid for the domain
--   [x] use https://github.com/tighten/duster in project/actions/husky
--   [x] import all images for companies and people
--   [x] Use Spatie media library to optimize images
--   [x] spatie media filament
--   [x] get image optimized, then the original one
--   [x] slug instead of id for companies/investors/people ..etc
--   [x] form for users to add alternative
--   [x] have a fallback image for company/person if no image available
--   [x] only approve data on users pages
--   [x] about page / contact page
--   [x] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
--   [x] inform users that this information are scraped we need their help to improve it
--   [x] Similar Sites
--   [x] change App name
--   [x] site logo
--   [x] show person image in person details
--   [x] add indexes for approved_at fields
--   [x] remove any field/table that was not used at all for all of these imported data (until tech aviv)
--   [x] make proper seeders
--   [x] publish this to server
--   [x] test it with laravel friends and others
--   [x] people cards (getFirstMediaUrl) in javascript
--   [x] show person image in person details
--   [x] Make the whole cards is clickable on companies and people
--   [x] investor details page
--   [x] form for users to add alternative
--   [x] form for users to add company
--   [x] fix people cards
--   [x] fix search in
--   [x] the whole cards is clickable
--   [x] investor details page
--   [x] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
--   [x] data from Somair
--   [x] Analytics from Google Analytics, Yandex, bing analytics, simpleanaylitecs
-        or www.tinybird.co , https://simplestats.io/
+- [x] add backup to data every day
+- [x] data from https://finder.startupnationcentral.org/
+- [x] data from [arabic.tech/community](https://arabic.tech/community/topic/8348/8348-%D8%A8%D8%AF%D8%A7%D8%A6%D9%84-%D8%A7%D9%84%D8%A3%D8%AF%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AA%D9%83)
+- [x] data from https://stripealternatives.com/
+- [x] add data from https://www.israelitechalternatives.com/category/all/
+- [x] data from https://www.usisrael.co/unicorn-tracker
+- [x] scaffold using blueprint
+- [x] test the tests!
+- [x] add proper data & structure from https://github.com/TheBSD/scraping-israeli-data/ using custom commands
+    - [x] unicorn-graduate
+    - [x] unicorn
+    - [x] team
+    - [x] members
+    - [x] profiles
+    - [x] jobs/job companies
+    - [x] the resources (morph) for person and companies in each command
+    - [x] fix resource types and titles
+    - [x] fix OfficeLocation relation to be many to many
+    - [x] Add Approved at for every resource Added from Commands
+- [x] Filament Admin panel
+    - [x] proper data and structure
+    - [x] add relationship for many-to-many and has many
+    - [x] taggable morph many relationship in admin
+    - [x] OfficeLocation many to many -> companies
+    - [x] generate filament admin panel from existing models
+- [x] make it open source on https://github.com/TheBSD/
+- [x] paid for the domain
+- [x] use https://github.com/tighten/duster in project/actions/husky
+- [x] import all images for companies and people
+- [x] Use Spatie media library to optimize images
+- [x] spatie media filament
+- [x] get image optimized, then the original one
+- [x] slug instead of id for companies/investors/people ..etc
+- [x] form for users to add alternative
+- [x] have a fallback image for company/person if no image available
+- [x] only approve data on users pages
+- [x] about page / contact page
+- [x] sqlite wal mode and other stuff from https://github.com/nunomaduro/laravel-optimize-database
+- [x] inform users that this information are scraped we need their help to improve it
+- [x] Similar Sites
+- [x] change App name
+- [x] site logo
+- [x] show person image in person details
+- [x] add indexes for approved_at fields
+- [x] remove any field/table that was not used at all for all of these imported data (until tech aviv)
+- [x] make proper seeders
+- [x] publish this to server
+- [x] test it with laravel friends and others
+- [x] people cards (getFirstMediaUrl) in javascript
+- [x] show person image in person details
+- [x] Make the whole cards is clickable on companies and people
+- [x] investor details page
+- [x] form for users to add alternative
+- [x] form for users to add company
+- [x] fix people cards
+- [x] fix search in
+- [x] the whole cards is clickable
+- [x] investor details page
+- [x] in monitoring use scoutapm, or sentry.io, or rollbar, papertrail, or larabug, or datadoghq or sentry
+- [x] data from Somair
+- [x] Analytics from Google Analytics, Yandex, bing analytics, simpleanaylitecs
+      or www.tinybird.co , https://simplestats.io/
+
+## Design
+
+- [x] Fix logo sizes in many screens (Header)
+- [x] Style the "New Company" button
+- [x] Improve Footer
+- [x] Design Contact Us page
+- [x] Design About Us page
+- [x] Design Companies cards
+    - [x] Companies Cards when searching
+    - [x] Companies Cards for pagination
+- [x] livewire search/filtering/ordering
+- [x] Implement Companies search with categories
+- [x] Design Similar Sites page
+    - [x] extract fetch images from url via Symfony to filament action in similar sites/companies/investors/people. etc.
+          with model popup if there is already media associated with the model
+- [x] Design Investors cards (without images)
+- [x] Design Single Company page
+- [x] Design Single Investors page
+- [x] Design FAQ page
+- [x] Alternatives as a home with
+- [x] Alternatives single page
+- [x] Design 404 page
