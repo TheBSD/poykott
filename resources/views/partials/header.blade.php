@@ -51,7 +51,7 @@
                         href="{{ route('companies.index') }}"
                         class="{{ request()->routeIs('companies.index') ? 'text-gray-900' : 'text-gray-500' }} text-base font-medium hover:text-gray-900"
                     >
-                        Companies
+                        Israeli Companies
                     </a>
                     <a
                         href="{{ route('similar-sites') }}"
@@ -150,7 +150,7 @@
                                         d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636"
                                     />
                                 </svg>
-                                <span class="ml-3 text-base font-medium text-gray-900">Companies</span>
+                                <span class="ml-3 text-base font-medium text-gray-900">Israeli Companies</span>
                             </a>
 
                             <a
