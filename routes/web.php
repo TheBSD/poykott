@@ -4,6 +4,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\PersonController;
+use App\Models\Alternative;
+use App\Models\Company;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => to_route('alternatives.index'))->name('home');
@@ -29,3 +31,11 @@ Route::get('people/{person:slug}', [PersonController::class, 'show'])->name('peo
 
 // Route::get('investors', [InvestorController::class, 'index'])->name('investors');
 Route::get('investors/{investor:slug}', [InvestorController::class, 'show'])->name('investors.show');
+
+Route::get('play-a', function () {
+    return Alternative::query()->doesntHave('media')->select('id', 'name', 'url')->get();
+});
+
+Route::get('play-b', function () {
+    return Company::query()->doesntHave('media')->select('id', 'name', 'url')->get();
+});
