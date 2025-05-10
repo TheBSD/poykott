@@ -8,9 +8,7 @@
         {{-- + Add New Company --}}
         {{-- </a> --}}
         {{-- </div> --}}
-        <div
-            class="mb-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
-        >
+        <div class="mb-6 rounded-lg border border-slate-200 bg-white p-4">
             <div class="flex w-full flex-col gap-4 sm:flex-row sm:gap-2">
                 <!-- Search input -->
                 <input
@@ -50,7 +48,7 @@
             @forelse ($alternatives as $alternative)
                 <a href="{{ route('alternatives.show', $alternative) }}">
                     <div
-                        class="relative flex h-full cursor-pointer flex-col overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-md dark:border dark:border-gray-700 dark:bg-gray-800"
+                        class="relative flex h-full cursor-pointer flex-col overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-md"
                     >
                         <!-- Alternative Badge (Top Right) -->
                         <div
@@ -90,7 +88,7 @@
                         {{-- </div> --}}
 
                         <div
-                            class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-800"
+                            class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50"
                         >
                             <div class="flex h-full w-full items-center justify-center">
                                 <img
@@ -108,23 +106,23 @@
                                 <div class="mb-3 flex flex-wrap gap-1.5">
                                     @foreach ($alternative->tagsRelation as $tag)
                                         <span
-                                            class="inline-block rounded-full border border-blue-200 bg-blue-100 px-3 py-1 text-xs text-blue-700 shadow-sm dark:border-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                                            class="inline-block rounded-full border border-blue-200 bg-blue-100 px-3 py-1 text-xs text-blue-700 shadow-sm"
                                         >
                                             {{ $tag->name }}
                                         </span>
                                     @endforeach
                                 </div>
 
-                                <h3 class="mb-2 line-clamp-1 text-lg font-bold dark:text-white">
+                                <h3 class="mb-2 line-clamp-1 text-lg font-bold">
                                     {{ $alternative->name }}
                                 </h3>
-                                <p class="mb-2 line-clamp-2 text-sm text-slate-700 dark:text-gray-300">
+                                <p class="mb-2 line-clamp-2 text-sm text-slate-700">
                                     {{ Str::limit($alternative->description, 100) }}
                                 </p>
 
                                 <!-- Alternative to section -->
                                 @if ($alternative->companies->isNotEmpty())
-                                    <div class="my-4 border-t border-gray-100 pt-3 dark:border-gray-700">
+                                    <div class="my-4 border-t border-gray-100 pt-3">
                                         <div class="mb-2 flex items-center gap-1.5">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -138,14 +136,12 @@
                                                     clip-rule="evenodd"
                                                 />
                                             </svg>
-                                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400">
-                                                Alternative to:
-                                            </span>
+                                            <span class="text-xs font-medium text-gray-500">Alternative to:</span>
                                         </div>
                                         <div class="flex flex-wrap gap-2">
                                             @foreach ($alternative->companies as $company)
                                                 <span
-                                                    class="inline-flex items-center rounded border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                                                    class="inline-flex items-center rounded border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs text-gray-700 transition-colors hover:bg-gray-100"
                                                 >
                                                     {{ $company->name }}
                                                 </span>
@@ -157,7 +153,7 @@
 
                             <div class="flex flex-col gap-2">
                                 <button
-                                    class="flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-800 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    class="flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-800 transition-colors hover:bg-gray-50 hover:text-gray-900"
                                 >
                                     <span class="mr-2">Details</span>
                                     <svg
@@ -182,7 +178,7 @@
                     </div>
                 </a>
             @empty
-                <div class="col-span-full py-10 text-center text-xl text-gray-500 dark:text-gray-400">
+                <div class="col-span-full py-10 text-center text-xl text-gray-500">
                     No alternative found. Try changing your search or filter.
                 </div>
             @endforelse

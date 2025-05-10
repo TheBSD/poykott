@@ -93,7 +93,7 @@
                                         >
                                             <a href="{{ route('companies.index') }}" class="focus:outline-none">
                                                 <span class="absolute inset-0" aria-hidden="true"></span>
-                                                Companies
+                                                Israeli Companies
                                             </a>
                                         </span>
                                     </h3>

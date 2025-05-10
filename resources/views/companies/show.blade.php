@@ -5,7 +5,7 @@
             <x-breadcrumb
                 :items="[
                     ['name' => 'Home', 'url' => '/'],
-                    ['name' => 'Companies', 'url' => '/companies'],
+                    ['name' => 'Israeli Companies', 'url' => '/companies'],
                     ['name' => $company->name, 'url' => '/companies/' . $company->id],
                 ]"
                 class="mb-6"
@@ -27,7 +27,7 @@
                         <h1 class="text-3xl font-bold text-gray-900">
                             {{ $company->name }}
                             <span
-                                class="inline-flex items-center rounded-full border border-amber-200 bg-red-600 px-2 py-0.5 text-xs font-semibold text-white shadow-sm dark:border-amber-800 dark:bg-amber-900 dark:text-amber-200"
+                                class="inline-flex items-center rounded-full border border-amber-200 bg-red-600 px-2 py-0.5 text-xs font-semibold text-white shadow-sm"
                             >
                                 <svg
                                     class="size-4"
@@ -55,7 +55,7 @@
                             <div class="mt-4 flex flex-wrap gap-2">
                                 @foreach ($company->tagsRelation as $tag)
                                     <span
-                                        class="rounded-full border border-blue-200 bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 shadow-sm dark:border-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                                        class="rounded-full border border-blue-200 bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 shadow-sm"
                                     >
                                         {{ $tag->name }}
                                     </span>
