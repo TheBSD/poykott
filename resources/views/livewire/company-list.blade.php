@@ -57,7 +57,7 @@
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="mr-1 h-3 w-3"
+                                class="h-3 w-3"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                             >
@@ -67,7 +67,6 @@
                                     clip-rule="evenodd"
                                 />
                             </svg>
-                            BOYCOTT
                         </div>
                         <div
                             class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50"
