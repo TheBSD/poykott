@@ -38,7 +38,7 @@
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            class="mr-1 h-3 w-3"
+                                            class="h-3 w-3"
                                             viewBox="0 0 20 20"
                                             fill="currentColor"
                                         >
@@ -48,7 +48,6 @@
                                                 clip-rule="evenodd"
                                             />
                                         </svg>
-                                        BOYCOTT
                                     </div>
                                     <div class="flex h-full flex-col p-5">
                                         <div class="mb-4 flex justify-center">

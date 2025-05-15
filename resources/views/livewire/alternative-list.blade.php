@@ -67,8 +67,6 @@
                                     clip-rule="evenodd"
                                 />
                             </svg>
-
-                            Alternative
                         </div>
 
                         <!-- Country Badge (Top Left) - Different shape and color -->
