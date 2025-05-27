@@ -59,6 +59,13 @@
                     >
                         Similar Sites
                     </a>
+
+                    <a
+                        href="{{ route('newsletter.get') }}"
+                        class="{{ request()->routeIs('newsletter.get') ? 'text-gray-900' : 'text-gray-500' }} text-base font-medium hover:text-gray-900"
+                    >
+                        Stay updated
+                    </a>
                 </nav>
             </div>
         </div>
@@ -174,6 +181,29 @@
                                     ></path>
                                 </svg>
                                 <span class="ml-3 text-base font-medium text-gray-900">Similar Sites</span>
+                            </a>
+
+                            <a
+                                href="{{ route('newsletter.get') }}"
+                                @click="open = false"
+                                class="{{ request()->routeIs('newsletter.get') ? 'bg-blue-50' : '' }} -m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                            >
+                                <svg
+                                    class="h-6 w-6 flex-shrink-0 text-indigo-600"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                                    ></path>
+                                </svg>
+                                <span class="ml-3 text-base font-medium text-gray-900">Stay updated</span>
                             </a>
                         </nav>
                     </div>

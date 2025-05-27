@@ -74,4 +74,9 @@ class HomeController extends Controller
 
         return view('pages.similar-sites', ['similarSitesCategories' => $similarSitesCategories]);
     }
+
+    public function newsletter()
+    {
+        return view('pages.newsletter');
+    }
 }

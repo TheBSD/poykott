@@ -14,6 +14,7 @@ Route::get('about', [HomeController::class, 'about'])->name('about');
 Route::view('faqs', 'pages.faqs')->name('faqs');
 Route::post('contact', [HomeController::class, 'contact'])->name('contact.store');
 Route::view('contact', 'pages.contact')->name('contact.get');
+Route::get('newsletter', [HomeController::class, 'newsletter'])->name('newsletter.get');
 Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('similar-sites');
 Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
 Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
