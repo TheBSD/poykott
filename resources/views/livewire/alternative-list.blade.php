@@ -135,15 +135,15 @@
                                                 />
                                             </svg>
                                             <span class="text-xs font-medium text-gray-500">Alternative to:</span>
-                                        </div>
-                                        <div class="flex flex-wrap gap-2">
-                                            @foreach ($alternative->companies as $company)
-                                                <span
-                                                    class="inline-flex items-center rounded border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs text-gray-700 transition-colors hover:bg-gray-100"
-                                                >
-                                                    {{ $company->name }}
-                                                </span>
-                                            @endforeach
+                                            <div class="flex flex-wrap gap-2">
+                                                @foreach ($alternative->companies as $company)
+                                                    <span
+                                                        class="inline-flex items-center rounded border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs text-gray-700 transition-colors hover:bg-gray-100"
+                                                    >
+                                                        {{ $company->name }}
+                                                    </span>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 @endif

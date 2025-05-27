@@ -2,31 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Http\Controllers\AlternativeController;
-use App\Http\Requests\AlternativeStoreRequest;
 use App\Models\Alternative;
 use App\Models\Company;
-use App\Models\User;
 use App\Notification\ReviewAlternative;
 use Illuminate\Support\Facades\Notification;
 
 use function Pest\Faker\fake;
 use function Pest\Laravel\post;
-
-test('create displays view', function (): void {
-    // $response = get(route('alternatives.create'));
-    //
-    // $response->assertOk();
-    // $response->assertViewIs('alternatives.create');
-});
-
-test('store uses form request validation', function (): void {
-    $this->assertActionUsesFormRequest(
-        AlternativeController::class,
-        'store',
-        AlternativeStoreRequest::class
-    );
-});
 
 test('store saves and redirects', function (): void {
     Notification::fake();

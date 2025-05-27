@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\ScrapeLogoFromUrlAction;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\CompanyResource\Pages\CreateCompany;
 use App\Filament\Resources\CompanyResource\Pages\EditCompany;
@@ -20,6 +21,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
@@ -152,6 +154,45 @@ class CompanyResource extends Resource
                 //
             ])
             ->actions([
+                Action::make('fetchLogo')
+                    ->label('Fetch Logo')
+                    ->action(function (Company $record): void {
+
+                        $success = app(ScrapeLogoFromUrlAction::class)->execute($record, $record->url);
+
+                        if (! $success) {
+                            Notification::make()
+                                ->danger()
+                                ->title('Failed fetching logo. Try uploading the logo manually')
+                                ->send();
+                        } else {
+                            Notification::make()
+                                ->success()
+                                ->title('Logo fetched')
+                                ->send();
+                        }
+                    })
+                    ->requiresConfirmation(function ($record): bool {
+                        return $record->media->count() > 0;
+                    })
+                    ->color('gray'),
+
+                Action::make('removeLogo')
+                    ->label('Remove Logo')
+                    ->action(function (Company $record): void {
+                        $record->clearMediaCollection();
+                        Notification::make()
+                            ->success()
+                            ->title('Logo removed')
+                            ->send();
+                    })
+                    ->requiresConfirmation(function ($record): bool {
+                        return $record->media->count() > 0;
+                    })
+                    ->visible(function ($record): bool {
+                        return $record->media->count() > 0;
+                    })
+                    ->color('danger'),
                 EditAction::make(),
                 DeleteAction::make(),
             ])
