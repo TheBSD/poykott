@@ -45,7 +45,9 @@ class CompanyList extends Component
             ->when($this->search, function ($query): void {
                 $query->where(function ($query): void {
                     $query->where('name', 'like', "%{$this->search}%")
-                        ->orWhere('description', 'like', "%{$this->search}%");
+                        ->orWhereHas('tagsRelation', function ($query): void {
+                            $query->where('name', 'like', "%{$this->search}%");
+                        });
                 });
             })
             ->when($this->filter, function ($query): void {
