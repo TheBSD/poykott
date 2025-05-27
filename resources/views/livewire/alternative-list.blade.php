@@ -1,13 +1,16 @@
 <div>
     <!-- Searching/Filtering box -->
     <section>
-        {{-- <div class="flex justify-end mb-2"> --}}
-        {{-- <a --}}
-        {{-- href="{{ route('companies.create') }}" --}}
-        {{-- class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-sm"> --}}
-        {{-- + Add New Company --}}
-        {{-- </a> --}}
-        {{-- </div> --}}
+        {{--
+            <div class="flex justify-end mb-2">
+            <a
+            href="#"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-sm"
+            >
+            + Add New Alternative
+            </a>
+            </div>
+        --}}
         <div class="mb-6 rounded-lg border border-slate-200 bg-white p-4">
             <div class="flex w-full flex-col gap-4 sm:flex-row sm:gap-2">
                 <!-- Search input -->
