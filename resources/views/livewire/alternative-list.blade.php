@@ -187,7 +187,9 @@
             @empty
                 <div class="col-span-full py-10 text-center text-xl text-gray-500">
                     Your search is not in our data as an Israeli company, an alternate company or a category. Please use
-                    <a href="{{ route('contact.get') }}" class="text">contact us</a>
+                    <a href="{{ route('contact.get') }}" target="_blank" class="text-blue-600 hover:text-blue-700">
+                        contact us
+                    </a>
                     for suggestions.
                 </div>
             @endforelse
