@@ -8,6 +8,11 @@ test('perform database backup', function (): void {
         ->once()
         ->with(database_path('database.sqlite'), Mockery::type('string'));
 
+    File::shouldReceive('exists')
+        ->once()
+        ->with(database_path('backups'))
+        ->andReturnFalse();
+
     File::shouldReceive('makeDirectory')
         ->once()
         ->with(database_path('backups'), $mode = octdec(755), $recursive = false, $force = true);

@@ -1,17 +1,22 @@
 <div>
     <!-- Searching/Filtering box -->
     <section>
-        {{-- <div class="flex justify-end mb-2"> --}}
-        {{-- <a --}}
-        {{-- href="{{ route('companies.create') }}" --}}
-        {{-- class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-sm"> --}}
-        {{-- + Add New Company --}}
-        {{-- </a> --}}
-        {{-- </div> --}}
+        {{--
+            <div class="flex justify-end mb-2">
+            <a
+            href="#"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-sm"
+            >
+            + Add New Alternative
+            </a>
+            </div>
+        --}}
         <div class="mb-6 rounded-lg border border-slate-200 bg-white p-4">
             <div class="flex w-full flex-col gap-4 sm:flex-row sm:gap-2">
                 <!-- Search input -->
+                <label for="search-input" class="sr-only">Search...</label>
                 <input
+                    id="search-input"
                     wire:model.live="search"
                     type="text"
                     placeholder="Search..."
@@ -19,7 +24,9 @@
                 />
 
                 <!-- Filter select -->
+                <label for="filter-select" class="sr-only">Filter by</label>
                 <select
+                    id="filter-select"
                     wire:model.live="filter"
                     class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-1/6"
                 >
@@ -29,8 +36,10 @@
                     @endforeach
                 </select>
 
+                <label for="order-select" class="sr-only">Order by</label>
                 <!-- Order select -->
                 <select
+                    id="order-select"
                     wire:model.live="order"
                     class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-1/6"
                 >
@@ -177,7 +186,11 @@
                 </a>
             @empty
                 <div class="col-span-full py-10 text-center text-xl text-gray-500">
-                    No alternative found. Try changing your search or filter.
+                    Your search is not in our data as an Israeli company, an alternate company or a category. Please use
+                    <a href="{{ route('contact.get') }}" target="_blank" class="text-blue-600 hover:text-blue-700">
+                        contact us
+                    </a>
+                    for suggestions.
                 </div>
             @endforelse
         </div>

@@ -12,7 +12,9 @@
         <div class="mb-6 rounded-lg border border-slate-200 bg-white p-4">
             <div class="flex w-full flex-col gap-4 sm:flex-row sm:gap-2">
                 <!-- Search input -->
+                <label for="search-input" class="sr-only">Search...</label>
                 <input
+                    id="search-input"
                     wire:model.live="search"
                     type="text"
                     placeholder="Search..."
@@ -20,7 +22,9 @@
                 />
 
                 <!-- Filter select -->
+                <label for="filter-select" class="sr-only">Filter by</label>
                 <select
+                    id="filter-select"
                     wire:model.live="filter"
                     class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-1/6"
                 >
@@ -31,7 +35,9 @@
                 </select>
 
                 <!-- Order select -->
+                <label for="order-select" class="sr-only">Order by</label>
                 <select
+                    id="order-select"
                     wire:model.live="order"
                     class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-1/6"
                 >
