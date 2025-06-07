@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestorController;
+use App\Http\Controllers\MailchimpRedirectionController;
 use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,6 @@ Route::get('about', [HomeController::class, 'about'])->name('about');
 Route::view('faqs', 'pages.faqs')->name('faqs');
 Route::get('newsletter', [HomeController::class, 'newsletter'])->name('newsletter.get');
 Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('similar-sites');
+
+// Webhooks
+Route::get('webhooks/mailchimp', MailchimpRedirectionController::class)->name('mailchimp.webhook');
