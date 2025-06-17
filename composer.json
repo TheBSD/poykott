@@ -17,6 +17,7 @@
         "intervention/image": "^3.9",
         "khaled.alshamaa/ar-php": "^7.0",
         "laravel/framework": "^11.9",
+        "laravel/nightwatch": "^1.7",
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^3.6",
