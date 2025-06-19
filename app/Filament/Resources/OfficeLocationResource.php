@@ -30,7 +30,7 @@ class OfficeLocationResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
+                TextInput::make('name')->required()->unique('office_locations', 'name'),
                 TextInput::make('lat'),
                 TextInput::make('lng'),
             ]);
