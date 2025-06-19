@@ -41,3 +41,14 @@ Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('simi
 
 // Webhooks
 Route::get('webhooks/mailchimp', MailchimpRedirectionController::class)->name('mailchimp.webhook');
+
+// output to json as following:
+
+// stop unique constraints in office_location table temporarily (done)
+// remove all non-needing code in this direction
+
+// output all office location data to json file (done)
+// process the json file and clean location names in AI service (progress
+// import the json file to office_location using separate command
+// run command "OfficeLocationsMergerAllCommand" to merge similar commands
+// todo remove this later

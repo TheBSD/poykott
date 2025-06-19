@@ -17,6 +17,7 @@ class OfficeLocation extends Model
      */
     protected $fillable = [
         'name',
+        'old_name',
         'lat',
         'lng',
     ];
@@ -36,5 +37,25 @@ class OfficeLocation extends Model
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class);
+    }
+
+    /**
+     * Get the city part from the location.
+     */
+    public function getCity(): ?string
+    {
+        $parts = explode(',', $this->name);
+
+        return trim((string) ($parts[0] ?? null));
+    }
+
+    /**
+     * Get the country part from the location.
+     */
+    public function getCountry(): ?string
+    {
+        $parts = explode(',', $this->name);
+
+        return trim((string) ($parts[1] ?? null));
     }
 }
