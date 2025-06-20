@@ -39,6 +39,11 @@ class OfficeLocation extends Model
         return $this->belongsToMany(Company::class);
     }
 
+    public function limitedCompanies(int $limit = 10): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class)->take($limit);
+    }
+
     /**
      * Get the city part from the location.
      */
