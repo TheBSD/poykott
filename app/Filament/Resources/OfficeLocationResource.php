@@ -43,7 +43,7 @@ class OfficeLocationResource extends Resource
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('old_name')->sortable()->searchable(),
-                TextColumn::make('companies.name')->badge()->color('info')->searchable(),
+                TextColumn::make('limitedCompanies.name')->label('Companies max (10)')->badge()->color('info')->searchable(),
                 TextColumn::make('lat'),
                 TextColumn::make('lng'),
             ])
