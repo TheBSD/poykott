@@ -42,6 +42,7 @@ class OfficeLocationResource extends Resource
             ->recordUrl(null) // make record non-clickable
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('old_name')->sortable()->searchable(),
                 TextColumn::make('companies.name')->badge()->color('info')->searchable(),
                 TextColumn::make('lat'),
                 TextColumn::make('lng'),
