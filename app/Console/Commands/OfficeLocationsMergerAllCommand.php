@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Actions\CalculateSimilarityTextsAction;
 use App\Actions\OfficeLocationsMergerAction;
 use App\Models\OfficeLocation;
 use Illuminate\Console\Command;
+use Throwable;
 
 class OfficeLocationsMergerAllCommand extends Command
 {
@@ -17,41 +17,49 @@ class OfficeLocationsMergerAllCommand extends Command
 
     /**
      * Execute the console command.
+     *
+     * @throws Throwable
      */
     public function handle(
         OfficeLocationsMergerAction $officeLocationsMergerAction,
-        CalculateSimilarityTextsAction $calculateSimilarityTextsAction
     ): void {
 
         $officeLocations = OfficeLocation::query()
-            ->with('companies')
+            ->withCount('companies')
+            ->with('companies:id,name')
+            ->orderBy('companies_count', 'asc')
             ->get();
 
         $progressBar = $this->output->createProgressBar($officeLocations->count());
         $progressBar->start();
 
-        foreach ($officeLocations as $from) {
-            foreach ($officeLocations as $to) {
-                // Skip comparing the same office location
-                if ($from->id === $to->id) {
-                    continue;
-                }
-                // Skip when one of the office locations doesn't exist
-                if (! $from->exists) {
-                    continue;
-                }
-                if (! $to->exists) {
-                    continue;
-                }
+        // Group locations by name first to avoid nested loop issues
+        $locationsByName = $officeLocations->groupBy('name');
 
-                $similarity = $calculateSimilarityTextsAction->execute($from->name, $to->name);
+        foreach ($locationsByName as $locations) {
+            // Filter out non-existing locations
+            $existingLocations = $locations->filter(function ($location) {
+                return $location->exists;
+            });
 
-                if ($similarity >= self::SIMILARITY_THRESHOLD) {
-                    $officeLocationsMergerAction->execute($from, $to);
+            // Skip if we don't have multiple locations with the same name
+            if ($existingLocations->count() <= 1) {
+                continue;
+            }
+
+            // Use the location with the highest companies_count as the target
+            $targetLocation = $existingLocations->sortByDesc('companies_count')->first();
+
+            // Merge all other locations into the target
+            foreach ($existingLocations as $location) {
+                if ($location->id !== $targetLocation->id) {
+                    $officeLocationsMergerAction->execute($location, $targetLocation);
                 }
             }
+
             $progressBar->advance();
         }
+
         $progressBar->finish();
     }
 }

@@ -26,6 +26,8 @@ class OfficeLocationResource extends Resource
 
     protected static ?string $navigationGroup = 'Companies';
 
+    protected static ?int $perPage = 10;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -41,9 +43,10 @@ class OfficeLocationResource extends Resource
         return $table
             ->recordUrl(null) // make record non-clickable
             ->columns([
+                TextColumn::make('id')->sortable(),
                 TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('old_name')->sortable()->searchable(),
-                TextColumn::make('limitedCompanies.name')->label('Companies max (10)')->badge()->color('info')->searchable(),
+                TextColumn::make('old_name')->sortable()->searchable()->limit(50),
+                TextColumn::make('companies.name')->badge()->color('info')->searchable(),
                 TextColumn::make('lat'),
                 TextColumn::make('lng'),
             ])
