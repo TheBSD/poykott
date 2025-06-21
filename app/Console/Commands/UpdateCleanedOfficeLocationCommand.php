@@ -52,10 +52,8 @@ class UpdateCleanedOfficeLocationCommand extends Command
             $progressBar->finish();
 
             $this->info('Update complete.');
-
-            return Command::SUCCESS;
         }
 
-        return null;
+        return Command::SUCCESS;
     }
 }
