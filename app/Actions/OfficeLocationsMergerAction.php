@@ -29,7 +29,7 @@ class OfficeLocationsMergerAction
 
     private function deleteFromLocationLog(OfficeLocation $from): void
     {
-        $this->info("Removing office location: '{$from->name}' with ID: '{$from->id}'");
+        $this->info("Removing office location: '{$from->name}:{$from->id}'");
     }
 
     /**
@@ -37,12 +37,12 @@ class OfficeLocationsMergerAction
      */
     private function mergeCompaniesLog(OfficeLocation $from, OfficeLocation $to): void
     {
-        $this->info("\nRelating office location from '{$from->name}' to '{$to->name}'");
+        $this->info("\nRelating office location from '{$from->name}:{$from->id}' to '{$to->name}:{$to->id}'");
 
         $fromCompaniesNames = $from->companies->pluck('name')->implode(', ');
         $toCompaniesNames = $to->companies->pluck('name')->implode(', ');
 
-        $this->info("Companies: '{$fromCompaniesNames}' will be merged into '{$to->name}' office location, in addition to '{$toCompaniesNames}'");
+        $this->info("Companies: '{$fromCompaniesNames}' will be merged into '{$to->name}:{$to->id}' office location, in addition to '{$toCompaniesNames}'");
     }
 
     /**
@@ -58,6 +58,7 @@ class OfficeLocationsMergerAction
      */
     private function deleteFromLocation(OfficeLocation $from): void
     {
+        $from->companies()->detach();
         $from->delete();
     }
 
