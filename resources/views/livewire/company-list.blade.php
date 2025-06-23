@@ -18,33 +18,37 @@
                     wire:model.live="search"
                     type="text"
                     placeholder="Search..."
-                    class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-2/3"
+                    class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring"
                 />
 
                 <!-- Filter select -->
-                <label for="filter-select" class="sr-only">Filter by</label>
-                <select
+                {{--
+                    <label for="filter-select" class="sr-only">Filter by</label>
+                    <select
                     id="filter-select"
                     wire:model.live="filter"
                     class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-1/6"
-                >
+                    >
                     <option value="">Filter by</option>
                     @foreach ($this->companiesTags as $tag)
-                        <option value="{{ $tag->id }}">{{ $tag->name }} ({{ $tag->companies_count }})</option>
+                    <option value="{{ $tag->id }}">{{ $tag->name }} ({{ $tag->companies_count }})</option>
                     @endforeach
-                </select>
+                    </select>
+                --}}
 
                 <!-- Order select -->
-                <label for="order-select" class="sr-only">Order by</label>
-                <select
+                {{--
+                    <label for="order-select" class="sr-only">Order by</label>
+                    <select
                     id="order-select"
                     wire:model.live="order"
                     class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-1/6"
-                >
+                    >
                     <option value="">Order by</option>
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
-                </select>
+                    </select>
+                --}}
             </div>
         </div>
     </section>
@@ -57,23 +61,73 @@
                     <div
                         class="relative flex h-full cursor-pointer flex-col overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-md"
                     >
-                        <!-- Boycott Badge -->
+                        <!-- Boycott Badge with tooltip -->
                         <div
-                            class="absolute right-2 top-2 z-10 flex items-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white"
+                            x-data="{
+                                tooltipVisible: false,
+                                tooltipText: 'Israeli Company',
+                                tooltipArrow: true,
+                                tooltipPosition: 'left',
+                            }"
+                            x-init="
+                                $refs.content.addEventListener('mouseenter', () => {
+                                    tooltipVisible = true
+                                })
+                                $refs.content.addEventListener('mouseleave', () => {
+                                    tooltipVisible = false
+                                })
+                            "
+                            class="absolute right-2 top-2 z-20"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-3 w-3"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
+                            <div
+                                x-ref="tooltip"
+                                x-show="tooltipVisible"
+                                :class="{ 'top-0 left-1/2 -translate-x-1/2 -mt-0.5 -translate-y-full' : tooltipPosition == 'top', 'top-1/2 -translate-y-1/2 -ml-0.5 left-0 -translate-x-full' : tooltipPosition == 'left', 'bottom-0 left-1/2 -translate-x-1/2 -mb-0.5 translate-y-full' : tooltipPosition == 'bottom', 'top-1/2 -translate-y-1/2 -mr-0.5 right-0 translate-x-full' : tooltipPosition == 'right' }"
+                                class="absolute w-auto text-sm"
+                                x-cloak
                             >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
+                                <div
+                                    x-show="tooltipVisible"
+                                    x-transition
+                                    class="relative rounded bg-black bg-opacity-90 px-2 py-1 text-white shadow-lg"
+                                >
+                                    <p
+                                        x-text="tooltipText"
+                                        class="block flex-shrink-0 whitespace-nowrap text-xs"
+                                    ></p>
+                                    <div
+                                        x-ref="tooltipArrow"
+                                        x-show="tooltipArrow"
+                                        :class="{ 'bottom-0 -translate-x-1/2 left-1/2 w-2.5 translate-y-full' : tooltipPosition == 'top', 'right-0 -translate-y-1/2 top-1/2 h-2.5 -mt-px translate-x-full' : tooltipPosition == 'left', 'top-0 -translate-x-1/2 left-1/2 w-2.5 -translate-y-full' : tooltipPosition == 'bottom', 'left-0 -translate-y-1/2 top-1/2 h-2.5 -mt-px -translate-x-full' : tooltipPosition == 'right' }"
+                                        class="absolute inline-flex items-center justify-center overflow-hidden"
+                                    >
+                                        <div
+                                            :class="{ 'origin-top-left -rotate-45' : tooltipPosition == 'top', 'origin-top-left rotate-45' : tooltipPosition == 'left', 'origin-bottom-left rotate-45' : tooltipPosition == 'bottom', 'origin-top-right -rotate-45' : tooltipPosition == 'right' }"
+                                            class="h-1.5 w-1.5 transform bg-black bg-opacity-90"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                x-ref="content"
+                                class="relative flex cursor-pointer items-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-3 w-3"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                            </div>
                         </div>
+                        <!-- ./Boycott Badge with tooltip -->
                         <div
                             class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50"
                         >

@@ -56,15 +56,15 @@ class AlternativeList extends Component
                             $query->where('name', 'like', "%{$this->search}%");
                         });
                 });
-            })
-            ->when($this->filter, function ($query): void {
-                $query->whereHas('tagsRelation', function ($query): void {
-                    $query->where('tags.id', $this->filter);
-                });
-            })
-            ->when($this->order, function ($query): void {
-                $query->orderBy('name', $this->order);
             });
+        // ->when($this->filter, function ($query): void {
+        //     $query->whereHas('tagsRelation', function ($query): void {
+        //         $query->where('tags.id', $this->filter);
+        //     });
+        // })
+        // ->when($this->order, function ($query): void {
+        //     $query->orderBy('name', $this->order);
+        // })
 
         $alternatives = $query->simplePaginate(20,
             ['alternatives.id', 'name', 'description', 'slug', 'image_path']);
