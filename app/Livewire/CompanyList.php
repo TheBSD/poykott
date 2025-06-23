@@ -49,18 +49,20 @@ class CompanyList extends Component
                             $query->where('name', 'like', "%{$this->search}%");
                         });
                 });
-            })
-            ->when($this->filter, function ($query): void {
-                $query->whereHas('tagsRelation', function ($query): void {
-                    $query->where('tags.id', $this->filter);
-                });
-            })
-            ->when($this->order, function ($query): void {
-                $query->orderBy('name', $this->order);
             });
+        // ->when($this->filter, function ($query): void {
+        //     $query->whereHas('tagsRelation', function ($query): void {
+        //         $query->where('tags.id', $this->filter);
+        //     });
+        // })
+        // ->when($this->order, function ($query): void {
+        //     $query->orderBy('name', $this->order);
+        // })
 
-        $companies = $query->simplePaginate(20,
-            ['companies.id', 'name', 'description', 'short_description', 'slug', 'image_path']);
+        $companies = $query->simplePaginate(
+            20,
+            ['companies.id', 'name', 'description', 'short_description', 'slug', 'image_path']
+        );
 
         return view('livewire.company-list', [
             'companies' => $companies,
