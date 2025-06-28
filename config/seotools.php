@@ -13,7 +13,7 @@ return [
         'defaults' => [
             'title' => config('app.name', 'Boycott Israeli Tech'), // set false to total remove
             'titleBefore' => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
-            'description' => 'Find ethical alternatives to Israeli tech products and companies', // set false to total remove
+            'description' => env('APP_DESCRIPTION', 'Find ethical alternatives to Israeli tech products and companies'), // set false to total remove
             'separator' => ' - ',
             'keywords' => [],
             'canonical' => 'current', // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
@@ -39,7 +39,7 @@ return [
          */
         'defaults' => [
             'title' => config('app.name', 'Boycott Israeli Tech'), // set false to total remove
-            'description' => 'Find ethical alternatives to Israeli tech products and companies', // set false to total remove
+            'description' => env('APP_DESCRIPTION', 'Find ethical alternatives to Israeli tech products and companies'), // set false to total remove
             'url' => null, // Set null for using Url::current(), set false to total remove
             'type' => 'website',
             'site_name' => config('app.name', 'Boycott Israeli Tech'),
@@ -55,9 +55,9 @@ return [
          */
         'defaults' => [
             'title' => config('app.name', 'Boycott Israeli Tech'),
-            'description' => 'Find ethical alternatives to Israeli tech products and companies',
+            'description' => env('APP_DESCRIPTION', 'Find ethical alternatives to Israeli tech products and companies'), // set false to total remove
             'card' => 'summary_large_image',
-            // 'site' => '@yourtwitterhandle', //todo add site stwitter handle
+            // 'site' => env('TWITTER_HANDLE'), //todo add site twitter handle
         ],
     ],
     'json-ld' => [
@@ -66,7 +66,7 @@ return [
          */
         'defaults' => [
             'title' => config('app.name', 'Boycott Israeli Tech'), // set false to total remove
-            'description' => 'Find ethical alternatives to Israeli tech products and companies', // set false to total remove
+            'description' => env('APP_DESCRIPTION', 'Find ethical alternatives to Israeli tech products and companies'), // set false to total remove
             'url' => 'current', // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'type' => 'WebSite',
             'images' => [

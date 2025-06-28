@@ -13,4 +13,6 @@ test('invoke displays view', function (): void {
 
     $response->assertOk();
     $response->assertViewIs('pages.faqs');
+    $response->assertViewHas('faqs');
+    $response->assertViewHasAll(['faqs' => $faqs]);
 });

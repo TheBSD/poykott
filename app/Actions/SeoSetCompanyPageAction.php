@@ -14,9 +14,11 @@ class SeoSetCompanyPageAction
 
     public function execute(Company $company): void
     {
+        $formatDescription = $this->formatCompanyDescription($company);
+
         $this->seoSetPageAction->execute(
             $company->name,
-            $company->description,
+            $formatDescription,
             $company->image_path,
             'product'
         );
@@ -24,7 +26,7 @@ class SeoSetCompanyPageAction
         // Add structured data for product
         JsonLdMulti::setType('Product');
         JsonLdMulti::addValue('name', $company->name);
-        JsonLdMulti::addValue('description', $company->description);
+        JsonLdMulti::addValue('description', $formatDescription);
         JsonLdMulti::addValue('url', $company->url);
 
         // Add tags as keywords
@@ -32,5 +34,14 @@ class SeoSetCompanyPageAction
             $keywords = $company->tagsRelation->pluck('name')->implode(', ');
             SEOMeta::addKeyword($keywords);
         }
+    }
+
+    private function formatCompanyDescription(Company $company): string
+    {
+        if ($company->description) {
+            return $company->description;
+        }
+
+        return "{$company->name} ({$company->slug})";
     }
 }

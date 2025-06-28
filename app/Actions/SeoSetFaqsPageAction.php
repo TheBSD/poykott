@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use Artesaos\SEOTools\Facades\JsonLdMulti;
+use Illuminate\Database\Eloquent\Collection;
 
 class SeoSetFaqsPageAction
 {
@@ -10,7 +11,7 @@ class SeoSetFaqsPageAction
         private readonly SeoSetPageAction $seoSetPageAction
     ) {}
 
-    public function execute($faqs): void
+    public function execute(Collection $faqs): void
     {
         $this->seoSetPageAction->execute(
             'FAQs',
@@ -30,11 +31,10 @@ class SeoSetFaqsPageAction
             ];
         }
 
-        // Add structured data for person
         JsonLdMulti::setType('FAQPage');
         JsonLdMulti::addValue('name', 'FAQs');
         JsonLdMulti::addValue('description', 'Frequently Asked Questions');
-        JsonLdMulti::addValue('url', 'faqs');
+        JsonLdMulti::addValue('url', route('faqs'));
         JsonLdMulti::addValue('mainEntity', $mainEntity);
     }
 }

@@ -8,7 +8,7 @@
                 <div class="mx-auto max-w-7xl rounded-2xl bg-white p-8 px-4 py-12 shadow-xl sm:px-6 sm:py-12 lg:px-6">
                     <div class="mx-auto max-w-3xl divide-y-2 divide-gray-200">
                         <dl class="mt-6 space-y-6 divide-y divide-gray-200">
-                            @foreach ($faqs as $faq)
+                            @forelse ($faqs as $faq)
                                 {{-- Question/Answer block --}}
                                 <div x-data="{ open: false }" class="pt-6" x-cloak>
                                     <dt class="text-lg">
@@ -16,7 +16,7 @@
                                             type="button"
                                             x-description="Expand/collapse question button"
                                             class="flex w-full items-start justify-between text-left text-gray-400"
-                                            aria-controls="faq-0"
+                                            aria-controls="faq-{{ $loop->index }}"
                                             @click="open = !open"
                                             aria-expanded="false"
                                             x-bind:aria-expanded="open.toString()"
@@ -47,14 +47,18 @@
                                             </span>
                                         </button>
                                     </dt>
-                                    <dd class="mt-2 pr-12" id="faq-0" x-show="open">
+                                    <dd class="mt-2 pr-12" id="faq-{{ $loop->index }}" x-show="open">
                                         <p class="text-base text-gray-500">
                                             {{ $faq->answer }}
                                         </p>
                                     </dd>
                                 </div>
                                 {{-- End of Question/Answer block --}}
-                            @endforeach
+                            @empty
+                                <div class="py-12 text-center">
+                                    <p class="text-gray-500">No frequently asked questions available at this time.</p>
+                                </div>
+                            @endforelse
                         </dl>
                     </div>
                 </div>

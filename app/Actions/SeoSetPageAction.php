@@ -9,7 +9,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class SeoSetPageAction
 {
-    public function execute(string $title, $description, $image = null, $type = 'website'): void
+    public function execute(string $title, string $description, ?string $image = null, string $type = 'website'): void
     {
         $fullTitle = $title . ' - ' . config('app.name', 'Boycott Israeli Tech');
 
@@ -27,7 +27,7 @@ class SeoSetPageAction
         JsonLdMulti::setDescription($description);
         JsonLdMulti::setType($type);
 
-        if ($image) {
+        if ($image !== null && $image !== '' && $image !== '0') {
             OpenGraph::addImage($image); // todo change to setImage after accept this pr https://github.com/artesaos/seotools/pull/335
             TwitterCard::setImage($image);
             JsonLdMulti::setImage($image);

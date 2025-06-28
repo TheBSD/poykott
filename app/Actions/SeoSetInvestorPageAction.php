@@ -22,18 +22,19 @@ class SeoSetInvestorPageAction
             'company'
         );
 
-        // Add structured data for person
         JsonLdMulti::setType('Company');
         JsonLdMulti::addValue('name', $investor->name);
         JsonLdMulti::addValue('description', $fullDescription);
         JsonLdMulti::addValue('url', $investor->url);
     }
 
-    private function formatInvestorDescription(Investor $investor)
+    private function formatInvestorDescription(Investor $investor): string
     {
         if ($investor->description) {
             return $investor->description;
         }
+
+        $investor->loadMissing('companies'); // ensure relationships are loaded
 
         $investorCompanies = $investor
             ->companies
@@ -41,6 +42,6 @@ class SeoSetInvestorPageAction
             ->pluck('name')
             ->toArray();
 
-        return $investor->name . ' is an investor company that invest in Israeli companies:' . implode(', ', $investorCompanies);
+        return $investor->name . ' is an investor company that invests in Israeli companies: ' . implode(', ', $investorCompanies);
     }
 }

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin/
 
-Sitemap: https://boycottisraelitech.test/sitemap.xml
+Sitemap: /sitemap.xml

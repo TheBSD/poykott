@@ -11,7 +11,7 @@ class FaqController extends Controller
 {
     public function __invoke(Request $request, SeoSetFaqsPageAction $seoSetFaqsPageAction): View
     {
-        $faqs = Faq::all();
+        $faqs = Faq::query()->latest()->get();
 
         $seoSetFaqsPageAction->execute($faqs);
 

@@ -35,14 +35,15 @@ class GenerateSitemap extends Command
         Alternative::query()
             ->approved()
             ->select('id', 'slug', 'updated_at')
-            ->get()
-            ->each(function (Alternative $alternative) use ($sitemap): void {
-                $sitemap->add(
-                    Url::create("/alternative/{$alternative->slug}")
-                        ->setLastModificationDate($alternative->updated_at)
-                        ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                        ->setPriority(0.8)
-                );
+            ->chunk(1000, function ($alternatives) use ($sitemap): void {
+                $alternatives->each(function (Alternative $alternative) use ($sitemap): void {
+                    $sitemap->add(
+                        Url::create("/alternative/{$alternative->slug}")
+                            ->setLastModificationDate($alternative->updated_at)
+                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                            ->setPriority(0.8)
+                    );
+                });
             });
 
         // Add companies
@@ -50,14 +51,15 @@ class GenerateSitemap extends Command
         Company::query()
             ->approved()
             ->select('id', 'slug', 'updated_at')
-            ->get()
-            ->each(function (Company $company) use ($sitemap): void {
-                $sitemap->add(
-                    Url::create("/companies/{$company->slug}")
-                        ->setLastModificationDate($company->updated_at)
-                        ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                        ->setPriority(0.8)
-                );
+            ->chunk(1000, function ($companies) use ($sitemap): void {
+                $companies->each(function (Company $company) use ($sitemap): void {
+                    $sitemap->add(
+                        Url::create("/companies/{$company->slug}")
+                            ->setLastModificationDate($company->updated_at)
+                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                            ->setPriority(0.8)
+                    );
+                });
             });
 
         // Add people
@@ -65,14 +67,15 @@ class GenerateSitemap extends Command
         Person::query()
             ->whereHas('companies', fn (Builder $query) => $query->approved())
             ->select('id', 'slug', 'updated_at')
-            ->get()
-            ->each(function (Person $person) use ($sitemap): void {
-                $sitemap->add(
-                    Url::create("/people/{$person->slug}")
-                        ->setLastModificationDate($person->updated_at)
-                        ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                        ->setPriority(0.7)
-                );
+            ->chunk(1000, function ($people) use ($sitemap): void {
+                $people->each(function (Person $person) use ($sitemap): void {
+                    $sitemap->add(
+                        Url::create("/people/{$person->slug}")
+                            ->setLastModificationDate($person->updated_at)
+                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                            ->setPriority(0.7)
+                    );
+                });
             });
 
         // Add investors
@@ -80,14 +83,15 @@ class GenerateSitemap extends Command
         Investor::query()
             ->whereHas('companies', fn (Builder $query) => $query->approved())
             ->select('id', 'slug', 'updated_at')
-            ->get()
-            ->each(function (Investor $investor) use ($sitemap): void {
-                $sitemap->add(
-                    Url::create("/investors/{$investor->slug}")
-                        ->setLastModificationDate($investor->updated_at)
-                        ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                        ->setPriority(0.7)
-                );
+            ->chunk(1000, function ($investors) use ($sitemap): void {
+                $investors->each(function (Investor $investor) use ($sitemap): void {
+                    $sitemap->add(
+                        Url::create("/investors/{$investor->slug}")
+                            ->setLastModificationDate($investor->updated_at)
+                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                            ->setPriority(0.7)
+                    );
+                });
             });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));

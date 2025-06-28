@@ -30,7 +30,7 @@ class SeoSetPersonPageAction
         JsonLdMulti::addValue('url', $person->url);
     }
 
-    private function formatPersonDescription($jobTitle, $description)
+    private function formatPersonDescription($jobTitle, $description): string
     {
         return collect([$jobTitle, $description])
             ->filter()
