@@ -32,11 +32,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        DB::prohibitDestructiveCommands($this->app->isProduction());
+        DB::prohibitDestructiveCommands(app()->isProduction());
 
-        URL::forceHttps($this->app->isProduction());
+        URL::forceHttps(app()->isProduction());
 
-        Model::shouldBeStrict(! $this->app->isProduction());
+        Model::shouldBeStrict(! app()->isProduction());
 
         Date::use(CarbonImmutable::class);
 
