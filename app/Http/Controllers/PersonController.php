@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\FormatResourcesAction;
+use App\Actions\SeoSetPersonPageAction;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,15 @@ class PersonController extends Controller
         return view('people.index', ['people' => $people]);
     }
 
-    public function show(Request $request, Person $person, FormatResourcesAction $formatResourcesAction)
-    {
+    public function show(
+        Request $request,
+        Person $person,
+        FormatResourcesAction $formatResourcesAction,
+        SeoSetPersonPageAction $seoSetPersonPageAction
+    ) {
         abort_if(! $person->approved_at, 404);
+
+        $seoSetPersonPageAction->execute($person);
 
         $person->load([
             'resources:id,resourceable_id,url',

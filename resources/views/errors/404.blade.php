@@ -175,7 +175,7 @@
                         </ul>
                         <div class="mt-8">
                             <a
-                                href="{{ route('home') }}"
+                                href="{{ route('alternatives.index') }}"
                                 class="text-base font-medium text-indigo-600 hover:text-indigo-500"
                             >
                                 Or go back home

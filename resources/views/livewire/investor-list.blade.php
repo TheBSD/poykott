@@ -14,6 +14,7 @@
                 />
 
                 <!-- Order select -->
+                <label for="order-select" class="sr-only">Order by</label>
                 <select
                     wire:model.live="order"
                     class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-1/6"

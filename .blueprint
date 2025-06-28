@@ -1,8 +1,12 @@
 created:
-    - database/factories/SimilarSiteCategoryFactory.php
-    - database/migrations/2024_12_01_161107_create_similar_site_categories_table.php
-    - app/Models/SimilarSiteCategory.php
-    - database/seeders/SimilarSiteCategorySeeder.php
+    - app/Http/Controllers/FaqController.php
+    - database/factories/FaqFactory.php
+    - database/migrations/2025_06_28_082803_create_faqs_table.php
+    - app/Models/Faq.php
+    - tests/Feature/Http/Controllers/FaqControllerTest.php
+    - resources/views/faqs/index.blade.php
+updated:
+    - routes/web.php
 models:
     Alternative: { name: string, description: 'text nullable', approved_at: 'datetime nullable', notes: 'text nullable', url: string }
     Company: { category_id: 'integer nullable', exit_strategy_id: 'integer nullable', funding_level_id: 'integer nullable', company_size_id: 'integer nullable', approved_at: 'datetime nullable', name: string, slug: string, url: string, description: 'text nullable', short_description: 'string nullable', notes: 'text nullable', valuation: 'integer nullable', exit_valuation: 'integer nullable', stock_symbol: 'string nullable', total_funding: 'integer nullable', last_funding_date: 'date nullable', headquarter: 'string nullable', founded_at: 'date nullable', employee_count: 'integer nullable', stock_quote: 'string nullable' }
@@ -20,3 +24,4 @@ models:
     Taggable: { tag_id: integer, taggable_type: string, taggable_id: integer }
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
     SimilarSiteCategory: { name: string, description: 'text nullable', relationships: { HasMany: SimilarSite } }
+    Faq: { question: string, answer: text }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\MailchimpRedirectionController;
@@ -8,8 +9,9 @@ use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
 // Alternatives
-Route::get('/', fn () => to_route('alternatives.index'))->name('home');
-Route::get('alternatives', [HomeController::class, 'index'])->name('alternatives.index');
+Route::get('/', [HomeController::class, 'index'])->name('alternatives.index');
+Route::permanentRedirect('alternatives', '/');
+
 Route::get('alternative/{alternative:slug}', [HomeController::class, 'show'])->name('alternatives.show');
 
 // Companies
@@ -30,25 +32,14 @@ Route::get('people/{person:slug}', [PersonController::class, 'show'])->name('peo
 Route::get('investors/{investor:slug}', [InvestorController::class, 'show'])->name('investors.show');
 
 // Contact
-Route::post('contact', [HomeController::class, 'contact'])->name('contact.store');
-Route::view('contact', 'pages.contact')->name('contact.get');
+Route::post('contact', [HomeController::class, 'contactPost'])->name('contact.store');
+Route::get('contact', [HomeController::class, 'contactGet'])->name('contact.get');
 
 // Pages
 Route::get('about', [HomeController::class, 'about'])->name('about');
-Route::view('faqs', 'pages.faqs')->name('faqs');
+Route::get('faqs', FaqController::class)->name('faqs');
 Route::get('newsletter', [HomeController::class, 'newsletter'])->name('newsletter.get');
 Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('similar-sites');
 
 // Webhooks
 Route::get('webhooks/mailchimp', MailchimpRedirectionController::class)->name('mailchimp.webhook');
-
-// output to json as following:
-
-// stop unique constraints in office_location table temporarily (done)
-// remove all non-needing code in this direction
-
-// output all office location data to json file (done)
-// process the json file and clean location names in AI service (progress
-// import the json file to office_location using separate command
-// run command "OfficeLocationsMergerAllCommand" to merge similar commands
-// todo remove this later

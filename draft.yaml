@@ -1,4 +1,7 @@
-#models:
+# models:
+#     Faq:
+#       question: string
+# answer: text
 #    SimilarSiteCategory:
 #      name: string
 #      description: text nullable
@@ -129,7 +132,12 @@
 ## - company_parent for parent and children belongs to many
 #
 #
-#controllers:
+# controllers:
+#   Faq:
+#     invokable:
+#       query: all
+#       render: faqs.index
+
 #  SimilarSite:
 #    index:
 #      query: all

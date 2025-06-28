@@ -1,5 +1,6 @@
 <?php
 
+use App\Console\Commands\GenerateSitemap;
 use App\Console\Commands\PerformDatabaseBackupCommand;
 use App\Console\Commands\TempMediaToMediaCommand;
 use Illuminate\Database\Console\PruneCommand;
@@ -16,3 +17,5 @@ Schedule::command(PerformDatabaseBackupCommand::class)
 
 Schedule::command(PruneCommand::class)->daily();
 Schedule::command(TempMediaToMediaCommand::class)->daily();
+
+Schedule::command(GenerateSitemap::class)->daily();

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Actions\FormatResourcesAction;
+use App\Actions\SeoSetCompanyPageAction;
+use App\Actions\SeoSetPageAction;
 use App\Http\Requests\NewCompanyRequest;
 use App\Models\Company;
 use App\Models\User;
@@ -14,8 +16,13 @@ use Illuminate\View\View;
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(SeoSetPageAction $seoSetPageAction)
     {
+        $seoSetPageAction->execute(
+            title: 'Companies',
+            description: 'Some companies to boycott',
+        );
+
         $companies = Company::query()
             ->with([
                 'media',
@@ -29,8 +36,13 @@ class CompanyController extends Controller
         return view('companies.index', ['companies' => $companies]);
     }
 
-    public function create()
+    public function create(SeoSetPageAction $seoSetPageAction)
     {
+        $seoSetPageAction->execute(
+            title: 'Add Company',
+            description: 'Add a company to boycott',
+        );
+
         return view('companies.create');
     }
 
@@ -45,13 +57,19 @@ class CompanyController extends Controller
             'notes' => $data['notes'],
         ]);
 
-        return to_route('home')
+        return to_route('alternatives.index')
             ->with('success', 'company successfully created. Wait for approval');
     }
 
-    public function show(Request $request, Company $company, FormatResourcesAction $formatResourcesAction): View
-    {
+    public function show(
+        Request $request,
+        Company $company,
+        FormatResourcesAction $formatResourcesAction,
+        SeoSetCompanyPageAction $seoSetCompanyPageAction
+    ): View {
         abort_if(! $company->approved_at, 404);
+
+        $seoSetCompanyPageAction->execute($company);
 
         $company->load([
             'founders:id,name,slug',
