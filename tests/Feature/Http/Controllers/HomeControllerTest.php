@@ -24,4 +24,4 @@ test('show alternative displays view', function (): void {
     $response->assertViewHas('alternative.resources');
     $response->assertViewHas('alternative.tagsRelation');
     $response->assertViewHas('alternative.companies');
-})->only();
+});
