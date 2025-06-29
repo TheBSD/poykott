@@ -7,7 +7,6 @@ use App\Models\Alternative;
 use function Pest\Laravel\get;
 
 test('show alternative displays view', function (): void {
-    $this->withoutExceptionHandling();
     $alternative = Alternative::factory()
         ->approved()
         ->create();
