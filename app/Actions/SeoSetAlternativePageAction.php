@@ -14,9 +14,11 @@ class SeoSetAlternativePageAction
 
     public function execute(Alternative $alternative): void
     {
+        $formatDescription = $this->formatAlternativeDescription($alternative);
+
         $this->seoSetPageAction->execute(
             $alternative->name,
-            $alternative->description,
+            $formatDescription,
             $alternative->image_path,
             'product'
         );
@@ -24,7 +26,7 @@ class SeoSetAlternativePageAction
         // Add structured data for product
         JsonLdMulti::setType('Product');
         JsonLdMulti::addValue('name', $alternative->name);
-        JsonLdMulti::addValue('description', $alternative->description);
+        JsonLdMulti::addValue('description', $formatDescription);
         JsonLdMulti::addValue('url', $alternative->url);
 
         // Add tags as keywords
@@ -32,5 +34,14 @@ class SeoSetAlternativePageAction
             $keywords = $alternative->tagsRelation->pluck('name')->implode(', ');
             SEOMeta::addKeyword($keywords);
         }
+    }
+
+    private function formatAlternativeDescription(Alternative $alternative): string
+    {
+        if ($alternative->description) {
+            return $alternative->description;
+        }
+
+        return "{$alternative->name} ({$alternative->slug})";
     }
 }
