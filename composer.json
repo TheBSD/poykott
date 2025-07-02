@@ -15,6 +15,7 @@
         "filament/filament": "^3.3",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "guzzlehttp/guzzle": "^7.9",
+        "halaxa/json-machine": "^1.2",
         "intervention/image": "^3.9",
         "khaled.alshamaa/ar-php": "^7.0",
         "laravel/framework": "^11.9",
