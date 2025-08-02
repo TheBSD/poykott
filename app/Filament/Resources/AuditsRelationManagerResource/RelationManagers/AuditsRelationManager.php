@@ -153,17 +153,22 @@ class AuditsRelationManager extends RelationManager
                 TextColumn::make('created_at')
                     ->label('Created')
                     ->formatStateUsing(
-                        fn ($record): string => $record->created_at->format('Y-m-d H:i:s') . '  [' . $record->created_at->diffForHumans() . ']'
+                        fn ($record
+                        ): string => $record->created_at->format('Y-m-d H:i:s') . '  [' . $record->created_at->diffForHumans() . ']'
                     )
                     ->toggleable(),
 
                 TextColumn::make('old_values')
                     ->label('Old Values')
-                    ->formatStateUsing(fn (
+                    ->formatStateUsing(function (
                         Column $column,
                         $record,
                         $state
-                    ): View => view('filament-auditing::tables.columns.key-value', ['state' => $column->getState()])),
+                    ): View {
+                        return view('vendor.filament-auditing.tables.columns.key-value', [
+                            'state' => $column->getState(),
+                        ]);
+                    }),
 
                 TextColumn::make('new_values')
                     ->label('New Values')
@@ -171,7 +176,9 @@ class AuditsRelationManager extends RelationManager
                         Column $column,
                         $record,
                         $state
-                    ): View => view('filament-auditing::tables.columns.key-value', ['state' => $column->getState()])),
+                    ): View => view('vendor.filament-auditing.tables.columns.key-value', [
+                        'state' => $column->getState(),
+                    ])),
 
                 TextColumn::make('ip_address')
                     ->label('IP Address')

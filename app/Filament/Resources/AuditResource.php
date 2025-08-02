@@ -172,7 +172,9 @@ class AuditResource extends Resource
                         Column $column,
                         $record,
                         $state
-                    ): View => view('filament-auditing::tables.columns.key-value', ['state' => $column->getState()])),
+                    ): View => view('vendor.filament-auditing.tables.columns.key-value', [
+                        'state' => $column->getState(),
+                    ])),
 
                 TextColumn::make('new_values')
                     ->label('New Values')
@@ -180,8 +182,9 @@ class AuditResource extends Resource
                         Column $column,
                         $record,
                         $state
-                    ): View => view('filament-auditing::tables.columns.key-value', ['state' => $column->getState()])),
-
+                    ): View => view('vendor.filament-auditing.tables.columns.key-value', [
+                        'state' => $column->getState(),
+                    ])),
                 TextColumn::make('url')
                     ->limit(30)
                     ->searchable()
