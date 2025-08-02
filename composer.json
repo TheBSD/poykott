@@ -22,6 +22,7 @@
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^3.6",
+        "owen-it/laravel-auditing": "^14.0",
         "sentry/sentry-laravel": "^4.10",
         "spatie/image-optimizer": "^1.8",
         "spatie/laravel-honeypot": "^4.5",

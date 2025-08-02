@@ -11,17 +11,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Investor extends Model implements HasMedia
+class Investor extends Model implements Auditable, HasMedia
 {
     use HasFactory;
     use HasSlug;
     use HasTags;
     use InteractsWithMedia;
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * The attributes that are mass assignable.

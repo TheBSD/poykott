@@ -6,15 +6,17 @@ use App\Traits\HasImagePath;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class SimilarSite extends Model implements HasMedia
+class SimilarSite extends Model implements Auditable, HasMedia
 {
     use HasFactory;
     use HasImagePath;
     use InteractsWithMedia;
+    use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
         'similar_site_category_id',
