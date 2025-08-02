@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\PersonResource\Pages\CreatePerson;
 use App\Filament\Resources\PersonResource\Pages\EditPerson;
 use App\Filament\Resources\PersonResource\Pages\ListPeople;
@@ -124,6 +125,7 @@ class PersonResource extends Resource
     {
         return [
             ResourcesRelationManager::class,
+            AuditsRelationManager::class,
         ];
     }
 
