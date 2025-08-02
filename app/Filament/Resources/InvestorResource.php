@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\InvestorResource\Pages\CreateInvestor;
 use App\Filament\Resources\InvestorResource\Pages\EditInvestor;
 use App\Filament\Resources\InvestorResource\Pages\ListInvestors;
@@ -100,6 +101,7 @@ class InvestorResource extends Resource
     {
         return [
             ResourcesRelationManager::class,
+            AuditsRelationManager::class,
         ];
     }
 

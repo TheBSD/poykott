@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\OfficeLocationResource\Actions\MergeTwoOfficeLocationsAction;
 use App\Filament\Resources\OfficeLocationResource\Pages\CreateOfficeLocation;
 use App\Filament\Resources\OfficeLocationResource\Pages\EditOfficeLocation;
@@ -69,6 +70,7 @@ class OfficeLocationResource extends Resource
     {
         return [
             CompaniesRelationManager::class,
+            AuditsRelationManager::class,
         ];
     }
 

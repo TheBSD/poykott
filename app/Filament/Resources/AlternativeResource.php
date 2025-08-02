@@ -8,6 +8,7 @@ use App\Filament\Resources\AlternativeResource\Pages\EditAlternative;
 use App\Filament\Resources\AlternativeResource\Pages\ListAlternatives;
 use App\Filament\Resources\AlternativeResource\RelationManagers\CompaniesRelationManager;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Models\Alternative;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
@@ -171,6 +172,7 @@ class AlternativeResource extends Resource
         return [
             CompaniesRelationManager::class,
             ResourcesRelationManager::class,
+            AuditsRelationManager::class,
         ];
     }
 

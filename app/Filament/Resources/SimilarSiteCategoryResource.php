@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\SimilarSiteCategoryResource\Pages\CreateSimilarSiteCategory;
 use App\Filament\Resources\SimilarSiteCategoryResource\Pages\EditSimilarSiteCategory;
 use App\Filament\Resources\SimilarSiteCategoryResource\Pages\ListSimilarSiteCategories;
@@ -66,7 +67,7 @@ class SimilarSiteCategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AuditsRelationManager::class,
         ];
     }
 

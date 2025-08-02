@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\Pages\EditUser;
 use App\Filament\Resources\UserResource\Pages\ListUsers;
@@ -67,7 +68,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AuditsRelationManager::class,
         ];
     }
 
