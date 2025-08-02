@@ -11,13 +11,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Person extends Model implements HasMedia
+class Person extends Model implements Auditable, HasMedia
 {
     use HasFactory;
     use HasFileMigration;
@@ -25,6 +26,7 @@ class Person extends Model implements HasMedia
     use HasSlug;
     use HasTags;
     use InteractsWithMedia;
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * The attributes that are mass assignable.

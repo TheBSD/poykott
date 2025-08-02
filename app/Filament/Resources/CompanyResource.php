@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Actions\ScrapeLogoFromUrlAction;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\CompanyResource\Pages\CreateCompany;
 use App\Filament\Resources\CompanyResource\Pages\EditCompany;
 use App\Filament\Resources\CompanyResource\Pages\ListCompanies;
@@ -224,6 +225,7 @@ class CompanyResource extends Resource
             AlternativesRelationManager::class,
             ResourcesRelationManager::class,
             OfficeLocationsRelationManager::class,
+            AuditsRelationManager::class,
         ];
     }
 

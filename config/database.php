@@ -41,6 +41,16 @@ return [
             'journal_mode' => 'wal',
             'synchronous' => 'NORMAL',
         ],
+        'sqlite_audit' => [
+            'driver' => 'sqlite',
+            'url' => env('DB_URL'),
+            'database' => env('DB_DATABASE', database_path('audit_database.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+            'busy_timeout' => '5000',
+            'journal_mode' => 'wal',
+            'synchronous' => 'NORMAL',
+        ],
 
         'mysql' => [
             'driver' => 'mysql',
