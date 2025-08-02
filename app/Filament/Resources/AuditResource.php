@@ -8,6 +8,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\Column;
@@ -124,6 +125,11 @@ class AuditResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('Audit ID')
+                    ->sortable()
+                    ->searchable(),
+
                 TextColumn::make('user_type')
                     ->label('User')
                     ->sortable()
@@ -225,7 +231,7 @@ class AuditResource extends Resource
             ->actions([
                 Action::make('restore')
                     ->label('Restore Updated')
-                    ->action(fn (Audit $record) => static::restoreAuditSelected($record))
+                    ->action(fn (Audit $record) => static::restoreAudit($record))
                     ->icon('heroicon-o-arrow-path')
                     ->requiresConfirmation()
                     ->visible(fn ($record): bool => $record->event === 'updated'),
@@ -237,7 +243,8 @@ class AuditResource extends Resource
             ->deferLoading()
             ->persistSortInSession()
             ->persistSearchInSession()
-            ->persistFiltersInSession();
+            ->persistFiltersInSession()
+            ->striped();
     }
 
     public static function getRelations(): array
@@ -272,20 +279,36 @@ class AuditResource extends Resource
         return false;
     }
 
-    protected static function restoreAuditSelected($audit): void
+    protected static function notifyRestored(): void
+    {
+        Notification::make()
+            ->title('Audit restored')
+            ->success()
+            ->send();
+    }
+
+    protected static function notifyUnchanged(): void
+    {
+        Notification::make()
+            ->title('Nothing to change')
+            ->warning()
+            ->send();
+    }
+
+    private static function restoreAudit(Audit $audit): void
     {
         $morphClass = Relation::getMorphedModel($audit->auditable_type) ?? $audit->auditable_type;
 
         $record = $morphClass::find($audit->auditable_id);
 
         if (! $record) {
-            self::unchangedAuditNotification();
+            self::notifyRestored();
 
             return;
         }
 
         if ($audit->event !== 'updated') {
-            self::unchangedAuditNotification();
+            self::notifyUnchanged();
 
             return;
         }
@@ -307,11 +330,11 @@ class AuditResource extends Resource
             $record->fill($restore);
             $record->save();
 
-            self::restoredAuditNotification();
+            self::notifyRestored();
 
             return;
         }
 
-        self::unchangedAuditNotification();
+        self::notifyUnchanged();
     }
 }

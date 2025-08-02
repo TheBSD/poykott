@@ -2,15 +2,12 @@
 
 namespace App\Filament\Resources\AuditsRelationManagerResource\RelationManagers;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Arr;
@@ -23,50 +20,7 @@ class AuditsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'id';
 
-    protected static function restoreAuditSelected($audit): void
-    {
-        $morphClass = Relation::getMorphedModel($audit->auditable_type) ?? $audit->auditable_type;
-
-        $record = $morphClass::find($audit->auditable_id);
-
-        if (! $record) {
-            self::unchangedAuditNotification();
-
-            return;
-        }
-
-        if ($audit->event !== 'updated') {
-            self::unchangedAuditNotification();
-
-            return;
-        }
-
-        $restore = $audit->old_values;
-
-        Arr::pull($restore, 'id');
-
-        if (is_array($restore)) {
-
-            foreach ($restore as $key => $item) {
-                $decode = json_decode((string) $item);
-
-                if (json_last_error() === JSON_ERROR_NONE) {
-                    $restore[$key] = $decode;
-                }
-            }
-
-            $record->fill($restore);
-            $record->save();
-
-            self::restoredAuditNotification();
-
-            return;
-        }
-
-        self::unchangedAuditNotification();
-    }
-
-    protected static function restoredAuditNotification(): void
+    protected static function notifyRestored(): void
     {
         Notification::make()
             ->title('Audit restored')
@@ -74,7 +28,7 @@ class AuditsRelationManager extends RelationManager
             ->send();
     }
 
-    protected static function unchangedAuditNotification(): void
+    protected static function notifyUnchanged(): void
     {
         Notification::make()
             ->title('Nothing to change')
@@ -102,20 +56,9 @@ class AuditsRelationManager extends RelationManager
         return false;
     }
 
-    public function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                TextInput::make('id')
-                    ->required()
-                    ->maxLength(255),
-            ]);
-    }
-
     public function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->orderBy('created_at', 'desc'))
             ->emptyStateHeading('No Audits')
             ->columns([
                 TextColumn::make('id')
@@ -211,13 +154,58 @@ class AuditsRelationManager extends RelationManager
             ->actions([
                 Action::make('restore')
                     ->label('Restore Updated')
-                    ->action(fn (Audit $record) => static::restoreAuditSelected($record))
+                    ->action(fn (Audit $record) => $this->restoreAudit($record))
                     ->icon('heroicon-o-arrow-path')
                     ->requiresConfirmation()
                     ->visible(fn ($record): bool => $record->event === 'updated'),
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->striped()
+            ->defaultSort('created_at', 'desc');
+    }
+
+    private function restoreAudit(Audit $audit): void
+    {
+        $morphClass = Relation::getMorphedModel($audit->auditable_type) ?? $audit->auditable_type;
+
+        $record = $morphClass::find($audit->auditable_id);
+
+        if (! $record) {
+            self::notifyUnchanged();
+
+            return;
+        }
+
+        if ($audit->event !== 'updated') {
+            self::notifyUnchanged();
+
+            return;
+        }
+
+        $restore = $audit->old_values;
+
+        Arr::pull($restore, 'id');
+
+        if (is_array($restore)) {
+
+            foreach ($restore as $key => $item) {
+                $decode = json_decode((string) $item);
+
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $restore[$key] = $decode;
+                }
+            }
+
+            $record->fill($restore);
+            $record->save();
+
+            self::notifyRestored();
+
+            return;
+        }
+
+        self::notifyUnchanged();
     }
 }
