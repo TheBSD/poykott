@@ -12,6 +12,7 @@
         "ext-pdo": "*",
         "alazzi-az/laravel-bitmask": "^1.0",
         "artesaos/seotools": "^1.3",
+        "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.3",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "guzzlehttp/guzzle": "^7.9",

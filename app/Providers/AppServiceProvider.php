@@ -9,6 +9,7 @@ use App\Models\Person;
 use App\Models\SimilarSite;
 use App\Models\Tag;
 use App\Models\User;
+use BezhanSalleh\FilamentShield\FilamentShield;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         DB::prohibitDestructiveCommands(app()->isProduction());
+        FilamentShield::prohibitDestructiveCommands(app()->isProduction());
 
         URL::forceHttps(app()->isProduction());
 
