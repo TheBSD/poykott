@@ -18,7 +18,9 @@ class CreateUser extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
         /**
-         * All of this to prevent silently discarding attributes
+         * Extract roles to handle separately as Filament doesn't
+         * handle relationship updates automatically to prevent
+         * silently discarding attributes
          */
         $role = $data['roles'] ?? null;
         unset($data['roles']);
