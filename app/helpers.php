@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Uri;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -123,5 +124,42 @@ if (! function_exists('encode_filename_in_url')) {
         }
 
         return $encodedUrl;
+    }
+}
+
+if (! function_exists('normalizedUrlSchemasAndTrailingSlashes')) {
+    /**
+     * Ensure a URL starts with a scheme (https:// or http://) and its path ends with a trailing slash.
+     *
+     * Examples:
+     *  example.com                   => https://example.com/
+     *  http://example.com            => http://example.com/
+     *  https://example.com           => https://example.com/
+     *  https://example.com/          => https://example.com/
+     *  example.com/test              => https://example.com/test/
+     *  http://example.com/test       => http://example.com/test/
+     *  https://example.com/test/     => https://example.com/test/
+     *  https://example.com/test      => https://example.com/test/
+     *  www.example.com               => https://www.example.com/
+     *  https://example.com?foo=bar   => https://example.com/?foo=bar
+     *  https://example.com/path?x=1  => https://example.com/path/?x=1
+     */
+    function normalizedUrlSchemasAndTrailingSlashes(string $url): string
+    {
+        $url = Str::trim($url);
+
+        if (! Str::startsWith($url, ['http://', 'https://'])) {
+            $url = Str::start($url, 'https://');
+        }
+
+        // Use Laravel's Uri class to safely handle path vs query vs fragment
+        $uri = Uri::of($url);
+        $host = $uri->host();
+
+        if (! Str::endsWith($host, '/')) {
+            $uri = $uri->withPath($uri->path() . '/');
+        }
+
+        return $uri->value();
     }
 }
