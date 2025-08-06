@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Actions\ScrapeLogoFromUrlAction;
+use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\SimilarSiteResource\Pages\CreateSimilarSite;
 use App\Filament\Resources\SimilarSiteResource\Pages\EditSimilarSite;
 use App\Filament\Resources\SimilarSiteResource\Pages\ListSimilarSites;
@@ -137,7 +138,7 @@ class SimilarSiteResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AuditsRelationManager::class,
         ];
     }
 
