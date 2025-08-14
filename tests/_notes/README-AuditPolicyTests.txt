@@ -1,0 +1,1 @@
+This repository's tests use PHPUnit (Laravel default). The AuditPolicy unit tests rely on Mockery for mocking User::can() and the Audit model.
