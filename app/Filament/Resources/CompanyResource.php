@@ -222,7 +222,8 @@ class CompanyResource extends Resource
                                 ->send();
                         }),
                 ]),
-            ]);
+            ])
+            ->persistFiltersInSession();
     }
 
     public static function getRelations(): array
