@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Alternative;
+use App\Models\Company;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -34,6 +36,12 @@ class AlternativeList extends Component
 
     public function render()
     {
+        $matchedCompany = null;
+
+        if ($this->search) {
+            $matchedCompany = $this->findCompanyByName($this->search);
+        }
+
         $query = Alternative::query()
             ->with([
                 'media',
@@ -71,6 +79,7 @@ class AlternativeList extends Component
 
         return view('livewire.alternative-list', [
             'alternatives' => $alternatives,
+            'matchedCompany' => $matchedCompany,
         ]);
     }
 
@@ -92,5 +101,14 @@ class AlternativeList extends Component
     public function updatingOrder(): void
     {
         $this->resetPage();
+    }
+
+    private function findCompanyByName(string $companyName)
+    {
+        $normalizedName = Str::of($companyName)->lower()->trim()->value();
+
+        return Company::query()
+            ->whereRaw('LOWER(name) = ?', [$normalizedName])
+            ->first();
     }
 }
