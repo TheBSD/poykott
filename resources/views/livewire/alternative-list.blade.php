@@ -71,13 +71,14 @@
                     </div>
                     <div class="ml-3">
                         <h3 class="text-sm font-medium text-blue-800">
-                            Showing alternatives for the company:
                             <a
                                 href="{{ route('companies.show', $matchedCompany) }}"
                                 class="font-bold text-blue-900 hover:underline"
                             >
                                 {{ $matchedCompany->name }}
                             </a>
+
+                            is an Israeli company. Following are the alternatives.
                         </h3>
                     </div>
                 </div>
