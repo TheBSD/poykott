@@ -1,0 +1,8 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/usr/bin/php8.3",
+            "args": ["/home/watheq/Documents/htdocs/boycottisraelitech/artisan", "boost:mcp"]
+        }
+    }
+}

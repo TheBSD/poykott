@@ -31,6 +31,7 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Collection;
 
@@ -152,7 +153,12 @@ class CompanyResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TernaryFilter::make('has_alternatives')
+                    ->label('Has alternatives')
+                    ->queries(
+                        true: fn ($query) => $query->whereHas('alternatives'),
+                        false: fn ($query) => $query->whereDoesntHave('alternatives'),
+                    ),
             ])
             ->actions([
                 Action::make('fetchLogo')
@@ -216,7 +222,8 @@ class CompanyResource extends Resource
                                 ->send();
                         }),
                 ]),
-            ]);
+            ])
+            ->persistFiltersInSession();
     }
 
     public static function getRelations(): array
