@@ -37,10 +37,7 @@ class AlternativeList extends Component
     public function render()
     {
         $matchedCompany = null;
-
-        if ($this->search) {
-            $matchedCompany = $this->findCompanyByName($this->search);
-        }
+        $search = Str::of($this->search)->trim();
 
         $query = Alternative::query()
             ->with([
@@ -53,15 +50,18 @@ class AlternativeList extends Component
                 },
             ])
             ->approved()
-            ->when($this->search, function ($query): void {
-                $query->where(function ($query): void {
+            ->when($search->isNotEmpty(), function ($query) use ($search, &$matchedCompany): void {
+                $matchedCompany = $this->findCompanyByName($search);
+            })
+            ->when($search->isNotEmpty(), function ($query) use ($search): void {
+                $query->where(function ($query) use ($search): void {
                     $query
-                        ->where('name', 'like', "%{$this->search}%")
-                        ->orWhereHas('tagsRelation', function ($query): void {
-                            $query->where('name', 'like', "%{$this->search}%");
+                        ->where('name', 'like', "%{$search}%")
+                        ->orWhereHas('tagsRelation', function ($query) use ($search): void {
+                            $query->where('name', 'like', "%{$search}%");
                         })
-                        ->orWhereHas('companies', function ($query): void {
-                            $query->where('name', 'like', "%{$this->search}%");
+                        ->orWhereHas('companies', function ($query) use ($search): void {
+                            $query->where('name', 'like', "%{$search}%");
                         });
                 });
             });
@@ -103,7 +103,7 @@ class AlternativeList extends Component
         $this->resetPage();
     }
 
-    private function findCompanyByName(string $companyName)
+    private function findCompanyByName(string $companyName): ?Company
     {
         $normalizedName = Str::of($companyName)->lower()->trim()->value();
 
