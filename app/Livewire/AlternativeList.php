@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Alternative;
+use App\Models\Company;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -34,6 +36,9 @@ class AlternativeList extends Component
 
     public function render()
     {
+        $matchedCompany = null;
+        $search = Str::of($this->search)->trim();
+
         $query = Alternative::query()
             ->with([
                 'media',
@@ -45,15 +50,18 @@ class AlternativeList extends Component
                 },
             ])
             ->approved()
-            ->when($this->search, function ($query): void {
-                $query->where(function ($query): void {
+            ->when($search->isNotEmpty(), function ($query) use ($search, &$matchedCompany): void {
+                $matchedCompany = $this->findCompanyByName($search);
+            })
+            ->when($search->isNotEmpty(), function ($query) use ($search): void {
+                $query->where(function ($query) use ($search): void {
                     $query
-                        ->where('name', 'like', "%{$this->search}%")
-                        ->orWhereHas('tagsRelation', function ($query): void {
-                            $query->where('name', 'like', "%{$this->search}%");
+                        ->where('name', 'like', "%{$search}%")
+                        ->orWhereHas('tagsRelation', function ($query) use ($search): void {
+                            $query->where('name', 'like', "%{$search}%");
                         })
-                        ->orWhereHas('companies', function ($query): void {
-                            $query->where('name', 'like', "%{$this->search}%");
+                        ->orWhereHas('companies', function ($query) use ($search): void {
+                            $query->where('name', 'like', "%{$search}%");
                         });
                 });
             });
@@ -71,6 +79,7 @@ class AlternativeList extends Component
 
         return view('livewire.alternative-list', [
             'alternatives' => $alternatives,
+            'matchedCompany' => $matchedCompany,
         ]);
     }
 
@@ -92,5 +101,14 @@ class AlternativeList extends Component
     public function updatingOrder(): void
     {
         $this->resetPage();
+    }
+
+    private function findCompanyByName(string $companyName): ?Company
+    {
+        $normalizedName = Str::of($companyName)->lower()->trim()->value();
+
+        return Company::query()
+            ->whereRaw('LOWER(name) = ?', [$normalizedName])
+            ->first();
     }
 }
