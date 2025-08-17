@@ -42,6 +42,7 @@
         "imanghafoori/laravel-microscope": "^1.0",
         "jasonmccreary/laravel-test-assertions": "^2.4",
         "laravel-shift/blueprint": "^2.10",
+        "laravel/boost": "^1.0",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
