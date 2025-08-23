@@ -129,12 +129,12 @@ class ImportCrunchbaseCommand extends Command
              */
             foreach ($companyInvestors as $companyInvestor) {
                 $investorName = data_get($companyInvestor, 'name');
-                $lowerName = Str::of($investorName)->lower()->trim()->value();
+                $lowerName = Str::of($investorName)->lower()->squish()->value();
                 $investor = Investor::query()->whereRaw('LOWER(name) = ?', [$lowerName])->first();
 
-                if (is_null($investor)) { // create if not exists
+                if (is_null($investor)) {
                     $investor = Investor::query()->create([
-                        'name' => $investorName,
+                        'name' => Str::of($investorName)->squish()->value(),
                         'approved_at' => now(),
                     ]);
                 }

@@ -67,10 +67,10 @@ class CreateOrUpdateCompanyByNameAction
 
     private function createCompany(string $name, array $optionalFields, array $forcedFields): Company
     {
-        $trimmedName = Str::of($name)->lower()->squish()->value();
+        $displayName = Str::of($name)->squish()->value();
 
         return Company::query()->create(array_merge(
-            ['name' => $trimmedName],
+            ['name' => $displayName],
             $optionalFields,
             $forcedFields
         ));
