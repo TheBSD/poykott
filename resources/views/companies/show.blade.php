@@ -231,7 +231,7 @@
                         <!-- Investors -->
                         @if ($company->investors->count() > 0)
                             <div class="rounded-xl border border-gray-200 p-6">
-                                <h2 class="mb-4 text-xl font-semibold text-gray-900">Investors</h2>
+                                <h2 class="mb-4 text-xl font-semibold text-gray-900">Parent Companies/Investors</h2>
                                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                     @foreach ($company->investors as $investor)
                                         <div class="flex items-center gap-3">
