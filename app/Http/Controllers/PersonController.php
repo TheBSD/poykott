@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\FormatResourcesAction;
+use App\Actions\FormatResourcesWikipediaStyleAction;
 use App\Actions\SeoSetPersonPageAction;
 use App\Models\Person;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class PersonController extends Controller
     public function show(
         Request $request,
         Person $person,
-        FormatResourcesAction $formatResourcesAction,
+        FormatResourcesWikipediaStyleAction $formatResourcesAction,
         SeoSetPersonPageAction $seoSetPersonPageAction
     ) {
         abort_if(! $person->approved_at, 404);

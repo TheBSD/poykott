@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\FormatResourcesAction;
+use App\Actions\FormatResourcesWikipediaStyleAction;
 use App\Actions\SeoSetInvestorPageAction;
 use App\Models\Investor;
 
@@ -24,7 +24,7 @@ class InvestorController extends Controller
 
     public function show(
         Investor $investor,
-        FormatResourcesAction $formatResourcesAction,
+        FormatResourcesWikipediaStyleAction $formatResourcesAction,
         SeoSetInvestorPageAction $seoSetInvestorPageAction
     ) {
         $seoSetInvestorPageAction->execute($investor);

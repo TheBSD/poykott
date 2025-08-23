@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\FormatResourcesAction;
+use App\Actions\FormatResourcesWikipediaStyleAction;
 use App\Actions\SeoSetCompanyPageAction;
 use App\Actions\SeoSetPageAction;
 use App\Http\Requests\NewCompanyRequest;
@@ -64,7 +64,7 @@ class CompanyController extends Controller
     public function show(
         Request $request,
         Company $company,
-        FormatResourcesAction $formatResourcesAction,
+        FormatResourcesWikipediaStyleAction $formatResourcesAction,
         SeoSetCompanyPageAction $seoSetCompanyPageAction
     ): View {
         abort_if(! $company->approved_at, 404);
