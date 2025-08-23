@@ -5,13 +5,31 @@
             class="mb-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
         >
             <div class="flex w-full flex-col gap-4 sm:flex-row sm:gap-2">
-                <!-- Search input -->
-                <input
-                    wire:model.live="search"
-                    type="text"
-                    placeholder="Search..."
-                    class="w-full rounded-md border px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring sm:w-5/6"
-                />
+                <div class="relative w-full">
+                    <label for="search-input" class="sr-only">Search...</label>
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <!-- Spinner -->
+                        <svg
+                            wire:loading.delay
+                            wire:target="search,order"
+                            class="h-4 w-4 animate-spin text-blue-600"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                        </svg>
+                    </div>
+
+                    <input
+                        id="search-input"
+                        wire:model.live="search"
+                        type="text"
+                        placeholder="Search..."
+                        class="w-full rounded-md border py-2 pl-9 pr-3 focus:border-blue-300 focus:outline-none focus:ring"
+                    />
+                </div>
 
                 <!-- Order select -->
                 <label for="order-select" class="sr-only">Order by</label>
