@@ -19,7 +19,7 @@ class ImportCrunchbaseCommand extends Command
         FindOrCreateTagByNameAction $findOrCreateTagByNameAction,
         CreateOrUpdateCompanyByNameAction $createOrUpdateCompanyByNameAction,
     ): void {
-        $json = file_get_contents(database_path('seeders/data/13-crunchbase/crunchbase.json'));
+        $json = file_get_contents(database_path('seeders/data/13-crunchbase.json'));
 
         $allData = json_decode($json, true);
         $progressBar = $this->output->createProgressBar(count($allData));
@@ -35,7 +35,7 @@ class ImportCrunchbaseCommand extends Command
                 continue;
             }
 
-            $this->line('Process importing: ' . data_get($data, 'company_name'));
+            $this->line('Process importing: ' . data_get($data, 'name'));
 
             /**
              * Useful data
@@ -129,12 +129,12 @@ class ImportCrunchbaseCommand extends Command
              */
             foreach ($companyInvestors as $companyInvestor) {
                 $investorName = data_get($companyInvestor, 'name');
-                $lowerName = Str::of($investorName)->lower()->trim()->value();
+                $lowerName = Str::of($investorName)->lower()->squish()->value();
                 $investor = Investor::query()->whereRaw('LOWER(name) = ?', [$lowerName])->first();
 
-                if (is_null($investor)) { // create if not exists
+                if (is_null($investor)) {
                     $investor = Investor::query()->create([
-                        'name' => $investorName,
+                        'name' => Str::of($investorName)->squish()->value(),
                         'approved_at' => now(),
                     ]);
                 }
