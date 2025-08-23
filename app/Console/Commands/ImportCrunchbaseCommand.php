@@ -19,7 +19,7 @@ class ImportCrunchbaseCommand extends Command
         FindOrCreateTagByNameAction $findOrCreateTagByNameAction,
         CreateOrUpdateCompanyByNameAction $createOrUpdateCompanyByNameAction,
     ): void {
-        $json = file_get_contents(database_path('seeders/data/13-crunchbase/crunchbase.json'));
+        $json = file_get_contents(database_path('seeders/data/13-crunchbase.json'));
 
         $allData = json_decode($json, true);
         $progressBar = $this->output->createProgressBar(count($allData));
@@ -35,7 +35,7 @@ class ImportCrunchbaseCommand extends Command
                 continue;
             }
 
-            $this->line('Process importing: ' . data_get($data, 'company_name'));
+            $this->line('Process importing: ' . data_get($data, 'name'));
 
             /**
              * Useful data
