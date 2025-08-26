@@ -45,3 +45,4 @@ jobs:
               with:
                   commit_message: Apply formatting changes
                   commit_user_name: GitHub Action
+                  branch: ${{ github.head_ref }}
