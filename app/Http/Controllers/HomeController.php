@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\FormatResourcesAction;
+use App\Actions\FormatResourcesWikipediaStyleAction;
 use App\Actions\SeoSetAlternativePageAction;
 use App\Actions\SeoSetPageAction;
 use App\Models\Alternative;
@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function show(
         Request $request,
         Alternative $alternative,
-        FormatResourcesAction $formatResourcesAction,
+        FormatResourcesWikipediaStyleAction $formatResourcesAction,
         SeoSetAlternativePageAction $seoSetAlternativePageAction
     ): View {
         abort_if(! $alternative->approved_at, 404);
