@@ -21,17 +21,20 @@ class FormatResourcesWikipediaStyleAction
     {
         $counter = [];
 
-        return $resources->pluck('url')->mapWithKeys(function ($url) use (&$counter) {
-            $name = Str::ltrim(parse_url($url, PHP_URL_HOST), 'www.') ?: $url;
+        return $resources->pluck('url')
+            ->filter(fn ($url): bool => $url !== '#')
+            ->mapWithKeys(function ($url) use (&$counter) {
+                $name = Str::ltrim(parse_url($url, PHP_URL_HOST), 'www.') ?: $url;
 
-            $count = ($counter[$name] ?? 0) + 1;
-            $counter[$name] = $count;
+                $count = ($counter[$name] ?? 0) + 1;
+                $counter[$name] = $count;
 
-            $label = $count === 1
-                ? "{$name} [{$count}]"
-                : "[{$count}]";
+                $label = $count === 1
+                    ? "{$name} [{$count}]"
+                    : "[{$count}]";
 
-            return [$url => $label];
-        })->toArray();
+                return [$url => $label];
+            })
+            ->toArray();
     }
 }
