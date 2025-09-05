@@ -24,7 +24,33 @@
                     </div>
 
                     <div class="flex-1">
-                        <h1 class="text-3xl font-bold text-gray-900">{{ $alternative->name }}</h1>
+                        <div class="flex items-center gap-3">
+                            <h1 class="text-3xl font-bold text-gray-900">{{ $alternative->name }}</h1>
+                            @if ($alternative->url)
+                                <a
+                                    href="{{ Str::start($alternative->url, 'https://') }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="Visit website"
+                                    class="text-blue-500 hover:text-blue-700"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-7 w-7"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        />
+                                    </svg>
+                                </a>
+                            @endif
+                        </div>
                         <p class="mt-3 text-lg text-gray-600">{{ $alternative->description }}</p>
 
                         <!-- Tags -->
@@ -86,16 +112,6 @@
                                             <p class="mb-4 flex-1 text-gray-600">
                                                 {{ Str::limit($company->description, 120) }}
                                             </p>
-                                            @if ($company->url && $company->url !== '#')
-                                                <a
-                                                    href="{{ $company->url }}"
-                                                    target="_blank"
-                                                    class="inline-block truncate text-blue-600 hover:text-blue-800 hover:underline"
-                                                    title="{{ $company->url }}"
-                                                >
-                                                    {{ parse_url($company->url, PHP_URL_HOST) }}
-                                                </a>
-                                            @endif
                                         </div>
                                     </div>
                                 @endforeach
