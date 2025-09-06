@@ -81,7 +81,23 @@ class HomeController extends Controller
             'message' => 'required|string|min:10|max:10000',
         ]);
 
-        ContactMessage::query()->create($validated);
+        $ipAddress = $request->ip();
+
+        $isSpamEmailOrIp = ContactMessage::query()
+            ->where(function ($query) use ($validated, $ipAddress): void {
+                $query->where('email', $validated['email'])
+                    ->orWhere('ip_address', $ipAddress);
+            })
+            ->whereNotNull('spam_at')
+            ->exists();
+
+        if ($isSpamEmailOrIp) {
+            return back()->with('error', 'Unable to send message. Please try again later.');
+        }
+
+        ContactMessage::query()->create(array_merge($validated, [
+            'ip_address' => $ipAddress,
+        ]));
 
         return back()->with('success', 'Message sent successfully');
     }
