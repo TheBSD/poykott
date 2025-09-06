@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\TagExporter;
 use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Filament\Resources\TagResource\Actions\MergeTwoTagsAction;
 use App\Filament\Resources\TagResource\Pages\CreateTag;
@@ -15,6 +16,8 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -50,6 +53,12 @@ class TagResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(TagExporter::class)
+                    ->label('Export Tags')
+                    ->icon('heroicon-o-arrow-down-tray'),
+            ])
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),
@@ -58,6 +67,8 @@ class TagResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->exporter(TagExporter::class),
                 ]),
             ]);
     }
