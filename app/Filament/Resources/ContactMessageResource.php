@@ -121,7 +121,7 @@ class ContactMessageResource extends Resource
                         'last_month' => 'Last month',
                     ])
                     ->query(function (Builder $query, array $data) {
-                        if (! $data['value']) {
+                        if (! isset($data['value']) || ! $data['value']) {
                             return $query;
                         }
 
