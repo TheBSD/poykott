@@ -118,7 +118,6 @@ class ContactMessageResource extends Resource
                         'yesterday' => 'Yesterday',
                         'this_week' => 'This week',
                         'this_month' => 'This month',
-                        'last_month' => 'Last month',
                     ])
                     ->query(function (Builder $query, array $data) {
                         if (! isset($data['value']) || ! $data['value']) {
@@ -130,7 +129,6 @@ class ContactMessageResource extends Resource
                             'yesterday' => $query->whereDate('created_at', today()->subDay()),
                             'this_week' => $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]),
                             'this_month' => $query->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year),
-                            'this_year' => $query->whereMonth('created_at', now()->subYear()->year),
                             default => $query,
                         };
                     }),
