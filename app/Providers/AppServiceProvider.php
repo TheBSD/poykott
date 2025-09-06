@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Alternative;
 use App\Models\Company;
+use App\Models\ContactMessage;
 use App\Models\Investor;
 use App\Models\Person;
 use App\Models\SimilarSite;
@@ -53,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
             'user' => User::class,
             'tag' => Tag::class,
             'similar_site' => SimilarSite::class,
+            'contact_message' => ContactMessage::class,
         ]);
 
         // just for \OwenIt\Auditing\Models\Audit::class

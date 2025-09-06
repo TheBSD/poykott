@@ -13,7 +13,7 @@ class ViewContactMessage extends ViewRecord
     {
         parent::mount($record);
 
-        if (! $this->record->is_read) {
+        if (! $this->record->read_at) {
             $this->record->markAsRead();
         }
     }
