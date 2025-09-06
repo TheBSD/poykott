@@ -9,6 +9,7 @@ use App\Http\Requests\NewCompanyRequest;
 use App\Models\Company;
 use App\Models\User;
 use App\Notification\ReviewAlternative;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
@@ -128,5 +129,10 @@ class CompanyController extends Controller
         Notification::send($admin, new ReviewAlternative($alternative, $company));
 
         return redirect()->back()->with('success', 'Thank you for suggesting an alternative');
+    }
+
+    public function redirect(Company $company): RedirectResponse
+    {
+        return redirect()->route('companies.show', $company, 301);
     }
 }
