@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin/
 
-Sitemap: /sitemap.xml
+Sitemap: https://israelitechalternatives.com/sitemap.xml
