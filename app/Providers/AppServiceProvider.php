@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\ContactMessage;
 use App\Models\Investor;
 use App\Models\Person;
+use App\Models\Resource;
 use App\Models\SimilarSite;
 use App\Models\Tag;
 use App\Models\User;
@@ -55,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
             'tag' => Tag::class,
             'similar_site' => SimilarSite::class,
             'contact_message' => ContactMessage::class,
+            'resource' => Resource::class,
         ]);
 
         // just for \OwenIt\Auditing\Models\Audit::class
