@@ -55,7 +55,6 @@ class CompanyController extends Controller
             'name' => $data['name'],
             'url' => $data['url'],
             'description' => $data['description'],
-            'notes' => $data['notes'],
         ]);
 
         return to_route('alternatives.index')
