@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "045e3ba41eda7709ce80f21265394871",
+    "content-hash": "c64470aef1aa792a619bd9e8b955c316",
     "packages": [
         {
             "name": "alazzi-az/laravel-bitmask",
@@ -14535,17 +14535,17 @@
             "time": "2025-03-21T20:21:10+00:00"
         },
         {
-            "name": "watheqalshowaiter/model-required-fields",
-            "version": "2.0.0",
+            "name": "watheqalshowaiter/model-fields",
+            "version": "3.1.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WatheqAlshowaiter/model-required-fields.git",
-                "reference": "25bf58ba76b830e3085421750e76d0cd356250d2"
+                "url": "https://github.com/WatheqAlshowaiter/model-fields.git",
+                "reference": "b02486f508a700d5663166ecc5580dfd1f24bcfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WatheqAlshowaiter/model-required-fields/zipball/25bf58ba76b830e3085421750e76d0cd356250d2",
-                "reference": "25bf58ba76b830e3085421750e76d0cd356250d2",
+                "url": "https://api.github.com/repos/WatheqAlshowaiter/model-fields/zipball/b02486f508a700d5663166ecc5580dfd1f24bcfb",
+                "reference": "b02486f508a700d5663166ecc5580dfd1f24bcfb",
                 "shasum": ""
             },
             "require": {
@@ -14560,16 +14560,16 @@
             "extra": {
                 "laravel": {
                     "aliases": {
-                        "ModelRequiredFields": "WatheqAlshowaiter\\ModelRequiredFields\\Facades\\ModelRequiredFields"
+                        "ModelFields": "WatheqAlshowaiter\\ModelFields\\Facades\\ModelFields"
                     },
                     "providers": [
-                        "WatheqAlshowaiter\\ModelRequiredFields\\ModelRequiredFieldsServiceProvider"
+                        "WatheqAlshowaiter\\ModelFields\\ModelFieldsServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "WatheqAlshowaiter\\ModelRequiredFields\\": "src/"
+                    "WatheqAlshowaiter\\ModelFields\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -14583,15 +14583,15 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Get the model required fields without nullables, primary keys and fields with defaults.",
-            "homepage": "https://github.com/watheqalshowaiter/model-required-fields",
+            "description": "Get model fields fast — required, nullable, or default",
+            "homepage": "https://github.com/watheqalshowaiter/model-fields",
             "keywords": [
                 "Watheq Alshowaiter",
                 "WatheqAlshowaiter",
                 "laravel",
                 "mariadb",
                 "model",
-                "model-required-fields",
+                "model-fields",
                 "mysql",
                 "package",
                 "php",
@@ -14604,8 +14604,8 @@
                 "yemenopensource"
             ],
             "support": {
-                "issues": "https://github.com/WatheqAlshowaiter/model-required-fields/issues",
-                "source": "https://github.com/WatheqAlshowaiter/model-required-fields/tree/2.0.0"
+                "issues": "https://github.com/WatheqAlshowaiter/model-fields/issues",
+                "source": "https://github.com/WatheqAlshowaiter/model-fields/tree/3.1.5"
             },
             "funding": [
                 {
@@ -14613,7 +14613,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-15T03:50:59+00:00"
+            "time": "2025-09-20T15:50:46+00:00"
         }
     ],
     "aliases": [],
