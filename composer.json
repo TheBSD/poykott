@@ -52,7 +52,7 @@
         "pestphp/pest-plugin-laravel": "^3.0",
         "rector/rector": "^1.2",
         "tightenco/duster": "^3.0",
-        "watheqalshowaiter/model-required-fields": "^2.0"
+        "watheqalshowaiter/model-fields": "^3.1"
     },
     "autoload": {
         "files": [
