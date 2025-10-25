@@ -8,6 +8,6 @@ class MailchimpRedirectionController extends Controller
 {
     public function __invoke(): RedirectResponse
     {
-        return redirect()->route('alternatives.index')->with('success', 'Thank you for your subscription!');
+        return redirect()->route('companies.index')->with('success', 'Thank you for your subscription!');
     }
 }

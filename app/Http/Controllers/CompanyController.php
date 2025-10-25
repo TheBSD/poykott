@@ -57,7 +57,7 @@ class CompanyController extends Controller
             'description' => $data['description'],
         ]);
 
-        return to_route('alternatives.index')
+        return to_route('companies.index')
             ->with('success', 'company successfully created. Wait for approval');
     }
 

@@ -8,14 +8,14 @@ use App\Http\Controllers\MailchimpRedirectionController;
 use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
+// Companies (Homepage)
+Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
+Route::permanentRedirect('companies', '/');
+
 // Alternatives
-Route::get('/', [HomeController::class, 'index'])->name('alternatives.index');
-Route::permanentRedirect('alternatives', '/');
+Route::get('alternatives', [HomeController::class, 'index'])->name('alternatives.index');
 
 Route::get('alternative/{alternative:slug}', [HomeController::class, 'show'])->name('alternatives.show');
-
-// Companies
-Route::get('companies', [CompanyController::class, 'index'])->name('companies.index');
 Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
 Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
 

@@ -9,7 +9,8 @@
                 class="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10"
             >
                 <div class="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="{{ route('alternatives.index') }}">
+                    3
+                    <a href="{{ route('companies.index') }}">
                         <span class="sr-only">Workflow</span>
                         <img class="h-[75px] w-auto" src="{{ asset('images/logo.png') }}" alt="" />
                     </a>
@@ -42,16 +43,16 @@
                 </div>
                 <nav class="hidden space-x-10 md:flex">
                     <a
-                        href="{{ route('alternatives.index') }}"
-                        class="{{ request()->routeIs('alternatives.index') ? 'text-gray-900' : 'text-gray-500' }} text-base font-medium hover:text-gray-900"
-                    >
-                        Alternatives
-                    </a>
-                    <a
                         href="{{ route('companies.index') }}"
                         class="{{ request()->routeIs('companies.index') ? 'text-gray-900' : 'text-gray-500' }} text-base font-medium hover:text-gray-900"
                     >
                         Israeli Companies
+                    </a>
+                    <a
+                        href="{{ route('alternatives.index') }}"
+                        class="{{ request()->routeIs('alternatives.index') ? 'text-gray-900' : 'text-gray-500' }} text-base font-medium hover:text-gray-900"
+                    >
+                        Alternatives
                     </a>
                     <a
                         href="{{ route('similar-sites') }}"
@@ -117,28 +118,6 @@
                     <div class="mt-6">
                         <nav class="grid gap-y-8">
                             <a
-                                href="{{ route('alternatives.index') }}"
-                                @click="open = false"
-                                class="{{ request()->routeIs('alternatives.index') ? 'bg-blue-50' : '' }} -m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-                            >
-                                <svg
-                                    class="h-6 w-6 flex-shrink-0 text-indigo-600"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                    />
-                                </svg>
-                                <span class="ml-3 text-base font-medium text-gray-900">Alternatives</span>
-                            </a>
-
-                            <a
                                 href="{{ route('companies.index') }}"
                                 @click="open = false"
                                 class="{{ request()->routeIs('companies.index') ? 'bg-blue-50' : '' }} -m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
@@ -158,6 +137,28 @@
                                     />
                                 </svg>
                                 <span class="ml-3 text-base font-medium text-gray-900">Israeli Companies</span>
+                            </a>
+
+                            <a
+                                href="{{ route('alternatives.index') }}"
+                                @click="open = false"
+                                class="{{ request()->routeIs('alternatives.index') ? 'bg-blue-50' : '' }} -m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                            >
+                                <svg
+                                    class="h-6 w-6 flex-shrink-0 text-indigo-600"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                    />
+                                </svg>
+                                <span class="ml-3 text-base font-medium text-gray-900">Alternatives</span>
                             </a>
 
                             <a
