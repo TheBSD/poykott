@@ -13,59 +13,6 @@
                     <div class="mt-12">
                         <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500">Popular pages</h2>
                         <ul role="list" class="mt-4 divide-y divide-gray-200 border-b border-t border-gray-200">
-                            {{-- Alternatives --}}
-                            <li class="relative flex items-start space-x-4 py-6">
-                                <div class="flex-shrink-0">
-                                    <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-50">
-                                        <svg
-                                            class="h-6 w-6 text-indigo-700"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <h3 class="text-base font-medium text-gray-900">
-                                        <span
-                                            class="rounded-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2"
-                                        >
-                                            <a href="{{ route('alternatives.index') }}" class="focus:outline-none">
-                                                <span class="absolute inset-0" aria-hidden="true"></span>
-                                                Alternatives
-                                            </a>
-                                        </span>
-                                    </h3>
-                                    <p class="text-base text-gray-500">
-                                        The Alternatives services and companies to the Israeli ones.
-                                    </p>
-                                </div>
-                                <div class="flex-shrink-0 self-center">
-                                    <svg
-                                        class="h-5 w-5 text-gray-400"
-                                        x-description="Heroicon name: solid/chevron-right"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                            clip-rule="evenodd"
-                                        ></path>
-                                    </svg>
-                                </div>
-                            </li>
-
                             {{-- Companies --}}
                             <li class="relative flex items-start space-x-4 py-6">
                                 <div class="flex-shrink-0">
@@ -99,6 +46,59 @@
                                     </h3>
                                     <p class="text-base text-gray-500">
                                         The Israeli services and companies to boycott.
+                                    </p>
+                                </div>
+                                <div class="flex-shrink-0 self-center">
+                                    <svg
+                                        class="h-5 w-5 text-gray-400"
+                                        x-description="Heroicon name: solid/chevron-right"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd"
+                                        ></path>
+                                    </svg>
+                                </div>
+                            </li>
+
+                            {{-- Alternatives --}}
+                            <li class="relative flex items-start space-x-4 py-6">
+                                <div class="flex-shrink-0">
+                                    <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-50">
+                                        <svg
+                                            class="h-6 w-6 text-indigo-700"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                            />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h3 class="text-base font-medium text-gray-900">
+                                        <span
+                                            class="rounded-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2"
+                                        >
+                                            <a href="{{ route('alternatives.index') }}" class="focus:outline-none">
+                                                <span class="absolute inset-0" aria-hidden="true"></span>
+                                                Alternatives
+                                            </a>
+                                        </span>
+                                    </h3>
+                                    <p class="text-base text-gray-500">
+                                        The Alternatives services and companies to the Israeli ones.
                                     </p>
                                 </div>
                                 <div class="flex-shrink-0 self-center">
@@ -175,7 +175,7 @@
                         </ul>
                         <div class="mt-8">
                             <a
-                                href="{{ route('alternatives.index') }}"
+                                href="{{ route('companies.index') }}"
                                 class="text-base font-medium text-indigo-600 hover:text-indigo-500"
                             >
                                 Or go back home
