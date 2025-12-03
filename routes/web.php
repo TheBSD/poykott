@@ -48,4 +48,4 @@ Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('simi
 Route::get('webhooks/mailchimp', MailchimpRedirectionController::class)->name('mailchimp.webhook');
 
 // OpCache GUI (Super Admin Only)
-Route::get('opcache', OpCacheController::class)->middleware('auth')->name('opcache');
+Route::get('opcache', OpCacheController::class)->name('opcache');
