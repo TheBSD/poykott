@@ -11,7 +11,7 @@ class OpCacheController extends Controller
      */
     public function __invoke(): Response
     {
-        abort_if(! auth()->check() || ! auth()->user()->hasRole('super_admin'), 403, 'Unauthorized');
+        abort_if(! auth()->check() || ! auth()->user()->hasRole('super_admin'), 404);
 
         // Path to the opcache-gui index.php
         $indexPath = base_path('vendor/amnuts/opcache-gui/index.php');
