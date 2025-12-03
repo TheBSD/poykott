@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c64470aef1aa792a619bd9e8b955c316",
+    "content-hash": "37441006bf75dc9033c137965da12028",
     "packages": [
         {
             "name": "alazzi-az/laravel-bitmask",
@@ -145,6 +145,68 @@
                 }
             ],
             "time": "2024-10-15T03:50:11+00:00"
+        },
+        {
+            "name": "amnuts/opcache-gui",
+            "version": "3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amnuts/opcache-gui.git",
+                "reference": "a70fe575c9014cf08f68fe17f9cb3dccc4f13197"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amnuts/opcache-gui/zipball/a70fe575c9014cf08f68fe17f9cb3dccc4f13197",
+                "reference": "a70fe575c9014cf08f68fe17f9cb3dccc4f13197",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-zend-opcache": "*",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amnuts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Collington",
+                    "email": "andy@amnuts.com",
+                    "homepage": "https://blog.amnuts.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/amnuts/opcache-gui/graphs/contributors"
+                }
+            ],
+            "description": "A clean, effective and responsive interface for Zend OPcache, with real(ish)-time monitoring, filtering and the ability to invalidate files",
+            "keywords": [
+                "Opcache",
+                "cache",
+                "gui",
+                "interface",
+                "opcodes"
+            ],
+            "support": {
+                "email": "andy@amnuts.com",
+                "issues": "https://github.com/amnuts/opcache-gui/issues",
+                "source": "https://github.com/amnuts/opcache-gui/tree/3.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/amnuts",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-07-28T00:19:58+00:00"
         },
         {
             "name": "anourvalar/eloquent-serialize",

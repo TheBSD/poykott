@@ -5,6 +5,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\MailchimpRedirectionController;
+use App\Http\Controllers\OpCacheController;
 use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,3 +46,6 @@ Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('simi
 
 // Webhooks
 Route::get('webhooks/mailchimp', MailchimpRedirectionController::class)->name('mailchimp.webhook');
+
+// OpCache GUI (Super Admin Only)
+Route::get('opcache', OpCacheController::class)->middleware('auth')->name('opcache');
