@@ -23,5 +23,6 @@ between each alternative for clear separation - Keep descriptions concise and in
 information ## Tone - Professional and informative - Objective and balanced - Helpful for users researching alternatives
 - Avoid promotional language - Do not make up any information - No conclusion and no intro/overview ## ⚠️ FINAL
 VERIFICATION BEFORE RESPONDING ⚠️ Before submitting your response, VERIFY EACH ALTERNATIVE: - ❌ Is it headquartered in
-Israel? → REMOVE IT - ❌ Does it have Israeli founders? → REMOVE IT - ❌ Does it have any Israeli connection? → REMOVE
-IT **DOUBLE-CHECK: Every alternative must have ZERO Israeli connection.** Generate the alternatives guide now:
+Israel? → REMOVE (THIS WHOLE ALTERNATIVE) - ❌ Does it have Israeli founders? → REMOVE (THIS WHOLE ALTERNATIVE) - ❌
+Does it have any Israeli connection? → REMOVE (THIS WHOLE ALTERNATIVE) **DOUBLE-CHECK: Every alternative must have ZERO
+Israeli connection.** Generate the alternatives guide now:

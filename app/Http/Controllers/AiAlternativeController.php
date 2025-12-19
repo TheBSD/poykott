@@ -18,7 +18,10 @@ class AiAlternativeController extends Controller
             return response()->json([
                 'success' => true,
                 'content' => $aiAlternative->content,
-                'html' => Str::markdown($aiAlternative->content),
+                'html' => Str::markdown($aiAlternative->content, [
+                    'html_input' => 'strip',
+                    'allow_unsafe_links' => false,
+                ]),
             ]);
         } catch (Exception $e) {
             return response()->json([

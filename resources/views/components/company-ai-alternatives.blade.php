@@ -7,7 +7,7 @@
     class="rounded-xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-blue-50 p-6 shadow-lg dark:border-purple-700 dark:from-purple-900/20 dark:to-blue-900/20"
     x-data="{
         isGenerating: false,
-        contentHtml: @js($aiAlternative ? \Illuminate\Support\Str::markdown($aiAlternative->content) : ''),
+        contentHtml: @js($aiAlternative ? \Illuminate\Support\Str::markdown($aiAlternative->content, ['html_input' => 'strip', 'allow_unsafe_links' => false]) : ''),
         hasExisting: @js($aiAlternative !== null),
 
         init() {
