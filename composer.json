@@ -14,6 +14,7 @@
         "amnuts/opcache-gui": "^3.6",
         "artesaos/seotools": "^1.3",
         "bezhansalleh/filament-shield": "^3.3",
+        "echolabsdev/prism": "^0.99.2",
         "filament/filament": "^3.3",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "guzzlehttp/guzzle": "^7.9",

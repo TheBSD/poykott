@@ -75,8 +75,8 @@ class CompanyController extends Controller
             'founders:id,name,slug',
             'resources:id,resourceable_id,url',
             'officeLocations:id,name',
-            // 'logo:id,imageable_id,path',
             'tagsRelation:id,name',
+            'aiAlternative',
             'investors' => function ($query): void {
                 $query->approved()->select('id', 'name', 'slug');
             },

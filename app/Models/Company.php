@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use OwenIt\Auditing\Contracts\Auditable;
@@ -160,6 +161,11 @@ class Company extends Model implements Auditable, HasMedia
     public function socialLinks(): MorphMany
     {
         return $this->morphMany(SocialLink::class, 'linkable');
+    }
+
+    public function aiAlternative(): HasOne
+    {
+        return $this->hasOne(AiAlternative::class);
     }
 
     /**

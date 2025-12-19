@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AiAlternativeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
@@ -27,6 +28,9 @@ Route::get('companies/url/{companyUrl}', [CompanyController::class, 'redirectToS
 Route::post(
     'companies/{company:slug}/alternatives', [CompanyController::class, 'storeAlternative']
 )->name('companies.alternatives.store');
+Route::post(
+    'companies/{company:slug}/ai-alternatives', [AiAlternativeController::class, 'store']
+)->name('companies.ai-alternatives.store')->middleware('throttle:5,1');
 
 // People
 Route::get('people/{person:slug}', [PersonController::class, 'show'])->name('people.show');

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\GenerateCompanyAiAlternativesAction;
 use App\Actions\ScrapeLogoFromUrlAction;
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
@@ -11,6 +12,7 @@ use App\Filament\Resources\CompanyResource\Pages\ListCompanies;
 use App\Filament\Resources\CompanyResource\RelationManagers\AlternativesRelationManager;
 use App\Filament\Resources\CompanyResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Models\Company;
+use Exception;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
@@ -200,6 +202,33 @@ class CompanyResource extends Resource
                         return $record->media->count() > 0;
                     })
                     ->color('danger'),
+
+                Action::make('regenerateAiAlternatives')
+                    ->label('Regenerate AI Alternatives')
+                    ->icon('heroicon-o-sparkles')
+                    ->action(function (Company $record): void {
+                        $record->aiAlternative?->delete();
+
+                        try {
+                            app(GenerateCompanyAiAlternativesAction::class)->execute($record);
+
+                            Notification::make()
+                                ->success()
+                                ->title('AI alternatives regenerated successfully')
+                                ->send();
+                        } catch (Exception $e) {
+                            Notification::make()
+                                ->danger()
+                                ->title('Failed to regenerate AI alternatives')
+                                ->body($e->getMessage())
+                                ->send();
+                        }
+                    })
+                    ->requiresConfirmation()
+                    ->modalHeading('Regenerate AI Alternatives')
+                    ->modalDescription('This will delete existing AI-generated alternatives and create new ones.')
+                    ->color('warning'),
+
                 EditAction::make(),
                 DeleteAction::make(),
             ])

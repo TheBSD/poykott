@@ -110,6 +110,14 @@
                             <p class="text-gray-500">No alternatives listed yet.</p>
                         @endif
 
+                        <!-- AI-Generated Alternatives Section -->
+                        <div class="mt-10">
+                            <x-company-ai-alternatives
+                                :company="$company"
+                                :ai-alternative="$company->aiAlternative"
+                            />
+                        </div>
+
                         <!-- Add Alternative Form-- -->
                         <div class="mt-10 rounded-xl bg-gray-50 p-6">
                             <h3 class="mb-4 text-xl font-semibold text-gray-900">Suggest an Alternative</h3>
