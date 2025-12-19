@@ -30,7 +30,7 @@ Route::post(
 )->name('companies.alternatives.store');
 Route::post(
     'companies/{company:slug}/ai-alternatives', [AiAlternativeController::class, 'store']
-)->name('companies.ai-alternatives.store');
+)->name('companies.ai-alternatives.store')->middleware('throttle:5,1');
 
 // People
 Route::get('people/{person:slug}', [PersonController::class, 'show'])->name('people.show');

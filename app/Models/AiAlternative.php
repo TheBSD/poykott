@@ -14,6 +14,14 @@ class AiAlternative extends Model
         'company_id', 'content', 'model_used', 'prompt_tokens', 'completion_tokens',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'prompt_tokens' => 'integer',
+            'completion_tokens' => 'integer',
+        ];
+    }
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);

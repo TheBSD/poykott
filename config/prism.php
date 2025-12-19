@@ -29,7 +29,7 @@ return [
             'url' => env('MISTRAL_URL', 'https://api.mistral.ai/v1'),
             'model' => env('MISTRAL_MODEL', 'mistral-small-latest'),
             'max_tokens' => env('MISTRAL_MAX_TOKENS', 2000),
-            'temperature' => env('MISTRAL_TEMPERATURE', 0.7),
+            'temperature' => env('MISTRAL_TEMPERATURE', 0.0),
         ],
         'groq' => [
             'api_key' => env('GROQ_API_KEY', ''),
