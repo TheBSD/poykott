@@ -4,8 +4,8 @@
 ])
 
 <div
-    class="rounded-xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-blue-50 p-6 shadow-lg dark:border-purple-700 dark:from-purple-900/20 dark:to-blue-900/20"
-    x-data="{
+        class="rounded-xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-blue-50 p-6 shadow-lg dark:border-purple-700 dark:from-purple-900/20 dark:to-blue-900/20"
+        x-data="{
         isGenerating: false,
         contentHtml: @js($aiAlternative ? \Illuminate\Support\Str::markdown($aiAlternative->content, ['html_input' => 'strip', 'allow_unsafe_links' => false]) : ''),
         hasExisting: @js($aiAlternative !== null),
@@ -70,25 +70,38 @@
     <div class="mb-4">
         <div class="flex items-center gap-2 flex-col md:flex-row">
             <svg
-                class="h-6 w-6 text-purple-600 dark:text-purple-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                    class="h-6 w-6 text-purple-600 dark:text-purple-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
             >
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                 />
             </svg>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">AI-Generated Alternatives</h3>
             <span
-                class="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-800 dark:text-purple-100"
+                    class="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-800 dark:text-purple-100"
             >
                 Powered by AI
             </span>
             <span class="text-xs text-gray-400 dark:text-gray-500"><em>May contain mistakes</em></span>
+
+            @if (auth()->check() && auth()->user()->hasPermissionTo('update_company'))
+                <button
+                    type="button"
+                    @click="generate()"
+                    :disabled="isGenerating"
+                    class="rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    :class="{ 'opacity-75 cursor-not-allowed': isGenerating }"
+                >
+                    <span x-show="!isGenerating">Regenerate AI Alternatives</span>
+                    <span x-show="isGenerating">Regenerating...</span>
+                </button>
+            @endif
         </div>
     </div>
 
@@ -133,13 +146,16 @@
         overflow: hidden;
         max-width: 100%;
     }
+
     .ai-alternatives-content a:hover {
         color: #1e40af;
         text-decoration: underline;
     }
+
     .dark .ai-alternatives-content a {
         color: #60a5fa;
     }
+
     .dark .ai-alternatives-content a:hover {
         color: #93c5fd;
     }
