@@ -68,7 +68,7 @@
     }"
 >
     <div class="mb-4">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 flex-col md:flex-row">
             <svg
                 class="h-6 w-6 text-purple-600 dark:text-purple-400"
                 fill="none"
@@ -88,7 +88,7 @@
             >
                 Powered by AI
             </span>
-            <span class="text-xs text-gray-400 dark:text-gray-500"><em>- May contain mistakes</em></span>
+            <span class="text-xs text-gray-400 dark:text-gray-500"><em>May contain mistakes</em></span>
         </div>
     </div>
 
