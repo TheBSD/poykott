@@ -10,6 +10,11 @@
                 @php
                     $bestScore = null;
                     foreach ($rows as $r) {
+                        $isSearchedRow = isset($r['name']) && \Illuminate\Support\Str::slug($r['name']) === \Illuminate\Support\Str::slug($company);
+                        if ($isSearchedRow) {
+                            continue;
+                        }
+
                         $score = isset($r['totalScore']) ? (int) $r['totalScore'] : 0;
                         if ($bestScore === null || $score > $bestScore) {
                             $bestScore = $score;
