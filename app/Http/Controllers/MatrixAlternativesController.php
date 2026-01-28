@@ -9,6 +9,12 @@ class MatrixAlternativesController extends Controller
     // List available company CSVs in storage/app/matrix
     public function index()
     {
+        // If user submitted a company via query string, redirect to the show route.
+        $company = request()->query('company');
+        if (! empty($company)) {
+            return redirect()->route('matrix.show', ['company' => $company]);
+        }
+
         $dir = storage_path('app/matrix');
         $files = [];
 
