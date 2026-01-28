@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Support\Str;
 
 class MatrixAlternativesController extends Controller
@@ -21,9 +22,19 @@ class MatrixAlternativesController extends Controller
         if (is_dir($dir)) {
             foreach (glob($dir . '/*.csv') as $path) {
                 $name = pathinfo($path, PATHINFO_FILENAME);
+                $slug = Str::slug($name);
+
+                // Try to find a Company model so we can use the media library image_path.
+                $companyModel = Company::query()->where('slug', $slug)
+                    ->orWhere('name', $name)
+                    ->first();
+
+                $imagePath = $companyModel?->image_path ?? asset('images/logos/' . $slug . '.svg');
+
                 $files[] = [
-                    'slug' => Str::slug($name),
+                    'slug' => $slug,
                     'name' => $name,
+                    'image_path' => $imagePath,
                 ];
             }
         }
