@@ -20,15 +20,10 @@
             @if (count($companies))
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach ($companies as $c)
-                        @php
-                            $slug = \Illuminate\Support\Str::slug($c['name']);
-                            $logo = asset('images/logos/' . $slug . '.svg');
-                        @endphp
-
                         <a href="{{ route('matrix.show', ['company' => $c['name']]) }}" class="flex flex-col items-start gap-3 p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow bg-white">
                             <div class="flex items-center gap-3 w-full">
                                 <div class="h-12 w-12 rounded-md bg-gray-50 flex items-center justify-center overflow-hidden">
-                                    <img src="{{ $logo }}" alt="{{ $c['name'] }} logo" class="h-10 w-10 object-contain" />
+                                    <img src="{{ $c['image_path'] }}" alt="{{ $c['name'] }} logo" class="h-10 w-10 object-contain" />
                                 </div>
                                 <div class="flex-1">
                                     <div class="font-semibold text-lg">{{ $c['name'] }}</div>
