@@ -65,6 +65,10 @@ class MatrixAlternativesController extends Controller
         $rows = [];
         if (($handle = fopen($file, 'r')) !== false) {
             $headers = fgetcsv($handle);
+            if ($headers === false) {
+                fclose($handle);
+                abort(500, 'Failed to read CSV headers for ' . $company);
+            }
             while (($row = fgetcsv($handle)) !== false) {
                 if (count($row) === count($headers)) {
                     $rows[] = array_combine($headers, $row);
