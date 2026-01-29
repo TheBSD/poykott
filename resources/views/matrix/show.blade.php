@@ -122,7 +122,9 @@
                         </div>
                         <div>
                             <h2 class="text-2xl font-bold">{{ $selected['name'] ?? 'Selected' }}</h2>
-                            <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $toPercent($selected['totalScore']) ?? $selected['totalScore'] }}%</span></p>
+                            {{-- <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $toPercent($selected['totalScore']) ?? $selected['totalScore'] }}%</span></p> --}}
+                            @php $selectedPercent = $toPercent($selected['totalScore']) ?? null; @endphp
+                            <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $selectedPercent !== null ? $selectedPercent . '%' : '—' }}</span></p>
                             @if (isset($selected['website']))
                                 <a target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-accent hover:underline mt-1" href="{{ $selected['website'] }}">Visit Website <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
                             @endif
