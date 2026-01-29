@@ -204,7 +204,7 @@
                         <div class="bg-card border rounded-lg p-4">
                             <p class="text-sm font-medium mb-2">Implementation & Setup</p>
                             <p class="text-muted-foreground">Setup: {{ $selected['setupComplexity'] ?? ($selected['easeOfSetup'] ?? '—') }}</p>
-                            <p class="text-muted-foreground">Developer Experience: {{ $selected['developerExperience'] ?? ($selected['developerExperience'] ?? '—') }}</p>
+                            <p class="text-muted-foreground">Developer Experience: {{ $selected['developerExperience'] ?? '—' }}</p>
                         </div>
                         <div class="bg-card border rounded-lg p-4">
                             <p class="text-sm font-medium mb-2">Pricing</p>
