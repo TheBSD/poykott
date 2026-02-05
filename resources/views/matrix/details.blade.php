@@ -1,103 +1,8 @@
 <x-app-layout>
     <main class="container mx-auto min-h-screen space-y-6 p-6">
         <section>
-            <h1 class="text-2xl font-bold">{{ ucfirst($company) }} Alternatives</h1>
-            <p class="text-sm text-gray-600">Compare {{ ucfirst($company) }} with alternative solutions. Click "Details" to view comprehensive information for each option.</p>
-        </section>
-
-        <section class="mt-6">
-            @if (count($rows))
-                @php
-                    $bestScore = null;
-                    foreach ($rows as $r) {
-                        $isSearchedRow = isset($r['name']) && \Illuminate\Support\Str::slug($r['name']) === \Illuminate\Support\Str::slug($company);
-                        if ($isSearchedRow) {
-                            continue;
-                        }
-
-                        $score = isset($r['totalScore']) ? (int) $r['totalScore'] : 0;
-                        if ($bestScore === null || $score > $bestScore) {
-                            $bestScore = $score;
-                        }
-                    }
-                @endphp
-
-                <div class="overflow-x-auto">
-                    <table class="min-w-full border-collapse">
-                        <thead>
-                            <tr class="bg-gray-50">
-                                <th class="px-3 py-2 text-left">Alternative</th>
-                                <th class="px-3 py-2 text-center">Total</th>
-                                <th class="px-3 py-2">Ease</th>
-                                <th class="px-3 py-2">Performance</th>
-                                <th class="px-3 py-2">Pricing</th>
-                                <th class="px-3 py-2">Enterprise</th>
-                                <th class="px-3 py-2">Dev Exp</th>
-                                <th class="px-3 py-2">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($rows as $r)
-                                @php
-                                    $score = isset($r['totalScore']) ? (int) $r['totalScore'] : 0;
-                                    $isBest = $score === $bestScore;
-                                    $isSearched = isset($r['name']) && \Illuminate\Support\Str::slug($r['name']) === \Illuminate\Support\Str::slug($company);
-                                    $logoPath = isset($r['logo']) ? asset('images/logos/' . $r['logo']) : '';
-                                @endphp
-
-                                <tr class="odd:bg-white even:bg-gray-50 {{ $isBest ? 'bg-accent/10 border-l-4 border-l-accent' : '' }}">
-                                    <td class="px-3 py-3 align-middle">
-                                        <div class="flex items-center gap-3">
-                                            @if ($logoPath)
-                                                <img src="{{ $logoPath }}" alt="{{ $r['name'] ?? '' }} logo" class="h-10 w-10 object-cover rounded-md" />
-                                            @endif
-                                            <div>
-                                                <div class="flex items-center gap-2">
-                                                    <div class="font-medium">{{ $r['name'] ?? '' }}</div>
-                                                    @if ($isSearched)
-                                                        <span class="text-xs bg-gray-100 border px-2 py-0.5 rounded text-gray-600">Searched</span>
-                                                    @endif
-                                                    @if ($isBest && !$isSearched)
-                                                        <span class="text-xs bg-green-400 border border-green-400 px-2 py-0.5 rounded text-white-700">TOP</span>
-                                                    @endif
-                                                </div>
-                                                <div class="text-sm text-gray-500">{{ $r['description'] ?? '' }}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td class="px-3 py-3 text-center align-middle">
-                                        <div class="font-medium">{{ $score }}</div>
-                                        <div class="text-xs text-gray-500">/25</div>
-                                    </td>
-
-                                    @foreach (['easeOfSetup','performance','pricing','enterpriseReadiness','developerExperience'] as $col)
-                                        @php $val = isset($r[$col]) ? (int)$r[$col] : null; @endphp
-                                        <td class="px-3 py-3 align-middle">
-                                            @if ($val !== null)
-                                                <div class="w-40 bg-gray-100 h-2 rounded overflow-hidden">
-                                                    <div class="h-2 bg-green-500" style="width: {{ ($val/5)*100 }}%;"></div>
-                                                </div>
-                                                <div class="text-xs text-gray-500 mt-1">{{ $val }}/5</div>
-                                            @else
-                                                <div class="text-sm text-gray-500">—</div>
-                                            @endif
-                                        </td>
-                                    @endforeach
-
-                                    <td class="px-3 py-3 align-middle">
-                                        @if (isset($r['name']))
-                                            <a href="{{ route('matrix.details', ['alternative' => \Illuminate\Support\Str::slug($r['name']), 'company' => $company]) }}" class="inline-flex items-center px-3 py-1.5 border border-gray-200 rounded text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent">Details</a>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            @else
-                <p class="text-gray-500">No data found.</p>
-            @endif
+            <h1 class="text-2xl font-bold">Alternative Details</h1>
+            <p class="text-sm text-gray-600">Detailed comparison between the selected alternative and the searched company.</p>
         </section>
 
         @if ($selected)
@@ -122,7 +27,6 @@
                         </div>
                         <div>
                             <h2 class="text-2xl font-bold">{{ $selected['name'] ?? 'Selected' }}</h2>
-                            {{-- <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $toPercent($selected['totalScore']) ?? $selected['totalScore'] }}%</span></p> --}}
                             @php $selectedPercent = $toPercent($selected['totalScore']) ?? null; @endphp
                             <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $selectedPercent !== null ? $selectedPercent . '%' : '—' }}</span></p>
                             @if (isset($selected['website']))
@@ -250,6 +154,8 @@
                     </div>
                 </section>
             </section>
+        @else
+            <p class="text-gray-500">No alternative selected or not found.</p>
         @endif
     </main>
 </x-app-layout>

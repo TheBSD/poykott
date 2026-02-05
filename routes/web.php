@@ -51,6 +51,8 @@ Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('simi
 // Matrix Alternatives (CSV-driven comparison)
 Route::get('matrix-alternatives', [MatrixAlternativesController::class, 'index'])->name('matrix.index');
 Route::get('matrix-alternatives/{company}/{alternative?}', [MatrixAlternativesController::class, 'show'])->name('matrix.show');
+// Matrix Alternative Details (1 on 1 comparison)
+Route::get('matrix/{alternative}/details/{company}', [MatrixAlternativesController::class, 'details'])->name('matrix.details');
 
 // Webhooks
 Route::get('webhooks/mailchimp', MailchimpRedirectionController::class)->name('mailchimp.webhook');
