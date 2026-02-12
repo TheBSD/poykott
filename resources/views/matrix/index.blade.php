@@ -35,7 +35,7 @@
                     @endforeach
                 </div>
             @else
-                <p class="text-gray-500">No matrix CSVs found. Place CSV files in <strong>storage/app/matrix</strong>.</p>
+                <p class="text-gray-500">No data for matrix comparisons found.</p>
             @endif
         </section>
     </main>

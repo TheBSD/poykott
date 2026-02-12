@@ -27,13 +27,11 @@
                         <thead>
                             <tr class="bg-gray-50">
                                 <th class="px-3 py-2 text-left">Alternative</th>
-                                <th class="px-3 py-2 text-center">Total</th>
-                                <th class="px-3 py-2">Ease</th>
-                                <th class="px-3 py-2">Performance</th>
-                                <th class="px-3 py-2">Pricing</th>
-                                <th class="px-3 py-2">Enterprise</th>
-                                <th class="px-3 py-2">Dev Exp</th>
-                                <th class="px-3 py-2">Actions</th>
+                                <th class="px-3 py-2 text-left">Total</th>
+                                <th class="px-3 py-2 text-left">Features</th>
+                                <th class="px-3 py-2 text-left">Security</th>
+                                <th class="px-3 py-2 text-left">Pricing</th>
+                                <th class="px-3 py-2 text-left">ISL Presence</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,17 +66,28 @@
 
                                     <td class="px-3 py-3 text-center align-middle">
                                         <div class="font-medium">{{ $score }}</div>
-                                        <div class="text-xs text-gray-500">/25</div>
+                                        <div class="text-xs text-gray-500">/100</div>
                                     </td>
 
-                                    @foreach (['easeOfSetup','performance','pricing','enterpriseReadiness','developerExperience'] as $col)
-                                        @php $val = isset($r[$col]) ? (int)$r[$col] : null; @endphp
+                                    @php
+                                        $colMaxes = [
+                                            'features' => 25,
+                                            'security' => 5,
+                                            'pricing' => 30,
+                                            'islPresence' => 40,
+                                        ];
+                                    @endphp
+                                    @foreach (['features','security','pricing','islPresence'] as $col)
+                                        @php
+                                            $val = isset($r[$col]) ? (int)$r[$col] : null;
+                                            $max = $colMaxes[$col] ?? 100;
+                                        @endphp
                                         <td class="px-3 py-3 align-middle">
                                             @if ($val !== null)
                                                 <div class="w-40 bg-gray-100 h-2 rounded overflow-hidden">
-                                                    <div class="h-2 bg-green-500" style="width: {{ ($val/5)*100 }}%;"></div>
+                                                    <div class="h-2 bg-green-500" style="width: {{ ($val/$max)*100 }}%;"></div>
                                                 </div>
-                                                <div class="text-xs text-gray-500 mt-1">{{ $val }}/5</div>
+                                                <div class="text-xs text-gray-500 mt-1">{{ $val }}/{{ $max }}</div>
                                             @else
                                                 <div class="text-sm text-gray-500">—</div>
                                             @endif
@@ -159,46 +168,6 @@
                 </section>
 
                 <section>
-                    <h3 class="text-xl font-semibold mb-4">Functionalities</h3>
-                    <div class="overflow-x-auto">
-                        <div class="relative w-full overflow-x-auto">
-                            <table class="w-full caption-bottom text-sm">
-                                <thead class="[&_tr]:border-b">
-                                    <tr class="border-b">
-                                        <th class="text-foreground h-10 px-2 text-left font-medium w-1/3">Feature</th>
-                                        <th class="h-10 px-2 text-left font-medium w-1/3 text-accent">{{ $selected['name'] }}</th>
-                                        <th class="text-foreground h-10 px-2 text-left font-medium w-1/3">{{ $searched['name'] ?? $company }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $features = [
-                                            'serverlessFunctions' => 'Serverless Functions',
-                                            'previewEnvironments' => 'Preview Environments',
-                                            'edgeCaching' => 'Edge Caching',
-                                            'backendIntegration' => 'Backend Integration',
-                                            'performanceMonitoring' => 'Performance Monitoring',
-                                        ];
-                                        $renderFeature = function($row, $key) {
-                                            if (!$row) return '—';
-                                            if (isset($row[$key]) && $row[$key] !== '') return $row[$key];
-                                            return '—';
-                                        };
-                                    @endphp
-                                    @foreach ($features as $key => $label)
-                                        <tr class="border-b">
-                                            <td class="p-2 font-medium">{{ $label }}</td>
-                                            <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{{ $renderFeature($selected, $key) }}</td>
-                                            <td class="p-2">{{ $renderFeature($searched, $key) }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
                     <h3 class="text-xl font-semibold mb-4">Summary</h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-card border rounded-lg p-4">
@@ -227,22 +196,34 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $metrics = [
-                                            'founded' => 'Founded',
-                                            'employees' => 'Employees',
-                                            'primaryUseCase' => 'Primary Use Case',
-                                            'targetUsers' => 'Target Users',
-                                            'fundingToDate' => 'Funding to Date',
-                                            'revenue2024' => '2024 Revenue',
-                                            'growthRate' => 'Growth Rate',
+                                        $orderedSections = [
+                                            ['title' => 'Recommendation and Risk Summary', 'items' => ['Overall Risk Level', 'Best Use Case', 'Recommendation']],
+                                            ['title' => 'Features', 'items' => ['Setup Complexity', 'Drag and Drop editing', 'AI Services', 'Specialized Plugins', 'All-in-one hosting', 'Access to code', 'E-Commerce tools']],
+                                            ['title' => 'Security and Compliance', 'items' => ['Security and Compliance']],
+                                            ['title' => 'Pricing', 'items' => ['Free tier', 'Team tier', 'Business tier']],
+                                            ['title' => 'ISL Presence & Ties Assessment', 'items' => ['Headquarters', 'Major ISL Investment', 'ISL Partnerships', 'Data Centers', 'Founder/Leadership', 'Leadership Pro ISL Statements']],
                                         ];
+
+                                        $renderCell = function($row, $key) {
+                                            if (! $row) return '—';
+                                            return $row[$key] ?? ($row[strtolower(str_replace(' ', '', $key))] ?? '—');
+                                        };
                                     @endphp
-                                    @foreach ($metrics as $key => $label)
-                                        <tr class="border-b">
-                                            <td class="p-2 font-medium">{{ $label }}</td>
-                                            <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{{ $selected[$key] ?? '—' }}</td>
-                                            <td class="p-2">{{ $searched[$key] ?? '—' }}</td>
+
+                                    @foreach ($orderedSections as $section)
+                                        <tr class="bg-gray-50">
+                                            <td class="p-2 font-semibold">{{ $section['title'] }}</td>
+                                            <td class="p-2"></td>
+                                            <td class="p-2"></td>
                                         </tr>
+
+                                        @foreach ($section['items'] as $item)
+                                            <tr class="border-b">
+                                                <td class="p-2 pl-6">{{ $item }}</td>
+                                                <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{!! nl2br(e($renderCell($selected, $item))) !!}</td>
+                                                <td class="p-2">{!! nl2br(e($renderCell($searched, $item))) !!}</td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
                                 </tbody>
                             </table>

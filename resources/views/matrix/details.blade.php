@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <section>
+                {{-- <section>
                     <h3 class="text-xl font-semibold mb-4">Evidence / Presence in Israel</h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-card border rounded-lg p-4 border-accent">
@@ -60,9 +60,9 @@
                             <p class="text-muted-foreground">{{ $searched['presence'] ?? $searched['description'] ?? 'No presence data available.' }}</p>
                         </div>
                     </div>
-                </section>
+                </section> --}}
 
-                <section>
+                {{-- <section>
                     <h3 class="text-xl font-semibold mb-4">Functionalities</h3>
                     <div class="overflow-x-auto">
                         <div class="relative w-full overflow-x-auto">
@@ -100,9 +100,9 @@
                             </table>
                         </div>
                     </div>
-                </section>
+                </section> --}}
 
-                <section>
+                {{-- <section>
                     <h3 class="text-xl font-semibold mb-4">Summary</h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-card border rounded-lg p-4">
@@ -115,7 +115,7 @@
                             <p class="text-muted-foreground">{{ $selected['pricingNotes'] ?? (($selected['pricing'] ?? null) ? $selected['pricing'] : 'Pricing details not available') }}</p>
                         </div>
                     </div>
-                </section>
+                </section> --}}
 
                 <section>
                     <h3 class="text-xl font-semibold mb-4">Details</h3>
@@ -131,22 +131,34 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $metrics = [
-                                            'founded' => 'Founded',
-                                            'employees' => 'Employees',
-                                            'primaryUseCase' => 'Primary Use Case',
-                                            'targetUsers' => 'Target Users',
-                                            'fundingToDate' => 'Funding to Date',
-                                            'revenue2024' => '2024 Revenue',
-                                            'growthRate' => 'Growth Rate',
+                                        $orderedSections = [
+                                            ['title' => 'Recommendation and Risk Summary', 'items' => ['Overall Risk Level', 'Best Use Case', 'Recommendation']],
+                                            ['title' => 'Features', 'items' => ['Setup Complexity', 'Drag and Drop editing', 'AI Services', 'Specialized Plugins', 'All-in-one hosting', 'Access to code', 'E-Commerce tools']],
+                                            ['title' => 'Security and Compliance', 'items' => []],
+                                            ['title' => 'Pricing', 'items' => ['Free tier', 'Team tier', 'Business tier']],
+                                            ['title' => 'ISL Presence & Ties Assessment', 'items' => ['Headquarters', 'Major ISL Investment', 'ISL Partnerships', 'Data Centers', 'Founder/Leadership', 'Leadership Pro ISL Statements']],
                                         ];
+
+                                        $renderCell = function($row, $key) {
+                                            if (! $row) return '—';
+                                            return $row[$key] ?? ($row[strtolower(str_replace(' ', '', $key))] ?? '—');
+                                        };
                                     @endphp
-                                    @foreach ($metrics as $key => $label)
-                                        <tr class="border-b">
-                                            <td class="p-2 font-medium">{{ $label }}</td>
-                                            <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{{ $selected[$key] ?? '—' }}</td>
-                                            <td class="p-2">{{ $searched[$key] ?? '—' }}</td>
+
+                                    @foreach ($orderedSections as $section)
+                                        <tr class="bg-gray-50">
+                                            <td class="p-2 font-semibold">{{ $section['title'] }}</td>
+                                            <td class="p-2"></td>
+                                            <td class="p-2"></td>
                                         </tr>
+
+                                        @foreach ($section['items'] as $item)
+                                            <tr class="border-b">
+                                                <td class="p-2 pl-6">{{ $item }}</td>
+                                                <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{!! nl2br(e($renderCell($selected, $item))) !!}</td>
+                                                <td class="p-2">{!! nl2br(e($renderCell($searched, $item))) !!}</td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
                                 </tbody>
                             </table>
