@@ -84,11 +84,29 @@ class MatrixAlternativesController extends Controller
             }
         }
 
+        // Enrich rows with computed properties
+        $enrichedRows = $this->enrichRowsForDisplay($rows, $company);
+
+        // Create a closure that delegates to the renderCellValue method
+        $renderCellValue = function (?array $row, string $key): string {
+            return $this->renderCellValue($row, $key);
+        };
+
         return view('matrix.show', [
             'company' => $company,
-            'rows' => $rows,
+            'rows' => $enrichedRows,
             'selected' => $selected,
             'searchedCompany' => $searchedCompany,
+            'bestScore' => $this->calculateBestScore($rows, $company),
+            'comparisonData' => $this->prepareComparisonData($selected, $searchedCompany),
+            'orderedSections' => $this->getOrderedTableSections(),
+            'columnMaxes' => [
+                'features' => 25,
+                'security' => 5,
+                'pricing' => 30,
+                'islPresence' => 40,
+            ],
+            'renderCellValue' => $renderCellValue,
         ]);
     }
 
@@ -138,6 +156,14 @@ class MatrixAlternativesController extends Controller
             'rows' => $rows,
             'selected' => $selected,
             'searchedCompany' => $searchedCompany,
+            'comparisonData' => $this->prepareComparisonData($selected, $searchedCompany),
+            'orderedSections' => $this->getOrderedTableSections(),
+            'renderCellValue' => function (?array $row, string $key): string {
+                return $this->renderCellValue($row, $key);
+            },
+            'getCellScore' => function (?array $row, string $key): string {
+                return $this->getCellScore($row, $key);
+            },
         ]);
     }
 
@@ -166,28 +192,42 @@ class MatrixAlternativesController extends Controller
             && count($firstRow) > 2;
 
         if ($isTransposed) {
-            // Collect vendor header columns (skip the first column which is criteria)
+            // New structure: Odd columns (C=2, E=4, G=6, I=8...) are company score columns
+            // Even columns (D=3, F=5, H=7, J=9...) are company description columns
+            // Collect only odd columns for main vendor data
             $vendorCols = [];
+            $vendorDescCols = [];
+
             foreach ($firstRow as $c => $val) {
-                $val = trim((string) $val);
-                if ($c === 0) {
+                // Skip column 0 (criteria) and column 1 (weights)
+                if ($c <= 1) {
                     continue;
                 }
+
+                $val = trim((string) $val);
                 if ($val === '') {
                     continue;
                 }
                 if (preg_match('/weight/i', $val)) {
                     continue;
                 }
-                $vendorCols[$c] = $val;
+
+                // Odd columns (2, 4, 6...) are company score columns
+                if ($c % 2 === 0) {
+                    $vendorCols[$c] = $val;
+                }
+                // Even columns (3, 5, 7...) are company description columns
+                elseif ($c % 2 === 1) {
+                    $vendorDescCols[$c] = $val;
+                }
             }
 
-            // For each vendor header column, decide which column in data rows
-            // holds the value. Many exports place a weight column immediately
-            // before the vendor name, so prefer col-1 when it contains data.
+            // For each odd vendor column, the corresponding even column (c+1) holds descriptions
             $valueColForVendor = [];
+            $descColForVendor = [];
             foreach ($vendorCols as $c => $name) {
-                $valueColForVendor[$c] = isset($raw[1][$c - 1]) && trim((string) ($raw[1][$c - 1])) !== '' ? $c - 1 : $c;
+                $valueColForVendor[$c] = $c;
+                $descColForVendor[$c] = $c + 1; // Description is in the next column
             }
 
             // Build a map of vendor => metrics, and detect parent metrics with subitems
@@ -243,15 +283,17 @@ class MatrixAlternativesController extends Controller
                     $vc = $valueColForVendor[$c];
                     $value = $row[$vc] ?? null;
 
-                    // If the value is empty but we have an adjacent column, try it
-                    // This handles CSVs where column layout varies between rows
-                    if ((empty($value) || $value === '') && isset($row[$c])) {
-                        $value = $row[$c];
-                    } elseif ((empty($value) || $value === '') && $vc + 1 < count($row)) {
-                        $value = $row[$vc + 1];
-                    }
+                    // Get the description from the paired even column
+                    $descCol = $descColForVendor[$c];
+                    $description = $row[$descCol] ?? null;
 
                     $vendorMetrics[$name][$metric] = $value;
+
+                    // Store description with a special key suffix so it's accessible in details page
+                    // e.g., if metric is "Headquarters", description key is "Headquarters_description"
+                    if (! empty($description)) {
+                        $vendorMetrics[$name][$metric . '_description'] = $description;
+                    }
                 }
             }
 
@@ -306,18 +348,27 @@ class MatrixAlternativesController extends Controller
                     if ($k === 'name') {
                         continue;
                     }
+
+                    // Handle _description keys separately - normalize the base key first
+                    $isDescription = str_ends_with($k, '_description');
+                    $baseKey = $isDescription ? substr($k, 0, -strlen('_description')) : $k;
+
                     $normalized = null;
                     foreach ($normalizeMap as $pattern => $target) {
-                        if (preg_match($pattern, $k)) {
+                        if (preg_match($pattern, $baseKey)) {
                             $normalized = $target;
                             break;
                         }
                     }
                     if ($normalized === null) {
-                        $normalized = $k;
+                        $normalized = $baseKey;
                     }
-                    if (! array_key_exists($normalized, $mapped) || $mapped[$normalized] === null) {
-                        $mapped[$normalized] = $v;
+
+                    // Reconstruct the key with _description suffix if applicable
+                    $finalKey = $isDescription ? $normalized . '_description' : $normalized;
+
+                    if (! array_key_exists($finalKey, $mapped) || $mapped[$finalKey] === null) {
+                        $mapped[$finalKey] = $v;
                     }
                 }
                 $mappedRows[] = $mapped;
@@ -517,5 +568,181 @@ class MatrixAlternativesController extends Controller
         }
 
         return $rows;
+    }
+
+    /**
+     * Format a score as a percentage (out of 100).
+     * Divides by 4 first to normalize from the CSV parsing which produces 4x values.
+     */
+    private function formatScoreAsPercent(?int $score): ?int
+    {
+        if ($score === null) {
+            return null;
+        }
+
+        return (int) round(($score / 4) / 25 * 100);
+    }
+
+    /**
+     * Get the ordered table sections with items.
+     */
+    private function getOrderedTableSections(): array
+    {
+        return [
+            ['title' => 'Recommendation and Risk Summary', 'items' => ['Overall Risk Level', 'Best Use Case', 'Recommendation']],
+            ['title' => 'Features', 'items' => ['Setup Complexity', 'Drag and Drop editing', 'AI Services', 'Specialized Plugins', 'All-in-one hosting', 'Access to code', 'E-Commerce tools']],
+            ['title' => 'Security and Compliance', 'items' => ['Security and Compliance']],
+            ['title' => 'Pricing', 'items' => ['Free tier', 'Team tier', 'Business tier']],
+            ['title' => 'ISL Presence & Ties Assessment', 'items' => ['Headquarters', 'Major ISL Investment', 'ISL Partnerships', 'Data Centers', 'Founder/Leadership', 'Leadership Pro ISL Statements']],
+        ];
+    }
+
+    /**
+     * Render a cell value from a row, with intelligent fallback logic.
+     * Prefers _description suffixed keys for displaying detailed text.
+     */
+    private function renderCellValue(?array $row, string $key): string
+    {
+        if ($row === null || $row === []) {
+            return '—';
+        }
+
+        // First, try to find the description version of the key
+        $descKey = $key . '_description';
+        if (isset($row[$descKey]) && ! empty($row[$descKey])) {
+            return (string) $row[$descKey];
+        }
+
+        // Create a normalized mapping of keys for flexible matching
+        $normalizedMap = [];
+        foreach ($row as $k => $v) {
+            $normalized = strtolower(str_replace([' ', '_', '-'], '', $k));
+            $normalizedMap[$normalized] = $v;
+        }
+
+        // Try exact key match first
+        if (isset($row[$key])) {
+            return (string) $row[$key];
+        }
+
+        // Try normalized key match (case-insensitive, ignore whitespace/punctuation)
+        $normalizedKey = strtolower(str_replace([' ', '_', '-'], '', $key));
+        if (isset($normalizedMap[$normalizedKey])) {
+            return (string) $normalizedMap[$normalizedKey];
+        }
+
+        // Try partial matches for common patterns
+        foreach ($normalizedMap as $normKey => $value) {
+            if (str_contains($normKey, $normalizedKey) || str_contains($normalizedKey, $normKey)) {
+                return (string) $value;
+            }
+        }
+
+        return '—';
+    }
+
+    /**
+     * Get just the score for a cell (without description).
+     * Returns the numeric value or description value if no pure score exists.
+     */
+    private function getCellScore(?array $row, string $key): string
+    {
+        if ($row === null || $row === []) {
+            return '—';
+        }
+
+        // Create a normalized mapping of keys for flexible matching
+        $normalizedMap = [];
+        foreach ($row as $k => $v) {
+            // Skip _description keys - we only want the base score values
+            if (str_ends_with($k, '_description')) {
+                continue;
+            }
+            $normalized = strtolower(str_replace([' ', '_', '-'], '', $k));
+            $normalizedMap[$normalized] = $v;
+        }
+
+        // Try exact key match first
+        if (isset($row[$key]) && ! str_ends_with($key, '_description')) {
+            return (string) $row[$key];
+        }
+
+        // Try normalized key match (case-insensitive, ignore whitespace/punctuation)
+        $normalizedKey = strtolower(str_replace([' ', '_', '-'], '', $key));
+        if (isset($normalizedMap[$normalizedKey])) {
+            return (string) $normalizedMap[$normalizedKey];
+        }
+
+        // Try partial matches for common patterns
+        foreach ($normalizedMap as $normKey => $value) {
+            if (str_contains($normKey, $normalizedKey) || str_contains($normalizedKey, $normKey)) {
+                return (string) $value;
+            }
+        }
+
+        return '—';
+    }
+
+    /**
+     * Calculate the best score from rows, excluding the searched company.
+     */
+    private function calculateBestScore(array $rows, string $company): ?int
+    {
+        $bestScore = null;
+        foreach ($rows as $r) {
+            $isSearchedRow = isset($r['name']) && Str::slug($r['name']) === Str::slug($company);
+            if ($isSearchedRow) {
+                continue;
+            }
+
+            $score = isset($r['totalScore']) ? (int) $r['totalScore'] : 0;
+            if ($bestScore === null || $score > $bestScore) {
+                $bestScore = $score;
+            }
+        }
+
+        return $bestScore;
+    }
+
+    /**
+     * Enrich rows with computed properties for display in matrix view.
+     * Filters out _description keys to keep matrix view focused on scores only.
+     */
+    private function enrichRowsForDisplay(array $rows, string $company): array
+    {
+        $bestScore = $this->calculateBestScore($rows, $company);
+
+        return array_map(function ($row) use ($company, $bestScore): array {
+            $score = isset($row['totalScore']) ? (int) $row['totalScore'] : 0;
+            $name = $row['name'] ?? '';
+
+            // Filter out _description keys for matrix view (they're only for details page)
+            $cleanRow = [];
+            foreach ($row as $k => $v) {
+                if (! str_ends_with($k, '_description')) {
+                    $cleanRow[$k] = $v;
+                }
+            }
+
+            return array_merge($cleanRow, [
+                'score' => $score,
+                'isBest' => $score === $bestScore,
+                'isSearched' => Str::slug($name) === Str::slug($company),
+                'logoPath' => isset($cleanRow['logo']) ? asset('images/logos/' . $cleanRow['logo']) : '',
+            ]);
+        }, $rows);
+    }
+
+    /**
+     * Prepare comparison data for display (logos and percentages).
+     */
+    private function prepareComparisonData(?array $selected, ?array $searchedCompany): array
+    {
+        return [
+            'selectedLogo' => $selected && isset($selected['logo']) ? asset('images/logos/' . $selected['logo']) : null,
+            'searchedLogo' => $searchedCompany && isset($searchedCompany['logo']) ? asset('images/logos/' . $searchedCompany['logo']) : null,
+            'selectedPercent' => $selected !== null && $selected !== [] ? $this->formatScoreAsPercent($selected['totalScore'] ?? null) : null,
+            'searchedPercent' => $searchedCompany !== null && $searchedCompany !== [] ? $this->formatScoreAsPercent($searchedCompany['totalScore'] ?? null) : null,
+        ];
     }
 }

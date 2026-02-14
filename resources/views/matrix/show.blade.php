@@ -7,21 +7,6 @@
 
         <section class="mt-6">
             @if (count($rows))
-                @php
-                    $bestScore = null;
-                    foreach ($rows as $r) {
-                        $isSearchedRow = isset($r['name']) && \Illuminate\Support\Str::slug($r['name']) === \Illuminate\Support\Str::slug($company);
-                        if ($isSearchedRow) {
-                            continue;
-                        }
-
-                        $score = isset($r['totalScore']) ? (int) $r['totalScore'] : 0;
-                        if ($bestScore === null || $score > $bestScore) {
-                            $bestScore = $score;
-                        }
-                    }
-                @endphp
-
                 <div class="overflow-x-auto">
                     <table class="min-w-full border-collapse">
                         <thead>
@@ -36,26 +21,19 @@
                         </thead>
                         <tbody>
                             @foreach ($rows as $r)
-                                @php
-                                    $score = isset($r['totalScore']) ? (int) $r['totalScore'] : 0;
-                                    $isBest = $score === $bestScore;
-                                    $isSearched = isset($r['name']) && \Illuminate\Support\Str::slug($r['name']) === \Illuminate\Support\Str::slug($company);
-                                    $logoPath = isset($r['logo']) ? asset('images/logos/' . $r['logo']) : '';
-                                @endphp
-
-                                <tr class="odd:bg-white even:bg-gray-50 {{ $isBest ? 'bg-accent/10 border-l-4 border-l-accent' : '' }}">
+                                <tr class="odd:bg-white even:bg-gray-50 {{ $r['isBest'] ? 'bg-accent/10 border-l-4 border-l-accent' : '' }}">
                                     <td class="px-3 py-3 align-middle">
                                         <div class="flex items-center gap-3">
-                                            @if ($logoPath)
-                                                <img src="{{ $logoPath }}" alt="{{ $r['name'] ?? '' }} logo" class="h-10 w-10 object-cover rounded-md" />
+                                            @if ($r['logoPath'])
+                                                <img src="{{ $r['logoPath'] }}" alt="{{ $r['name'] ?? '' }} logo" class="h-10 w-10 object-cover rounded-md" />
                                             @endif
                                             <div>
                                                 <div class="flex items-center gap-2">
                                                     <div class="font-medium">{{ $r['name'] ?? '' }}</div>
-                                                    @if ($isSearched)
+                                                    @if ($r['isSearched'])
                                                         <span class="text-xs bg-gray-100 border px-2 py-0.5 rounded text-gray-600">Searched</span>
                                                     @endif
-                                                    @if ($isBest && !$isSearched)
+                                                    @if ($r['isBest'] && !$r['isSearched'])
                                                         <span class="text-xs bg-green-400 border border-green-400 px-2 py-0.5 rounded text-white-700">TOP</span>
                                                     @endif
                                                 </div>
@@ -65,22 +43,14 @@
                                     </td>
 
                                     <td class="px-3 py-3 text-center align-middle">
-                                        <div class="font-medium">{{ $score }}</div>
+                                        <div class="font-medium">{{ $r['score'] }}</div>
                                         <div class="text-xs text-gray-500">/100</div>
                                     </td>
 
-                                    @php
-                                        $colMaxes = [
-                                            'features' => 25,
-                                            'security' => 5,
-                                            'pricing' => 30,
-                                            'islPresence' => 40,
-                                        ];
-                                    @endphp
                                     @foreach (['features','security','pricing','islPresence'] as $col)
                                         @php
                                             $val = isset($r[$col]) ? (int)$r[$col] : null;
-                                            $max = $colMaxes[$col] ?? 100;
+                                            $max = $columnMaxes[$col] ?? 100;
                                         @endphp
                                         <td class="px-3 py-3 align-middle">
                                             @if ($val !== null)
@@ -111,29 +81,20 @@
 
         @if ($selected)
             @php
-                $selectedLogo = isset($selected['logo']) ? asset('images/logos/' . $selected['logo']) : null;
                 $searched = $searchedCompany ?? null;
-                $searchedLogo = $searched && isset($searched['logo']) ? asset('images/logos/' . $searched['logo']) : null;
-                $toPercent = function($score) {
-                    if ($score === null) return null;
-                    $s = (int)$score;
-                    return round(($s / 25) * 100);
-                };
             @endphp
 
             <section class="space-y-8">
                 <div class="flex justify-between gap-4 pb-4 border-b border-border">
                     <div class="flex items-center gap-4 border-l-4 border-l-accent pl-4">
                         <div class="relative h-16 w-16 rounded-lg overflow-hidden bg-secondary flex-shrink-0">
-                            @if ($selectedLogo)
-                                <img src="{{ $selectedLogo }}" alt="{{ $selected['name'] }} logo" class="object-contain p-2 h-full w-full" />
+                            @if ($comparisonData['selectedLogo'])
+                                <img src="{{ $comparisonData['selectedLogo'] }}" alt="{{ $selected['name'] }} logo" class="object-contain p-2 h-full w-full" />
                             @endif
                         </div>
                         <div>
                             <h2 class="text-2xl font-bold">{{ $selected['name'] ?? 'Selected' }}</h2>
-                            {{-- <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $toPercent($selected['totalScore']) ?? $selected['totalScore'] }}%</span></p> --}}
-                            @php $selectedPercent = $toPercent($selected['totalScore']) ?? null; @endphp
-                            <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $selectedPercent !== null ? $selectedPercent . '%' : '—' }}</span></p>
+                            <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $comparisonData['selectedPercent'] !== null ? $comparisonData['selectedPercent'] . '%' : '—' }}</span></p>
                             @if (isset($selected['website']))
                                 <a target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-accent hover:underline mt-1" href="{{ $selected['website'] }}">Visit Website <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
                             @endif
@@ -143,11 +104,11 @@
                     <div class="flex items-center gap-4">
                         <div>
                             <h2 class="text-2xl font-bold text-right">{{ $searched['name'] ?? $company }}</h2>
-                            <p class="text-muted-foreground text-right">Total Score: <span class="text-foreground font-semibold">{{ $toPercent($searched['totalScore'] ?? null) ?? ($searched['totalScore'] ?? '—') }}%</span></p>
+                            <p class="text-muted-foreground text-right">Total Score: <span class="text-foreground font-semibold">{{ $comparisonData['searchedPercent'] !== null ? $comparisonData['searchedPercent'] . '%' : '—' }}</span></p>
                         </div>
                         <div class="relative h-16 w-16 rounded-lg overflow-hidden bg-secondary flex-shrink-0">
-                            @if ($searchedLogo)
-                                <img src="{{ $searchedLogo }}" alt="{{ $searched['name'] ?? '' }} logo" class="object-contain p-2 h-full w-full" />
+                            @if ($comparisonData['searchedLogo'])
+                                <img src="{{ $comparisonData['searchedLogo'] }}" alt="{{ $searched['name'] ?? '' }} logo" class="object-contain p-2 h-full w-full" />
                             @endif
                         </div>
                     </div>
@@ -195,21 +156,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $orderedSections = [
-                                            ['title' => 'Recommendation and Risk Summary', 'items' => ['Overall Risk Level', 'Best Use Case', 'Recommendation']],
-                                            ['title' => 'Features', 'items' => ['Setup Complexity', 'Drag and Drop editing', 'AI Services', 'Specialized Plugins', 'All-in-one hosting', 'Access to code', 'E-Commerce tools']],
-                                            ['title' => 'Security and Compliance', 'items' => ['Security and Compliance']],
-                                            ['title' => 'Pricing', 'items' => ['Free tier', 'Team tier', 'Business tier']],
-                                            ['title' => 'ISL Presence & Ties Assessment', 'items' => ['Headquarters', 'Major ISL Investment', 'ISL Partnerships', 'Data Centers', 'Founder/Leadership', 'Leadership Pro ISL Statements']],
-                                        ];
-
-                                        $renderCell = function($row, $key) {
-                                            if (! $row) return '—';
-                                            return $row[$key] ?? ($row[strtolower(str_replace(' ', '', $key))] ?? '—');
-                                        };
-                                    @endphp
-
                                     @foreach ($orderedSections as $section)
                                         <tr class="bg-gray-50">
                                             <td class="p-2 font-semibold">{{ $section['title'] }}</td>
@@ -220,8 +166,8 @@
                                         @foreach ($section['items'] as $item)
                                             <tr class="border-b">
                                                 <td class="p-2 pl-6">{{ $item }}</td>
-                                                <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{!! nl2br(e($renderCell($selected, $item))) !!}</td>
-                                                <td class="p-2">{!! nl2br(e($renderCell($searched, $item))) !!}</td>
+                                                <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{!! nl2br(e($renderCellValue($selected, $item))) !!}</td>
+                                                <td class="p-2">{!! nl2br(e($renderCellValue($searched, $item))) !!}</td>
                                             </tr>
                                         @endforeach
                                     @endforeach
