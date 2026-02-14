@@ -66,6 +66,12 @@
                     >
                         Stay updated
                     </a>
+                    <a
+                        href="{{ route('matrix.index') }}"
+                        class="{{ request()->routeIs('matrix.*') ? 'text-gray-900' : 'text-gray-500' }} text-base font-medium hover:text-gray-900"
+                    >
+                        Matrix-Alternatives
+                    </a>
                 </nav>
             </div>
         </div>
@@ -204,6 +210,29 @@
                                     ></path>
                                 </svg>
                                 <span class="ml-3 text-base font-medium text-gray-900">Stay updated</span>
+                            </a>
+
+                            <a
+                                href="{{ route('matrix.index') }}"
+                                @click="open = false"
+                                class="{{ request()->routeIs('matrix.*') ? 'bg-blue-50' : '' }} -m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                            >
+                                <svg
+                                    class="h-6 w-6 flex-shrink-0 text-indigo-600"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
+                                </svg>
+                                <span class="ml-3 text-base font-medium text-gray-900">Matrix-Alternatives</span>
                             </a>
                         </nav>
                     </div>

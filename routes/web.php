@@ -6,6 +6,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\MailchimpRedirectionController;
+use App\Http\Controllers\MatrixAlternativesController;
 use App\Http\Controllers\OpCacheController;
 use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,11 @@ Route::get('about', [HomeController::class, 'about'])->name('about');
 Route::get('faqs', FaqController::class)->name('faqs');
 Route::get('newsletter', [HomeController::class, 'newsletter'])->name('newsletter.get');
 Route::get('similar-sites', [HomeController::class, 'similarSites'])->name('similar-sites');
+// Matrix Alternatives (CSV-driven comparison)
+Route::get('matrix-alternatives', [MatrixAlternativesController::class, 'index'])->name('matrix.index');
+Route::get('matrix-alternatives/{company}/{alternative?}', [MatrixAlternativesController::class, 'show'])->name('matrix.show');
+// Matrix Alternative Details (1 on 1 comparison)
+Route::get('matrix/{alternative}/details/{company}', [MatrixAlternativesController::class, 'details'])->name('matrix.details');
 
 // Webhooks
 Route::get('webhooks/mailchimp', MailchimpRedirectionController::class)->name('mailchimp.webhook');
