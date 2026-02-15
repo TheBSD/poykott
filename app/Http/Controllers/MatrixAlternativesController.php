@@ -571,19 +571,6 @@ class MatrixAlternativesController extends Controller
     }
 
     /**
-     * Format a score as a percentage (out of 100).
-     * Divides by 4 first to normalize from the CSV parsing which produces 4x values.
-     */
-    private function formatScoreAsPercent(?int $score): ?int
-    {
-        if ($score === null) {
-            return null;
-        }
-
-        return (int) round(($score / 4) / 25 * 100);
-    }
-
-    /**
      * Get the ordered table sections with items.
      */
     private function getOrderedTableSections(): array
@@ -741,8 +728,8 @@ class MatrixAlternativesController extends Controller
         return [
             'selectedLogo' => $selected && isset($selected['logo']) ? asset('images/logos/' . $selected['logo']) : null,
             'searchedLogo' => $searchedCompany && isset($searchedCompany['logo']) ? asset('images/logos/' . $searchedCompany['logo']) : null,
-            'selectedPercent' => $selected !== null && $selected !== [] ? $this->formatScoreAsPercent($selected['totalScore'] ?? null) : null,
-            'searchedPercent' => $searchedCompany !== null && $searchedCompany !== [] ? $this->formatScoreAsPercent($searchedCompany['totalScore'] ?? null) : null,
+            'selectedPercent' => $selected !== null && $selected !== [] ? round($selected['totalScore'] ?? null) : null,
+            'searchedPercent' => $searchedCompany !== null && $searchedCompany !== [] ? round($searchedCompany['totalScore'] ?? null) : null,
         ];
     }
 }
