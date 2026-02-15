@@ -488,9 +488,8 @@ class MatrixAlternativesController extends Controller
                     }
                 }
 
-                // Total score is just the sum of all category scores (max 100)
-                $totalScore = $mappedRows[$i]['islPresence'] ?? 0;
-                $mappedRows[$i]['totalScore'] = $totalScore;
+                $mappedRows[$i]['totalScore'] =
+                    $mappedRows[$i]['islPresence'] ?? 0;
             }
 
             return $mappedRows;
