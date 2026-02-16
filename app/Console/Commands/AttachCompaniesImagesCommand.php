@@ -16,7 +16,7 @@ class AttachCompaniesImagesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'attach-images-companies';
+    protected $signature = 'import:attach-images-companies';
 
     /**
      * The console command description.
@@ -45,43 +45,45 @@ class AttachCompaniesImagesCommand extends Command
             /** @var Collection $notes * */
             $notes = $company->notes;
 
-            if ($notes->first() == 'image attached') {
+            if (isset($notes['notes']) && $notes['notes'] == 'image attached') {
                 return;
             }
 
-            $url = $notes->groupBy('url')->keys()->first();
+            if (! isset($notes['url'])) {
+                return;
+            }
 
-            $imagePath = get_image_archive_path($url, 'companies');
+            if ($notes['url']) {
+                $imagePath = get_image_archive_path($notes['url'], 'companies');
+                DB::beginTransaction();
+                try {
+                    if (! add_image_for_model($imagePath, $company)) {
+                        $this->info("Failed to add image from folder for company:$company->name");
 
-            DB::beginTransaction();
+                        if (Str::isUrl($notes['url'])) {
+                            $this->info('Try to Download it from Url..');
 
-            try {
-                if (! add_image_for_model($imagePath, $company)) {
-                    $this->info("Failed to add image from folder for company:$company->name");
-
-                    if (Str::isUrl($url)) {
-                        $this->info('Try to Download it from Url..');
-
-                        try {
-                            $company->addMediaFromUrl($url)->toMediaCollection();
-                            $this->info("Successfully add image from Url for person:$company->name");
-                            $succeeded++;
-                        } catch (Exception) {
-                            $this->info("Failed to add image from url for person:$company->name");
-                            $failed++;
+                            try {
+                                $company->addMediaFromUrl($notes['url'])->toMediaCollection();
+                                $this->info("Successfully add image from Url for company:$company->name");
+                                $notes['notes'] = 'image attached';
+                                $company->update(['notes' => $notes]);
+                                $succeeded++;
+                            } catch (Exception $e) {
+                                $this->info("Failed to add image from url for company:$company->name");
+                                $this->error($e->getMessage());
+                                $failed++;
+                            }
                         }
+                    } else {
+                        $this->info("Successfully add image from folder for company:$company->name");
+                        $succeeded++;
                     }
-                } else {
-                    $this->info("Successfully add image from folder for company:$company->name");
-                    $succeeded++;
+                    DB::commit();
+                } catch (Exception $e) {
+                    DB::rollback();
+                    $this->error($e->getMessage());
                 }
-
-                $company->update(['notes' => 'image attached']);
-
-                DB::commit();
-            } catch (Exception $e) {
-                DB::rollback();
-                $this->error($e->getMessage());
             }
         });
         // });

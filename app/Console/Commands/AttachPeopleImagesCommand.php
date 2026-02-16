@@ -16,7 +16,7 @@ class AttachPeopleImagesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'attach-images-people';
+    protected $signature = 'import:attach-images-people';
 
     /**
      * The console command description.
@@ -48,28 +48,32 @@ class AttachPeopleImagesCommand extends Command
             /** @var Collection $notes * */
             $notes = $person->notes;
 
-            if ($notes->first() == 'image attached') {
+            if (isset($notes['notes']) && $notes['notes'] == 'image attached') {
                 return;
             }
 
-            $url = $notes->groupBy('url')->keys()->first();
+            if (! isset($notes['url'])) {
+                return;
+            }
 
-            $imagePath = get_image_archive_path($url, 'people');
-
+            $imagePath = get_image_archive_path($notes['url'], 'people');
             DB::beginTransaction();
-
             try {
                 if (! add_image_for_model($imagePath, $person)) {
                     $this->info("Failed to add image from folder for person:$person->name");
 
-                    if (Str::isUrl($url)) {
+                    if (Str::isUrl($notes['url'])) {
                         $this->info('Try to Download it from Url..');
 
                         try {
-                            $person->addMediaFromUrl($url)->toMediaCollection();
+                            $person->addMediaFromUrl($notes['url'])->toMediaCollection();
                             $this->info("Successfully add image from Url for person:$person->name");
-                        } catch (Exception) {
+                            $notes['notes'] = 'image attached';
+                            $person->update(['notes' => $notes]);
+                            $succeeded++;
+                        } catch (Exception $e) {
                             $this->info("Failed to add image from url for person:$person->name");
+                            $this->error($e->getMessage());
                             $failed++;
                         }
                     }
@@ -77,9 +81,6 @@ class AttachPeopleImagesCommand extends Command
                     $this->info("Successfully add image from folder for person:$person->name");
                     $succeeded++;
                 }
-
-                $person->update(['notes' => 'image attached']);
-
                 DB::commit();
             } catch (Exception $e) {
                 DB::rollback();
