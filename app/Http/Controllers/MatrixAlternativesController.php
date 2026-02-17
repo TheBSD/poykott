@@ -7,12 +7,20 @@ use Illuminate\Support\Str;
 
 class MatrixAlternativesController extends Controller
 {
-    // List available company CSVs in storage/app/matrix
+    // ─── Column maximums exposed to views ────────────────────────────────────
+
+    private const COLUMN_MAXES = [
+        'features' => 25,
+        'security' => 5,
+        'pricing' => 30,
+        'islPresence' => 40,
+    ];
+
+    // ─── Public actions ───────────────────────────────────────────────────────
+
     public function index()
     {
-        // If user submitted a company via query string, redirect to the show route.
-        $company = request()->query('company');
-        if (! empty($company)) {
+        if ($company = request()->query('company')) {
             return redirect()->route('matrix.show', ['company' => $company]);
         }
 
@@ -23,18 +31,15 @@ class MatrixAlternativesController extends Controller
             foreach (glob($dir . '/*.csv') as $path) {
                 $name = pathinfo($path, PATHINFO_FILENAME);
                 $slug = Str::slug($name);
-
-                // Try to find a Company model so we can use the media library image_path.
-                $companyModel = Company::query()->where('slug', $slug)
+                $model = Company::query()
+                    ->where('slug', $slug)
                     ->orWhere('name', $name)
                     ->first();
-
-                $imagePath = $companyModel?->image_path ?? asset('images/logos/' . $slug . '.svg');
 
                 $files[] = [
                     'slug' => $slug,
                     'name' => $name,
-                    'image_path' => $imagePath,
+                    'image_path' => $model?->image_path ?? asset('images/logos/' . $slug . '.svg'),
                 ];
             }
         }
@@ -42,114 +47,36 @@ class MatrixAlternativesController extends Controller
         return view('matrix.index', ['companies' => $files]);
     }
 
-    // Show matrix for a company and optional alternative detail
-    public function show(string $company, $alternative = null)
+    public function show(string $company)
     {
-        $slug = Str::slug($company);
-        $dir = storage_path('app/matrix');
-        $file = $dir . '/' . $company . '.csv';
-
-        // fallback: try slug -> original filename discovery
-        if (! file_exists($file)) {
-            foreach (glob($dir . '/*.csv') as $path) {
-                $name = pathinfo($path, PATHINFO_FILENAME);
-                // Match exact slug, slug contains, or filename contains company name (case-insensitive)
-                if (Str::slug($name) === $slug
-                    || Str::contains(Str::slug($name), $slug)
-                    || Str::contains(Str::lower($name), Str::lower($company))) {
-                    $file = $path;
-                    break;
-                }
-            }
-        }
-
-        abort_unless(file_exists($file), 404, 'Matrix CSV not found for ' . $company);
+        $file = $this->resolveCsvFile($company);
+        abort_unless($file !== null, 404, 'Matrix CSV not found for ' . $company);
 
         $rows = $this->parseMatrixCsv($file);
-
-        $selected = null;
-        foreach ($rows as $r) {
-            if (isset($r['name']) && Str::slug($r['name']) === Str::slug($alternative)) {
-                $selected = $r;
-                break;
-            }
-        }
-
-        // find the searched company row (the company being compared)
-        $searchedCompany = null;
-        foreach ($rows as $r) {
-            if (isset($r['name']) && Str::slug($r['name']) === Str::slug($company)) {
-                $searchedCompany = $r;
-                break;
-            }
-        }
-
-        // Enrich rows with computed properties
-        $enrichedRows = $this->enrichRowsForDisplay($rows, $company);
-
-        // Create a closure that delegates to the renderCellValue method
-        $renderCellValue = function (?array $row, string $key): string {
-            return $this->renderCellValue($row, $key);
-        };
+        $selected = $this->findRowByName($rows, $company);
+        $searchedCompany = $selected;
 
         return view('matrix.show', [
             'company' => $company,
-            'rows' => $enrichedRows,
+            'rows' => $this->enrichRowsForDisplay($rows, $company),
             'selected' => $selected,
             'searchedCompany' => $searchedCompany,
             'bestScore' => $this->calculateBestScore($rows, $company),
             'comparisonData' => $this->prepareComparisonData($selected, $searchedCompany),
             'orderedSections' => $this->getOrderedTableSections(),
-            'columnMaxes' => [
-                'features' => 25,
-                'security' => 5,
-                'pricing' => 30,
-                'islPresence' => 40,
-            ],
-            'renderCellValue' => $renderCellValue,
+            'columnMaxes' => self::COLUMN_MAXES,
+            'renderCellValue' => fn (?array $row, string $key): string => $this->renderCellValue($row, $key),
         ]);
     }
 
-    // Show a dedicated details page for an alternative compared against a company
     public function details(string $alternative, string $company)
     {
-        $slug = Str::slug($company);
-        $dir = storage_path('app/matrix');
-        $file = $dir . '/' . $company . '.csv';
-
-        // fallback: try slug -> original filename discovery
-        if (! file_exists($file)) {
-            foreach (glob($dir . '/*.csv') as $path) {
-                $name = pathinfo($path, PATHINFO_FILENAME);
-                if (Str::slug($name) === $slug
-                    || Str::contains(Str::slug($name), $slug)
-                    || Str::contains(Str::lower($name), Str::lower($company))) {
-                    $file = $path;
-                    break;
-                }
-            }
-        }
-
-        abort_unless(file_exists($file), 404, 'Matrix CSV not found for ' . $company);
+        $file = $this->resolveCsvFile($company);
+        abort_unless($file !== null, 404, 'Matrix CSV not found for ' . $company);
 
         $rows = $this->parseMatrixCsv($file);
-
-        $selected = null;
-        foreach ($rows as $r) {
-            if (isset($r['name']) && Str::slug($r['name']) === Str::slug($alternative)) {
-                $selected = $r;
-                break;
-            }
-        }
-
-        // find the searched company row (the company being compared)
-        $searchedCompany = null;
-        foreach ($rows as $r) {
-            if (isset($r['name']) && Str::slug($r['name']) === Str::slug($company)) {
-                $searchedCompany = $r;
-                break;
-            }
-        }
+        $selected = $this->findRowByName($rows, $alternative);
+        $searchedCompany = $this->findRowByName($rows, $company);
 
         return view('matrix.details', [
             'company' => $company,
@@ -158,530 +85,470 @@ class MatrixAlternativesController extends Controller
             'searchedCompany' => $searchedCompany,
             'comparisonData' => $this->prepareComparisonData($selected, $searchedCompany),
             'orderedSections' => $this->getOrderedTableSections(),
-            'renderCellValue' => function (?array $row, string $key): string {
-                return $this->renderCellValue($row, $key);
-            },
-            'getCellScore' => function (?array $row, string $key): string {
-                return $this->getCellScore($row, $key);
-            },
+            'renderCellValue' => fn (?array $row, string $key): string => $this->renderCellValue($row, $key),
+            'getCellScore' => fn (?array $row, string $key): string => $this->getCellScore($row, $key),
         ]);
     }
 
-    // Parse matrix CSVs produced by either the simple row-per-alternative format
-    // or the transposed Excel-export format (criteria rows, vendor columns).
+    // ─── CSV resolution ───────────────────────────────────────────────────────
+
+    private function resolveCsvFile(string $company): ?string
+    {
+        $dir = storage_path('app/matrix');
+        $direct = $dir . '/' . $company . '.csv';
+
+        if (file_exists($direct)) {
+            return $direct;
+        }
+
+        $slug = Str::slug($company);
+        foreach (glob($dir . '/*.csv') as $path) {
+            $name = pathinfo($path, PATHINFO_FILENAME);
+            if (
+                Str::slug($name) === $slug
+                || Str::contains(Str::slug($name), $slug)
+                || Str::contains(Str::lower($name), Str::lower($company))
+            ) {
+                return $path;
+            }
+        }
+
+        return null;
+    }
+
+    // ─── Row lookup ───────────────────────────────────────────────────────────
+
+    private function findRowByName(array $rows, string $name): ?array
+    {
+        $target = Str::slug($name);
+        foreach ($rows as $row) {
+            if (isset($row['name']) && Str::slug($row['name']) === $target) {
+                return $row;
+            }
+        }
+
+        return null;
+    }
+
+    // ─── CSV parsing ──────────────────────────────────────────────────────────
+
     private function parseMatrixCsv(string $file): array
     {
-        $raw = [];
-        abort_if(($handle = fopen($file, 'r')) === false, 500, 'Failed to open CSV for parsing: ' . basename($file));
-        while (($row = fgetcsv($handle)) !== false) {
-            $raw[] = $row;
-        }
-        fclose($handle);
+        $raw = $this->readRawCsv($file);
 
         if ($raw === []) {
             return [];
         }
 
-        // Heuristic: if the first row does not contain a "name" header and
-        // contains a token like "Weight" and multiple non-empty cells, treat
-        // it as the transposed (criteria x vendors) format produced by Excel.
-        $firstRow = $raw[0];
-        $joinedFirst = implode(' ', $firstRow);
-        $isTransposed = (stripos($joinedFirst, 'name') === false)
-            && (stripos($joinedFirst, 'weight') !== false)
+        return $this->isTransposedFormat($raw[0])
+            ? $this->parseTransposedCsv($raw)
+            : $this->parseSimpleCsv($raw);
+    }
+
+    private function readRawCsv(string $file): array
+    {
+        abort_if(($handle = fopen($file, 'r')) === false, 500, 'Failed to open CSV: ' . basename($file));
+
+        $raw = [];
+        while (($row = fgetcsv($handle)) !== false) {
+            $raw[] = $row;
+        }
+        fclose($handle);
+
+        return $raw;
+    }
+
+    private function isTransposedFormat(array $firstRow): bool
+    {
+        $joined = implode(' ', $firstRow);
+
+        return stripos($joined, 'name') === false
+            && stripos($joined, 'weight') !== false
             && count($firstRow) > 2;
+    }
 
-        if ($isTransposed) {
-            // New structure: Odd columns (C=2, E=4, G=6, I=8...) are company score columns
-            // Even columns (D=3, F=5, H=7, J=9...) are company description columns
-            // Collect only odd columns for main vendor data
-            $vendorCols = [];
-            $vendorDescCols = [];
+    // ─── Transposed CSV parsing ───────────────────────────────────────────────
 
-            foreach ($firstRow as $c => $val) {
-                // Skip column 0 (criteria) and column 1 (weights)
-                if ($c <= 1) {
-                    continue;
-                }
+    private function parseTransposedCsv(array $raw): array
+    {
+        $vendorCols = $this->extractVendorColumns($raw[0]);
 
-                $val = trim((string) $val);
-                if ($val === '') {
-                    continue;
-                }
-                if (preg_match('/weight/i', $val)) {
-                    continue;
-                }
+        [$vendorMetrics, $metricWeights] = $this->extractVendorMetrics($raw, $vendorCols);
 
-                // Odd columns (2, 4, 6...) are company score columns
-                if ($c % 2 === 0) {
-                    $vendorCols[$c] = $val;
-                }
-                // Even columns (3, 5, 7...) are company description columns
-                elseif ($c % 2 === 1) {
-                    $vendorDescCols[$c] = $val;
-                }
+        $rows = $this->buildVendorRows($vendorCols, $vendorMetrics);
+        $mappedRows = array_map([$this, 'normalizeRowKeys'], $rows);
+        $weightLookup = $this->buildMetricWeightLookup($metricWeights);
+
+        return $this->computeScoresForRows($mappedRows, $weightLookup);
+    }
+
+    /**
+     * Return [col_index => vendor_name] for every even score column (cols >= 2).
+     * Even-indexed columns (2, 4, 6...) are score columns;
+     * their odd-indexed neighbours (3, 5, 7...) are description siblings.
+     */
+    private function extractVendorColumns(array $firstRow): array
+    {
+        $vendorCols = [];
+        foreach ($firstRow as $c => $val) {
+            if ($c <= 1) {
+                continue;
+            }
+            $val = trim((string) $val);
+            if ($val === '') {
+                continue;
+            }
+            if (preg_match('/weight/i', $val)) {
+                continue;
+            }
+            if ($c % 2 === 0) {
+                $vendorCols[$c] = $val;
+            }
+        }
+
+        return $vendorCols;
+    }
+
+    /**
+     * Walk data rows of transposed CSV and return:
+     *   [0] vendorMetrics  - [vendorName => [metric => value, metric_description => text]]
+     *   [1] metricWeights  - [metricName => float]
+     */
+    private function extractVendorMetrics(array $raw, array $vendorCols): array
+    {
+        $vendorMetrics = [];
+        $metricWeights = [];
+
+        for ($r = 1, $total = count($raw); $r < $total; $r++) {
+            $row = $raw[$r];
+            $metric = isset($row[0]) ? trim((string) $row[0]) : null;
+            if ($metric === null) {
+                continue;
+            }
+            if ($metric === '') {
+                continue;
             }
 
-            // For each odd vendor column, the corresponding even column (c+1) holds descriptions
-            $valueColForVendor = [];
-            $descColForVendor = [];
+            $weight = $this->parseWeightCell($row[1] ?? null);
+            if ($weight !== null) {
+                $metricWeights[$metric] = $weight;
+            }
+
             foreach ($vendorCols as $c => $name) {
-                $valueColForVendor[$c] = $c;
-                $descColForVendor[$c] = $c + 1; // Description is in the next column
-            }
+                $vendorMetrics[$name][$metric] = $row[$c] ?? null;
 
-            // Build a map of vendor => metrics, and detect parent metrics with subitems
-            $vendorMetrics = [];
-            $metricWeights = [];
-            $metricHierarchy = []; // Track parent -> [subitems]
-            $currentParent = null;
-            $counter = count($raw);
-
-            for ($r = 1; $r < $counter; $r++) {
-                $row = $raw[$r];
-                $metric = isset($row[0]) ? trim((string) $row[0]) : null;
-                if ($metric === null || $metric === '') {
-                    // Empty row may signal section break, reset parent
-                    $currentParent = null;
-
-                    continue;
+                $desc = $row[$c + 1] ?? null;
+                if (! empty($desc)) {
+                    $vendorMetrics[$name][$metric . '_description'] = $desc;
                 }
-
-                // Attempt to read a metric-level weight from column 1 (e.g. "30" or "37%")
-                $rawWeight = $row[1] ?? null;
-                $hasWeight = false;
-                if ($rawWeight !== null) {
-                    $w = trim((string) $rawWeight);
-                    // strip percent and non-numeric characters
-                    $w = rtrim($w, "%\t \n\r");
-                    $wNum = is_numeric($w) ? (float) $w : null;
-                    if ($wNum === null && preg_match('/(\d+)/', (string) $rawWeight, $m)) {
-                        $wNum = (float) $m[1];
-                    }
-                    if ($wNum !== null) {
-                        $metricWeights[$metric] = $wNum;
-                        $hasWeight = true;
-                    }
-                }
-
-                // Structural detection: if current row has a weight and previous row was not parsed as subitems,
-                // treat it as a parent metric. Otherwise, treat as subitem of the last parent.
-                if ($hasWeight && $currentParent === null) {
-                    // This is a parent metric (has weight in column 1)
-                    $currentParent = $metric;
-                    $metricHierarchy[$currentParent] = [];
-                } elseif ($hasWeight && $currentParent !== null) {
-                    // New parent metric found
-                    $currentParent = $metric;
-                    $metricHierarchy[$currentParent] = [];
-                } elseif (! $hasWeight && $currentParent !== null) {
-                    // This is a subitem of the current parent
-                    $metricHierarchy[$currentParent][] = $metric;
-                }
-
-                foreach ($vendorCols as $c => $name) {
-                    $vc = $valueColForVendor[$c];
-                    $value = $row[$vc] ?? null;
-
-                    // Get the description from the paired even column
-                    $descCol = $descColForVendor[$c];
-                    $description = $row[$descCol] ?? null;
-
-                    $vendorMetrics[$name][$metric] = $value;
-
-                    // Store description with a special key suffix so it's accessible in details page
-                    // e.g., if metric is "Headquarters", description key is "Headquarters_description"
-                    if (! empty($description)) {
-                        $vendorMetrics[$name][$metric . '_description'] = $description;
-                    }
-                }
-            }
-
-            // Turn vendorMetrics into the expected array-of-assoc-rows format
-            $rows = [];
-            foreach ($vendorCols as $name) {
-                $entry = ['name' => $name];
-                if (isset($vendorMetrics[$name])) {
-                    foreach ($vendorMetrics[$name] as $metric => $val) {
-                        $entry[$metric] = $val;
-                    }
-                }
-                $rows[] = $entry;
-            }
-
-            // Normalize metric keys to the canonical headings requested by UX
-            $normalizeMap = [
-                '/overall risk level/i' => 'Overall Risk Level',
-                '/best use case/i' => 'Best Use Case',
-                '/recommendation/i' => 'Recommendation',
-
-                '/setup complexity/i' => 'Setup Complexity',
-                '/drag and drop editing/i' => 'Drag and Drop editing',
-                '/AI services/i' => 'AI Services',
-                '/Specialized plugins/i' => 'Specialized Plugins',
-                '/All-in-one hosting/i' => 'All-in-one hosting',
-                '/Access to code/i' => 'Access to code',
-                '/E-Commerce tools/i' => 'E-Commerce tools',
-
-                '/security and compliance/i' => 'Security and Compliance',
-
-                '/israel.*presence|isl.*presence/i' => 'ISL Presence & Ties Assessment',
-
-                '/free tier/i' => 'Free tier',
-                '/team tier/i' => 'Team tier',
-                '/business tier/i' => 'Business tier',
-
-                '/headquarters/i' => 'Headquarters',
-                '/major.*investment/i' => 'Major ISL Investment',
-                '/partnership/i' => 'ISL Partnerships',
-                '/data center/i' => 'Data Centers',
-                '/founder/i' => 'Founder/Leadership',
-                '/leadership pro.*isl|leadership pro-isr|leadership pro-israel/i' => 'Leadership Pro ISL Statements',
-            ];
-
-            $mappedRows = [];
-            $normalizedHierarchy = []; // Track normalized parent -> [normalized subitems]
-
-            foreach ($rows as $r) {
-                $mapped = ['name' => $r['name'] ?? null];
-                foreach ($r as $k => $v) {
-                    if ($k === 'name') {
-                        continue;
-                    }
-
-                    // Handle _description keys separately - normalize the base key first
-                    $isDescription = str_ends_with($k, '_description');
-                    $baseKey = $isDescription ? substr($k, 0, -strlen('_description')) : $k;
-
-                    $normalized = null;
-                    foreach ($normalizeMap as $pattern => $target) {
-                        if (preg_match($pattern, $baseKey)) {
-                            $normalized = $target;
-                            break;
-                        }
-                    }
-                    if ($normalized === null) {
-                        $normalized = $baseKey;
-                    }
-
-                    // Reconstruct the key with _description suffix if applicable
-                    $finalKey = $isDescription ? $normalized . '_description' : $normalized;
-
-                    if (! array_key_exists($finalKey, $mapped) || $mapped[$finalKey] === null) {
-                        $mapped[$finalKey] = $v;
-                    }
-                }
-                $mappedRows[] = $mapped;
-            }
-
-            // Rebuild normalized hierarchy map
-            foreach ($metricHierarchy as $parent => $subitems) {
-                $normParent = null;
-                foreach ($normalizeMap as $pattern => $target) {
-                    if (preg_match($pattern, $parent)) {
-                        $normParent = $target;
-                        break;
-                    }
-                }
-                $normParent ??= $parent;
-
-                $normSubitems = [];
-                foreach ($subitems as $sub) {
-                    $normSub = null;
-                    foreach ($normalizeMap as $pattern => $target) {
-                        if (preg_match($pattern, $sub)) {
-                            $normSub = $target;
-                            break;
-                        }
-                    }
-                    $normSubitems[] = ($normSub ?? $sub);
-                }
-                $normalizedHierarchy[$normParent] = $normSubitems;
-            }
-
-            // Compute totalScore for each mappedRow using metric weights if available.
-            $defaultWeights = [
-                'Features' => 25,
-                'Security and Compliance' => 5,
-                'Pricing' => 30,
-                'ISL Presence & Ties Assessment' => 40,
-            ];
-
-            // Canonical grouping used for scoring
-            $scoringMetrics = ['Features', 'Security and Compliance', 'Pricing', 'ISL Presence & Ties Assessment'];
-
-            // Build metricWeights lookup using normalized keys where possible
-            $metricWeightLookup = [];
-            foreach ($metricWeights as $k => $v) {
-                // normalize metric label to our canonical targets if possible
-                $found = null;
-                foreach ($normalizeMap as $pattern => $target) {
-                    if (preg_match($pattern, $k)) {
-                        $found = $target;
-                        break;
-                    }
-                }
-                $keyName = $found ?? $k;
-                $metricWeightLookup[$keyName] = $v;
-            }
-
-            // helper to coerce numeric-like values
-            $toNumber = function ($v): ?float {
-                if ($v === null) {
-                    return null;
-                }
-                $s = trim((string) $v);
-                if ($s === '') {
-                    return null;
-                }
-                // strip percent sign
-                $s = rtrim($s, "%\t \n\r");
-                // extract first number
-                if (is_numeric($s)) {
-                    return (float) $s;
-                }
-                if (preg_match('/(-?\d+(?:\.\d+)?)/', $s, $m)) {
-                    return (float) $m[1];
-                }
-
-                return null;
-            };
-
-            // For each vendor row, compute category scores and totalScore
-            foreach ($mappedRows as $i => $mr) {
-                $vendorName = $mr['name'] ?? null;
-                if ($vendorName === null) {
-                    continue;
-                }
-
-                // Initialize all category scores
-                $mappedRows[$i]['features'] = 0;
-                $mappedRows[$i]['security'] = 0;
-                $mappedRows[$i]['pricing'] = 0;
-                $mappedRows[$i]['islPresence'] = 0;
-
-                // Map canonical metric names to lowercase keys and their weights
-                $metricKeyMap = [
-                    'Features' => ['key' => 'features', 'weight' => 25],
-                    'Security and Compliance' => ['key' => 'security', 'weight' => 5],
-                    'Pricing' => ['key' => 'pricing', 'weight' => 30],
-                    'ISL Presence & Ties Assessment' => ['key' => 'islPresence', 'weight' => 40],
-                ];
-
-                foreach ($scoringMetrics as $metricKey) {
-                    $metricWeight = $metricWeightLookup[$metricKey] ?? ($defaultWeights[$metricKey] ?? 0);
-                    if ($metricWeight <= 0) {
-                        continue;
-                    }
-
-                    $metricValue = $mr[$metricKey] ?? null;
-                    $mappingInfo = $metricKeyMap[$metricKey] ?? null;
-
-                    // Use ONLY the direct main category value from CSV
-                    // Do NOT aggregate from subcategories - they are descriptions/explanations
-                    $nVal = $toNumber($metricValue);
-
-                    // Store category score using its weight as maximum
-                    if ($mappingInfo && $nVal !== null) {
-                        $maxValue = $mappingInfo['weight'];
-                        $mappedRows[$i][$mappingInfo['key']] = (int) round(min($maxValue, max(0, $nVal)));
-                    }
-                }
-
-                $mappedRows[$i]['totalScore'] =
-                    $mappedRows[$i]['islPresence'] ?? 0;
-            }
-
-            return $mappedRows;
-        }
-
-        // Fallback: assume first row is headers and subsequent rows are records
-        $headers = $raw[0];
-        $rows = [];
-        $counter = count($raw);
-        for ($i = 1; $i < $counter; $i++) {
-            $row = $raw[$i];
-            if (count($row) === count($headers)) {
-                $rows[] = array_combine($headers, $row);
             }
         }
 
-        // Calculate category scores for fallback format
-        $metricKeyMap = [
-            'Features' => ['key' => 'features', 'weight' => 25],
-            'Security and Compliance' => ['key' => 'security', 'weight' => 5],
-            'Pricing' => ['key' => 'pricing', 'weight' => 30],
-            'ISL Presence & Ties Assessment' => ['key' => 'islPresence', 'weight' => 40],
-        ];
+        return [$vendorMetrics, $metricWeights];
+    }
 
-        $toNumber = function ($v): ?float {
-            if ($v === null) {
-                return null;
-            }
-            $s = trim((string) $v);
-            if ($s === '') {
-                return null;
-            }
-            $s = rtrim($s, "%\t \n\r");
-            if (is_numeric($s)) {
-                return (float) $s;
-            }
-            if (preg_match('/(-?\d+(?:\.\d+)?)/', $s, $m)) {
-                return (float) $m[1];
-            }
-
+    private function parseWeightCell(mixed $raw): ?float
+    {
+        if ($raw === null) {
             return null;
-        };
+        }
+        $s = rtrim(trim((string) $raw), "%\t \n\r");
+        if (is_numeric($s)) {
+            return (float) $s;
+        }
+        if (preg_match('/(\d+)/', (string) $raw, $m)) {
+            return (float) $m[1];
+        }
 
-        foreach ($rows as $i => $r) {
-            // Initialize all category scores
-            $rows[$i]['features'] = 0;
-            $rows[$i]['security'] = 0;
-            $rows[$i]['pricing'] = 0;
-            $rows[$i]['islPresence'] = 0;
-            $totalScore = 0;
+        return null;
+    }
 
-            foreach ($metricKeyMap as $metricKey => $mappingInfo) {
-                // Try exact match first, then case-insensitive matches
-                $value = null;
-                if (isset($r[$metricKey])) {
-                    $value = $r[$metricKey];
-                } else {
-                    // Try to find matching key case-insensitively
-                    foreach ($r as $k => $v) {
-                        if (strtolower($k) === strtolower($metricKey)) {
-                            $value = $v;
-                            break;
-                        }
-                    }
-                }
-
-                $nVal = $toNumber($value);
-                if ($nVal !== null) {
-                    $maxValue = $mappingInfo['weight'];
-                    $rows[$i][$mappingInfo['key']] = (int) round(min($maxValue, max(0, $nVal)));
-                    $totalScore += $rows[$i][$mappingInfo['key']];
-                }
+    private function buildVendorRows(array $vendorCols, array $vendorMetrics): array
+    {
+        $rows = [];
+        foreach ($vendorCols as $name) {
+            $entry = ['name' => $name];
+            foreach ($vendorMetrics[$name] ?? [] as $metric => $val) {
+                $entry[$metric] = $val;
             }
-            $rows[$i]['totalScore'] = $totalScore;
+            $rows[] = $entry;
         }
 
         return $rows;
     }
 
-    /**
-     * Get the ordered table sections with items.
-     */
-    private function getOrderedTableSections(): array
+    // ─── Simple (header-row) CSV parsing ─────────────────────────────────────
+
+    private function parseSimpleCsv(array $raw): array
+    {
+        $headers = $raw[0];
+        $rows = [];
+
+        for ($i = 1, $total = count($raw); $i < $total; $i++) {
+            if (count($raw[$i]) === count($headers)) {
+                $rows[] = array_combine($headers, $raw[$i]);
+            }
+        }
+
+        return $this->computeScoresForRows($rows, []);
+    }
+
+    // ─── Scoring ──────────────────────────────────────────────────────────────
+
+    private function computeScoresForRows(array $rows, array $weightLookup): array
+    {
+        $metricKeyMap = $this->getMetricKeyMap();
+        $defaultWeights = $this->getDefaultWeights();
+
+        foreach ($rows as $i => $row) {
+            $rows[$i]['features'] = 0;
+            $rows[$i]['security'] = 0;
+            $rows[$i]['pricing'] = 0;
+            $rows[$i]['islPresence'] = 0;
+
+            foreach ($metricKeyMap as $metricName => $info) {
+                $weight = $weightLookup[$metricName] ?? ($defaultWeights[$metricName] ?? 0);
+                if ($weight <= 0) {
+                    continue;
+                }
+
+                $nVal = $this->toNumber($this->findValueInRow($row, $metricName));
+
+                if ($nVal !== null) {
+                    $rows[$i][$info['key']] = (int) round(min($info['weight'], max(0, $nVal)));
+                }
+            }
+
+            $rows[$i]['totalScore'] = $rows[$i]['features']
+            + $rows[$i]['security']
+            + $rows[$i]['pricing']
+            + $rows[$i]['islPresence'];
+        }
+
+        return $rows;
+    }
+
+    private function getMetricKeyMap(): array
     {
         return [
-            ['title' => 'Recommendation and Risk Summary', 'items' => ['Overall Risk Level', 'Best Use Case', 'Recommendation']],
-            ['title' => 'Features', 'items' => ['Setup Complexity', 'Drag and Drop editing', 'AI Services', 'Specialized Plugins', 'All-in-one hosting', 'Access to code', 'E-Commerce tools']],
-            ['title' => 'Security and Compliance', 'items' => ['Security and Compliance']],
-            ['title' => 'Pricing', 'items' => ['Free tier', 'Team tier', 'Business tier']],
-            ['title' => 'ISL Presence & Ties Assessment', 'items' => ['Headquarters', 'Major ISL Investment', 'ISL Partnerships', 'Data Centers', 'Founder/Leadership', 'Leadership Pro ISL Statements']],
+            'Features' => ['key' => 'features',    'weight' => 25],
+            'Security and Compliance' => ['key' => 'security',    'weight' => 5],
+            'Pricing' => ['key' => 'pricing',     'weight' => 30],
+            'ISL Presence & Ties Assessment' => ['key' => 'islPresence', 'weight' => 40],
         ];
     }
 
+    private function getDefaultWeights(): array
+    {
+        return [
+            'Features' => 25,
+            'Security and Compliance' => 5,
+            'Pricing' => 30,
+            'ISL Presence & Ties Assessment' => 40,
+        ];
+    }
+
+    private function toNumber(mixed $v): ?float
+    {
+        if ($v === null) {
+            return null;
+        }
+        $s = rtrim(trim((string) $v), "%\t \n\r");
+        if ($s === '') {
+            return null;
+        }
+        if (is_numeric($s)) {
+            return (float) $s;
+        }
+        if (preg_match('/(-?\d+(?:\.\d+)?)/', $s, $m)) {
+            return (float) $m[1];
+        }
+
+        return null;
+    }
+
+    private function findValueInRow(array $row, string $metricName): mixed
+    {
+        if (isset($row[$metricName])) {
+            return $row[$metricName];
+        }
+        foreach ($row as $k => $v) {
+            if (strtolower($k) === strtolower($metricName)) {
+                return $v;
+            }
+        }
+
+        return null;
+    }
+
+    // ─── Key normalization ────────────────────────────────────────────────────
+
+    private function getNormalizeMap(): array
+    {
+        return [
+            '/overall risk level/i' => 'Overall Risk Level',
+            '/best use case/i' => 'Best Use Case',
+            '/recommendation/i' => 'Recommendation',
+            '/setup complexity/i' => 'Setup Complexity',
+            '/drag and drop editing/i' => 'Drag and Drop editing',
+            '/AI services/i' => 'AI Services',
+            '/Specialized plugins/i' => 'Specialized Plugins',
+            '/All-in-one hosting/i' => 'All-in-one hosting',
+            '/Access to code/i' => 'Access to code',
+            '/E-Commerce tools/i' => 'E-Commerce tools',
+            '/security and compliance/i' => 'Security and Compliance',
+            '/israel.*presence|isl.*presence/i' => 'ISL Presence & Ties Assessment',
+            '/free tier/i' => 'Free tier',
+            '/team tier/i' => 'Team tier',
+            '/business tier/i' => 'Business tier',
+            '/headquarters/i' => 'Headquarters',
+            '/major.*investment/i' => 'Major ISL Investment',
+            '/partnership/i' => 'ISL Partnerships',
+            '/data center/i' => 'Data Centers',
+            '/founder/i' => 'Founder/Leadership',
+            '/leadership pro.*isl|leadership pro-isr|leadership pro-israel/i' => 'Leadership Pro ISL Statements',
+        ];
+    }
+
+    private function normalizeMetricKey(string $key): string
+    {
+        foreach ($this->getNormalizeMap() as $pattern => $target) {
+            if (preg_match($pattern, $key)) {
+                return $target;
+            }
+        }
+
+        return $key;
+    }
+
     /**
-     * Render a cell value from a row, with intelligent fallback logic.
-     * Prefers _description suffixed keys for displaying detailed text.
+     * Re-key all metrics in a single row through the normalize map.
+     * _description suffixes are preserved on the normalized base key.
      */
+    private function normalizeRowKeys(array $row): array
+    {
+        $mapped = ['name' => $row['name'] ?? null];
+
+        foreach ($row as $k => $v) {
+            if ($k === 'name') {
+                continue;
+            }
+
+            $isDesc = str_ends_with($k, '_description');
+            $baseKey = $isDesc ? substr($k, 0, -strlen('_description')) : $k;
+            $normKey = $this->normalizeMetricKey($baseKey);
+            $finalKey = $isDesc ? $normKey . '_description' : $normKey;
+
+            if (! array_key_exists($finalKey, $mapped) || $mapped[$finalKey] === null) {
+                $mapped[$finalKey] = $v;
+            }
+        }
+
+        return $mapped;
+    }
+
+    private function buildMetricWeightLookup(array $metricWeights): array
+    {
+        $lookup = [];
+        foreach ($metricWeights as $k => $v) {
+            $lookup[$this->normalizeMetricKey($k)] = $v;
+        }
+
+        return $lookup;
+    }
+
+    // ─── Cell value helpers ───────────────────────────────────────────────────
+
+    /**
+     * Build a flat [normalizedKey => value] map for a row.
+     * When $excludeDescriptions is true, _description keys are skipped.
+     */
+    private function buildNormalizedRowMap(array $row, bool $excludeDescriptions = false): array
+    {
+        $map = [];
+        foreach ($row as $k => $v) {
+            if ($excludeDescriptions && str_ends_with($k, '_description')) {
+                continue;
+            }
+            $map[strtolower(str_replace([' ', '_', '-'], '', $k))] = $v;
+        }
+
+        return $map;
+    }
+
+    /**
+     * Core lookup: find a value in a row by key, with normalized fallback.
+     */
+    private function lookupCellValue(array $row, string $key, bool $excludeDescriptions = false): ?string
+    {
+        if (! $excludeDescriptions) {
+            $descKey = $key . '_description';
+            if (isset($row[$descKey]) && $row[$descKey] !== '') {
+                return (string) $row[$descKey];
+            }
+        }
+
+        if (isset($row[$key]) && (! $excludeDescriptions || ! str_ends_with($key, '_description'))) {
+            return (string) $row[$key];
+        }
+
+        $normMap = $this->buildNormalizedRowMap($row, $excludeDescriptions);
+        $normKey = strtolower(str_replace([' ', '_', '-'], '', $key));
+
+        if (isset($normMap[$normKey])) {
+            return (string) $normMap[$normKey];
+        }
+
+        foreach ($normMap as $k => $v) {
+            if (str_contains($k, $normKey) || str_contains($normKey, $k)) {
+                return (string) $v;
+            }
+        }
+
+        return null;
+    }
+
     private function renderCellValue(?array $row, string $key): string
     {
         if ($row === null || $row === []) {
             return '—';
         }
 
-        // First, try to find the description version of the key
-        $descKey = $key . '_description';
-        if (isset($row[$descKey]) && ! empty($row[$descKey])) {
-            return (string) $row[$descKey];
-        }
-
-        // Create a normalized mapping of keys for flexible matching
-        $normalizedMap = [];
-        foreach ($row as $k => $v) {
-            $normalized = strtolower(str_replace([' ', '_', '-'], '', $k));
-            $normalizedMap[$normalized] = $v;
-        }
-
-        // Try exact key match first
-        if (isset($row[$key])) {
-            return (string) $row[$key];
-        }
-
-        // Try normalized key match (case-insensitive, ignore whitespace/punctuation)
-        $normalizedKey = strtolower(str_replace([' ', '_', '-'], '', $key));
-        if (isset($normalizedMap[$normalizedKey])) {
-            return (string) $normalizedMap[$normalizedKey];
-        }
-
-        // Try partial matches for common patterns
-        foreach ($normalizedMap as $normKey => $value) {
-            if (str_contains($normKey, $normalizedKey) || str_contains($normalizedKey, $normKey)) {
-                return (string) $value;
-            }
-        }
-
-        return '—';
+        return $this->lookupCellValue($row, $key) ?? '—';
     }
 
-    /**
-     * Get just the score for a cell (without description).
-     * Returns the numeric value or description value if no pure score exists.
-     */
     private function getCellScore(?array $row, string $key): string
     {
         if ($row === null || $row === []) {
             return '—';
         }
 
-        // Create a normalized mapping of keys for flexible matching
-        $normalizedMap = [];
-        foreach ($row as $k => $v) {
-            // Skip _description keys - we only want the base score values
-            if (str_ends_with($k, '_description')) {
-                continue;
-            }
-            $normalized = strtolower(str_replace([' ', '_', '-'], '', $k));
-            $normalizedMap[$normalized] = $v;
-        }
-
-        // Try exact key match first
-        if (isset($row[$key]) && ! str_ends_with($key, '_description')) {
-            return (string) $row[$key];
-        }
-
-        // Try normalized key match (case-insensitive, ignore whitespace/punctuation)
-        $normalizedKey = strtolower(str_replace([' ', '_', '-'], '', $key));
-        if (isset($normalizedMap[$normalizedKey])) {
-            return (string) $normalizedMap[$normalizedKey];
-        }
-
-        // Try partial matches for common patterns
-        foreach ($normalizedMap as $normKey => $value) {
-            if (str_contains($normKey, $normalizedKey) || str_contains($normalizedKey, $normKey)) {
-                return (string) $value;
-            }
-        }
-
-        return '—';
+        return $this->lookupCellValue($row, $key, excludeDescriptions: true) ?? '—';
     }
 
-    /**
-     * Calculate the best score from rows, excluding the searched company.
-     */
+    // ─── Display helpers ──────────────────────────────────────────────────────
+
+    private function getOrderedTableSections(): array
+    {
+        return [
+            ['title' => 'Recommendation and Risk Summary', 'items' => ['Overall Risk Level', 'Best Use Case', 'Recommendation']],
+            ['title' => 'Features',                        'items' => ['Setup Complexity', 'Drag and Drop editing', 'AI Services', 'Specialized Plugins', 'All-in-one hosting', 'Access to code', 'E-Commerce tools']],
+            ['title' => 'Security and Compliance',         'items' => ['Security and Compliance']],
+            ['title' => 'Pricing',                         'items' => ['Free tier', 'Team tier', 'Business tier']],
+            ['title' => 'ISL Presence & Ties Assessment',  'items' => ['Headquarters', 'Major ISL Investment', 'ISL Partnerships', 'Data Centers', 'Founder/Leadership', 'Leadership Pro ISL Statements']],
+        ];
+    }
+
     private function calculateBestScore(array $rows, string $company): ?int
     {
+        $target = Str::slug($company);
         $bestScore = null;
-        foreach ($rows as $r) {
-            $isSearchedRow = isset($r['name']) && Str::slug($r['name']) === Str::slug($company);
-            if ($isSearchedRow) {
+
+        foreach ($rows as $row) {
+            if (isset($row['name']) && Str::slug($row['name']) === $target) {
                 continue;
             }
-
-            $score = isset($r['totalScore']) ? (int) $r['totalScore'] : 0;
+            $score = isset($row['totalScore']) ? (int) $row['totalScore'] : 0;
             if ($bestScore === null || $score > $bestScore) {
                 $bestScore = $score;
             }
@@ -690,45 +557,37 @@ class MatrixAlternativesController extends Controller
         return $bestScore;
     }
 
-    /**
-     * Enrich rows with computed properties for display in matrix view.
-     * Filters out _description keys to keep matrix view focused on scores only.
-     */
     private function enrichRowsForDisplay(array $rows, string $company): array
     {
         $bestScore = $this->calculateBestScore($rows, $company);
+        $target = Str::slug($company);
 
-        return array_map(function ($row) use ($company, $bestScore): array {
+        return array_map(function (array $row) use ($bestScore, $target): array {
             $score = isset($row['totalScore']) ? (int) $row['totalScore'] : 0;
             $name = $row['name'] ?? '';
 
-            // Filter out _description keys for matrix view (they're only for details page)
-            $cleanRow = [];
-            foreach ($row as $k => $v) {
-                if (! str_ends_with($k, '_description')) {
-                    $cleanRow[$k] = $v;
-                }
-            }
+            $cleanRow = array_filter(
+                $row,
+                fn ($k): bool => ! str_ends_with($k, '_description'),
+                ARRAY_FILTER_USE_KEY
+            );
 
             return array_merge($cleanRow, [
                 'score' => $score,
                 'isBest' => $score === $bestScore,
-                'isSearched' => Str::slug($name) === Str::slug($company),
+                'isSearched' => Str::slug($name) === $target,
                 'logoPath' => isset($cleanRow['logo']) ? asset('images/logos/' . $cleanRow['logo']) : '',
             ]);
         }, $rows);
     }
 
-    /**
-     * Prepare comparison data for display (logos and percentages).
-     */
-    private function prepareComparisonData(?array $selected, ?array $searchedCompany): array
+    private function prepareComparisonData(?array $selected, ?array $searched): array
     {
         return [
             'selectedLogo' => $selected && isset($selected['logo']) ? asset('images/logos/' . $selected['logo']) : null,
-            'searchedLogo' => $searchedCompany && isset($searchedCompany['logo']) ? asset('images/logos/' . $searchedCompany['logo']) : null,
-            'selectedPercent' => $selected !== null && $selected !== [] ? round($selected['totalScore'] ?? null) : null,
-            'searchedPercent' => $searchedCompany !== null && $searchedCompany !== [] ? round($searchedCompany['totalScore'] ?? null) : null,
+            'searchedLogo' => $searched && isset($searched['logo']) ? asset('images/logos/' . $searched['logo']) : null,
+            'selectedPercent' => ($selected !== null && $selected !== []) ? round($selected['totalScore'] ?? 0) : null,
+            'searchedPercent' => ($searched !== null && $searched !== []) ? round($searched['totalScore'] ?? 0) : null,
         ];
     }
 }

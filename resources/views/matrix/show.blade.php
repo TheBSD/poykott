@@ -79,7 +79,7 @@
             @endif
         </section>
 
-        @if ($selected)
+        {{-- @if ($selected)
             @php
                 $searched = $searchedCompany ?? null;
             @endphp
@@ -92,16 +92,16 @@
                                 <img src="{{ $comparisonData['selectedLogo'] }}" alt="{{ $selected['name'] }} logo" class="object-contain p-2 h-full w-full" />
                             @endif
                         </div>
-                        <div>
+                        {{-- <div>
                             <h2 class="text-2xl font-bold">{{ $selected['name'] ?? 'Selected' }}</h2>
                             <p class="text-muted-foreground">Total Score: <span class="text-accent font-semibold">{{ $comparisonData['selectedPercent'] !== null ? $comparisonData['selectedPercent'] . '%' : '—' }}</span></p>
                             @if (isset($selected['website']))
                                 <a target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-accent hover:underline mt-1" href="{{ $selected['website'] }}">Visit Website <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="flex items-center gap-4">
+                    {{-- <div class="flex items-center gap-4">
                         <div>
                             <h2 class="text-2xl font-bold text-right">{{ $searched['name'] ?? $company }}</h2>
                             <p class="text-muted-foreground text-right">Total Score: <span class="text-foreground font-semibold">{{ $comparisonData['searchedPercent'] !== null ? $comparisonData['searchedPercent'] . '%' : '—' }}</span></p>
@@ -112,9 +112,9 @@
                             @endif
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <section>
+                {{-- <section>
                     <h3 class="text-xl font-semibold mb-4">Evidence / Presence in Israel</h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-card border rounded-lg p-4 border-accent">
@@ -126,9 +126,9 @@
                             <p class="text-muted-foreground">{{ $searched['presence'] ?? $searched['description'] ?? 'No presence data available.' }}</p>
                         </div>
                     </div>
-                </section>
+                </section> --}}
 
-                <section>
+                {{-- <section>
                     <h3 class="text-xl font-semibold mb-4">Summary</h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-card border rounded-lg p-4">
@@ -141,9 +141,9 @@
                             <p class="text-muted-foreground">{{ $selected['pricingNotes'] ?? (($selected['pricing'] ?? null) ? $selected['pricing'] : 'Pricing details not available') }}</p>
                         </div>
                     </div>
-                </section>
+                </section> --}}
 
-                <section>
+                {{-- <section>
                     <h3 class="text-xl font-semibold mb-4">Details</h3>
                     <div class="overflow-x-auto">
                         <div class="relative w-full overflow-x-auto">
@@ -158,7 +158,7 @@
                                 <tbody>
                                     @foreach ($orderedSections as $section)
                                         <tr class="bg-gray-50">
-                                            <td class="p-2 font-semibold">{{ $section['title'] }}</td>
+                                            <td class="p-100 font-semibold">{{ $section['title'] }}</td>
                                             <td class="p-2"></td>
                                             <td class="p-2"></td>
                                         </tr>
@@ -177,6 +177,6 @@
                     </div>
                 </section>
             </section>
-        @endif
+        @endif --}}
     </main>
 </x-app-layout>

@@ -45,10 +45,11 @@
                                 <thead class="[&_tr]:border-b">
                                     <tr class="border-b">
                                         <th class="text-foreground h-10 px-2 text-left font-medium">Metric</th>
-                                        <th class="h-10 px-2 text-right font-medium text-accent w-16">{{ $selected['name'] }} Score</th>
+                                        {{-- <th class="h-10 px-2 text-right font-medium text-accent w-16">{{ $selected['name'] }} Score</th> --}}
                                         <th class="h-10 px-2 text-left font-medium text-accent flex-1">{{ $selected['name'] }} Details</th>
-                                        <th class="h-10 px-2 text-right font-medium w-16">{{ $searchedCompany['name'] ?? $company }} Score</th>
-                                        <th class="text-foreground h-10 px-2 text-left font-medium flex-1">{{ $searchedCompany['name'] ?? $company }} Details</th>
+                                        {{-- <th class="h-10 px-2 text-right font-medium w-16">{{ $searchedCompany['name'] ?? $company }} Score</th> --}}
+                                        {{-- <th class="text-foreground h-10 px-2 text-left font-medium flex-1">{{ $searchedCompany['name'] ?? $company }} Details</th> --}}
+                                        <th class="text-foreground h-10 px-2 text-left font-medium flex-1">{{ $searchedCompany['name'] }} Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,9 +63,9 @@
                                         @foreach ($section['items'] as $item)
                                             <tr class="border-b">
                                                 <td class="p-2 pl-6">{{ $item }}</td>
-                                                <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }} text-right text-sm">{{ $getCellScore($selected, $item) }}</td>
+                                                {{-- <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }} text-right text-sm">{{ $getCellScore($selected, $item) }}</td> --}}
                                                 <td class="p-2 {{ $selected ? 'bg-accent/10' : '' }}">{!! nl2br(e($renderCellValue($selected, $item))) !!}</td>
-                                                <td class="p-2 text-right text-sm">{{ $getCellScore($searchedCompany, $item) }}</td>
+                                                {{-- <td class="p-2 text-right text-sm">{{ $getCellScore($searchedCompany, $item) }}</td> --}}
                                                 <td class="p-2">{!! nl2br(e($renderCellValue($searchedCompany, $item))) !!}</td>
                                             </tr>
                                         @endforeach
