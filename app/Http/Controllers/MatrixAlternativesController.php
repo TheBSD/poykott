@@ -52,7 +52,7 @@ class MatrixAlternativesController extends Controller
         $file = $this->resolveCsvFile($company);
         abort_unless($file !== null, 404, 'Matrix CSV not found for ' . $company);
 
-        $rows = $this->parseMatrixCsv($file);
+        ['rows' => $rows, 'sections' => $sections] = $this->parseMatrixCsv($file);
         $selected = $this->findRowByName($rows, $company);
         $searchedCompany = $selected;
 
@@ -63,7 +63,7 @@ class MatrixAlternativesController extends Controller
             'searchedCompany' => $searchedCompany,
             'bestScore' => $this->calculateBestScore($rows, $company),
             'comparisonData' => $this->prepareComparisonData($selected, $searchedCompany),
-            'orderedSections' => $this->getOrderedTableSections(),
+            'orderedSections' => $this->buildOrderedSections($sections),
             'columnMaxes' => self::COLUMN_MAXES,
             'renderCellValue' => fn (?array $row, string $key): string => $this->renderCellValue($row, $key),
         ]);
@@ -74,7 +74,7 @@ class MatrixAlternativesController extends Controller
         $file = $this->resolveCsvFile($company);
         abort_unless($file !== null, 404, 'Matrix CSV not found for ' . $company);
 
-        $rows = $this->parseMatrixCsv($file);
+        ['rows' => $rows, 'sections' => $sections] = $this->parseMatrixCsv($file);
         $selected = $this->findRowByName($rows, $alternative);
         $searchedCompany = $this->findRowByName($rows, $company);
 
@@ -84,7 +84,7 @@ class MatrixAlternativesController extends Controller
             'selected' => $selected,
             'searchedCompany' => $searchedCompany,
             'comparisonData' => $this->prepareComparisonData($selected, $searchedCompany),
-            'orderedSections' => $this->getOrderedTableSections(),
+            'orderedSections' => $this->buildOrderedSections($sections),
             'renderCellValue' => fn (?array $row, string $key): string => $this->renderCellValue($row, $key),
             'getCellScore' => fn (?array $row, string $key): string => $this->getCellScore($row, $key),
         ]);
@@ -137,7 +137,7 @@ class MatrixAlternativesController extends Controller
         $raw = $this->readRawCsv($file);
 
         if ($raw === []) {
-            return [];
+            return ['rows' => [], 'sections' => []];
         }
 
         return $this->isTransposedFormat($raw[0])
@@ -173,13 +173,16 @@ class MatrixAlternativesController extends Controller
     {
         $vendorCols = $this->extractVendorColumns($raw[0]);
 
-        [$vendorMetrics, $metricWeights] = $this->extractVendorMetrics($raw, $vendorCols);
+        [$vendorMetrics, $metricWeights, $hierarchy] = $this->extractVendorMetrics($raw, $vendorCols);
 
         $rows = $this->buildVendorRows($vendorCols, $vendorMetrics);
         $mappedRows = array_map([$this, 'normalizeRowKeys'], $rows);
         $weightLookup = $this->buildMetricWeightLookup($metricWeights);
 
-        return $this->computeScoresForRows($mappedRows, $weightLookup);
+        return [
+            'rows' => $this->computeScoresForRows($mappedRows, $weightLookup),
+            'sections' => $this->normalizeHierarchy($hierarchy),
+        ];
     }
 
     /**
@@ -211,27 +214,34 @@ class MatrixAlternativesController extends Controller
 
     /**
      * Walk data rows of transposed CSV and return:
-     *   [0] vendorMetrics  - [vendorName => [metric => value, metric_description => text]]
-     *   [1] metricWeights  - [metricName => float]
+     *   [0] vendorMetrics   - [vendorName => [metric => value, metric_description => text]]
+     *   [1] metricWeights   - [metricName => float]
+     *   [2] metricHierarchy - [parentMetric => [childMetric, ...]]
      */
     private function extractVendorMetrics(array $raw, array $vendorCols): array
     {
         $vendorMetrics = [];
         $metricWeights = [];
+        $metricHierarchy = [];
+        $currentParent = null;
 
         for ($r = 1, $total = count($raw); $r < $total; $r++) {
             $row = $raw[$r];
             $metric = isset($row[0]) ? trim((string) $row[0]) : null;
-            if ($metric === null) {
-                continue;
-            }
-            if ($metric === '') {
+
+            if ($metric === null || $metric === '') {
+                $currentParent = null;
+
                 continue;
             }
 
             $weight = $this->parseWeightCell($row[1] ?? null);
             if ($weight !== null) {
                 $metricWeights[$metric] = $weight;
+                $currentParent = $metric;
+                $metricHierarchy[$currentParent] ??= [];
+            } elseif ($currentParent !== null) {
+                $metricHierarchy[$currentParent][] = $metric;
             }
 
             foreach ($vendorCols as $c => $name) {
@@ -244,7 +254,7 @@ class MatrixAlternativesController extends Controller
             }
         }
 
-        return [$vendorMetrics, $metricWeights];
+        return [$vendorMetrics, $metricWeights, $metricHierarchy];
     }
 
     private function parseWeightCell(mixed $raw): ?float
@@ -290,7 +300,11 @@ class MatrixAlternativesController extends Controller
             }
         }
 
-        return $this->computeScoresForRows($rows, []);
+        // Simple CSV has no hierarchy metadata; sections fall back to defaults.
+        return [
+            'rows' => $this->computeScoresForRows($rows, []),
+            'sections' => [],
+        ];
     }
 
     // ─── Scoring ──────────────────────────────────────────────────────────────
@@ -457,6 +471,20 @@ class MatrixAlternativesController extends Controller
         return $lookup;
     }
 
+    /**
+     * Apply normalizeMetricKey to every parent and child in the raw hierarchy map.
+     */
+    private function normalizeHierarchy(array $hierarchy): array
+    {
+        $normalized = [];
+        foreach ($hierarchy as $parent => $children) {
+            $normParent = $this->normalizeMetricKey($parent);
+            $normalized[$normParent] = array_map([$this, 'normalizeMetricKey'], $children);
+        }
+
+        return $normalized;
+    }
+
     // ─── Cell value helpers ───────────────────────────────────────────────────
 
     /**
@@ -528,15 +556,75 @@ class MatrixAlternativesController extends Controller
 
     // ─── Display helpers ──────────────────────────────────────────────────────
 
-    private function getOrderedTableSections(): array
+    /**
+     * Build display sections whose titles are fixed but whose items are driven
+     * by the hierarchy extracted from the CSV.
+     *
+     * Sub-item rows in the CSV often carry a numeric score in the weight column,
+     * which causes the parser to register them as top-level entries in $hierarchy
+     * instead of as children. We recover the correct grouping here by walking the
+     * hierarchy in insertion order and bucketing every non-scoring-category key
+     * under the most recently seen scoring category.
+     *
+     * @param  array  $hierarchy  Normalised [metric => [child, ...]] from the CSV.
+     */
+    private function buildOrderedSections(array $hierarchy): array
     {
-        return [
-            ['title' => 'Recommendation and Risk Summary', 'items' => ['Overall Risk Level', 'Best Use Case', 'Recommendation']],
-            ['title' => 'Features',                        'items' => ['Setup Complexity', 'Drag and Drop editing', 'AI Services', 'Specialized Plugins', 'All-in-one hosting', 'Access to code', 'E-Commerce tools']],
-            ['title' => 'Security and Compliance',         'items' => ['Security and Compliance']],
-            ['title' => 'Pricing',                         'items' => ['Free tier', 'Team tier', 'Business tier']],
-            ['title' => 'ISL Presence & Ties Assessment',  'items' => ['Headquarters', 'Major ISL Investment', 'ISL Partnerships', 'Data Centers', 'Founder/Leadership', 'Leadership Pro ISL Statements']],
+        $scoringKeys = array_keys($this->getMetricKeyMap());
+        $scoringKeySet = array_flip($scoringKeys);
+
+        // '_rec' is a virtual bucket for items that appear before the first scoring category.
+        $buckets = array_merge(['_rec' => []], array_fill_keys($scoringKeys, []));
+        $currentBucket = '_rec';
+
+        foreach ($hierarchy as $key => $children) {
+            if (isset($scoringKeySet[$key])) {
+                $currentBucket = $key;
+                // Absorb any true weightless children the parser captured.
+                foreach ($children as $child) {
+                    $buckets[$currentBucket][] = $child;
+                }
+            } else {
+                // Sub-item mis-classified as a top-level parent (it had a numeric
+                // score in the weight column) — bucket it under the current section.
+                $buckets[$currentBucket][] = $key;
+                foreach ($children as $child) {
+                    $buckets[$currentBucket][] = $child;
+                }
+            }
+        }
+
+        $recItems = $buckets['_rec'] ?: ['Overall Risk Level', 'Best Use Case', 'Recommendation'];
+
+        // Items captured into _rec may also appear at the tail of another bucket
+        // (e.g. the CSV repeats them after the ISL section). Strip duplicates.
+        $recSet = array_flip($recItems);
+        foreach ($scoringKeys as $k) {
+            $buckets[$k] = array_values(array_filter(
+                $buckets[$k],
+                fn ($item): bool => ! isset($recSet[$item])
+            ));
+        }
+
+        $sections = [
+            ['title' => 'Recommendation and Risk Summary', 'items' => $recItems],
         ];
+
+        $titleMap = [
+            'Features' => 'Features',
+            'Security and Compliance' => 'Security and Compliance',
+            'Pricing' => 'Pricing',
+            'ISL Presence & Ties Assessment' => 'ISL Presence & Ties Assessment',
+        ];
+
+        foreach ($titleMap as $title => $key) {
+            $items = $buckets[$key] ?? [];
+            if ($items !== []) {
+                $sections[] = ['title' => $title, 'items' => $items];
+            }
+        }
+
+        return $sections;
     }
 
     private function calculateBestScore(array $rows, string $company): ?int
