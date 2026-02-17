@@ -5,7 +5,7 @@
 
             <div class="w-full max-w-xl mx-auto text-center py-6">
                 <form method="get" action="{{ route('matrix.index') }}" class="flex items-center gap-2">
-                    <input id="company-search" name="company" list="companies-list" type="search" placeholder="Search company (e.g. Shopify)" class="w-full px-4 py-3 border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" autocomplete="off" />
+                    <input id="company-search" name="company" list="companies-list" type="search" placeholder="Search company (e.g. Wix)" class="w-full px-4 py-3 border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent" autocomplete="off" />
                     <button type="submit" class="px-4 py-3 bg-accent text-white rounded-md">Search</button>
                     <datalist id="companies-list">
                         @foreach ($companies as $c)
