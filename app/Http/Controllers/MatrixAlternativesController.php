@@ -618,10 +618,7 @@ class MatrixAlternativesController extends Controller
         ];
 
         foreach ($titleMap as $title => $key) {
-            $items = $buckets[$key] ?? [];
-            if ($items !== []) {
-                $sections[] = ['title' => $title, 'items' => $items];
-            }
+            $sections[] = ['title' => $title, 'items' => $buckets[$key] ?? []];
         }
 
         return $sections;
