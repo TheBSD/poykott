@@ -78,6 +78,8 @@ class AttachPeopleImagesCommand extends Command
                         }
                     }
                 } else {
+                    $notes['notes'] = 'image attached';
+                    $person->update(['notes' => $notes]);
                     $this->info("Successfully add image from folder for person:$person->name");
                     $succeeded++;
                 }

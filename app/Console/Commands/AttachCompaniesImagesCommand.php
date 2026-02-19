@@ -75,6 +75,8 @@ class AttachCompaniesImagesCommand extends Command
                         }
                     }
                 } else {
+                    $notes['notes'] = 'image attached';
+                    $company->update(['notes' => $notes]);
                     $this->info("Successfully add image from folder for company:$company->name");
                     $succeeded++;
                 }
