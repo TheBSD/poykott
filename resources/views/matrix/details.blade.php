@@ -49,7 +49,7 @@
                                         <th class="h-10 px-2 text-left font-medium text-accent flex-1">{{ $selected['name'] }} Details</th>
                                         {{-- <th class="h-10 px-2 text-right font-medium w-16">{{ $searchedCompany['name'] ?? $company }} Score</th> --}}
                                         {{-- <th class="text-foreground h-10 px-2 text-left font-medium flex-1">{{ $searchedCompany['name'] ?? $company }} Details</th> --}}
-                                        <th class="text-foreground h-10 px-2 text-left font-medium flex-1">{{ $searchedCompany['name'] }} Details</th>
+                                        <th class="text-foreground h-10 px-2 text-left font-medium flex-1">{{ $searchedCompany['name'] ?? $company }} Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
