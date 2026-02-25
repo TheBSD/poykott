@@ -1,7 +1,12 @@
 <x-app-layout>
     <main class="container mx-auto min-h-screen space-y-6 p-6">
         <section>
-            <h1 class="text-2xl font-bold">{{ ucfirst($company) }} Alternatives</h1>
+            <div class="flex items-center gap-3 mb-1">
+                <div class="h-10 w-10 rounded-md bg-gray-50 flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img src="{{ $logoPath }}" alt="{{ ucfirst($company) }} logo" class="h-8 w-8 object-contain" />
+                </div>
+                <h1 class="text-2xl font-bold">{{ ucfirst($company) }} Alternatives</h1>
+            </div>
             <p class="text-sm text-gray-600">Compare {{ ucfirst($company) }} with alternative solutions. Click "Details" to view comprehensive information for each option.</p>
         </section>
 

@@ -53,11 +53,18 @@ class MatrixAlternativesController extends Controller
         abort_unless($file !== null, 404, 'Matrix CSV not found for ' . $company);
 
         ['rows' => $rows, 'sections' => $sections] = $this->parseMatrixCsv($file);
+        $rows = $this->attachCompanyImages($rows);
         $selected = $this->findRowByName($rows, $company);
         $searchedCompany = $selected;
 
+        $companyModel = Company::query()
+            ->where('slug', Str::slug($company))
+            ->orWhere('name', $company)
+            ->first();
+
         return view('matrix.show', [
             'company' => $company,
+            'logoPath' => $companyModel?->image_path ?? asset('images/logos/' . Str::slug($company) . '.svg'),
             'rows' => $this->enrichRowsForDisplay($rows, $company),
             'selected' => $selected,
             'searchedCompany' => $searchedCompany,
@@ -75,11 +82,18 @@ class MatrixAlternativesController extends Controller
         abort_unless($file !== null, 404, 'Matrix CSV not found for ' . $company);
 
         ['rows' => $rows, 'sections' => $sections] = $this->parseMatrixCsv($file);
+        $rows = $this->attachCompanyImages($rows);
         $selected = $this->findRowByName($rows, $alternative);
         $searchedCompany = $this->findRowByName($rows, $company);
 
+        $companyModel = Company::query()
+            ->where('slug', Str::slug($company))
+            ->orWhere('name', $company)
+            ->first();
+
         return view('matrix.details', [
             'company' => $company,
+            'logoPath' => $companyModel?->image_path ?? asset('images/logos/' . Str::slug($company) . '.svg'),
             'rows' => $rows,
             'selected' => $selected,
             'searchedCompany' => $searchedCompany,
@@ -88,6 +102,29 @@ class MatrixAlternativesController extends Controller
             'renderCellValue' => fn (?array $row, string $key): string => $this->renderCellValue($row, $key),
             'getCellScore' => fn (?array $row, string $key): string => $this->getCellScore($row, $key),
         ]);
+    }
+
+    // ─── Company image enrichment ──────────────────────────────────────────────
+
+    /**
+     * Attach `image_path` (a full URL from the Company model or a fallback asset)
+     * to every row using the row's `name` field to look up the matching Company.
+     */
+    private function attachCompanyImages(array $rows): array
+    {
+        foreach ($rows as &$row) {
+            $name = $row['name'] ?? '';
+            $slug = Str::slug($name);
+            $model = Company::query()
+                ->where('slug', $slug)
+                ->orWhere('name', $name)
+                ->first();
+
+            $row['image_path'] = $model?->image_path ?? asset('images/logos/' . $slug . '.svg');
+        }
+        unset($row);
+
+        return $rows;
     }
 
     // ─── CSV resolution ───────────────────────────────────────────────────────
@@ -661,7 +698,7 @@ class MatrixAlternativesController extends Controller
                 'score' => $score,
                 'isBest' => $score === $bestScore,
                 'isSearched' => Str::slug($name) === $target,
-                'logoPath' => isset($cleanRow['logo']) ? asset('images/logos/' . $cleanRow['logo']) : '',
+                'logoPath' => $cleanRow['image_path'] ?? '',
             ]);
         }, $rows);
     }
@@ -669,8 +706,8 @@ class MatrixAlternativesController extends Controller
     private function prepareComparisonData(?array $selected, ?array $searched): array
     {
         return [
-            'selectedLogo' => $selected && isset($selected['logo']) ? asset('images/logos/' . $selected['logo']) : null,
-            'searchedLogo' => $searched && isset($searched['logo']) ? asset('images/logos/' . $searched['logo']) : null,
+            'selectedLogo' => $selected['image_path'] ?? null,
+            'searchedLogo' => $searched['image_path'] ?? null,
             'selectedPercent' => ($selected !== null && $selected !== []) ? round($selected['totalScore'] ?? 0) : null,
             'searchedPercent' => ($searched !== null && $searched !== []) ? round($searched['totalScore'] ?? 0) : null,
         ];
