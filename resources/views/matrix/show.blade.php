@@ -54,8 +54,8 @@
 
                                     @foreach (['features','security','pricing','islPresence'] as $col)
                                         @php
-                                            $val = isset($r[$col]) ? (int)$r[$col] : null;
-                                            $max = $columnMaxes[$col] ?? 100;
+                                            $val = isset($r[$col]) ? (int) $r[$col] : null;
+                                            $max = $columnWeights[$col] ?? 100;
                                         @endphp
                                         <td class="px-3 py-3 align-middle">
                                             @if ($val !== null)
