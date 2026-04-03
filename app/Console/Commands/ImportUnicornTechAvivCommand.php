@@ -40,9 +40,9 @@ class ImportUnicornTechAvivCommand extends Command
             $company = Company::query()->whereRaw('Lower(name) = ?', [$lowerCompanyName])->first();
 
             $dataFields = [
-                'valuation' => data_get($data, 'Valuation'),
+                'valuation' => (int) preg_replace('/\D/', '', (string) data_get($data, 0)),
                 'url' => data_get($data, 'Website'),
-                'total_funding' => data_get($data, 'Total Funding'),
+                'total_funding' => (int) preg_replace('/\D/', '', (string) data_get($data, 0)),
                 'last_funding_date' => data_get($data, 'Last Funding'),
                 'headquarter' => data_get($data, 'HQ Location'),
                 'founded_at' => Carbon::createFromFormat('Y', data_get($data, 'Founded')),

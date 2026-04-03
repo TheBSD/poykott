@@ -32,7 +32,7 @@ class CompanyController extends Controller
                 },
             ])
             ->approved()
-            ->simplePaginate(20, ['companies.id', 'name', 'description', 'short_description', 'slug', 'image_path']);
+            ->simplePaginate(20, ['companies.id', 'name', 'description', 'short_description', 'slug']);
 
         return view('companies.index', ['companies' => $companies]);
     }

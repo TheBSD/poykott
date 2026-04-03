@@ -29,7 +29,7 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
         foreach ($allData as $data) {
 
             $dataFields = [
-                'exit_valuation' => data_get($data, 'Valuation at Exit'),
+                'exit_valuation' => (int) preg_replace('/\D/', '', (string) data_get($data, 0)),
                 'url' => data_get($data, 'Website'),
                 'total_funding' => data_get($data, 'Total Funding'),
                 'headquarter' => data_get($data, 'HQ'),

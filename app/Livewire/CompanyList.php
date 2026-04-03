@@ -61,7 +61,7 @@ class CompanyList extends Component
 
         $companies = $query->simplePaginate(
             20,
-            ['companies.id', 'name', 'description', 'short_description', 'slug', 'image_path']
+            ['companies.id', 'name', 'description', 'short_description', 'slug']
         );
 
         return view('livewire.company-list', [
