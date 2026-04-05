@@ -29,9 +29,9 @@ class ImportUnicornGraduatesTechAvivCommand extends Command
         foreach ($allData as $data) {
 
             $dataFields = [
-                'exit_valuation' => (int) preg_replace('/\D/', '', (string) data_get($data, 0)),
+                'exit_valuation' => (int) str_replace('$', '', data_get($data, 'Valuation at Exit')) ?? 0,
                 'url' => data_get($data, 'Website'),
-                'total_funding' => data_get($data, 'Total Funding'),
+                'total_funding' => (int) str_replace('$', '', data_get($data, 'Total Funding')) ?? 0,
                 'headquarter' => data_get($data, 'HQ'),
                 'founded_at' => Carbon::createFromFormat('Y', data_get($data, 'Founded')),
                 'exit_strategy' => data_get($data, 'Exit'),
