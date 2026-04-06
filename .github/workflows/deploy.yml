@@ -33,25 +33,27 @@ jobs:
 
       - name: Build Vite assets
         run: npm run build
-      
-      - name: Synchronize Files To Server
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SOURCE: "."
-          REMOTE_HOST: ${{ secrets.VPS_HOST }}
-          REMOTE_USER: ${{ secrets.VPS_USER }}
-          TARGET: "/home/t4p-admin/poykott"
-          ARGS: "-rlDzvO --delete"
-          EXCLUDE: |
-            node_modules
-            vendor
-            .env
-            .git
-            .github
-            storage/logs
 
-      - name: Run Remote/Artisan Commands
+      - name: Sync files with rsync (delete stale code, preserve uploads)
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/t4p-admin/poykott
+            rsync -avz --delete \
+              --exclude='node_modules' \
+              --exclude='vendor' \
+              --exclude='.env' \
+              --exclude='.git' \
+              --exclude='.github' \
+              --exclude='storage' \
+              --exclude='public/storage' \
+              $GITHUB_WORKSPACE/ \
+              /home/t4p-admin/poykott/
+
+      - name: Run Remote Artisan Commands
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -60,5 +62,9 @@ jobs:
           script: |
             cd /home/t4p-admin/poykott
             php artisan migrate --force
+            php artisan storage:link || true
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
             php artisan optimize
 
