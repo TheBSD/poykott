@@ -21,7 +21,7 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, pdo_sqlite, sqlite3
       
       - name: Install Composer Dependancies
-        run: composer install --optimize-autoloader --no-dev --prefer-stable --prefer-dist --no-interaction --no-progress
+        run: composer install --optimize-autoloader --no-dev --prefer-dist --no-interaction --no-progress
 
       - name: Install Node.js
         uses: actions/setup-node@v3
