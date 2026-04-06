@@ -46,6 +46,7 @@ jobs:
           EXCLUDE: |
             node_modules
             vendor
+            .env
             .git
             .github
             storage/logs
