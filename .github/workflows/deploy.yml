@@ -13,6 +13,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      
+      - name: Deploy code changes
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/t4p-admin/poykott
+            git reset --hard HEAD
+            git clean -df
 
       - name: Setp PHP
         uses: shivammathur/setup-php@v2
@@ -33,25 +44,6 @@ jobs:
 
       - name: Build Vite assets
         run: npm run build
-
-      - name: Sync files with rsync (delete stale code, preserve uploads)
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/t4p-admin/poykott
-            rsync -avz --delete \
-              --exclude='node_modules' \
-              --exclude='vendor' \
-              --exclude='.env' \
-              --exclude='.git' \
-              --exclude='.github' \
-              --exclude='storage' \
-              --exclude='public/storage' \
-              $GITHUB_WORKSPACE/ \
-              /home/t4p-admin/poykott/
 
       - name: Run Remote Artisan Commands
         uses: appleboy/ssh-action@v0.1.6
