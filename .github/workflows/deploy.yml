@@ -42,6 +42,13 @@ jobs:
           REMOTE_HOST: ${{ secrets.VPS_HOST }}
           REMOTE_USER: ${{ secrets.VPS_USER }}
           TARGET: "/home/t4p-admin/poykott"
+          ARGS: "-rlDzvO --delete"
+          EXCLUDE: |
+            node_modules
+            vendor
+            .git
+            .github
+            storage/logs
 
       - name: Run Remote/Artisan Commands
         uses: appleboy/ssh-action@v0.1.6
