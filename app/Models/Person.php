@@ -51,7 +51,7 @@ class Person extends Model implements Auditable, HasMedia
             'id' => 'integer',
             'approved_at' => 'timestamp',
             'social_links' => 'array',
-            'notes' => 'collection',
+            'notes' => 'array',
         ];
     }
 
