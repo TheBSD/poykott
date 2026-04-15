@@ -1,0 +1,26 @@
+,Weight/100,Wix,,Wordpress,,Squarespace,,Wuilt,,Wegic,,Webflow,,,Framer,,Stemexe,,Weebly
+Features,25,23,,17,,22,,20,,8,,11,,52%,,50%,,26%,
+Setup Complexity,9,9,Easy,5,Varies - All-in-one services available OR users can take the reins instead,9,Easy,9,Easy,0,Hard,0,Hard,0,Hard,0,Hard,0,Hard
+Drag-and-Drop editing,2,2,Yes,2,"Gutenberg, Beaver Builder Lite",2,Fluid Engine,0,No,2,Yes,0,No,2,Yes,0,No,2,Yes
+AI services,2,2,Wix ADI,1,Plugins available,2,Blueprint AI Builder,2,Wuilt Context7 documentation indexing AI,2,Yes - create a website through AI prompting,2,Webflow AI,2,Framer AI,0,No,0,No
+Specialized plugins,2,2,Wix App Market,2,Wordpress Plugins,2,Squarespace Extensions,2,Wuilt Widgets,0,No,2,Webflow Apps,2,Framer Plugins,0,No,2,Weebly Apps
+Templates,3,2,Yes,2,Yes,2,Yes,2,Yes,2,Yes,2,Yes,2,Yes,0,No,2,Yes
+All-in-one hosting,2,2,Yes,1,Available through wordpress.com,2,Yes,2,Yes,0,Self-hosted,2,Yes,2,Yes,0,No,2,Yes
+Access to code,3,2,Limited - Some access possible through Wix Velo,2,"Yes, through wordpress.org",1,Limited - Custom code injection possible at some points,1,Limited - custom HTML/CSS/Javascript through Wuilt dev tools,0,No,1,Limited - custom HTML/CSS/Javascript access ,2,No,0,No,1,Limited - HTML/CSS editing through Weebly Code Editor
+E-Commerce tools,2,2,Native,2,"Yes, through Woo, an integrated third-party service",2,Native,2,Native,2,Yes,2,Yes,2,Yes,0,No,2,Yes
+Security and Compliance,5,1,,1,,1,,1,,1,,1,,,,,,,
+Pricing,30,15,,20,,10,,10,,5,,15,,10,,10,,15,
+Free tier,10,5,"Basic features, Wix-branding",,"Jetpack, basic SEO tools, site statistics, social media tools",0,No free plan -- free trial available,0,No free plan -- free trial available,2.5,"$23.90/mo - Generative AI website images, basic custom design",5,"Webflow.io domain, 2 pages, CMS features, Webflow AI, 1GB bandwidth",0,None,,None,,Basic features
+Team tier,10,5,"$29/mo - Custom domain for a year, multi-cloud hosting",5,"$8/mo - Plugins, custom domain for a year, Google analytics, premium stats, Wordpress staff support",5,"$16/mo - Custom domain for a year, access to templates, 2 contributors, Squarespace AI",5,"$50/mo - 3GB storage, custom domain, 2GB bandwidth, SSL certification",2.5,"$41.90/mo - Custom domain, advanced custom design, removal of Wegic branding",5,"$23/mo - Custom domain, 50GB bandwidth, web app hosting, surge protection, site search",5,"$10/mo - custom domain, AI design tools, SEO ",,"$12/mo - User management, collaboration, automation",,$10/mo - Custom domain
+Business tier,10,5,"$39/mo - Custom domain, E-Commerce tools",5,"$25/mo - Custom domain, SFTP/SSH, WP-CLI, Git commands, and GitHub Deployments",5,"$23/mo - Custom domain, website analytics, CSS/Javascript customization, E-commerce tools",5,"$150/mo - Unlimited storage and bandwidth, Google analytics integration, 10GB storage",0,None,5,"$39/mo - 100GB bandwidth, form file upload",5,"$30/mo - Staging and rollback, roles and permissions, relational CMS",,"$20/mo - Marketing, sales, advanced analytics",,$26/mo - Growth and management tools
+Israel Presence & Ties Assessment,40,0,,30,,40,,40,,40,,40,,30,,,,,
+Headquarters Location,15,,"Company based in Tel Aviv. Avishai Abrahami, co-founder, is ex-IDF Unit 8200",,"San Francisco, CA, USA",,"New York, New York, USA",,"Giza, Egypt",,Singapore,,"San Francisco, CA, USA",,"Amsterdam, Netherlands",40,"Dublin, Ireland",0,"San Francisco, CA, USA"
+Major Israeli Investment,10,,Yes - Wix Ventures,,None,,None,,None,,None,,None,,"Framer has no direct connection to Israel. However, one of the platform's investors, Atomico, has invested in Israeli software companies including Starkware, an Israel-based cryptography company.",,None,,None
+Israeli Partnerships,10,,Yes,,None,,None,,None,,None,,None,,None,,None,,None
+Israeli Data Centers,5,,,,None,,None,,None,,None,,None,,None,,None,,None
+Leadership Pro-Israel Statements,2.5,,Yes,,None,,None,,None,,None,,None,,None,,None,,Zionist founder - David Rusenko denounced the New York Times for coverage of Palestinian casualties and the destruction of Gaza (Tweet)
+Israeli Founder/Leadership,2.5,,Yes - Ex-IDF founder,,None,,None,,None,,None,,None,,None,,None,,None
+Recommendation & Risk Summary,,,,,,,,,,,,,,,,,,,
+Overall Risk Level,,,High risk,,"Safe, but be aware of Israeli third-party resources like Elementor ",,Safe,,Safe,,Safe,,Safe,,Caution - Indirect connection through one of the company's VC investors,,Safe,,Caution
+Best Use Case,,,Beginner friendly and feature rich but through-and-through a Zionist company,,Complete user control,,"All-in-one website and hosting services, popular and widely used by businesses",,Business owners looking for a no-code website builder with rich automation features,,AI-powered website building -- build a website through chatting with an LLM,,For users looking for a visual website-building experience similar to tools found in Figma,,For users seeking to build websites with strong motion and visual responses,,,,For users looking for low-code and professional-looking websites
+Recommendation,,,Not recommended,,Recommended,,Recommended,,Recommended,,Recommended,,Recommended,,Proceed with caution,,,,"Not recommended - Zionist founder has since left, but no statement or apology made by Weebly since"
