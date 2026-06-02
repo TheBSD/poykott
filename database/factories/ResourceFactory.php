@@ -9,7 +9,7 @@ use App\Models\Resource;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Resource>
+ * @extends Factory<resource>
  */
 class ResourceFactory extends Factory
 {
