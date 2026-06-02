@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Http\Controllers\ResourceController;
+use App\Http\Requests\ResourceStoreRequest;
 use App\Jobs\AddResource;
 use App\Models\Resource;
 use App\Models\User;
@@ -32,9 +34,9 @@ test('create displays view', function (): void {
 
 test('store uses form request validation')
     ->assertActionUsesFormRequest(
-        \App\Http\Controllers\ResourceController::class,
+        ResourceController::class,
         'store',
-        \App\Http\Requests\ResourceStoreRequest::class
+        ResourceStoreRequest::class
     );
 
 test('store saves and redirects', function (): void {

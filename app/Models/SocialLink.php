@@ -20,8 +20,8 @@ class SocialLink extends Model implements Auditable
     ];
 
     /**
-     * @see \App\Models\Company
-     * @see \App\Models\Person
+     * @see Company
+     * @see Person
      */
     public function linkable(): MorphTo
     {

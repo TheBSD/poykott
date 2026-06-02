@@ -1,0 +1,138 @@
+[
+  {
+    "name": "ClickUp",
+    "website": "https://clickup.com",
+    "logo": "https://clickup.com/assets/brand/v4/logo-clickup-clearspace-full.svg",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Plane",
+    "website": "https://plane.so",
+    "logo": "https://plane.so/brand-logos/logo-with-wordmark.svg",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Trello",
+    "website": "https://trello.com",
+    "logo": "https://www.logo.wine/a/logo/Trello/Trello-Logo.wine.svg",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Notion",
+    "website": "https://www.notion.so",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Asana",
+    "website": "https://asana.com",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Asana_logo.svg",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Workiom",
+    "website": "https://workiom.com",
+    "logo": "https://cdn.prod.website-files.com/60dece8aa1eb0fa6ceb39450/60dece8aa1eb0f13d2b395f8_Light_logo.png",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Bitrix24",
+    "website": "https://www.bitrix24.com",
+    "logo": "https://images.seeklogo.com/logo-png/23/1/bitrix24-logo-png_seeklogo-233356.png",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "StemeXe",
+    "website": "https://web.stemexe.com",
+    "logo": "https://idenediprod.blob.core.windows.net/blb/Usz_Bx5ApEm9YnNZdZQnFA",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Aha.io",
+    "website": "https://www.aha.io",
+    "logo": "https://images.seeklogo.com/logo-png/34/1/aha-labs-inc-logo-png_seeklogo-347695.png",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "DataLexing",
+    "website": "https://www.datalexing.com",
+    "logo": "https://framerusercontent.com/images/lHtpd0gGiQfcVSSDppIJwDN3I8.png?width=262&height=88",
+    "alternative_to": {
+      "name": "Monday.com"
+    }
+  },
+  {
+    "name": "Squarespace",
+    "website": "https://www.squarespace.com",
+    "logo": "https://images.squarespace-cdn.com/content/5134cbefe4b0c6fb04df8065/1540481411828-EI6QOPHKV2JQWV550JIP/squarespace-logo-horizontal-white.jpg?format=300w&content-type=image%2Fjpeg",
+    "alternative_to": {
+      "name": "Wix"
+    }
+  },
+  {
+    "name": "Wuilt",
+    "website": "https://wuilt.com",
+    "logo": "https://cdn.prod.website-files.com/614319338322d2f96eb4dd96/62124d6cd08d234101a87720_Wuilt%20Logo%20W%20Light%201.svg",
+    "alternative_to": {
+      "name": "Wix"
+    }
+  },
+  {
+    "name": "WordPress",
+    "website": "https://wordpress.org",
+    "logo": "https://s.w.org/style/images/about/WordPress-logotype-alternative.png",
+    "alternative_to": {
+      "name": "Wix"
+    }
+  },
+  {
+    "name": "Webflow",
+    "website": "https://webflow.com",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/5/51/Webflow_logo_2023.svg",
+    "alternative_to": {
+      "name": "Wix"
+    }
+  },
+  {
+    "name": "Wegic",
+    "website": "https://wegic.ai",
+    "logo": "https://cdn.wegic.ai/wegic-asset-store/landing-page/common/WegicBadge.png",
+    "alternative_to": {
+      "name": "Wix"
+    }
+  },
+  {
+    "name": "Framer",
+    "website": "https://www.framer.com",
+    "logo": "https://images.seeklogo.com/logo-png/40/1/framer-logo-png_seeklogo-405057.png",
+    "alternative_to": {
+      "name": "Wix"
+    }
+  },
+  {
+    "name": "Weebly",
+    "website": "https://www.weebly.com",
+    "logo": "https://images.seeklogo.com/logo-png/27/1/weebly-logo-png_seeklogo-274084.png",
+    "alternative_to": {
+      "name": "Wix"
+    }
+  }
+]

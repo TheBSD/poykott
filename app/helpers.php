@@ -75,7 +75,7 @@ if (! function_exists('add_image_urls_to_notes')) {
             return false;
         }
 
-        $oldNotes = collect(json_decode($model->notes, true));
+        // $oldNotes = collect(json_decode($model->notes, true));
 
         $newNote = [
             'url' => $url,
@@ -83,12 +83,13 @@ if (! function_exists('add_image_urls_to_notes')) {
             'class' => class_basename($class),
         ];
 
-        // Append the new note (if old notes exist, merge them)
-        $appendedNotes = $oldNotes->isEmpty()
-            ? collect([$newNote])  // If old notes are empty, just create a new collection with the new note
-            : $oldNotes->push($newNote);  // Otherwise, push the new note to the collection
+        // This line creates nested arrays and causes issues with logo import scripts
+        // // Append the new note (if old notes exist, merge them)
+        // $appendedNotes = $oldNotes->isEmpty()
+        //     ? collect([$newNote])  // If old notes are empty, just create a new collection with the new note
+        //     : $oldNotes->push($newNote);  // Otherwise, push the new note to the collection
 
-        return $model->update(['notes' => $appendedNotes->toJson()]);
+        return $model->update(['notes' => $newNote]);
     }
 }
 

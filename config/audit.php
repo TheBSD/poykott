@@ -171,7 +171,7 @@ return [
     'drivers' => [
         'database' => [
             'table' => 'audits',
-            'connection' => 'sqlite_audit',
+            'connection' => env('AUDIT_DB_CONNECTION', 'sqlite_audit'),
         ],
     ],
 

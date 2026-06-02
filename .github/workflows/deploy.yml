@@ -1,0 +1,62 @@
+name: Deploy to Dev Server
+
+on:
+  push:
+    branches: 
+      - development
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Deploy code changes
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/t4p-admin/poykott
+            git reset --hard HEAD
+            git clean -df
+
+      - name: Setp PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, pdo_sqlite, sqlite3
+      
+      - name: Install Composer Dependancies
+        run: composer install --optimize-autoloader --no-dev --prefer-dist --no-interaction --no-progress
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: '18'
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build Vite assets
+        run: npm run build
+
+      - name: Run Remote Artisan Commands
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/t4p-admin/poykott
+            php artisan migrate --force
+            php artisan storage:link || true
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan optimize
+

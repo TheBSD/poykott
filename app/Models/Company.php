@@ -86,6 +86,7 @@ class Company extends Model implements Auditable, HasMedia
             'approved_at' => 'timestamp',
             'last_funding_date' => 'date',
             'founded_at' => 'date',
+            'notes' => 'array',
         ];
     }
 
