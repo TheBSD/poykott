@@ -19,15 +19,15 @@ Route::get('alternatives', [HomeController::class, 'index'])->name('alternatives
 
 Route::get('alternative/{alternative:slug}', [HomeController::class, 'show'])->name('alternatives.show');
 Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
-Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
+// Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
 
 Route::get('companies/{company:slug}', [CompanyController::class, 'show'])->name('companies.show');
 Route::get('company/{company:slug}', [CompanyController::class, 'redirect'])->name('company.redirect');
 
 Route::get('companies/url/{companyUrl}', [CompanyController::class, 'redirectToSlug'])->name('companies.show.url');
-Route::post(
-    'companies/{company:slug}/alternatives', [CompanyController::class, 'storeAlternative']
-)->name('companies.alternatives.store');
+// Route::post(
+//     'companies/{company:slug}/alternatives', [CompanyController::class, 'storeAlternative']
+// )->name('companies.alternatives.store');
 Route::post(
     'companies/{company:slug}/ai-alternatives', [AiAlternativeController::class, 'store']
 )->name('companies.ai-alternatives.store')->middleware('throttle:5,1');
@@ -39,7 +39,7 @@ Route::get('people/{person:slug}', [PersonController::class, 'show'])->name('peo
 Route::get('investors/{investor:slug}', [InvestorController::class, 'show'])->name('investors.show');
 
 // Contact
-Route::post('contact', [HomeController::class, 'contactPost'])->name('contact.store');
+// Route::post('contact', [HomeController::class, 'contactPost'])->name('contact.store');
 Route::get('contact', [HomeController::class, 'contactGet'])->name('contact.get');
 
 // Pages
