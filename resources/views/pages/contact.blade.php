@@ -7,17 +7,24 @@
             </div>
 
             <!-- Contact Form Section -->
+
             <div class="mx-auto max-w-2xl">
                 <div class="rounded-2xl bg-white p-8 shadow-xl">
-                    <h2 class="mb-8 text-3xl font-bold text-gray-900">Get in Touch</h2>
 
-                    @if ($errors->any())
+            {{-- Embed Link --}}
+<iframe data-tally-src="https://tally.so/embed/NpPbqp?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="476" frameborder="0" marginheight="0" marginwidth="0" title="Contact Us "></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+
+                    {{-- <h2 class="mb-8 text-3xl font-bold text-gray-900">Get in Touch</h2> --}}
+
+                    {{-- @if ($errors->any())
                         <div class="mb-6 rounded-lg bg-red-100 p-4 text-red-700">
                             There were some errors with your submission. Please fix them below and try again.
                         </div>
-                    @endif
+                    @endif --}}
 
-                    <form action="{{ route('contact.store') }}" method="POST">
+                    {{-- <form action="{{ route('contact.store') }}" method="POST">
                         @csrf
                         <x-honeypot />
                         <div class="space-y-6">
@@ -80,7 +87,7 @@
                                 Send Message
                             </button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>

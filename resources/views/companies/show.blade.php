@@ -121,7 +121,10 @@
                         <!-- Add Alternative Form-- -->
                         <div class="mt-10 rounded-xl bg-gray-50 p-6">
                             <h3 class="mb-4 text-xl font-semibold text-gray-900">Suggest an Alternative</h3>
-                            <form
+
+                            <iframe data-tally-src="https://tally.so/embed/RGjbGQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="282" frameborder="0" marginheight="0" marginwidth="0" title="Suggest an Alternative"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+                            {{-- <form
                                 action="{{ route('companies.alternatives.store', $company) }}"
                                 method="POST"
                                 class="space-y-4"
@@ -203,7 +206,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
 
