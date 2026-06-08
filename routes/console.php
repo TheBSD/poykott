@@ -18,4 +18,7 @@ Schedule::command(PerformDatabaseBackupCommand::class)
 Schedule::command(PruneCommand::class)->daily();
 Schedule::command(TempMediaToMediaCommand::class)->daily();
 
-Schedule::command(GenerateSitemap::class)->daily();
+Schedule::command(GenerateSitemap::class)->daily()
+    ->appendOutputTo(
+        storage_path('logs/laravel-' . date('Y-m-d') . '.log')
+    );
