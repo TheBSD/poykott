@@ -4,13 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AuditResource\Pages\ListAudits;
 use App\Filament\Resources\AuditResource\Pages\ViewAudit;
-use Filament\Forms\Components\Section;
+use BackedEnum;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -19,24 +20,27 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Override;
 use OwenIt\Auditing\Contracts\Audit;
+use UnitEnum;
 
 class AuditResource extends Resource
 {
     protected static ?string $model = \OwenIt\Auditing\Models\Audit::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-eye';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-eye';
 
-    protected static ?string $navigationGroup = 'Internals';
+    protected static string|UnitEnum|null $navigationGroup = 'Internals';
 
     protected static ?string $recordTitleAttribute = 'id';
 
     protected static ?int $navigationSort = 99;
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('Basic Information')
                     ->schema([
                         Section::make()
@@ -121,6 +125,7 @@ class AuditResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -133,7 +138,7 @@ class AuditResource extends Resource
                 TextColumn::make('user_type')
                     ->label('User')
                     ->sortable()
-                    ->url(fn (\OwenIt\Auditing\Models\Audit $record) => $record->user_id
+                    ->url(fn (\OwenIt\Auditing\Models\Audit $record): ?string => $record->user_id
                         ? route('filament.admin.resources.users.edit', ['record' => $record->user_id])
                         : null)
                     ->formatStateUsing(
@@ -161,7 +166,7 @@ class AuditResource extends Resource
 
                 TextColumn::make('auditable_id')
                     ->label('Model')
-                    ->url(fn (\OwenIt\Auditing\Models\Audit $record) => $record->auditable_type && $record->auditable_id
+                    ->url(fn (\OwenIt\Auditing\Models\Audit $record): ?string => $record->auditable_type && $record->auditable_id
                         ? route('filament.admin.resources.' . Str::plural(Str::lower(class_basename($record->auditable_type))) . '.edit',
                             ['record' => $record->auditable_id])
                         : null)
@@ -228,15 +233,15 @@ class AuditResource extends Resource
                         'deleted' => 'Deleted',
                     ]),
             ])
-            ->actions([
+            ->recordActions([
                 Action::make('restore')
                     ->label('Restore Updated')
-                    ->action(fn (Audit $record) => static::restoreAudit($record))
+                    ->action(fn (Audit $record) => self::restoreAudit($record))
                     ->icon('heroicon-o-arrow-path')
                     ->requiresConfirmation()
                     ->visible(fn ($record): bool => $record->event === 'updated'),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 //
             ])
             ->defaultSort('created_at', 'desc')
@@ -247,12 +252,14 @@ class AuditResource extends Resource
             ->striped();
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [
@@ -264,16 +271,19 @@ class AuditResource extends Resource
     /**
      * This resource is read-only.
      */
+    #[Override]
     public static function canCreate(): bool
     {
         return false;
     }
 
+    #[Override]
     public static function canEdit($record): bool
     {
         return false;
     }
 
+    #[Override]
     public static function canDelete($record): bool
     {
         return false;

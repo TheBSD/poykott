@@ -12,44 +12,48 @@ use App\Filament\Resources\CompanyResource\Pages\ListCompanies;
 use App\Filament\Resources\CompanyResource\RelationManagers\AlternativesRelationManager;
 use App\Filament\Resources\CompanyResource\RelationManagers\OfficeLocationsRelationManager;
 use App\Models\Company;
+use BackedEnum;
 use Exception;
+use Filament\Actions\Action;
+use Filament\Actions\BulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\BulkAction;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Collection;
+use Override;
+use UnitEnum;
 
 class CompanyResource extends Resource
 {
     protected static ?string $model = Company::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static ?string $navigationGroup = 'Companies';
+    protected static string|UnitEnum|null $navigationGroup = 'Companies';
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
 
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name')
                     ->required()
                     ->unique(table: 'companies', column: 'name', ignoreRecord: true)
@@ -103,6 +107,7 @@ class CompanyResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -162,12 +167,12 @@ class CompanyResource extends Resource
                         false: fn ($query) => $query->whereDoesntHave('alternatives'),
                     ),
             ])
-            ->actions([
+            ->recordActions([
                 Action::make('fetchLogo')
                     ->label('Fetch Logo')
                     ->action(function (Company $record): void {
 
-                        $success = app(ScrapeLogoFromUrlAction::class)->execute($record, $record->url);
+                        $success = resolve(ScrapeLogoFromUrlAction::class)->execute($record, $record->url);
 
                         if (! $success) {
                             Notification::make()
@@ -210,7 +215,7 @@ class CompanyResource extends Resource
                         $record->aiAlternative?->delete();
 
                         try {
-                            app(GenerateCompanyAiAlternativesAction::class)->execute($record);
+                            resolve(GenerateCompanyAiAlternativesAction::class)->execute($record);
 
                             Notification::make()
                                 ->success()
@@ -232,7 +237,7 @@ class CompanyResource extends Resource
                 EditAction::make(),
                 DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                     BulkAction::make('approve')
@@ -255,6 +260,7 @@ class CompanyResource extends Resource
             ->persistFiltersInSession();
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
@@ -265,6 +271,7 @@ class CompanyResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

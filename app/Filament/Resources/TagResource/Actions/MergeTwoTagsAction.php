@@ -4,12 +4,14 @@ namespace App\Filament\Resources\TagResource\Actions;
 
 use App\Actions\TagsMergerAction;
 use App\Models\Tag;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
-use Filament\Tables\Actions\Action;
+use Override;
 
 class MergeTwoTagsAction extends Action
 {
+    #[Override]
     public static function make(?string $name = null): static
     {
         return parent::make($name)

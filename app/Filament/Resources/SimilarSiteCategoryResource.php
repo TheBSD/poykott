@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
@@ -7,28 +9,32 @@ use App\Filament\Resources\SimilarSiteCategoryResource\Pages\CreateSimilarSiteCa
 use App\Filament\Resources\SimilarSiteCategoryResource\Pages\EditSimilarSiteCategory;
 use App\Filament\Resources\SimilarSiteCategoryResource\Pages\ListSimilarSiteCategories;
 use App\Models\SimilarSiteCategory;
+use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Override;
+use UnitEnum;
 
 class SimilarSiteCategoryResource extends Resource
 {
     protected static ?string $model = SimilarSiteCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-group';
 
-    protected static ?string $navigationGroup = 'Similar Sites';
+    protected static string|UnitEnum|null $navigationGroup = 'Similar Sites';
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name')
                     ->required(),
                 Textarea::make('description')
@@ -36,6 +42,7 @@ class SimilarSiteCategoryResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -54,16 +61,17 @@ class SimilarSiteCategoryResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
@@ -71,6 +79,7 @@ class SimilarSiteCategoryResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

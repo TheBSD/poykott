@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\AuditsRelationManagerResource\RelationManagers;
 
+use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
+use Override;
 use OwenIt\Auditing\Contracts\Audit;
 
 class AuditsRelationManager extends RelationManager
@@ -36,21 +37,25 @@ class AuditsRelationManager extends RelationManager
             ->send();
     }
 
+    #[Override]
     protected function canCreate(): bool
     {
         return false;
     }
 
+    #[Override]
     protected function canEdit(Model $record): bool
     {
         return false;
     }
 
+    #[Override]
     protected function canDelete(Model $record): bool
     {
         return false;
     }
 
+    #[Override]
     protected function canDeleteAny(): bool
     {
         return false;
@@ -64,7 +69,7 @@ class AuditsRelationManager extends RelationManager
                 TextColumn::make('id')
                     ->label('Audit ID')
                     ->sortable()
-                    ->url(fn (\OwenIt\Auditing\Models\Audit $record) => $record->user_id
+                    ->url(fn (\OwenIt\Auditing\Models\Audit $record): ?string => $record->user_id
                         ? route('filament.admin.resources.audits.view', ['record' => $record->id])
                         : null)
                     ->searchable(),
@@ -72,7 +77,7 @@ class AuditsRelationManager extends RelationManager
                 TextColumn::make('user_id')
                     ->label('User')
                     ->sortable()
-                    ->url(fn (\OwenIt\Auditing\Models\Audit $record) => $record->user_id
+                    ->url(fn (\OwenIt\Auditing\Models\Audit $record): ?string => $record->user_id
                         ? route('filament.admin.resources.users.edit', ['record' => $record->user_id])
                         : null)
                     ->formatStateUsing(
@@ -151,7 +156,7 @@ class AuditsRelationManager extends RelationManager
             ->headerActions([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 Action::make('restore')
                     ->label('Restore Updated')
                     ->action(fn (Audit $record) => $this->restoreAudit($record))
@@ -159,7 +164,7 @@ class AuditsRelationManager extends RelationManager
                     ->requiresConfirmation()
                     ->visible(fn ($record): bool => $record->event === 'updated'),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 //
             ])
             ->striped()
