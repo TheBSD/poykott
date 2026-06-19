@@ -12,67 +12,93 @@
             <!-- Contact Form Section -->
             <div class="mx-auto max-w-2xl">
                 <div class="rounded-2xl bg-white p-8 shadow-xl">
-                    <iframe data-tally-src="https://tally.so/embed/1ARNP4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="521" frameborder="0" marginheight="0" marginwidth="0" title="New Company"></iframe>
-<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-                    {{-- <form action="{{ route('companies.store') }}" method="POST">
+                    <iframe
+                        data-tally-src="https://tally.so/embed/1ARNP4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                        loading="lazy"
+                        width="100%"
+                        height="521"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        title="New Company"
+                    ></iframe>
+                    <script>
+                        var d = document,
+                            w = 'https://tally.so/widgets/embed.js',
+                            v = function () {
+                                'undefined' != typeof Tally
+                                    ? Tally.loadEmbeds()
+                                    : d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function (e) {
+                                          e.src = e.dataset.tallySrc;
+                                      });
+                            };
+                        if ('undefined' != typeof Tally) v();
+                        else if (d.querySelector('script[src="' + w + '"]') == null) {
+                            var s = d.createElement('script');
+                            (s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s);
+                        }
+                    </script>
+                    {{--
+                        <form action="{{ route('companies.store') }}" method="POST">
                         @csrf
                         <x-honeypot />
                         <div class="space-y-6">
-                            <div>
-                                <label class="mb-2 block text-sm font-medium text-gray-700">
-                                    Name
-                                    <span class="inline text-lg text-red-600">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    value="{{ old('name') }}"
-                                    required
-                                />
-                                <div class="text-red-500">
-                                    {{ $errors->first('name') }}
-                                </div>
-                            </div>
-                            <div>
-                                <label class="mb-2 block text-sm font-medium text-gray-700">
-                                    URL
-                                    <span class="inline text-lg text-red-600">*</span>
-                                </label>
-                                <input
-                                    type="url"
-                                    name="url"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    value="{{ old('url') }}"
-                                    required
-                                />
-                                <div class="text-red-500">
-                                    {{ $errors->first('url') }}
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="mb-2 block text-sm font-medium text-gray-700">Description</label>
-                                <textarea
-                                    name="description"
-                                    rows="5"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                >
-{{ old('description') }}</textarea
-                                >
-                                <div class="text-red-500">
-                                    {{ $errors->first('description') }}
-                                </div>
-                            </div>
-
-                            <button
-                                type="submit"
-                                class="w-full transform rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition duration-200 hover:scale-[1.02] hover:bg-blue-700"
-                            >
-                                Save Company
-                            </button>
+                        <div>
+                        <label class="mb-2 block text-sm font-medium text-gray-700">
+                        Name
+                        <span class="inline text-lg text-red-600">*</span>
+                        </label>
+                        <input
+                        type="text"
+                        name="name"
+                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        value="{{ old('name') }}"
+                        required
+                        />
+                        <div class="text-red-500">
+                        {{ $errors->first('name') }}
                         </div>
-                    </form> --}}
+                        </div>
+                        <div>
+                        <label class="mb-2 block text-sm font-medium text-gray-700">
+                        URL
+                        <span class="inline text-lg text-red-600">*</span>
+                        </label>
+                        <input
+                        type="url"
+                        name="url"
+                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        value="{{ old('url') }}"
+                        required
+                        />
+                        <div class="text-red-500">
+                        {{ $errors->first('url') }}
+                        </div>
+                        </div>
+
+                        <div>
+                        <label class="mb-2 block text-sm font-medium text-gray-700">Description</label>
+                        <textarea
+                        name="description"
+                        rows="5"
+                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                        {{ old('description') }}</textarea
+                        >
+                        <div class="text-red-500">
+                        {{ $errors->first('description') }}
+                        </div>
+                        </div>
+
+                        <button
+                        type="submit"
+                        class="w-full transform rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition duration-200 hover:scale-[1.02] hover:bg-blue-700"
+                        >
+                        Save Company
+                        </button>
+                        </div>
+                        </form>
+                    --}}
                 </div>
             </div>
         </div>

@@ -8,21 +8,23 @@ use App\Filament\Resources\SocialLinkResource\Pages\ListSocialLinks;
 use App\Models\Company;
 use App\Models\Person;
 use App\Models\SocialLink;
+use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
+use Override;
 
 class SocialLinkResource extends Resource
 {
@@ -30,12 +32,13 @@ class SocialLinkResource extends Resource
 
     protected static ?string $slug = 'social-links';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Hidden::make('linkable_type')
                     ->required(),
 
@@ -51,7 +54,7 @@ class SocialLinkResource extends Resource
                                 Company::query()
                                     ->select('id', 'name')
                                     ->get()
-                                    ->mapWithKeys(fn ($company) => [
+                                    ->mapWithKeys(fn ($company): array => [
                                         'company|' . $company->id => 'Company: ' . $company->name,
                                     ])
                             )
@@ -59,11 +62,11 @@ class SocialLinkResource extends Resource
                                 Person::query()
                                     ->select('id', 'name')
                                     ->get()
-                                    ->mapWithKeys(fn ($person) => [
+                                    ->mapWithKeys(fn ($person): array => [
                                         'person|' . $person->id => 'Person: ' . $person->name,
                                     ])
                             )
-                            ->toArray();
+                            ->all();
                     })
                     ->afterStateUpdated(function ($state, callable $set): void {
                         if ($state && str_contains($state, '|')) {
@@ -107,6 +110,7 @@ class SocialLinkResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -119,17 +123,18 @@ class SocialLinkResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
                 DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [
@@ -139,16 +144,19 @@ class SocialLinkResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getGlobalSearchEloquentQuery(): Builder
     {
         return parent::getGlobalSearchEloquentQuery()->with(['linkable']);
     }
 
+    #[Override]
     public static function getGloballySearchableAttributes(): array
     {
         return ['linkable.name'];
     }
 
+    #[Override]
     public static function getGlobalSearchResultDetails(Model $record): array
     {
         $details = [];

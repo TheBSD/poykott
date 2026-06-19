@@ -8,33 +8,37 @@ use App\Filament\Resources\SimilarSiteResource\Pages\CreateSimilarSite;
 use App\Filament\Resources\SimilarSiteResource\Pages\EditSimilarSite;
 use App\Filament\Resources\SimilarSiteResource\Pages\ListSimilarSites;
 use App\Models\SimilarSite;
+use BackedEnum;
+use Filament\Actions\Action;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Override;
+use UnitEnum;
 
 class SimilarSiteResource extends Resource
 {
     protected static ?string $model = SimilarSite::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-arrow-top-right-on-square';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-arrow-top-right-on-square';
 
-    protected static ?string $navigationGroup = 'Similar Sites';
+    protected static string|UnitEnum|null $navigationGroup = 'Similar Sites';
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name')
                     ->rules([
                         'required', 'string', 'max:255', 'min:3',
@@ -54,6 +58,7 @@ class SimilarSiteResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -86,13 +91,13 @@ class SimilarSiteResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
                 Action::make('fetchLogo')
                     ->label('Fetch Logo')
                     ->action(function (SimilarSite $record): void {
 
-                        $success = app(ScrapeLogoFromUrlAction::class)->execute($record, $record->url);
+                        $success = resolve(ScrapeLogoFromUrlAction::class)->execute($record, $record->url);
 
                         if (! $success) {
                             Notification::make()
@@ -128,13 +133,14 @@ class SimilarSiteResource extends Resource
                     })
                     ->color('danger'),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
@@ -142,6 +148,7 @@ class SimilarSiteResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

@@ -8,31 +8,35 @@ use App\Filament\Resources\InvestorResource\Pages\CreateInvestor;
 use App\Filament\Resources\InvestorResource\Pages\EditInvestor;
 use App\Filament\Resources\InvestorResource\Pages\ListInvestors;
 use App\Models\Investor;
-use Filament\Forms\Components\Grid;
+use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Override;
+use UnitEnum;
 
 class InvestorResource extends Resource
 {
     protected static ?string $model = Investor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-banknotes';
 
-    protected static ?string $navigationGroup = 'Investors';
+    protected static string|UnitEnum|null $navigationGroup = 'Investors';
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name')->required(),
                 TextInput::make('slug')->required(),
                 // Fieldset::make('logo')
@@ -58,6 +62,7 @@ class InvestorResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -86,17 +91,18 @@ class InvestorResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
                 DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
@@ -105,6 +111,7 @@ class InvestorResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

@@ -10,38 +10,42 @@ use App\Filament\Resources\AlternativeResource\RelationManagers\CompaniesRelatio
 use App\Filament\Resources\AlternativeResource\RelationManagers\ResourcesRelationManager;
 use App\Filament\Resources\AuditsRelationManagerResource\RelationManagers\AuditsRelationManager;
 use App\Models\Alternative;
+use BackedEnum;
+use Filament\Actions\Action;
+use Filament\Actions\BulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\BulkAction;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Collection;
+use Override;
+use UnitEnum;
 
 class AlternativeResource extends Resource
 {
     protected static ?string $model = Alternative::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-arrows-right-left';
 
-    protected static ?string $navigationGroup = 'Alternatives';
+    protected static string|UnitEnum|null $navigationGroup = 'Alternatives';
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             TextInput::make('name')->required(),
             TextInput::make('url')->required(),
             Textarea::make('description')->columnSpanFull(),
@@ -66,6 +70,7 @@ class AlternativeResource extends Resource
         ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -101,12 +106,12 @@ class AlternativeResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 Action::make('fetchLogo')
                     ->label('Fetch Logo')
                     ->action(function (Alternative $record): void {
 
-                        $success = app(ScrapeLogoFromUrlAction::class)->execute($record, $record->url);
+                        $success = resolve(ScrapeLogoFromUrlAction::class)->execute($record, $record->url);
 
                         if (! $success) {
                             Notification::make()
@@ -145,7 +150,7 @@ class AlternativeResource extends Resource
                 EditAction::make()->label(''),
                 DeleteAction::make()->label(''),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                     BulkAction::make('approve')
@@ -167,6 +172,7 @@ class AlternativeResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
@@ -176,6 +182,7 @@ class AlternativeResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

@@ -21,40 +21,37 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 8.2
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, pdo_sqlite, sqlite3
+                  php-version: '8.3'
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, pdo_sqlite, sqlite3, exif, fileinfo
                   tools: composer:v2
                   coverage: none
 
-            - name: Set Laravel Framework Version
-              run: composer config version "11.x-dev"
+            - name: Copy environment file
+              run: cp .env.example .env
 
-            - name: Install dependencies
-              uses: nick-fields/retry@v3
-              with:
-                  timeout_minutes: 5
-                  max_attempts: 5
-                  command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
+            - name: Validate Composer files
+              run: composer validate --no-check-publish
+
+            - name: Install Composer dependencies
+              run: composer install --prefer-dist --no-interaction --no-progress
 
             - name: Install Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: '18'
+                  node-version: '22'
+                  cache: npm
 
             - name: Install NPM dependencies
-              run: npm ci
+              run: npm ci --ignore-scripts
 
             - name: Build Vite assets
               run: npm run build
 
-            - name: copy env file
-              run: cp .env.example .env
-
-            - name: generate key
+            - name: Generate application key
               run: php artisan key:generate
 
-            - name: Check if the test command exists
-              run: php artisan | grep 'test'
-
             - name: Run tests
-              run: php artisan test --compact
+              run: composer test
+
+            - name: Audit Composer dependencies
+              run: composer audit

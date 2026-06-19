@@ -5,18 +5,19 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactMessageResource\Pages\ListContactMessages;
 use App\Filament\Resources\ContactMessageResource\Pages\ViewContactMessage;
 use App\Models\ContactMessage;
+use BackedEnum;
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -24,20 +25,24 @@ use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
+use Override;
+use UnitEnum;
 
 class ContactMessageResource extends Resource
 {
     protected static ?string $model = ContactMessage::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-envelope';
 
-    protected static ?string $navigationGroup = 'Contacts';
+    protected static string|UnitEnum|null $navigationGroup = 'Contacts';
 
-    public static function form(Form $form): Form
+    #[Override]
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('Message')
                     ->schema([
                         TextInput::make('name'),
@@ -57,6 +62,7 @@ class ContactMessageResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -133,7 +139,7 @@ class ContactMessageResource extends Resource
                         };
                     }),
             ])
-            ->actions([
+            ->recordActions([
                 ActionGroup::make([
                     ViewAction::make(),
 
@@ -143,7 +149,7 @@ class ContactMessageResource extends Resource
                         ->color('success')
                         ->visible(fn (Model $record): bool => ! $record->read_at)
                         ->action(fn (Model $record) => $record->update(['read_at' => now()]))
-                        ->after(fn () => redirect()->back()),
+                        ->after(fn (): RedirectResponse => back()),
 
                     Action::make('mark_as_unread')
                         ->label('Mark as Unopened')
@@ -151,7 +157,7 @@ class ContactMessageResource extends Resource
                         ->color('warning')
                         ->visible(fn (Model $record) => $record->read_at)
                         ->action(fn (Model $record) => $record->update(['read_at' => null]))
-                        ->after(fn () => redirect()->back()),
+                        ->after(fn (): RedirectResponse => back()),
 
                     Action::make('mark_as_spam')
                         ->label('Mark as Spam')
@@ -162,7 +168,7 @@ class ContactMessageResource extends Resource
                         ->modalHeading('Mark as Spam')
                         ->modalDescription('This will mark the message as spam and prevent future messages from this email address and IP address.')
                         ->action(fn (Model $record) => $record->markAsSpam())
-                        ->after(fn () => redirect()->back()),
+                        ->after(fn (): RedirectResponse => back()),
 
                     Action::make('mark_as_not_spam')
                         ->label('Mark as Not Spam')
@@ -173,10 +179,10 @@ class ContactMessageResource extends Resource
                         ->modalHeading('Mark as Not Spam')
                         ->modalDescription('This will unmark the message as spam and allow future messages from this email address and IP address.')
                         ->action(fn (Model $record) => $record->markAsNotSpam())
-                        ->after(fn () => redirect()->back()),
+                        ->after(fn (): RedirectResponse => back()),
                 ]),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
@@ -185,6 +191,7 @@ class ContactMessageResource extends Resource
             ->defaultSort('created_at', 'desc');
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
@@ -192,6 +199,7 @@ class ContactMessageResource extends Resource
         ];
     }
 
+    #[Override]
     public static function canCreate(): bool
     {
         return false;
@@ -199,11 +207,12 @@ class ContactMessageResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        $count = static::getModel()::whereNull('read_at')->count();
+        $count = static::getModel()::query()->whereNull('read_at')->count();
 
         return $count > 0 ? (string) $count : null;
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

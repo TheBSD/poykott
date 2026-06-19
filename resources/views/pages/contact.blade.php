@@ -10,84 +10,110 @@
 
             <div class="mx-auto max-w-2xl">
                 <div class="rounded-2xl bg-white p-8 shadow-xl">
-
-            {{-- Embed Link --}}
-<iframe data-tally-src="https://tally.so/embed/NpPbqp?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="476" frameborder="0" marginheight="0" marginwidth="0" title="Contact Us "></iframe>
-<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-
+                    {{-- Embed Link --}}
+                    <iframe
+                        data-tally-src="https://tally.so/embed/NpPbqp?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                        loading="lazy"
+                        width="100%"
+                        height="476"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        title="Contact Us "
+                    ></iframe>
+                    <script>
+                        var d = document,
+                            w = 'https://tally.so/widgets/embed.js',
+                            v = function () {
+                                'undefined' != typeof Tally
+                                    ? Tally.loadEmbeds()
+                                    : d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function (e) {
+                                          e.src = e.dataset.tallySrc;
+                                      });
+                            };
+                        if ('undefined' != typeof Tally) v();
+                        else if (d.querySelector('script[src="' + w + '"]') == null) {
+                            var s = d.createElement('script');
+                            (s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s);
+                        }
+                    </script>
 
                     {{-- <h2 class="mb-8 text-3xl font-bold text-gray-900">Get in Touch</h2> --}}
 
-                    {{-- @if ($errors->any())
+                    {{--
+                        @if ($errors->any())
                         <div class="mb-6 rounded-lg bg-red-100 p-4 text-red-700">
-                            There were some errors with your submission. Please fix them below and try again.
+                        There were some errors with your submission. Please fix them below and try again.
                         </div>
-                    @endif --}}
+                        @endif
+                    --}}
 
-                    {{-- <form action="{{ route('contact.store') }}" method="POST">
+                    {{--
+                        <form action="{{ route('contact.store') }}" method="POST">
                         @csrf
                         <x-honeypot />
                         <div class="space-y-6">
-                            <div>
-                                <label class="mb-2 block text-sm font-medium text-gray-700">
-                                    Name
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value="{{ old('name') }}"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                />
-                                @error('name')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div>
-                                <label class="mb-2 block text-sm font-medium text-gray-700">
-                                    Email
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value="{{ old('email') }}"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                />
-                                @error('email')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div>
-                                <label class="mb-2 block text-sm font-medium text-gray-700">
-                                    Message
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <textarea
-                                    name="message"
-                                    rows="5"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                >
-{{ old('message') }}</textarea
-                                >
-                                @error('message')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <button
-                                type="submit"
-                                class="w-full transform rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition duration-200 hover:scale-[1.02] hover:bg-blue-700"
-                            >
-                                Send Message
-                            </button>
+                        <div>
+                        <label class="mb-2 block text-sm font-medium text-gray-700">
+                        Name
+                        <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                        />
+                        @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                         </div>
-                    </form> --}}
+
+                        <div>
+                        <label class="mb-2 block text-sm font-medium text-gray-700">
+                        Email
+                        <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                        />
+                        @error('email')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        </div>
+
+                        <div>
+                        <label class="mb-2 block text-sm font-medium text-gray-700">
+                        Message
+                        <span class="text-red-500">*</span>
+                        </label>
+                        <textarea
+                        name="message"
+                        rows="5"
+                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                        >
+                        {{ old('message') }}</textarea
+                        >
+                        @error('message')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        </div>
+
+                        <button
+                        type="submit"
+                        class="w-full transform rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition duration-200 hover:scale-[1.02] hover:bg-blue-700"
+                        >
+                        Send Message
+                        </button>
+                        </div>
+                        </form>
+                    --}}
                 </div>
             </div>
         </div>

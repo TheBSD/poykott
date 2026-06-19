@@ -4,12 +4,14 @@ namespace App\Filament\Resources\OfficeLocationResource\Actions;
 
 use App\Actions\OfficeLocationsMergerAction;
 use App\Models\OfficeLocation;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
-use Filament\Tables\Actions\Action;
+use Override;
 
 class MergeTwoOfficeLocationsAction extends Action
 {
+    #[Override]
     public static function make(?string $name = null): static
     {
         return parent::make($name)

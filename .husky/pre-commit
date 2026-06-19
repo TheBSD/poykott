@@ -1,4 +1,14 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx --no-install lint-staged --allow-empty
+if ! command -v node >/dev/null 2>&1; then
+    export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+    echo "Node.js is required to run the pre-commit hook." >&2
+    exit 127
+fi
+
+./node_modules/.bin/lint-staged --allow-empty

@@ -12,8 +12,11 @@ use App\Models\SimilarSite;
 use App\Models\Tag;
 use App\Models\User;
 use App\Policies\AuditPolicy;
-use BezhanSalleh\FilamentShield\FilamentShield;
+use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 use Carbon\CarbonImmutable;
+use Filament\Pages\Page;
+use Filament\Resources\Resource as FilamentResource;
+use Filament\Widgets\Widget;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Date;
@@ -21,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Override;
 use OwenIt\Auditing\Models\Audit;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
+    #[Override]
     public function register(): void
     {
         //
@@ -40,6 +45,21 @@ class AppServiceProvider extends ServiceProvider
     {
         DB::prohibitDestructiveCommands(app()->isProduction());
         FilamentShield::prohibitDestructiveCommands(app()->isProduction());
+        FilamentShield::buildPermissionKeyUsing(function (string $entity, string $affix, string $subject): string {
+            if (is_subclass_of($entity, FilamentResource::class)) {
+                return str($affix)->snake() . '_' . str($subject)->snake('::');
+            }
+
+            if (is_subclass_of($entity, Page::class)) {
+                return 'page_' . $subject;
+            }
+
+            if (is_subclass_of($entity, Widget::class)) {
+                return 'widget_' . $subject;
+            }
+
+            return str($affix)->snake() . '_' . $subject;
+        });
 
         URL::forceHttps(app()->isProduction());
 
