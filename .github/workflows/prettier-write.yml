@@ -11,30 +11,32 @@ jobs:
             contents: write
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
               with:
-                  ref: ${{ github.head_ref }}
+                  ref: ${{ github.head_ref || github.ref_name }}
 
-            - uses: actions/setup-node@v2
+            - uses: actions/setup-node@v4
               with:
-                  node-version: '18.x'
+                  node-version: '22'
+                  cache: npm
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.2'
+                  php-version: '8.3'
                   extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+                  tools: composer:v2
+                  coverage: none
 
             - name: Install dependencies
               run: |
                   cp .env.example .env
-                  composer install --no-interaction --prefer-dist --optimize-autoloader
+                  composer install --no-interaction --prefer-dist --no-progress
 
             - name: Generate key
               run: php artisan key:generate
 
-            - run: npm ci
-            - run: npm run prepare
+            - run: npm ci --ignore-scripts
             - run: npm run format
 
             - name: Commit changes
