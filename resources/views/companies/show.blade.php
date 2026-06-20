@@ -123,7 +123,7 @@
                             <h3 class="mb-4 text-xl font-semibold text-gray-900">Suggest an Alternative</h3>
 
                             <iframe
-                                data-tally-src="https://tally.so/embed/RGjbGQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                                data-tally-src="https://tally.so/embed/RGjbGQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&slug={{ rawurlencode($company->slug) }}"
                                 loading="lazy"
                                 width="100%"
                                 height="282"
