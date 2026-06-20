@@ -8,6 +8,8 @@ use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\MailchimpRedirectionController;
 use App\Http\Controllers\OpCacheController;
 use App\Http\Controllers\PersonController;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 // Companies (Homepage)
@@ -41,6 +43,13 @@ Route::get('investors/{investor:slug}', [InvestorController::class, 'show'])->na
 // Contact
 // Route::post('contact', [HomeController::class, 'contactPost'])->name('contact.store');
 Route::get('contact', [HomeController::class, 'contactGet'])->name('contact.get');
+
+// Security disclosure
+Route::get('.well-known/security.txt', fn (): ResponseFactory|Response => response(
+    file_get_contents(public_path('.well-known/security.txt')),
+    200,
+    ['Content-Type' => 'text/plain; charset=UTF-8'],
+));
 
 // Pages
 Route::get('about', [HomeController::class, 'about'])->name('about');
