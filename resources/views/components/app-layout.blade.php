@@ -12,8 +12,6 @@
         <!-- Scripts & Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        @include('partials.analytics')
-
         @if (config('services.google.analytics_id') && app()->isProduction())
             @include('partials.analytics')
         @endif
