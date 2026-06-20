@@ -35,6 +35,7 @@ test('show displays view', function (): void {
     $response->assertViewHas('company');
 
     $response->assertSee($company->name);
+    $response->assertSeeHtml("slug={$company->slug}");
 
     // checks relationships
     $response->assertViewHas('company.founders');

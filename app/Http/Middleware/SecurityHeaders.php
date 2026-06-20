@@ -45,7 +45,7 @@ class SecurityHeaders
             'frame-src \'self\' https://tally.so',
             "img-src 'self' data: blob: https:",
             "object-src 'none'",
-            "script-src 'self' 'unsafe-inline' https://tally.so https://www.googletagmanager.com",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tally.so https://www.googletagmanager.com",
             "style-src 'self' 'unsafe-inline' https:",
             "worker-src 'self' blob:",
         ];
