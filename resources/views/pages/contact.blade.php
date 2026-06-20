@@ -69,7 +69,7 @@
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                         </div>
-
+                        
                         <div>
                         <label class="mb-2 block text-sm font-medium text-gray-700">
                         Email
@@ -86,7 +86,7 @@
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                         </div>
-
+                        
                         <div>
                         <label class="mb-2 block text-sm font-medium text-gray-700">
                         Message
@@ -104,7 +104,7 @@
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                         </div>
-
+                        
                         <button
                         type="submit"
                         class="w-full transform rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition duration-200 hover:scale-[1.02] hover:bg-blue-700"

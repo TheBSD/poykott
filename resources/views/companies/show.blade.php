@@ -158,7 +158,7 @@
                                 >
                                 @csrf
                                 <x-honeypot />
-
+                                
                                 <!-- Validation Errors -->
                                 @if ($errors->any())
                                 <div class="rounded-md bg-red-50 p-4">
@@ -194,7 +194,7 @@
                                 </div>
                                 </div>
                                 @endif
-
+                                
                                 <div class="flex flex-col gap-4 md:flex-row md:items-end">
                                 <div class="w-full flex-1">
                                 <label for="name" class="mb-1 block text-sm font-medium text-gray-700">
@@ -209,7 +209,7 @@
                                 required
                                 />
                                 </div>
-
+                                
                                 <div class="w-full md:w-2/4">
                                 <label for="url" class="block text-sm font-medium text-gray-700">
                                 URL
@@ -223,7 +223,7 @@
                                 required
                                 />
                                 </div>
-
+                                
                                 <div class="mt-4 w-full md:w-1/4">
                                 <button
                                 type="submit"
