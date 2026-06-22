@@ -121,89 +121,120 @@
                         <!-- Add Alternative Form-- -->
                         <div class="mt-10 rounded-xl bg-gray-50 p-6">
                             <h3 class="mb-4 text-xl font-semibold text-gray-900">Suggest an Alternative</h3>
-                            <form
+
+                            <iframe
+                                data-tally-src="https://tally.so/embed/RGjbGQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&slug={{ rawurlencode($company->slug) }}"
+                                loading="lazy"
+                                width="100%"
+                                height="282"
+                                frameborder="0"
+                                marginheight="0"
+                                marginwidth="0"
+                                title="Suggest an Alternative"
+                            ></iframe>
+                            <script>
+                                var d = document,
+                                    w = 'https://tally.so/widgets/embed.js',
+                                    v = function () {
+                                        'undefined' != typeof Tally
+                                            ? Tally.loadEmbeds()
+                                            : d
+                                                  .querySelectorAll('iframe[data-tally-src]:not([src])')
+                                                  .forEach(function (e) {
+                                                      e.src = e.dataset.tallySrc;
+                                                  });
+                                    };
+                                if ('undefined' != typeof Tally) v();
+                                else if (d.querySelector('script[src="' + w + '"]') == null) {
+                                    var s = d.createElement('script');
+                                    (s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s);
+                                }
+                            </script>
+                            {{--
+                                <form
                                 action="{{ route('companies.alternatives.store', $company) }}"
                                 method="POST"
                                 class="space-y-4"
-                            >
+                                >
                                 @csrf
                                 <x-honeypot />
 
                                 <!-- Validation Errors -->
                                 @if ($errors->any())
-                                    <div class="rounded-md bg-red-50 p-4">
-                                        <div class="flex">
-                                            <div class="flex-shrink-0">
-                                                <svg
-                                                    class="h-5 w-5 text-red-400"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
-                                            </div>
-                                            <div class="ml-3">
-                                                <h3 class="text-sm font-medium text-red-800">
-                                                    There {{ $errors->count() > 1 ? 'were' : 'was' }}
-                                                    {{ $errors->count() }}
-                                                    {{ Str::plural('error', $errors->count()) }} with your submission
-                                                </h3>
-                                                <div class="mt-2 text-sm text-red-700">
-                                                    <ul class="list-disc space-y-1 pl-5">
-                                                        @foreach ($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="rounded-md bg-red-50 p-4">
+                                <div class="flex">
+                                <div class="flex-shrink-0">
+                                <svg
+                                class="h-5 w-5 text-red-400"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                >
+                                <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                                />
+                                </svg>
+                                </div>
+                                <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800">
+                                There {{ $errors->count() > 1 ? 'were' : 'was' }}
+                                {{ $errors->count() }}
+                                {{ Str::plural('error', $errors->count()) }} with your submission
+                                </h3>
+                                <div class="mt-2 text-sm text-red-700">
+                                <ul class="list-disc space-y-1 pl-5">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                                </ul>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
                                 @endif
 
                                 <div class="flex flex-col gap-4 md:flex-row md:items-end">
-                                    <div class="w-full flex-1">
-                                        <label for="name" class="mb-1 block text-sm font-medium text-gray-700">
-                                            Name
-                                            <span class="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            id="name"
-                                            class="w-full rounded-md border p-2"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div class="w-full md:w-2/4">
-                                        <label for="url" class="block text-sm font-medium text-gray-700">
-                                            URL
-                                            <span class="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            type="url"
-                                            name="url"
-                                            id="url"
-                                            class="w-full rounded-md border p-2"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div class="mt-4 w-full md:w-1/4">
-                                        <button
-                                            type="submit"
-                                            class="rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                        >
-                                            Submit Alternative
-                                        </button>
-                                    </div>
+                                <div class="w-full flex-1">
+                                <label for="name" class="mb-1 block text-sm font-medium text-gray-700">
+                                Name
+                                <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                class="w-full rounded-md border p-2"
+                                required
+                                />
                                 </div>
-                            </form>
+
+                                <div class="w-full md:w-2/4">
+                                <label for="url" class="block text-sm font-medium text-gray-700">
+                                URL
+                                <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                type="url"
+                                name="url"
+                                id="url"
+                                class="w-full rounded-md border p-2"
+                                required
+                                />
+                                </div>
+
+                                <div class="mt-4 w-full md:w-1/4">
+                                <button
+                                type="submit"
+                                class="rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                >
+                                Submit Alternative
+                                </button>
+                                </div>
+                                </div>
+                                </form>
+                            --}}
                         </div>
                     </div>
 

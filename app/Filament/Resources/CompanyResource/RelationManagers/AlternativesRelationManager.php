@@ -1,22 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\CompanyResource\RelationManagers;
 
-use Filament\Forms\Form;
+use Filament\Actions\AttachAction;
+use Filament\Actions\DetachAction;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Actions\AttachAction;
-use Filament\Tables\Actions\DetachAction;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Override;
 
 class AlternativesRelationManager extends RelationManager
 {
     protected static string $relationship = 'alternatives';
 
-    public function form(Form $form): Form
+    #[Override]
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
             ]);
     }
 
@@ -33,10 +37,10 @@ class AlternativesRelationManager extends RelationManager
             ->headerActions([
                 AttachAction::make()->preloadRecordSelect(),
             ])
-            ->actions([
+            ->recordActions([
                 DetachAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
             ]);
     }
 }

@@ -9,6 +9,8 @@ use App\Http\Controllers\MailchimpRedirectionController;
 use App\Http\Controllers\MatrixAlternativesController;
 use App\Http\Controllers\OpCacheController;
 use App\Http\Controllers\PersonController;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 // Companies (Homepage)
@@ -20,15 +22,15 @@ Route::get('alternatives', [HomeController::class, 'index'])->name('alternatives
 
 Route::get('alternative/{alternative:slug}', [HomeController::class, 'show'])->name('alternatives.show');
 Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
-Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
+// Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
 
 Route::get('companies/{company:slug}', [CompanyController::class, 'show'])->name('companies.show');
 Route::get('company/{company:slug}', [CompanyController::class, 'redirect'])->name('company.redirect');
 
 Route::get('companies/url/{companyUrl}', [CompanyController::class, 'redirectToSlug'])->name('companies.show.url');
-Route::post(
-    'companies/{company:slug}/alternatives', [CompanyController::class, 'storeAlternative']
-)->name('companies.alternatives.store');
+// Route::post(
+//     'companies/{company:slug}/alternatives', [CompanyController::class, 'storeAlternative']
+// )->name('companies.alternatives.store');
 Route::post(
     'companies/{company:slug}/ai-alternatives', [AiAlternativeController::class, 'store']
 )->name('companies.ai-alternatives.store')->middleware('throttle:5,1');
@@ -40,8 +42,15 @@ Route::get('people/{person:slug}', [PersonController::class, 'show'])->name('peo
 Route::get('investors/{investor:slug}', [InvestorController::class, 'show'])->name('investors.show');
 
 // Contact
-Route::post('contact', [HomeController::class, 'contactPost'])->name('contact.store');
+// Route::post('contact', [HomeController::class, 'contactPost'])->name('contact.store');
 Route::get('contact', [HomeController::class, 'contactGet'])->name('contact.get');
+
+// Security disclosure
+Route::get('.well-known/security.txt', fn (): ResponseFactory|Response => response(
+    file_get_contents(public_path('.well-known/security.txt')),
+    200,
+    ['Content-Type' => 'text/plain; charset=UTF-8'],
+));
 
 // Pages
 Route::get('about', [HomeController::class, 'about'])->name('about');
