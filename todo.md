@@ -2,8 +2,14 @@
 
 ## Data
 
+- [x] fix the github action for server when push
+- [x] add robots.txt and llm.txt to the exclude security rule in cloudflare
+
 - [ ] add data from crunch base
-- [ ] add data from https://github.com/ourcmcc/il-orgs
+- [ ] get Crunchbase competitors from `database/seeders/data/13-crunchbase.json`
+- [ ] make it multi-language for static and dynamic data using AI
+  - [ ] use the most seven spoken languages in the world
+  - [ ] then the most seven spoken languages for the Islamic countries
 
 ## Important
 
