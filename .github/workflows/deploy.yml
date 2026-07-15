@@ -26,28 +26,25 @@ jobs:
 
       - name: Deploy
         env:
-          DEPLOY_PATH:  /home/watheq/israelitechalternatives.com
+          DEPLOY_PATH: /home/watheq/israelitechalternatives.com
         run: |
           ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p 22 root@207.154.210.24 \
             "DEPLOY_PATH='$DEPLOY_PATH' bash -s" <<'EOF'
           set -euo pipefail
 
           cd "$DEPLOY_PATH"
-          git pull origin main
+          git pull --ff-only origin main
 
           composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+          npm ci
+          npm run build
 
-          if [ -f artisan ]; then
-              php artisan migrate --force
-              php artisan optimize:clear
-              php artisan optimize
-              php artisan filament:optimize-clear
-              php artisan filament:optimize
-          fi
+          php artisan migrate --force
+          php artisan optimize:clear
+          php artisan filament:optimize-clear
+          php artisan optimize
+          php artisan filament:optimize
 
-              npm ci
-              npm run build
-
-            php artisan queue:work --stop-when-empty
-            supervisorctl restart israelitechalternatives-worker:*
+          systemctl reload php8.3-fpm
+          supervisorctl restart israelitechalternatives-worker:*
           EOF
