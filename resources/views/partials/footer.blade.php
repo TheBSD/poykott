@@ -14,9 +14,6 @@
                 <a href="{{ route('faqs') }}" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
             </div>
 
-            <div class="px-5 py-2">
-                <a href="#" class="text-base text-gray-500 hover:text-gray-900">Blog (Soon)</a>
-            </div>
         </nav>
         <div class="mt-8 flex justify-center space-x-6">
             <a href="#" class="text-gray-400 hover:text-gray-500">
