@@ -2,6 +2,8 @@
 
 
 ## Security Rules
+- [x] Add `robots.txt` to the exclude security rule in Cloudflare 
+- [ ] add `llm.txt` to the exclude security rule in Cloudflare (should be added to cloudflare platform and routes then here as documentation)
 
 ```
 (
@@ -25,7 +27,6 @@
         "/webhooks/mailchimp"
         "/.well-known/security.txt"
         "/robots.txt"
-        "/sitemap.xml"
         "/admin"
         }
         or http.request.uri.path wildcard "/admin/*"
