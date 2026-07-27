@@ -31,11 +31,23 @@ class ImportTeamTechAvivCommand extends Command
                 'job_title' => data_get($data, 'title'),
                 'location' => data_get($data, 'location'),
                 'description' => data_get($data, 'description'),
-                'social_links' => data_get($data, 'socials'),
                 'approved_at' => now(),
             ]);
 
             add_image_urls_to_notes(data_get($data, 'avatar'), $person, $this);
+
+            $person->loadMissing('socialLinks');
+
+            foreach ((array) data_get($data, 'socials', []) as $socialLink) {
+                $socialLink = trim((string) $socialLink);
+                if ($socialLink === '') {
+                    continue;
+                }
+
+                $person->socialLinks()->firstOrCreate([
+                    'url' => $socialLink,
+                ]);
+            }
 
             // if($person->wasRecentlyCreated) {
             //    $imagePath = get_image_archive_path(data_get($data, 'avatar'), 'people');
@@ -121,7 +133,7 @@ class ImportTeamTechAvivCommand extends Command
             $mainCategory = ImportPortfolioTechAvivCommand::companyPersonCategories();
 
             foreach ($mainCategory as $category => $value) {
-                foreach ($value as $personCategory) {
+                foreach ((array) $value as $personCategory) {
                     if (trim($person->job_title) == $personCategory) {
                         $companyPersonType = match ($category) {
                             'Founder' => CompanyPersonType::Founder,

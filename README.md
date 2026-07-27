@@ -22,19 +22,30 @@ or go to [this link](https://github.com/spatie/image-optimizer?tab=readme-ov-fil
 
 ### 3. Install dependencies
 
+System dependencies: 
+```bash
+sudo apt-get install npm
+sudo apt-get install php-xml php-sqlite3
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+php -r "unlink('composer-setup.php');"
+```
+
 - for the backend `composer install`
 - and for the frontend `npm install`
 
 > You can use other like `yarn` or `pnpm` if you prefer
 
-### 4.Generate the key
 
+### 4. Generate the key and env
+
+run `cp .env.example .env`
 run `php artisan key:generate`
 
 ### 5. Set up the database
 
 - run `composer dump-autoload` .
-- run `touch database/database.sqlite` to create database file
+- run `touch database/database.sqlite && touch database/audit_database.sqlite` to create databases files
 - run `php artisan migrate:fresh --seed`
 - run `php artisan import:all`
 - run `npm run dev` to run vite

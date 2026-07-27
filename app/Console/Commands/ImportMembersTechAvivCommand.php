@@ -31,13 +31,25 @@ class ImportMembersTechAvivCommand extends Command
                 'job_title' => data_get($data, 'title'),
                 'location' => data_get($data, 'location'),
                 'description' => data_get($data, 'description'),
-                'social_links' => data_get($data, 'socials'),
                 'approved_at' => now(),
             ]);
 
             add_image_urls_to_notes(data_get($data, 'avatar'), $person, $this);
 
-            $personResource = $person->resources()->updateOrCreate([
+            $person->loadMissing('socialLinks');
+
+            foreach ((array) data_get($data, 'socials', []) as $socialLink) {
+                $socialLink = trim((string) $socialLink);
+                if ($socialLink === '') {
+                    continue;
+                }
+
+                $person->socialLinks()->firstOrCreate([
+                    'url' => $socialLink,
+                ]);
+            }
+
+            $person->resources()->updateOrCreate([
                 'url' => data_get($data, 'url'),
             ], [
                 'type' => ResourceType::TechAviv,
@@ -100,7 +112,7 @@ class ImportMembersTechAvivCommand extends Command
             $mainCategory = ImportPortfolioTechAvivCommand::companyPersonCategories();
 
             foreach ($mainCategory as $category => $value) {
-                foreach ($value as $personCategory) {
+                foreach ((array) $value as $personCategory) {
                     if ($person->job_title == $personCategory) {
                         $companyPersonType = match ($category) {
                             'Founder' => CompanyPersonType::Founder,
